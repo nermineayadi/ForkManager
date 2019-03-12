@@ -2,9 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages/pages.component';
 
+import { LoginComponent } from './auth/login/login.component';
 const routes: Routes = [
+
   {
-    path : "" , component: PagesComponent 
+    path : "" , component: LoginComponent
+  },
+  {
+    path : "pages" , component: PagesComponent 
   }
 ];
 

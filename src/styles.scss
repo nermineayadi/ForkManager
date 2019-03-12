@@ -1,4 +1,5 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+<<<<<<< HEAD
 @import 'themes';
 
 @import '~@nebular/theme/styles/globals';
@@ -7,3 +8,8 @@
   @include nb-theme-global();
 };
 /* You can add global styles to this file, and also import other style files */
+=======
+.center{
+  margin:10% 30% ;
+}
+>>>>>>> 1b71fc858c313b56cf357d899b0f2d162bc9bdf5
