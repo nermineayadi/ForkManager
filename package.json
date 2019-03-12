@@ -25,11 +25,8 @@
     "@nebular/security": "^3.4.0",
     "@nebular/theme": "^3.4.0",
     "core-js": "^2.5.4",
-<<<<<<< HEAD
     "jquery": "^3.3.1",
-=======
     "hammerjs": "^2.0.8",
->>>>>>> 1b71fc858c313b56cf357d899b0f2d162bc9bdf5
     "nebular-icons": "^1.1.0",
     "primeicons": "^1.0.0",
     "primeng": "^7.1.0-rc.1",
