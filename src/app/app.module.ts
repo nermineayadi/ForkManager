@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { RespcomptoireComponent } from './pages/respcomptoire/respcomptoire.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
 import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
     BarmanComponent,
     ServeurComponent,
     PortionneurComponent,
-    RespcomptoireComponent
+    RespcomptoireComponent,LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbSidebarModule
+    NbSidebarModule,    
+    HttpClientModule
   ],
   providers: [NbSidebarService],
   bootstrap: [AppComponent]
