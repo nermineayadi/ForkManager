@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ThemeComponent } from './theme/theme.component';
@@ -12,9 +12,15 @@ import { ServeurComponent } from './pages/serveur/serveur.component';
 import { PortionneurComponent } from './pages/portionneur/portionneur.component';
 import { RespcomptoireComponent } from './pages/respcomptoire/respcomptoire.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
 import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
-
+import { GrowlModule } from 'primeng/primeng';
+import {MatIconModule} from '@angular/material/icon';
+import {AccordionModule} from 'primeng/accordion';   
+import {MatCheckboxModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, } from '@angular/material';
+import {SidebarModule} from 'primeng/sidebar';
+import {MatButtonModule} from '@angular/material/button';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,17 +32,24 @@ import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
     BarmanComponent,
     ServeurComponent,
     PortionneurComponent,
-    RespcomptoireComponent
+    RespcomptoireComponent,
+    NavigationComponent,
+    NavbarComponent
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbSidebarModule
+    MatToolbarModule,
+    GrowlModule,
+    AccordionModule,
+    SidebarModule,MatButtonModule,
+    
+    MatCheckboxModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule
   ],
-  providers: [NbSidebarService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

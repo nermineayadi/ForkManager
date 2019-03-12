@@ -28,7 +28,11 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@nebular/theme/styles/prebuilt/default.css"
+  
+                "src/assets/styles/bootstrap.min.css",
+        "src/assets/styles/font-awesome.min.css",
+        "src/assets/styles/style.css"
+              
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -87,7 +91,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": ["../node_modules/jquery"],
             "assets": [
               "src/favicon.ico",
               "src/assets"

@@ -1,0 +1,53 @@
+:host{
+  .navbar-header{
+    background-color: rgb(95, 95, 95)
+  
+  }
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  padding: 0;
+  height: auto;
+ form{
+  height: 10px !important;
+ }
+
+  mat-form-field{
+    margin: 0 !important;
+    background-color: rgb(255, 253, 253);
+    padding-bottom: 0 !important;
+    height: 10px !important;
+
+  }
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 10px;
+  border-radius: 2px;
+  background-color: #87428d;
+  height: 100%;
+  padding-right: 7px;
+    padding-left: 2px;
+    width: 25%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: rgb(250, 165, 250);
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;} 
+}
+}
