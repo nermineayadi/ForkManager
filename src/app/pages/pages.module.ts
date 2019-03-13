@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; 
-import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
 import { PagesComponent } from './pages.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {SidebarModule} from 'primeng/sidebar';
+
 
 @NgModule({
-    declarations: [PagesComponent],
+    declarations: [PagesComponent,
+    ],
     imports: [
         CommonModule,
         RouterModule,
-        NbSidebarModule,
-        NbLayoutModule,
-        NbSidebarService
+       
+        MatToolbarModule,
+        SidebarModule,
+        
      ],
     exports: [],
-    providers: [NbSidebarService],
+    providers: [],
 })
 export class PagesModule {}

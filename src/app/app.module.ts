@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,8 +12,15 @@ import { BarmanComponent } from './pages/barman/barman.component';
 import { ServeurComponent } from './pages/serveur/serveur.component';
 import { PortionneurComponent } from './pages/portionneur/portionneur.component';
 import { RespcomptoireComponent } from './pages/respcomptoire/respcomptoire.component';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
+import { GrowlModule } from 'primeng/primeng';
+import {AccordionModule} from 'primeng/accordion';   
+import {SidebarModule} from 'primeng/sidebar';
+import {MatButtonModule} from '@angular/material/button';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
 import { LoginComponent } from './auth/login/login.component';
 import {MatangModule  } from "../assets/matang.module";
 
@@ -27,18 +35,30 @@ import {MatangModule  } from "../assets/matang.module";
     BarmanComponent,
     ServeurComponent,
     PortionneurComponent,
-    RespcomptoireComponent,LoginComponent, 
+    RespcomptoireComponent,
+    NavigationComponent,
+    NavbarComponent,
+    
+    
+    RespcomptoireComponent,LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    GrowlModule,
+    AccordionModule,
+    SidebarModule,MatButtonModule,
+    
+    
     MatangModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbSidebarModule,    
     HttpClientModule, 
   ],
-  providers: [NbSidebarService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
