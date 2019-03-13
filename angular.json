@@ -27,13 +27,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+                "src/styles.scss",
                 "src/assets/styles/bootstrap.min.css",
                 "src/assets/styles/font-awesome.min.css",
                 "src/assets/styles/style.css"
                       
             ],
-            "scripts": ["../node_modules/jquery/dist/jquery.js"],
+            "scripts": ["node_modules/jquery/dist/jquery.js"],
             "es5BrowserSupport": true
           },
           "configurations": {

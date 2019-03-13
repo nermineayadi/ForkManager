@@ -20,9 +20,12 @@ import {SidebarModule} from 'primeng/sidebar';
 import {MatButtonModule} from '@angular/material/button';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
 import { LoginComponent } from './auth/login/login.component';
 import {MatangModule  } from "../assets/matang.module";
+import * as $ from 'jquery';
+import { InscriptionComponent } from './auth/inscription/inscription.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,7 @@ import {MatangModule  } from "../assets/matang.module";
     RespcomptoireComponent,
     NavigationComponent,
     NavbarComponent,
-    
+    InscriptionComponent,
     
     RespcomptoireComponent,LoginComponent
   ],
@@ -50,12 +53,8 @@ import {MatangModule  } from "../assets/matang.module";
     GrowlModule,
     AccordionModule,
     SidebarModule,MatButtonModule,
-    
-    
-    MatangModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbSidebarModule,    
+    FormsModule, ReactiveFormsModule,MatFormFieldModule,
+    MatangModule, 
     HttpClientModule, 
   ],
   providers: [],

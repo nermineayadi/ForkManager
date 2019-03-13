@@ -13,6 +13,6 @@ export class NavbarComponent implements OnInit {
     }
     logout() {
         localStorage.clear();
-        location.href='http://';
+        location.href='localhost:4200';
     }
 }
