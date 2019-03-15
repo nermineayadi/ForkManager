@@ -14,6 +14,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls:['./inscription.component.scss']
 })
 export class InscriptionComponent {
+  hide = true;
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
