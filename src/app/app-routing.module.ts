@@ -4,6 +4,7 @@ import { PagesComponent } from './pages/pages.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { InscriptionComponent } from './auth/inscription/inscription.component';
+import { CuisinierComponent } from './pages/cuisinier/cuisinier.component';
 const routes: Routes = [
 
   {
@@ -14,7 +15,9 @@ const routes: Routes = [
   },
   {
     path : "inscription" , component: InscriptionComponent 
-  }
+  },
+  { path: 'cuisine', component: CuisinierComponent },
+
 ];
 
 @NgModule({
