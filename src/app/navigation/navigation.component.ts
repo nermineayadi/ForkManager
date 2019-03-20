@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
     {
       title: "Menus",
       icon: "book-open",
-      link: "./menus"
+      link: "./menu"
     },
     {
       title: "Réservation",
@@ -29,7 +29,7 @@ export class NavigationComponent implements OnInit {
     {
       title: "Stock",
       icon: "box-open",
-      link: "./reservation"
+      link: "./stock"
     },
     {
       title: "Commande",

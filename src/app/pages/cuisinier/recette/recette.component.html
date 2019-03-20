@@ -9,32 +9,31 @@
 
 <div class="mat-elevation-z8">
 
-<table mat-table [dataSource]="dataSource" >
+<table mat-table [dataSource]="dataSource" class="table table-hover table-striped" >
 
-  <!-- Position Column -->
+
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> No. </th>
     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="plat">
     <th mat-header-cell *matHeaderCellDef> Plat </th>
     <td mat-cell *matCellDef="let element"> {{element.plat}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  
   <ng-container matColumnDef="categorie">
     <th mat-header-cell *matHeaderCellDef> Categorie </th>
     <td mat-cell *matCellDef="let element"> {{element.categorie}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
+  
   <ng-container matColumnDef="famille">
     <th mat-header-cell *matHeaderCellDef> Famille </th>
     <td mat-cell *matCellDef="let element"> {{element.famille}} </td>
   </ng-container>
-    <!-- Symbol Column -->
+    
     <ng-container matColumnDef="sfamille">
         <th mat-header-cell *matHeaderCellDef> Sous Famille </th>
         <td mat-cell *matCellDef="let element"> {{element.sfamille}} </td>
