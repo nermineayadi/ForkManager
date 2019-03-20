@@ -7,6 +7,7 @@ import {MatangModule  } from "../../../../assets/matang.module";
     declarations: [RecetteComponent],
     imports: [ CommonModule ,MatangModule],
     exports: [],
+
     providers: [],
 })
 export class RecetteModule {}

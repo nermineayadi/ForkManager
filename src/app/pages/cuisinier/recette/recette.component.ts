@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, PageEvent,MatPaginator} from '@angular/material';
+import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
+import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 export interface Plats {
     plat: string;
     position: number;
@@ -7,7 +8,9 @@ export interface Plats {
     famille: string;
     sfamille:string;
   }
-  
+   
+  //initialisations plats 
+
   const ELEMENT_DATA: Plats[] = [
     {position: 1, plat: 'soupe au poulet', categorie: "entrée", famille: 'soupe',sfamille:"frick"},
     {position: 2, plat: 'césar', categorie: "entrée", famille: 'salade',sfamille:"verte"},
@@ -35,7 +38,20 @@ export interface Plats {
     dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
   
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    constructor(public dialog: MatDialog) {}
+    openDialog(): void {
+      const dialogRef = this.dialog.open(CplatComponent, {
+
+        //taille du modal 
+        width: '900px',
+        data:{ }
+      });
   
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        // this.animal = result;
+      });
+    }
     //pagination
     ngOnInit() {
       this.dataSource.paginator = this.paginator;

@@ -14,9 +14,7 @@ import { PagesRoutingModule } from './pages-routing.module';
         RouterModule,
         MatToolbarModule,
         SidebarModule,
-        PagesRoutingModule
-
-        
+        PagesRoutingModule  
      ],
     exports: [],
     providers: [],

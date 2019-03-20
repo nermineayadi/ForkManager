@@ -29,6 +29,7 @@ import { MatFormFieldModule } from '@angular/material';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { RecetteComponent } from './pages/cuisinier/recette/recette.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CplatComponent } from './modals/CrudPlat/CPlat/cplat.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SearchbarComponent,
     RespcomptoireComponent,
     LoginComponent,
-    RecetteComponent
+    RecetteComponent,CplatComponent
 
   ],
   imports: [
@@ -64,6 +65,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule
     
   ],
+  entryComponents:[CplatComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
