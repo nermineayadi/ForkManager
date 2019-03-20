@@ -1,6 +1,6 @@
-import {MatButtonModule, MatCheckboxModule,
-    
-
+import {MatButtonModule, 
+    MatCheckboxModule,
+    MatNativeDateModule,
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
@@ -27,18 +27,23 @@ import {MatButtonModule, MatCheckboxModule,
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule} from '@angular/material';
+    MatPaginatorModule,
+    MatIconModule,
+    
+
+  } 
+    from '@angular/material';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-BrowserAnimationsModule
+
 
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule,MatFormFieldModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
+    MatNativeDateModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -65,9 +70,9 @@ BrowserAnimationsModule
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule],
+    MatPaginatorModule,MatIconModule,
+  ],
   exports: [
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
@@ -97,6 +102,6 @@ BrowserAnimationsModule
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule],
+    MatPaginatorModule,MatIconModule,],
 })
 export class MatangModule { }

@@ -1,0 +1,104 @@
+<div class=" center">
+  <mat-card>
+    <mat-card-title>
+      <mat-icon matSuffix>account_circle</mat-icon>
+      INSCRIPTION
+    </mat-card-title>
+    <mat-card-content>
+      <form class="example-form ">
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Tapez votre CIN</mat-label>
+            <input matInput  maxlength="8"  placeholder="CIN" required>
+          </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Tapez votre Nom</mat-label>
+          <input matInput placeholder="Nom" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Tapez votre Prénom</mat-label>
+          <input matInput placeholder=" Prénom" required>
+        </mat-form-field>
+        <br>
+        <!-- code pour l'email  -->
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+
+          <input matInput placeholder="Email" required [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Tapez un email valide
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email est <strong>obligatoire</strong>
+          </mat-error>
+          <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Date de Naissance</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <span matPrefix>+216 &nbsp;</span>
+          <input type="tel" maxlength="8" matInput placeholder="Telephone">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="outline">
+          <mat-label>adresse</mat-label>
+          <input matInput placeholder="adresse">
+          <mat-icon matSuffix>add_location</mat-icon>
+        </mat-form-field>
+        <br>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>ville</mat-label>
+              <input matInput placeholder="ville">
+
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Code postal</mat-label>
+              <input matInput #postalCode maxlength="5" placeholder="Code Postale">
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Tapez votre mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Fonction">
+            <mat-option value="cuisinier">cuisinier</mat-option>
+            <mat-option value="Responsable Comptoire">responsable comptoire</mat-option>
+            <mat-option value="Portionneur">portionneur</mat-option>
+            <mat-option value="Serveur">serveur</mat-option>
+            <mat-option value="Barman">Barman</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4"><button class="center" mat-raised-button color="primary" type="submit">s'inscrire</button></div>
+          <div class="col-md-4"></div>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

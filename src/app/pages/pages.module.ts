@@ -4,18 +4,17 @@ import { RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {SidebarModule} from 'primeng/sidebar';
-
-
+import { CuisinierComponent } from './cuisinier/cuisinier.component';
+import { PagesRoutingModule } from './pages-routing.module';
 @NgModule({
-    declarations: [PagesComponent,
+    declarations: [PagesComponent,CuisinierComponent
     ],
     imports: [
         CommonModule,
         RouterModule,
-       
         MatToolbarModule,
         SidebarModule,
-        
+        PagesRoutingModule  
      ],
     exports: [],
     providers: [],

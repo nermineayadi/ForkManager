@@ -20,9 +20,16 @@ import {SidebarModule} from 'primeng/sidebar';
 import {MatButtonModule} from '@angular/material/button';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService } from '@nebular/theme';
 import { LoginComponent } from './auth/login/login.component';
 import {MatangModule  } from "../assets/matang.module";
+import * as $ from 'jquery';
+import { InscriptionComponent } from './auth/inscription/inscription.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { RecetteComponent } from './pages/cuisinier/recette/recette.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CplatComponent } from './modals/CrudPlat/CPlat/cplat.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +42,14 @@ import {MatangModule  } from "../assets/matang.module";
     BarmanComponent,
     ServeurComponent,
     PortionneurComponent,
-    RespcomptoireComponent,
     NavigationComponent,
     NavbarComponent,
-    
-    
-    RespcomptoireComponent,LoginComponent
+    InscriptionComponent,
+    SearchbarComponent,
+    RespcomptoireComponent,
+    LoginComponent,
+    RecetteComponent,CplatComponent
+
   ],
   imports: [
     BrowserModule,
@@ -50,14 +59,13 @@ import {MatangModule  } from "../assets/matang.module";
     GrowlModule,
     AccordionModule,
     SidebarModule,MatButtonModule,
-    
-    
-    MatangModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbSidebarModule,    
+    FormsModule, ReactiveFormsModule,MatFormFieldModule,
+    MatangModule, 
     HttpClientModule, 
+    FlexLayoutModule
+    
   ],
+  entryComponents:[CplatComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

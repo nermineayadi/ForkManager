@@ -6,8 +6,6 @@ import {Login} from "../models/login";
     styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-  
-    
 
     loginInfo:Login = {
         first_name:'Andrew',
