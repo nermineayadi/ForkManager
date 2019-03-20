@@ -28,15 +28,17 @@ import {MatButtonModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatIconModule} 
+    MatIconModule,
+    
+
+  } 
     from '@angular/material';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-BrowserAnimationsModule
+
 
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule,MatFormFieldModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -68,9 +70,9 @@ BrowserAnimationsModule
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule],
+    MatPaginatorModule,MatIconModule,
+  ],
   exports: [
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
@@ -100,6 +102,6 @@ BrowserAnimationsModule
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule],
+    MatPaginatorModule,MatIconModule,],
 })
 export class MatangModule { }

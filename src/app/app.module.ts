@@ -26,6 +26,9 @@ import * as $ from 'jquery';
 import { InscriptionComponent } from './auth/inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
+import { SearchbarComponent } from './searchbar/searchbar.component';
+import { RecetteComponent } from './pages/cuisinier/recette/recette.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -38,12 +41,14 @@ import { MatFormFieldModule } from '@angular/material';
     BarmanComponent,
     ServeurComponent,
     PortionneurComponent,
-    RespcomptoireComponent,
     NavigationComponent,
     NavbarComponent,
     InscriptionComponent,
-    
-    RespcomptoireComponent,LoginComponent
+    SearchbarComponent,
+    RespcomptoireComponent,
+    LoginComponent,
+    RecetteComponent
+
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,8 @@ import { MatFormFieldModule } from '@angular/material';
     FormsModule, ReactiveFormsModule,MatFormFieldModule,
     MatangModule, 
     HttpClientModule, 
+    FlexLayoutModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

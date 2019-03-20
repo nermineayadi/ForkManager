@@ -13,14 +13,11 @@
         </div>
         <div class="logo-element">
           <i class="fas fa-user-tie"></i>
-
         </div>
       </li>
       <li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
         <a [routerLink]="[item.link]"><i class="fas fa-{{item.icon}}"></i> <span class="nav-label">{{item.title}}</span></a>
       </li>
     </ul>
-
-
   </div>
 </nav>
