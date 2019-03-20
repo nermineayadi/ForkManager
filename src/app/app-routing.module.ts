@@ -6,6 +6,8 @@ import { InscriptionComponent } from "./auth/inscription/inscription.component";
 import { CuisinierComponent } from "./pages/cuisinier/cuisinier.component";
 import { SearchbarComponent } from "./searchbar/searchbar.component";
 import { RecetteComponent } from "./pages/cuisinier/recette/recette.component";
+import { StockComponent } from './pages/cuisinier/stock/stock.component';
+import { MenuComponent } from './pages/cuisinier/menu/menu.component';
 const routes: Routes = [
   {
     path: "",
@@ -23,7 +25,10 @@ const routes: Routes = [
     path: "cuisine",
     component: CuisinierComponent,
     children: 
-       [{ path: "plats", component: RecetteComponent }
+       [{ path: "plats", component: RecetteComponent },
+       { path: "stock", component: StockComponent },
+       { path: "menu", component: MenuComponent },
+
 
     ]
   },

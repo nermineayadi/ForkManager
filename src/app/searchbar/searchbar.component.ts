@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-    dataset:any[]=["pizza","hamburger","spagetti"]
 
 
     constructor() { }

@@ -30,6 +30,8 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { RecetteComponent } from './pages/cuisinier/recette/recette.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CplatComponent } from './modals/CrudPlat/CPlat/cplat.component';
+import { StockComponent } from './pages/cuisinier/stock/stock.component';
+import { MenuComponent } from './pages/cuisinier/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,8 @@ import { CplatComponent } from './modals/CrudPlat/CPlat/cplat.component';
     SearchbarComponent,
     RespcomptoireComponent,
     LoginComponent,
-    RecetteComponent,CplatComponent
-
+    RecetteComponent,CplatComponent,
+StockComponent,MenuComponent
   ],
   imports: [
     BrowserModule,
