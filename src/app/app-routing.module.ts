@@ -8,6 +8,10 @@ import { SearchbarComponent } from "./searchbar/searchbar.component";
 import { RecetteComponent } from "./pages/cuisinier/recette/recette.component";
 import { StockComponent } from './pages/cuisinier/stock/stock.component';
 import { MenuComponent } from './pages/cuisinier/menu/menu.component';
+import { ReservationComponent } from './pages/cuisinier/reservation/reservation.component';
+import { CommandeComponent } from './pages/cuisinier/commande/commande.component';
+import { InventaireComponent } from './pages/cuisinier/inventaire/inventaire.component';
+import { AcceuilComponent } from './pages/cuisinier/acceuil/acceuil.component';
 const routes: Routes = [
   {
     path: "",
@@ -28,6 +32,11 @@ const routes: Routes = [
        [{ path: "plats", component: RecetteComponent },
        { path: "stock", component: StockComponent },
        { path: "menu", component: MenuComponent },
+       { path: "reservation", component: ReservationComponent },
+       { path: "commande", component: CommandeComponent },
+       { path: "inventaire", component: InventaireComponent },
+       { path: "acceuil", component: AcceuilComponent },
+
 
 
     ]
