@@ -1,19 +1,11 @@
 <div class="row border-bottom">
-  <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-    <div class="navbar-header">
+  <nav class="navbar navbar-static-top white-bg" role="navigation" fxLayoutGap="83%"  fxLayout="row"  fxLayoutAlign="space-between start"  >
+    <div class="navbar-header" >
       <a class="minimalize-styl-2 btn btn-primary " (click)="toggleNavigation()"><i class="fa fa-bars"></i> </a>
     </div>
-    <ul class="nav navbar-right">
-      <!-- logout -->
-      <li>
-        <a [routerLink]="['']">
-          <i class="fa fa-sign-out"></i> Log out
-        </a>
-      </li>
-    </ul>
     <!-- chercher -->
 
-    <form class=" nav navbar-form navbar-right" action="/action_page.php">
+    <!-- <form class=" nav navbar-form " action="/action_page.php">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="chercher">
         <div class="input-group-btn">
@@ -22,7 +14,15 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> -->
+          <!-- logout -->
 
+    <ul class="nav " >
+      <li>
+        <a [routerLink]="['']" >
+          <i class="fa fa-sign-out"></i> Log out
+        </a>
+      </li>
+    </ul>
   </nav>
 </div>

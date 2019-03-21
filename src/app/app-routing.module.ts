@@ -12,6 +12,7 @@ import { ReservationComponent } from './pages/cuisinier/reservation/reservation.
 import { CommandeComponent } from './pages/cuisinier/commande/commande.component';
 import { InventaireComponent } from './pages/cuisinier/inventaire/inventaire.component';
 import { AcceuilComponent } from './pages/cuisinier/acceuil/acceuil.component';
+
 const routes: Routes = [
   {
     path: "",

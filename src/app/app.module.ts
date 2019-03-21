@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
@@ -36,7 +36,12 @@ import { ReservationComponent } from "./pages/cuisinier/reservation/reservation.
 import { CommandeComponent } from "./pages/cuisinier/commande/commande.component";
 import { InventaireComponent } from './pages/cuisinier/inventaire/inventaire.component';
 import { AcceuilComponent } from './pages/cuisinier/acceuil/acceuil.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import {NgbModule,NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +82,20 @@ import { AcceuilComponent } from './pages/cuisinier/acceuil/acceuil.component';
     MatFormFieldModule,
     MatangModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,AppRoutingModule,
+    FlatpickrModule,
+   
+    FlatpickrModule.forRoot(),
+        FormsModule,
+        NgbModule,
+        CommonModule,
+        FormsModule,
+        NgbModalModule ,
+        BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   entryComponents: [CplatComponent],
   providers: [],
