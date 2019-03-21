@@ -6,10 +6,9 @@
 </div>
 
 
+<div class="mat-elevation-z8 ">
 
-<div class="mat-elevation-z8">
-
-<table mat-table [dataSource]="dataSource" class="table table-hover table-striped" >
+<table mat-table [dataSource]="dataSource" class="table table-responsive-md table-striped " >
 
 
   <ng-container matColumnDef="position">
@@ -22,12 +21,10 @@
     <td mat-cell *matCellDef="let element"> {{element.plat}} </td>
   </ng-container>
 
-  
   <ng-container matColumnDef="categorie">
     <th mat-header-cell *matHeaderCellDef> Categorie </th>
     <td mat-cell *matCellDef="let element"> {{element.categorie}} </td>
   </ng-container>
-
   
   <ng-container matColumnDef="famille">
     <th mat-header-cell *matHeaderCellDef> Famille </th>

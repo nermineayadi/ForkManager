@@ -41,7 +41,6 @@ export interface Plats {
     constructor(public dialog: MatDialog) {}
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
-
         //taille du modal 
         width: '900px',
         data:{ }
