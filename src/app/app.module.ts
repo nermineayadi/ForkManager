@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
@@ -34,14 +34,20 @@ import { StockComponent } from "./pages/cuisinier/stock/stock.component";
 import { MenuComponent } from "./pages/cuisinier/menu/menu.component";
 import { ReservationComponent } from "./pages/cuisinier/reservation/reservation.component";
 import { CommandeComponent } from "./pages/cuisinier/commande/commande.component";
-import { InventaireComponent } from './pages/cuisinier/inventaire/inventaire.component';
-import { AcceuilComponent } from './pages/cuisinier/acceuil/acceuil.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import {NgbModule,NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import { InventaireComponent } from "./pages/cuisinier/inventaire/inventaire.component";
+import { AcceuilComponent } from "./pages/cuisinier/acceuil/acceuil.component";
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { FlatpickrModule } from 'angularx-flatpickr';
-import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from "angularx-flatpickr";
+import { CommonModule } from "@angular/common";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from "../environments/environment";
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +75,8 @@ import { CommonModule } from '@angular/common';
     AcceuilComponent
   ],
   imports: [
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -82,20 +90,22 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatangModule,
     HttpClientModule,
-    FlexLayoutModule,AppRoutingModule,
+    FlexLayoutModule,
+    AppRoutingModule,
     FlatpickrModule,
-   
     FlatpickrModule.forRoot(),
-        FormsModule,
-        NgbModule,
-        CommonModule,
-        FormsModule,
-        NgbModalModule ,
-        BrowserAnimationsModule,
+    FormsModule,
+    NgbModule,
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   entryComponents: [CplatComponent],
   providers: [],
