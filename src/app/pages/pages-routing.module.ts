@@ -1,25 +1,44 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { CuisinierComponent } from "./cuisinier/cuisinier.component";
-import { ReprestComponent } from "./represt/represt.component";
-import { BarmanComponent } from "./barman/barman.component";
-import { ControlgestionComponent } from "./controlgestion/controlgestion.component";
-import { RecetteComponent } from "./cuisinier/recette/recette.component";
+import { PagesComponent } from "./pages.component";
 
 const routes: Routes = [
   {
-    path: "cuisine",
-    component: CuisinierComponent,
-    children: [{ path: "plats", component: RecetteComponent }]
-  },
-  { path: "responsable", component: ReprestComponent },
-  { path: "controle", component: ControlgestionComponent },
-  { path: "bar", component: BarmanComponent }
+    path: "",
+    component: PagesComponent,
+    children: [
+      {
+        path: "cuisine",
+        loadChildren: "./cuisinier/cuisinier.module#CuisineModule"
+      },
+      {
+        path: "controle",
+        loadChildren: "./controle/controle.module#ControleModule"
+      },
+      {
+        path: "portion",
+        loadChildren: "./portionneur/portionnneur.module#PortionneurModule"
+      },
+      {
+        path: "responsable",
+        loadChildren: "./responsable/responsable.module#ResponsableModule"
+      },
+      {
+        path: "serveur",
+        loadChildren: "./serveur/serveur.module#ServeurModule"
+      },
+      {
+        path: "comptoire",
+        loadChildren: "./comptoire/comptoire.module#ComptoireModule"
+      },
+      { path: "bar", loadChildren: "./barman/barman.module#BarmanModule" }
+    ]
+  }
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class PagesRoutingModule {}

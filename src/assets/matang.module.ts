@@ -1,7 +1,53 @@
-import {MatButtonModule, 
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatNativeDateModule,
+  MatInputModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatGridListModule,
+  MatCardModule,
+  MatStepperModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatButtonToggleModule,
+  MatChipsModule,
+  MatProgressSpinnerModule,
+  MatProgressBarModule,
+  MatDialogModule,
+  MatTooltipModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatIconModule
+} from "@angular/material";
+import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
+@NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
     MatCheckboxModule,
-    MatNativeDateModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatCheckboxModule,
+    MatButtonModule,
     MatInputModule,
+    MatNativeDateModule,
     MatAutocompleteModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -20,6 +66,7 @@ import {MatButtonModule,
     MatExpansionModule,
     MatButtonToggleModule,
     MatChipsModule,
+    MatIconModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
@@ -28,51 +75,11 @@ import {MatButtonModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatIconModule,
-    
-
-  } 
-    from '@angular/material';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-@NgModule({
-  imports: [MatButtonModule, MatCheckboxModule,MatFormFieldModule,
-    MatCheckboxModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatStepperModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatButtonToggleModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,MatIconModule,
+    MatIconModule,CommonModule
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
@@ -102,6 +109,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,MatIconModule,],
+    MatPaginatorModule,
+    MatIconModule,CommonModule
+  ]
 })
-export class MatangModule { }
+export class MatangModule {}
