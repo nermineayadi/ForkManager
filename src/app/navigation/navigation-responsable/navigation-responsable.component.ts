@@ -9,7 +9,7 @@ export class NavigationResponsableComponent implements OnInit {
     {
       title: "Acceuil",
       icon: "home",
-      link: "./acceuil",
+      link: "./",
     },
     {
       title: "Plats",
@@ -19,7 +19,7 @@ export class NavigationResponsableComponent implements OnInit {
     {
       title: "Boissons",
       icon: "glass-martini",
-      link: "./boisson",
+      link: "./boissons",
     },
     {
       title: "Menus",
@@ -29,17 +29,17 @@ export class NavigationResponsableComponent implements OnInit {
     {
       title: "Portions",
       icon: "balance-scale",
-      link: "./portion"
+      link: "./portions"
     },
     {
       title: "Réservations",
       icon: "calendar",
-      link: "./reservation"
+      link: "./reservations"
     },
     {
       title: "Personnels",
       icon: "users",
-      link: "./personnel"
+      link: "./personnels"
     },
     {
       title: "Inventaire",

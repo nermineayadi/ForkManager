@@ -25,14 +25,11 @@ import { PagesComponent } from './pages.component';
 
     PagesComponent,
     PortionneurComponent,
-    ResponsableComponent,
     ServeurComponent,
     ComptoireComponent,
     BarmanComponent,
 
-    //navigation
-    
-    NavigationResponsableComponent,   
+     
 
   ],
   imports: [

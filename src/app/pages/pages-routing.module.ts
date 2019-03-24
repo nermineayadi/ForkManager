@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { CuisinierComponent } from "./cuisinier/cuisinier.component";
-import { ControleComponent } from "./controle/controle.component";
+
 import { PortionneurComponent } from "./portionneur/portionneur.component";
 import { ResponsableComponent } from "./responsable/responsable.component";
 import { ServeurComponent } from "./serveur/serveur.component";
@@ -29,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: "responsable",
-        component: ResponsableComponent
+        loadChildren: "./responsable/responsable.module#ResponsableModule"
       },
       {
         path: "serveur",

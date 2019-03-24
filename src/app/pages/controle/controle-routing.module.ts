@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ControleComponent } from './controle.component';
-import { AcceuilControleComponent } from './acceuil-controle/acceuil-controle.component';
+import { AcceuilControleComponent } from '../controle/acceuil-controle/acceuil-controle.component';
 import { PlatControleComponent } from './plat-controle/plat-controle.component';
 import { MenuControleComponent } from './menu-controle/menu-controle.component';
 import { ReservationControleComponent } from './reservation-controle/reservation-controle.component';
@@ -10,7 +10,8 @@ import { PortionControleComponent } from './portion-controle/portion-controle.co
 import { BoissonControleComponent } from './boisson-controle/boisson-controle.component';
 import { PersonnelControleComponent } from './personnel-controle/personnel-controle.component';
 
-const routes: Routes = [{
+const routes: Routes = [
+  {
     path: "",
     component: ControleComponent,
     children: [
