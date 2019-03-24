@@ -18,7 +18,7 @@ const routes: Routes = [{
       { path: "plats", component: PlatControleComponent },
       { path: "boissons", component: BoissonControleComponent },
       { path: "menu", component: MenuControleComponent },
-      { path: "protions", component: PortionControleComponent },
+      { path: "portions", component: PortionControleComponent },
       { path: "reservations", component: ReservationControleComponent },
       { path: "personnels", component: PersonnelControleComponent },
       
