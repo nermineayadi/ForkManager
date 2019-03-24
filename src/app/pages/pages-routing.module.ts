@@ -1,6 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { CuisinierComponent } from "./cuisinier/cuisinier.component";
+import { ControleComponent } from "./controle/controle.component";
+import { PortionneurComponent } from "./portionneur/portionneur.component";
+import { ResponsableComponent } from "./responsable/responsable.component";
+import { ServeurComponent } from "./serveur/serveur.component";
+import { ComptoireComponent } from "./comptoire/comptoire.component";
+import { BarmanComponent } from "./barman/barman.component";
 import { PagesComponent } from "./pages.component";
 
 const routes: Routes = [
@@ -18,21 +25,24 @@ const routes: Routes = [
       },
       {
         path: "portion",
-        loadChildren: "./portionneur/portionnneur.module#PortionneurModule"
+        component: PortionneurComponent
       },
       {
         path: "responsable",
-        loadChildren: "./responsable/responsable.module#ResponsableModule"
+        component: ResponsableComponent
       },
       {
         path: "serveur",
-        loadChildren: "./serveur/serveur.module#ServeurModule"
+        component: ServeurComponent
       },
       {
         path: "comptoire",
-        loadChildren: "./comptoire/comptoire.module#ComptoireModule"
+        component: ComptoireComponent
       },
-      { path: "bar", loadChildren: "./barman/barman.module#BarmanModule" }
+      {
+        path: "bar",
+        component: BarmanComponent
+      }
     ]
   }
 ];

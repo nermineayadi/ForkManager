@@ -12,10 +12,7 @@ import { CommandeCuisineComponent } from "./commande-cuisine/commande-cuisine.co
 import { InventaireCuisineComponent } from "./inventaire-cuisine/inventaire-cuisine.component";
 import { AcceuilCuisineComponent } from "./acceuil-cuisine/acceuil-cuisine.component";
 import { cuisineRoutingModule } from "./cuisinier-routing.module";
-//navigation
-import { NavigationCuisineComponent } from "src/app/navigation/navigation-cuisine/navigation-cuisine.component";
-import { NavigationResponsableComponent } from "src/app/navigation/navigation-responsable/navigation-responsable.component";
-import { NavbarComponent } from "src/app/navbar/navbar.component";
+
 //assets
 import { MatangModule } from "src/assets/matang.module";
 //calendar
@@ -24,6 +21,8 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavBarModule } from 'src/app/navbar/navbar.module';
+import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
 
 @NgModule({
   declarations: [ 
@@ -37,17 +36,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommandeCuisineComponent,
     InventaireCuisineComponent,
     AcceuilCuisineComponent,
-    //navigation
-    NavigationCuisineComponent,
-    NavigationResponsableComponent,
-    //navbar
-    NavbarComponent
+    NavigationCuisineComponent
+    
   ],
   imports: [
     //important
     CommonModule,
     cuisineRoutingModule,
     MatangModule, 
+    NavBarModule,
     //calendar
     FlatpickrModule,
     FlatpickrModule.forRoot(),

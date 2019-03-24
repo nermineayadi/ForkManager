@@ -12,6 +12,8 @@ import { AppComponent } from "./app.component";
 //components necessaires
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
+import { PagesComponent } from './pages/pages.component';
+
 
 //modals
 import { CplatComponent } from "./modals/CrudPlat/CPlat/cplat.component";
@@ -44,6 +46,8 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
+
 @NgModule({
   declarations: [
 
@@ -53,7 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     //components necessaires
     LoginComponent,
     InscriptionComponent,
-
+    
    
     //modals
     CplatComponent,
@@ -67,7 +71,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-
     AppRoutingModule,
     //angular-material
     MatangModule,

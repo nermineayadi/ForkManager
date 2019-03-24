@@ -4,8 +4,8 @@ import { ResponsableRoutingModule } from './responsable-routing.module';
 import { ResponsableComponent } from './responsable.component';
 
 @NgModule({
-    declarations: [ResponsableComponent],
-    imports: [ CommonModule , ResponsableRoutingModule ],
+    declarations: [ResponsableComponent,],
+    imports: [ CommonModule , ResponsableRoutingModule ,],
     exports: [],
     providers: [],
 })
