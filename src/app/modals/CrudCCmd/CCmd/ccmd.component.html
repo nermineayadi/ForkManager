@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Ajout Commande</h1>
+<div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between space-between">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Ingrédient</mat-label>
+      <input matInput [(ngModel)]="ingredient">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>categorie</mat-label>
+      <input matInput [(ngModel)]="categorie">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Quantité</mat-label>
+      <input matInput type="number" maxlength="2" [(ngModel)]="quantite">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nbr Portion</mat-label>
+      <input matInput type="number" maxlength="2" [(ngModel)]="nbParts">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Unité</mat-label>
+      <input matInput [(ngModel)]="unite">
+    </mat-form-field>
+  </div>
+
+  <div>
+
+    <button class="btn-primary" mat-stroked-button>Enregistrer</button>
+    <br>
+    <button class=" btn-danger" mat-stroked-button>Annuler</button>
+
+
+
+  </div>
+</div>

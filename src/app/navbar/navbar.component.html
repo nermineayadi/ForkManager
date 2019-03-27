@@ -1,28 +1,44 @@
-<div class="row border-bottom">
-  <nav class="navbar navbar-static-top white-bg" role="navigation" fxLayoutGap="83%"  fxLayout="row"  fxLayoutAlign="space-between start"  >
-    <div class="navbar-header" >
-      <a class="minimalize-styl-2 btn btn-primary " (click)="toggleNavigation()"><i class="fa fa-bars"></i> </a>
-    </div>
-    <!-- chercher -->
-
-    <!-- <form class=" nav navbar-form " action="/action_page.php">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="chercher">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
+<mat-toolbar class="toolbar w-100" style="padding:0px;">
+  <div class="w-100" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <a class="minimalize-styl-2 btn " (click)="toggleNavigation()"><i class="fa fa-bars" style="margin-bottom: 10px;
+        "></i> </a>
+      <div style="padding-left: 15px;" [fxHide.xs]="true">
+        <h1>App<span class="primary-text">Theme</span></h1>
       </div>
-    </form> -->
-          <!-- logout -->
+    </div>
+    <div class="toolbar-items" fxLayout="row" fxLayoutAlign="center center">
+      <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+        <button mat-icon-button matTooltip="Search" (click)="toggleSearch()">
+          <mat-icon>youtube_searched_for</mat-icon>
+        </button>
+      </div>
+      <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+        <button class="notification" mat-icon-button matTooltip="Notifications" (click)="toggleNotification()">
+          <mat-icon>notifications</mat-icon>
+          <!-- notification state -->
+          <span class="badge"></span>
+        </button>
+      </div>
+      <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"
+        [matMenuTriggerFor]="menu">
+        <img src="../../assets/img/devil.png">
+        <span style="font-size: 17px;">Jhon Doe</span>
+        <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
+      </div>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>Profile
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>Parametre
+        </button>
+        <button mat-menu-item router (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Déconnecter</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
 
-    <ul class="nav " >
-      <li>
-        <a [routerLink]="['']" >
-          <i class="fa fa-sign-out"></i> Log out
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>

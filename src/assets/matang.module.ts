@@ -29,11 +29,10 @@ import {
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatIconModule
+  MatIconModule,
 } from "@angular/material";
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
@@ -75,7 +74,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatIconModule,CommonModule
+    CommonModule
   ],
   exports: [
     FormsModule,
@@ -110,7 +109,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatIconModule,CommonModule
+    CommonModule
   ]
 })
 export class MatangModule {}

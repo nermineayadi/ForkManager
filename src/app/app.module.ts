@@ -12,7 +12,6 @@ import { AppComponent } from "./app.component";
 //components necessaires
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
-import { PagesComponent } from './pages/pages.component';
 
 
 //modals
@@ -44,6 +43,7 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
 
 
 
@@ -61,7 +61,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    
     //modals
     CplatComponent,
-    
+    CCmdComponent
   ],
   imports: [
    
@@ -98,7 +98,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   entryComponents: [
 
     //entry components (modals)
-    CplatComponent
+    CplatComponent,
+    CCmdComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

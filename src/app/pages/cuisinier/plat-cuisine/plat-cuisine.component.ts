@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
+import { SelectionModel } from '@angular/cdk/collections';
 export interface Plats {
     plat: string;
     position: number;
@@ -33,22 +34,26 @@ export interface Plats {
     templateUrl: './plat-cuisine.component.html',
   })
   export class PlatCuisineComponent implements OnInit {
-    displayedColumns: string[] = ['position', 'plat', 'categorie', 'famille','sfamille'];
+    displayedColumns: string[] = ['select','position', 'plat', 'categorie', 'famille','sfamille','actions'];
 
     dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
   
     @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    selection = new SelectionModel<Plats>(true, []);
+
+    
     constructor(public dialog: MatDialog) {}
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
         //taille du modal 
+        
         width: '900px',
         data:{ }
       });
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        // this.animal = result;
       });
     }
     //pagination
@@ -61,4 +66,28 @@ export interface Plats {
     applyFilter(filterValue: string) {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+
+
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+      this.isAllSelected() ?
+          this.selection.clear() :
+          this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Plats): string {
+      if (!row) {
+          return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      }
+      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
   }
