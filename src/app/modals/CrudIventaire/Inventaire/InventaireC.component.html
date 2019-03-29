@@ -1,0 +1,78 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+    <form [formGroup]="firstFormGroup" class="example-form" >
+      <ng-template matStepLabel>Ingrédient</ng-template>
+      <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Ingrédient" aria-label="Number" matInput formControlName="firstCtrl" required [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option1 of filteredOptions1 | async" [value]="option1">
+              {{option1}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      <div>
+        <button  mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>categorie</ng-template>
+      <mat-form-field>
+          <input type="text" placeholder="categorie" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="secondCtrl" required>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option2 of options2" [value]="option2">
+              {{option2}}
+            </mat-option>
+          </mat-autocomplete>
+       
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
+        <button mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>NBportions</ng-template>
+      <mat-form-field>
+          <input matInput type="number" placeholder="NBportions" formControlName="thirdCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button color="primary" mat-button matStepperPrevious>Précédent</button>
+        <button mat-stroked-button color="primary" mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="fourthFormGroup" errorMessage="Address is required.">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel>quantité</ng-template>
+        <mat-form-field>
+            <input matInput type="number" placeholder="quantité" formControlName="fourthCtrl" required>
+        </mat-form-field>
+        <div>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">unité Litre</mat-radio-button>
+                <mat-radio-button value="2">unité Kilo</mat-radio-button>
+              </mat-radio-group>
+        </div>
+        <div>
+          <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
+          <button mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>validation</ng-template>
+    Enregistrer votre Remplissage.
+    <div>
+      
+      
+      <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
+      <button mat-stroked-button class="btn-primary" mat-button (click)="stepper.reset()">Supprimer</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+

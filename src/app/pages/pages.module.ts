@@ -14,7 +14,6 @@ import { BarmanComponent } from "./barman/barman.component";
 import { NavBarModule } from '../navbar/navbar.module';//module impoté pourqu'on trouve pas l'erreur de composant appelé dans 2 modules
 import { NavigationResponsableComponent } from "../navigation/navigation-responsable/navigation-responsable.component";
 import { NavigationControleComponent } from "../navigation/navigation-controle/navigation-controle.component";
-
 //flex
 import { FlexLayoutModule } from '@angular/flex-layout';
 

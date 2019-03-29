@@ -16,7 +16,7 @@ import { InscriptionComponent } from "./auth/inscription/inscription.component";
 
 //modals
 import { CplatComponent } from "./modals/CrudPlat/CPlat/cplat.component";
-
+import { InventaireCComponent } from './modals/CrudIventaire/Inventaire/InventaireC.component';
 
 //assets
 import { MatangModule } from "../assets/matang.module";
@@ -44,6 +44,8 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
+import { NavigationBarComponent } from './navigation/navigation-bar/navigation-bar.component';
+
 
 
 
@@ -60,8 +62,10 @@ import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
     
    
     //modals
+    InventaireCComponent ,
     CplatComponent,
-    CCmdComponent
+    CCmdComponent,
+    NavigationBarComponent
   ],
   imports: [
    
@@ -99,7 +103,9 @@ import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
 
     //entry components (modals)
     CplatComponent,
-    CCmdComponent
+    CCmdComponent,
+    InventaireCComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

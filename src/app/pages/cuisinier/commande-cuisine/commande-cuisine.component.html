@@ -2,7 +2,11 @@
   <mat-form-field appearance="outline">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
   </mat-form-field>
-  <button class="btn-primary" mat-stroked-button (click)="openDialog()">Ajouter</button>
+  <div fxLayout="row" (click)="openDialog()" fxLayoutAlign="center center" style="cursor:pointer;"
+  fxLayoutGap="5px">
+  <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
+  <span [fxHide.xs]="true">Ajouter</span>
+</div>
 </div>
 
 
