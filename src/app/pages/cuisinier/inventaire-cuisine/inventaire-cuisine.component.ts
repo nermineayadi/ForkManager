@@ -4,22 +4,22 @@ import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/I
 export interface Ingrédient {
     ingredient: string;
     categorie: string;
-    nhportion: number;
+    nbportion: number;
     quantite: number ;
   }
   const ELEMENT_DATA: Ingrédient  [] = [
-    {ingredient: 'patate' ,  categorie: 'viande',nhportion: 25,quantite:2},
-    {ingredient: 'poulet', categorie: 'végétale', nhportion:54 ,quantite:4},
-    {ingredient: 'steack',  categorie: 'poisson' ,nhportion:41 ,quantite:7},
-    {ingredient:'patte',  categorie:'laitier' , nhportion:41 ,quantite:47},
-    {ingredient:'pain' ,  categorie: 'semoule', nhportion:47 ,quantite:5}, ];
+    {ingredient: 'patate' ,  categorie: 'viande',nbportion: 25,quantite:2},
+    {ingredient: 'poulet', categorie: 'végétale', nbportion:54 ,quantite:4},
+    {ingredient: 'steack',  categorie: 'poisson' ,nbportion:41 ,quantite:7},
+    {ingredient:'patte',  categorie:'laitier' , nbportion:41 ,quantite:47},
+    {ingredient:'pain' ,  categorie: 'semoule', nbportion:47 ,quantite:5}, ];
 @Component({
     selector: 'app-inventaire-cuisine',
     templateUrl: './inventaire-cuisine.component.html',
     styleUrls: ['./inventaire-cuisine.component.scss']
 })
 export class InventaireCuisineComponent implements OnInit {
-    displayedColumns: string[] = ['ingredient',  'categorie', 'nhportion','quantite'];
+    displayedColumns: string[] = ['ingredient',  'categorie', 'nbportion','quantite'];
 
     dataSource = new MatTableDataSource<Ingrédient >(ELEMENT_DATA);
   

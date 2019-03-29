@@ -15,7 +15,7 @@ export class NavigationBarComponent implements OnInit {
     },
     {
       title: "Boisson",
-      icon: "utensils",
+      icon: "glass-martini",
       link: "./boisson",
     },
     {
