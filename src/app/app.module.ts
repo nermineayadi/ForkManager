@@ -65,7 +65,6 @@ import { NavigationBarComponent } from './navigation/navigation-bar/navigation-b
     InventaireCComponent ,
     CplatComponent,
     CCmdComponent,
-    NavigationBarComponent
   ],
   imports: [
    

@@ -22,34 +22,35 @@ import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { NavigationBarComponent } from 'src/app/navigation/navigation-bar/navigation-bar.component';
 
 @NgModule({
-    declarations: [BarmanComponent, 
+    declarations: [
+        BarmanComponent,
         BoissonBarComponent,
-         StockBarComponent,
-          MenuBarComponent,
-           ReservationBarComponent, 
-           CommandeBarComponent, 
-           InventraireBarComponent,
-           NavigationBarComponent,
-            AcceuilBarComponent],
-    imports: [ CommonModule,
+        StockBarComponent,
+        MenuBarComponent,
+        ReservationBarComponent,
+        CommandeBarComponent,
+        InventraireBarComponent,
+        NavigationBarComponent,
+        AcceuilBarComponent],
+    imports: [
+        CommonModule,
         BarmanRoutingModule,
-    
-    MatangModule, 
-    NavBarModule,
-    //calendar
-    FlatpickrModule,
-    FlatpickrModule.forRoot(),
-    NgbModalModule,
-    NgbModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),  
-    //flex
-    FlexLayoutModule,
-],
-  
+        MatangModule,
+        NavBarModule,
+        //calendar
+        FlatpickrModule,
+        FlatpickrModule.forRoot(),
+        NgbModalModule,
+        NgbModule,
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory
+        }),
+        //flex
+        FlexLayoutModule,
+    ],
+
     exports: [],
     providers: [],
 })
-export class BarmanModule {}
+export class BarmanModule { }
