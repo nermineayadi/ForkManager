@@ -4,7 +4,7 @@
       <a class="minimalize-styl-2 btn " (click)="toggleNavigation()"><i class="fa fa-bars" style="margin-bottom: 10px;
         "></i> </a>
       <div style="padding-left: 15px;" [fxHide.xs]="true">
-        <h1>App<span class="primary-text">Theme</span></h1>
+        <h1>Fork<span class="primary-text">Manager</span></h1>
       </div>
     </div>
     <div class="toolbar-items" fxLayout="row" fxLayoutAlign="center center">
@@ -33,7 +33,7 @@
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>Parametre
         </button>
-        <button mat-menu-item router (click)="logout()">
+        <button mat-menu-item  [routerLink]="['']" (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Déconnecter</span>
         </button>

@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Ajout Personnel</h1>
+<div mat-dialog-content fxLayout="row"fxLayoutAlign="space-between space-between">
+  <div>
+      <mat-form-field appearance="outline">
+      <mat-label>Nom</mat-label>
+      <input matInput [(ngModel)]="nom">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label> Prénom</mat-label>
+      <input matInput [(ngModel)]="prenom">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+      <input matInput placeholder="Email" [formControl]="emailFormControl">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tapez votre CIN</mat-label>
+        <input matInput  maxlength="8"  placeholder="CIN" required>
+      </mat-form-field>
+    
+  </div>
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Date de Naissance</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Téléphone</mat-label>
+    <span matPrefix>+216 &nbsp;</span>
+    <input type="tel" maxlength="8" matInput placeholder="Telephone">
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+</div>
+  <div >
+      <button class="btn-modal" mat-stroked-button color="primary" >Enregistrer</button>
+      <button  class="btn-modal"mat-stroked-button color="primary" > Annuler</button>
+
+  </div>
+</div>
+

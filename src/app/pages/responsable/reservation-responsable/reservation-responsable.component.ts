@@ -33,7 +33,7 @@ const colors: any = {
 @Component({
     selector: 'app-reservation-responsable',
     templateUrl: './reservation-responsable.component.html',
-    styleUrls: ['./reservation-responsable.component.scss']
+   
 })
 export class ReservationResponsableComponent implements OnInit {
 

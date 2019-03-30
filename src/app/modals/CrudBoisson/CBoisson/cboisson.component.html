@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Ajout Boisson</h1>
+<div mat-dialog-content fxLayout="row"fxLayoutAlign="space-between space-between">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Boisson</mat-label>
+      <input matInput [(ngModel)]="Boisson">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>categorie</mat-label>
+      <input matInput [(ngModel)]="categorie">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>famille</mat-label>
+      <input matInput [(ngModel)]="famille">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nbr Bouteilles</mat-label>
+      <input matInput type="number" maxlength="2" [(ngModel)]="nbParts">
+    </mat-form-field>
+  </div>
+
+  <div >
+      <button class="btn-modal" mat-stroked-button color="primary" >Enregistrer</button>
+      <button  class="btn-modal"mat-stroked-button color="primary" > Annuler</button>
+
+  </div>
+</div>
+

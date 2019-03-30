@@ -45,6 +45,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
 import { NavigationBarComponent } from './navigation/navigation-bar/navigation-bar.component';
+import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
+import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
+import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 
 
 
@@ -65,7 +68,13 @@ import { NavigationBarComponent } from './navigation/navigation-bar/navigation-b
     InventaireCComponent ,
     CplatComponent,
     CCmdComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    CBoissonComponent,
+    CPersonnelComponent,
+    CPortionComponent,
+    
+    
+    
   ],
   imports: [
    
@@ -105,7 +114,9 @@ import { NavigationBarComponent } from './navigation/navigation-bar/navigation-b
     CplatComponent,
     CCmdComponent,
     InventaireCComponent,
-    
+    CBoissonComponent,
+    CPersonnelComponent,
+    CPortionComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,6 +14,13 @@ import { NavigationResponsableComponent } from "src/app/navigation/navigation-re
 import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatangModule } from 'src/assets/matang.module';
+import {MatTableModule} from '@angular/material/table';
+//calendar
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { FlatpickrModule } from "angularx-flatpickr";
+import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -26,10 +33,20 @@ NavigationResponsableComponent;
     AcceuilResponsableComponent,
     PlatResponsableComponent,
     InventaireResponsableComponent,
-    NavigationResponsableComponent
+    NavigationResponsableComponent,
+    
   ],
   imports: [CommonModule, ResponsableRoutingModule ,
-    NavBarModule,FlexLayoutModule ,MatangModule
+    NavBarModule,FlexLayoutModule ,MatangModule,MatTableModule,
+    //calendar
+    FlatpickrModule,
+    FlatpickrModule.forRoot(),
+    NgbModalModule,
+    NgbModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),  
 ],
   exports: [],
   providers: []

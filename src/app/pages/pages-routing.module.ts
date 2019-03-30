@@ -23,8 +23,8 @@ const routes: Routes = [
         loadChildren: "./controle/controle.module#ControleModule"
       },
       {
-        path: "portion",
-        component: PortionneurComponent
+        path: "portionneur",
+        loadChildren:"./portionneur/portionneur.module#PortionneurModule"
       },
       {
         path: "responsable",

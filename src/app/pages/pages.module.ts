@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { PagesRoutingModule } from "./pages-routing.module";
 
-import { PortionneurComponent } from "./portionneur/portionneur.component";
 import { ResponsableComponent } from "./responsable/responsable.component";
 import { ServeurComponent } from "./serveur/serveur.component";
 import { ComptoireComponent } from "./comptoire/comptoire.component";
@@ -23,7 +22,7 @@ import { PagesComponent } from './pages.component';
   declarations: [
 
     PagesComponent,
-    PortionneurComponent,
+   
     ServeurComponent,
     ComptoireComponent,
     BarmanComponent,
