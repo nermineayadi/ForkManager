@@ -9,10 +9,14 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ShareService } from "src/app/services/share.service";
 import { User } from 'src/app/models/user.model';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { CropperComponent } from '../cropper/cropper.component';
 
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
+  
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
@@ -35,11 +39,38 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class InscriptionComponent {
 user : User = new User();
+avatar : string;
+selectedItem : string ='';
+//cropper
+ngOnInit(): void {
+  this.appService.getAvatar().subscribe((croppedImage)=>{
+      this.avatar = croppedImage;
+  })
+
+}
+//bouton enregistrer 
+onChange(topic : string ){
+  this.selectedItem= topic ;
+  this.router.navigate(['/'+topic]);
+}
+
+openModel(e){
+const dialogRef = this.dialog.open(CropperComponent, {
+    data: e,
+    width:"400px"
+  });
+}
+//quand je click j'ouvre la fenetre pour choisir mon avatar //
+onchange(evt){
+    this.openModel(evt);
+
+}
 
 
-
-
-  constructor(private shareService: ShareService) {}
+  constructor(private shareService: ShareService,
+    public dialog: MatDialog, 
+      public appService : ShareService, 
+      private router : Router) {}
 
   //register
   register() {

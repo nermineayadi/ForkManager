@@ -11,27 +11,17 @@ import { ShareService } from 'src/app/services/share.service';
 export class CropperComponent implements OnInit {
 
   constructor(
-    public appService : ShareService,
+    public shareService : ShareService,
     public dialogRef: MatDialogRef<CropperComponent>,
     @Inject(MAT_DIALOG_DATA) public file: any) { }
 
 ngOnInit(): void { }
 imageChangedEvent: any = '';
-croppedImage: any = '';
+    croppedImage: any = '';
+    
+    
+    imageCropped(event: ImageCroppedEvent) {
 
-
-
-
-fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-}
-imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-}
-imageLoaded() {
-    // show cropper
-}
-loadImageFailed() {
-    // show message
-}
-}
+        this.croppedImage = event.base64;
+        this.shareService.setAvatar(this.croppedImage);
+    }}

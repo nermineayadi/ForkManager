@@ -44,12 +44,10 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
-import { NavigationBarComponent } from './navigation/navigation-bar/navigation-bar.component';
 import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
-import { ParamProfileComponent } from './auth/param-profile/param-profile.component';
-import { CropperComponent } from './auth/param-profile/cropper/cropper.component';
+import { CropperComponent } from './auth/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 
 
@@ -71,11 +69,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     InventaireCComponent ,
     CplatComponent,
     CCmdComponent,
-    NavigationBarComponent,
     CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
-    ParamProfileComponent,
     CropperComponent,
     
     

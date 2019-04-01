@@ -5,7 +5,6 @@ import { CommonModule } from "@angular/common";
 import { PortionneurComponent } from "./portionneur/portionneur.component";
 import { ResponsableComponent } from "./responsable/responsable.component";
 import { ServeurComponent } from "./serveur/serveur.component";
-import { ComptoireComponent } from "./comptoire/comptoire.component";
 import { BarmanComponent } from "./barman/barman.component";
 import { PagesComponent } from "./pages.component";
 
@@ -34,10 +33,7 @@ const routes: Routes = [
         path: "serveur",
         component: ServeurComponent
       },
-      {
-        path: "comptoire",
-        component: ComptoireComponent
-      },
+     
       {
         path: "bar",
         loadChildren: "./barman/barman.module#BarmanModule"

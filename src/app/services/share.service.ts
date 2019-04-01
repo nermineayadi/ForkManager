@@ -4,18 +4,20 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Injectable({providedIn : 'root'})
 export class ShareService {
     uid = localStorage.getItem('uid');
   constructor(private db: AngularFireDatabase ,
     private snackBar : MatSnackBar,
-    public afAuth: AngularFireAuth ) {}
+    public afAuth: AngularFireAuth ,
+    private http: HttpClient) {}
    //register
    register(email : string , password : string){
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
 }
-
-    avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/IMG/avatar.png"); 
+//cropper 
+    avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/img/avatar/av.jpg"); 
     setAvatar(croppedFile: string){
         this.avatar$.next(croppedFile);
     }

@@ -13,6 +13,13 @@ import { PersonnelControleComponent } from "./personnel-controle/personnel-contr
 import { AcceuilControleComponent } from '../controle/acceuil-controle/acceuil-controle.component';
 import { NavigationControleComponent } from 'src/app/navigation/navigation-controle/navigation-controle.component';
 import { MatangModule } from 'src/assets/matang.module';
+//calendar
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { FlatpickrModule } from "angularx-flatpickr";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
 @NgModule({
   declarations: [ControleComponent,AcceuilControleComponent,
     PlatControleComponent,
@@ -28,7 +35,17 @@ import { MatangModule } from 'src/assets/matang.module';
     ControleRoutingModule,
     MatangModule, 
     NavBarModule,
-
+//calendar
+FlatpickrModule,
+FlatpickrModule.forRoot(),
+NgbModalModule,
+NgbModule,
+CalendarModule.forRoot({
+  provide: DateAdapter,
+  useFactory: adapterFactory
+}),  
+//flex
+FlexLayoutModule,
 
     
   ],

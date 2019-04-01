@@ -1,8 +1,19 @@
 <div class=" center">
   <mat-card>
-    <mat-card-title>
-      <mat-icon matSuffix>account_circle</mat-icon>
-      INSCRIPTION
+    <mat-card-title fxLayoutAlign="center center">
+    
+      <div class="user w-100 "  fxLayout="row" fxLayoutGap="20px">
+        <mat-card class="user-avatar " style="padding:0;">
+            <div class="card-header" fxLayout="column" fxLayoutAlign="center center">
+              <img (click)="file.click()"  [src]="avatar" alt="avatar" class="avatar">
+              <span class="hiddenFileInput">
+                <input  (change)="onchange($event)" visbility="hidden" #file type="file" accept="image/*" > 
+              </span>
+        </div>
+          
+            
+        </mat-card>
+      </div>
     </mat-card-title>
     <mat-card-content>
       <form class="example-form ">
@@ -95,13 +106,13 @@
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-4">
-            <button class="center" mat-raised-button color="primary" type="submit" (click)="register()">
-              s'inscrire
+            <!-- <button class="center"  mat-raised-button color="primary" type="submit" (click)="register()" > -->
+              <button class="center"  mat-raised-button color="primary" type="submit" (click)="onChange()" >
+              Enregistrer 
 
             </button></div>
           <div class="col-md-4"></div>
         </div>
-
       </form>
     </mat-card-content>
   </mat-card>

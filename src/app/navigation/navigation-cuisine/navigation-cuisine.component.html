@@ -1,8 +1,8 @@
 <nav class="navbar-default  navbar-static-side" role="navigation"  >
   <div class="sidebar-collapse">
     <ul class="nav metismenu" id="side-menu">
-      <li class="nav-header">
-        <div class="dropdown profile-element">
+      <!-- <li>
+        <!-- <div class="dropdown profile-element">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
               <h3>
@@ -10,11 +10,14 @@
               </h3>
             </span>
           </a>
-        </div>
-        <div class="logo-element">
+        </div> -->
+        <!-- <div class="logo-element">
           <i class="fas fa-user-tie"></i>
         </div>
-      </li>
+      </li> --> 
+      <br>
+      <br>
+      <br>
       <li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
         <a [routerLink]="[item.link]" matTooltip="{{item.title}}" matTooltipPosition="right" ><i class="fas fa-{{item.icon}}"></i> <span class="nav-label">{{item.title}}</span></a>
       </li>

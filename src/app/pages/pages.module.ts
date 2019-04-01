@@ -5,7 +5,6 @@ import { PagesRoutingModule } from "./pages-routing.module";
 
 import { ResponsableComponent } from "./responsable/responsable.component";
 import { ServeurComponent } from "./serveur/serveur.component";
-import { ComptoireComponent } from "./comptoire/comptoire.component";
 import { BarmanComponent } from "./barman/barman.component";
 
 
@@ -22,7 +21,6 @@ import { PagesComponent } from './pages.component';
     PagesComponent,
    
     ServeurComponent,
-    ComptoireComponent,
 
      
 
