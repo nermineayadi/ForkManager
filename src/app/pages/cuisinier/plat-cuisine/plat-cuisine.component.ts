@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';
+
 export interface Plats {
     plat: string;
     position: number;
@@ -37,13 +38,18 @@ export interface Plats {
     displayedColumns: string[] = ['select','position', 'plat', 'categorie', 'famille','sfamille','actions'];
 
     dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
-  
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
     selection = new SelectionModel<Plats>(true, []);
 
     
     constructor(public dialog: MatDialog) {}
+
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    //pagination
+    ngOnInit() {
+      this.dataSource.paginator = this.paginator;
+
+    }
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
         //taille du modal 
@@ -56,10 +62,8 @@ export interface Plats {
         console.log('The dialog was closed');
       });
     }
-    //pagination
-    ngOnInit() {
-      this.dataSource.paginator = this.paginator;
-    }
+    
+
 
       //filtrer
 

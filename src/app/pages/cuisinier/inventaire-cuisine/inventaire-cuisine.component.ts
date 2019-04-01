@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
+import {MatTableDataSource,MatPaginator, MatDialog,  MatSort
+} from '@angular/material';
 import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
 export interface Ingrédient {
     ingredient: string;
@@ -23,7 +24,11 @@ export class InventaireCuisineComponent implements OnInit {
 
     dataSource = new MatTableDataSource<Ingrédient >(ELEMENT_DATA);
   
+
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
+
     constructor(public dialog: MatDialog) {}
     openDialog(): void {
       const dialogRef = this.dialog.open(InventaireCComponent , {
@@ -40,6 +45,8 @@ export class InventaireCuisineComponent implements OnInit {
     //pagination
     ngOnInit() {
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
     }
 
       //filtrer
