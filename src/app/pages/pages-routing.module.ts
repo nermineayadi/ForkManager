@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: "bar",
-        component: BarmanComponent
+        loadChildren: "./barman/barman.module#BarmanModule"
       }
     ]
   }

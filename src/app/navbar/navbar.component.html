@@ -15,9 +15,9 @@
       </div>
       <div class="divider" fxLayout="row" fxLayoutAlign="center center">
         <button class="notification" mat-icon-button matTooltip="Notifications" (click)="toggleNotification()">
-          <mat-icon>notifications</mat-icon>
-          <!-- notification state -->
-          <span class="badge"></span>
+            <mat-icon>notifications</mat-icon>
+            <!-- notification state -->
+            <span class="badge"></span>
         </button>
       </div>
       <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"
@@ -27,13 +27,13 @@
         <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
       </div>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item  [routerLink]="[ '/inscription' ]" >
           <mat-icon>account_circle</mat-icon>Profile
         </button>
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>Parametre
         </button>
-        <button mat-menu-item  [routerLink]="['']" (click)="logout()">
+        <button mat-menu-item  [routerLink]="['/parametre']" >
           <mat-icon>exit_to_app</mat-icon>
           <span>Déconnecter</span>
         </button>
@@ -41,4 +41,17 @@
     </div>
   </div>
 </mat-toolbar>
-
+<!-- <div class="main" fxLayout="row">
+    <div class="sidebar" fxLayout="column" fxLayoutAlign="space-around center">
+        <div class="w-100" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <div class="item" fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'active': page == 1}">
+              
+            <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
+                Notification
+            </div>
+</div> --> 
+<!-- SEARCH -->
+<div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
+  <p (click)="toggleSearch()">close</p>
+  </div>
+ 

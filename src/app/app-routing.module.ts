@@ -7,6 +7,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
+import { ParamProfileComponent } from './auth/param-profile/param-profile.component';
 const routes: Routes = [
   
       {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: "inscription",
         component: InscriptionComponent
+      },
+      {
+        path: "parametre",
+        component: ParamProfileComponent
       },
       {
         path: "pages",

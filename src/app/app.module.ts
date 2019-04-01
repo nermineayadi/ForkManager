@@ -48,6 +48,9 @@ import { NavigationBarComponent } from './navigation/navigation-bar/navigation-b
 import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
+import { ParamProfileComponent } from './auth/param-profile/param-profile.component';
+import { CropperComponent } from './auth/param-profile/cropper/cropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -72,12 +75,14 @@ import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.compon
     CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
+    ParamProfileComponent,
+    CropperComponent,
     
     
     
   ],
   imports: [
-   
+    ImageCropperModule,
     //important
     CommonModule,
     BrowserModule,
@@ -117,6 +122,7 @@ import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.compon
     CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
+    CropperComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

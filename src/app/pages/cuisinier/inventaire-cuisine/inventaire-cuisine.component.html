@@ -1,3 +1,15 @@
+<div class="details w-100" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="breadcrumb" [fxHide.xs]="true">
+    <span>Home / Cuisine / </span>
+    <span>Inventaire</span>
+  </div>
+  <div class="back px-15" fxLayout="row" fxLayoutAlign="start center">
+    <button mat-icon-button [routerLink]="['/pages/cuisine']">
+      <mat-icon style="font-size: 22px;">keyboard_arrow_left</mat-icon>
+      <span style="font-size: 15px;">Retour</span>
+    </button>
+  </div>
+</div>
 <div fxLayout="row" fxLayoutAlign="space-between center">
         <mat-form-field appearance="outline">
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
@@ -44,3 +56,8 @@
             
               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
+
+
+
+
+

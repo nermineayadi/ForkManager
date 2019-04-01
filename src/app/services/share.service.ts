@@ -3,6 +3,7 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user.model';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({providedIn : 'root'})
 export class ShareService {
     uid = localStorage.getItem('uid');
@@ -14,6 +15,13 @@ export class ShareService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
 }
 
+    avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/IMG/avatar.png"); 
+    setAvatar(croppedFile: string){
+        this.avatar$.next(croppedFile);
+    }
+    getAvatar(){
+        return this.avatar$.asObservable(); 
+    }
   //create
   createUsers(obj: User , uid : string) {
     const itemsRef = this.db.object(`users/${uid}`);

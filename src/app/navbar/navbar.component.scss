@@ -50,6 +50,28 @@
             }
         }
     }
+    .main{
+        
+        .content{
+            height: 100%;
+            width: calc(100% - 55px);
+        }
+        .notification{
+            background: $secondary-color;
+            padding: 0px;
+            width: 0;
+            border-left: 1px solid $border-color;
+            transition: all 0.5s;
+        }
+        .close{
+            padding: 0px;
+            width: 0;
+        }
+        .open{
+            padding: 15px;
+            width: 400px;
+        }
+    }
     .search{
         color: #fff;
         position: fixed;

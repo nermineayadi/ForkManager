@@ -30,3 +30,4 @@ export class NavbarComponent implements OnInit {
         this.onSerch = !this.onSerch;
     }
 }
+
