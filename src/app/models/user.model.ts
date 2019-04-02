@@ -6,7 +6,7 @@ export class User{
     prenom ? : string ='' ;
     avatar? : string ='';
     telephone ? : number ;
-    dataNaiss ? : Date;
+    dateNaiss ? : Date;
     adresse? : string = '';
     ville? : string = '';
     codePostal ? : number =0 ;

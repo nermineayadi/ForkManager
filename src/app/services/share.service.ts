@@ -12,8 +12,8 @@ export class ShareService {
     private snackBar : MatSnackBar,
     public afAuth: AngularFireAuth ,
     private http: HttpClient) {}
-   //register
-   register(email : string , password : string){
+   //authentification
+   authentification(email : string , password : string){
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
 }
 //cropper 

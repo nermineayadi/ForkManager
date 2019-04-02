@@ -13,17 +13,17 @@ export interface Personnel {
   prenom: string;
   mail: string;
   datenaiss: string;
-  telephone: string;
+  fonction: string;
   cin: string;
 }
 
 //initialisations plats 
 
 const ELEMENT_DATA: Personnel[] = [
-  { id: 1, nom: 'nermine', prenom: 'ayadi', mail: 'nermine.ayadi15@gmail.com', datenaiss: '17/09/1996', telephone: "25684557", cin: "09854067" },
-  { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', telephone: "25684557", cin: "09854067" },
-  { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', telephone: "26862856", cin: "09854067" },
-  { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', telephone: "25684557", cin: "09854067" },
+  { id: 1, nom: 'nermine', prenom: 'ayadi', mail: 'nermine.ayadi15@gmail.com', datenaiss: '17/09/1996', fonction: "25684557", cin: "09854067" },
+  { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', fonction: "25684557", cin: "09854067" },
+  { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', fonction: "26862856", cin: "09854067" },
+  { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', fonction: "25684557", cin: "09854067" },
 ];
 
 @Component({
@@ -34,7 +34,7 @@ const ELEMENT_DATA: Personnel[] = [
 export class PersonnelResponsableComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select', 'id', 'nom', 'prenom', 'mail', 'datenaiss', 'telephone', 'cin', 'actions'];
+  displayedColumns: string[] = ['select', 'id', 'nom', 'prenom', 'mail', 'datenaiss', 'fonction', 'cin', 'actions'];
 
   dataSource = new MatTableDataSource<Personnel>(ELEMENT_DATA);
 
