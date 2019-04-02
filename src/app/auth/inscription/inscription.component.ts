@@ -38,12 +38,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ["./inscription.component.scss"]
 })
 export class InscriptionComponent {
-user : User = new User();
+// user : User = new User();
 avatar : string;
 selectedItem : string ='';
+  constructor(private shareService: ShareService,
+    public dialog: MatDialog, 
+      private router : Router) {}
+
 //cropper
 ngOnInit(): void {
-  this.appService.getAvatar().subscribe((croppedImage)=>{
+  this.shareService.getAvatar().subscribe((croppedImage)=>{
       this.avatar = croppedImage;
   })
 
@@ -67,30 +71,26 @@ onchange(evt){
 }
 
 
-  constructor(private shareService: ShareService,
-    public dialog: MatDialog, 
-      public appService : ShareService, 
-      private router : Router) {}
 
-  //register
-  register() {
-    const obj = {
-      email: "meriem.chaieb@live.fr",
-      password: "123456789"
-    };
-    this.shareService.register(obj.email, obj.password).then((data: any) => {
+  // //register
+  // register() {
+  //   const obj = {
+  //     email: "ali.bensalah@gmail.com",
+  //     password: "654789123"
+  //   };
+  //   this.shareService.register(obj.email, obj.password).then((data: any) => {
 
-      this.user.email = obj.email;
-      this.shareService
-        .createUsers(this.user, data.user.uid)
-        .then(() => {
-          this.shareService.showMsg("user created");
-        })
-        .catch(error => {
-          console.error(error.message);
-        });
-    });
-  }
+  //     this.user.email = obj.email;
+  //     this.shareService
+  //       .createUsers(this.user, data.user.uid)
+  //       .then(() => {
+  //         this.shareService.showMsg("user created");
+  //       })
+  //       .catch(error => {
+  //         console.error(error.message);
+  //       });
+  //   });
+  // }
 
   //login
   login() {
