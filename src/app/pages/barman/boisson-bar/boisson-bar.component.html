@@ -1,3 +1,61 @@
-<p>
-  boisson-bar works!
-</p>
+<div fxLayout="row" fxLayoutAlign="space-between start">
+  <mat-form-field appearance="outline">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
+  </mat-form-field>
+ 
+</div>
+
+
+
+
+<div class="mat-elevation-z8 ">
+
+  <table mat-table [dataSource]="dataSource" class="table table-responsive-md table-striped " >
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select" >
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="boisson">
+      <th mat-header-cell *matHeaderCellDef> Boisson </th>
+      <td mat-cell *matCellDef="let element"> {{element.boisson}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="categorie">
+      <th mat-header-cell *matHeaderCellDef> Categorie </th>
+      <td mat-cell *matCellDef="let element"> {{element.categorie}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="famille">
+      <th mat-header-cell *matHeaderCellDef> Famille </th>
+      <td mat-cell *matCellDef="let element"> {{element.famille}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nbrbouteilles" >
+      <th mat-header-cell *matHeaderCellDef> Nbr Bouteilles </th>
+      <td mat-cell *matCellDef="let element" > {{element.nbrbouteilles}} </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

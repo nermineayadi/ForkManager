@@ -38,18 +38,7 @@ export class PortionResponsableComponent implements OnInit {
 
     
     constructor(public dialog: MatDialog) {}
-    openDialog(): void {
-      const dialogRef = this.dialog.open(CPortionComponent, {
-        //taille du modal 
-        
-        width: '900px',
-        data:{ }
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    }
+    
     //pagination
     ngOnInit() {
       this.dataSource.paginator = this.paginator;

@@ -49,6 +49,7 @@ import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonne
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 import { CropperComponent } from './auth/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
 
 
 
@@ -73,7 +74,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CPersonnelComponent,
     CPortionComponent,
     CropperComponent,
-    
+    InventaireBComponent,
+    InventaireBComponent,
     
     
   ],
@@ -118,6 +120,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
+    InventaireBComponent,
     CropperComponent,
   ],
   providers: [],
