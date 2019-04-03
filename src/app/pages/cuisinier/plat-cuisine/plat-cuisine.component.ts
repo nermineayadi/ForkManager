@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AutofillMonitor } from '@angular/cdk/text-field';
 
 export interface Plats {
     plat: string;
@@ -54,7 +55,8 @@ export interface Plats {
       const dialogRef = this.dialog.open(CplatComponent, {
         //taille du modal 
         
-        width: '900px',
+        width: '800px',
+        maxHeight:'350px',
         data:{ }
       });
   
