@@ -33,16 +33,15 @@
   <div>
     <button class="btn-modal" mat-stroked-button color="primary">Enregistrer</button>
     <button class="btn-modal" mat-stroked-button color="primary"> Annuler</button>
-
   </div>
 </div>
 <mat-tab-group>
   <mat-tab label="Ingredients">
-    <form [formGroup]="firstFormGroup">
+    <form [formGroup]="ingredient">
       <div fxLayout="row" fxLayoutAlign="space-between">
         <mat-form-field appearance="outline">
           <mat-label>ingredient</mat-label>
-          <input matInput formControlName="ingredient" required>
+          <input matInput formControlName="nom" required>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>quantité</mat-label>
@@ -50,19 +49,19 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>unité</mat-label>
-          <input matInput formControlName="unite" required>
+          <mat-select formControlName="unite" name="unité">
+            <mat-option *ngFor="let unite of unites" [value]="unite">
+              {{unite}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div>
           <button mat-stroked-button color="primary"
-            style="width : 100px ; margin-top: 3px ;height: 45px;">valider</button>
+            style="width : 100px ; margin-top: 3px ; height: 45px;">valider</button>
         </div>
       </div>
     </form>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width : 100% ;">
-
-      <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
+    <table mat-table [dataSource]="ingredient_tab" class="mat-elevation-z8" style="width : 100% ;">
       <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -70,9 +69,9 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="ingredient">
+      <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> ingredient </th>
-        <td mat-cell *matCellDef="let element"> {{element.ingredient}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
       </ng-container>
 
       <!-- Weight Column -->
@@ -87,57 +86,118 @@
         <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="ingredientColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ingredientColumns;"></tr>
     </table>
 
   </mat-tab>
-  <mat-tab label="Sous Recette">Sous Recette</mat-tab>
-  <mat-tab label="Etapes"> Etapes</mat-tab>
-  <mat-tab label="Image"> Image</mat-tab>
-
-
-</mat-tab-group>
-
-<!-- <mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Ingredients</ng-template>
-        
-        <div>
-          <button mat-stroked-button color="primary" matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Sous Recette</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+  <mat-tab label="Sous Recette">
+    <form [formGroup]="sousRecette">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field appearance="outline">
+          <mat-label>sous recette</mat-label>
+          <input matInput formControlName="nom" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>quantité</mat-label>
+          <input matInput formControlName="quantite" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>unité</mat-label>
+          <mat-select formControlName="unite" name="unité">
+            <mat-option *ngFor="let unite of unites" [value]="unite">
+              {{unite}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <div>
-          <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-          <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          <button mat-stroked-button color="primary"
+            style="width : 100px ; margin-top: 3px ;height: 45px;">valider</button>
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-          <ng-template matStepLabel>Etapes</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Address" formControlName="thirdCtrl" required>
-          </mat-form-field>
-          <div>
-            <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-            <button mat-stroked-button color="primary" matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Image</ng-template>
-      <div>
-        <button mat-stroked-button color="primary" matStepperPrevious>Back</button>
-        <button mat-stroked-button color="primary" (click)="stepper.reset()">Reset</button>
       </div>
-    </mat-step>
-  </mat-horizontal-stepper> -->
+    </form>
+    <table mat-table [dataSource]="sousRecette_tab" class="mat-elevation-z8" style="width : 100% ;">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> sous recette </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="quantité">
+        <th mat-header-cell *matHeaderCellDef> quantité </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="unité">
+        <th mat-header-cell *matHeaderCellDef> unité </th>
+        <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
+      </ng-container>
+      <ng-container matColumnDef="voir">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutAlign="center end">
+          <button mat-icon-button style="color: #506169;">
+            <mat-icon>more_vert</mat-icon>
+            voir
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="sousRecetteColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: sousRecetteColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Etapes">
+    <form [formGroup]="etape">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field appearance="outline">
+          <mat-label>étape</mat-label>
+          <input matInput formControlName="nom" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" required>
+        </mat-form-field>
+        <div>
+          <button mat-stroked-button color="primary"
+            style="width : 100px ; margin-top: 3px ; height: 45px;">valider</button>
+        </div>
+      </div>
+    </form>
+    <table mat-table [dataSource]="etape_tab" class="mat-elevation-z8" style="width : 100% ;">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> étape </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="etapeColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: etapeColumns;"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Image"> 
+      <div>
+          <img (click)="file.click()" [src]="photo" alt="plat" >
+          <span class="hiddenFileInput">
+            <input  hidden #file type="file" accept="image/*">
+          </span>
+        </div>   </mat-tab>
+</mat-tab-group>
