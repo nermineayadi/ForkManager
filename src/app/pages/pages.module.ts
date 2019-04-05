@@ -14,13 +14,13 @@ import { NavBarModule } from '../navbar/navbar.module';//module impoté pourqu'o
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { PagesComponent } from './pages.component';
+import { MatangModule } from 'src/assets/matang.module';
 
 @NgModule({
   declarations: [
 
     PagesComponent,
    
-    ServeurComponent,
 
      
 
@@ -28,6 +28,7 @@ import { PagesComponent } from './pages.component';
   imports: [
     CommonModule, RouterModule,
      PagesRoutingModule,
+     MatangModule,
      //flex
      FlexLayoutModule
     ],

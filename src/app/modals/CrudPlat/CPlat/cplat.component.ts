@@ -79,7 +79,7 @@ export class CplatComponent implements OnInit {
     });
   }
   onchange(evt){
-  const file = event.target.files[0]
+ // const file = event.target.files[0]
 }
   onNoClick(): void {
     this.dialogRef.close();
