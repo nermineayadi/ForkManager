@@ -17,21 +17,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PagesComponent } from './pages.component';
 import { MatangModule } from 'src/assets/matang.module';
 
-
 @NgModule({
   declarations: [
     PagesComponent,
    
-    ServeurComponent,
 
      
 
   ],
   imports: [
     CommonModule, RouterModule,
-     PagesRoutingModule,MatTabsModule,
+     PagesRoutingModule,
      MatangModule,
-
      //flex
      FlexLayoutModule
     ],

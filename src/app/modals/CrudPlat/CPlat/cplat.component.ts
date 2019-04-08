@@ -78,9 +78,9 @@ export class CplatComponent implements OnInit {
       description: ['', Validators.required],
     });
   }
-//   onchange(evt){
-//   const file = event.target.files[0]
-// }
+  onchange(evt){
+ // const file = event.target.files[0]
+}
   onNoClick(): void {
     this.dialogRef.close();
   }

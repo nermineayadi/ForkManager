@@ -31,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: "serveur",
-        component: ServeurComponent
+        loadChildren: "./serveur/serveur.module#ServeurModule"
       },
      
       {

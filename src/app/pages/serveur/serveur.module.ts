@@ -16,4 +16,4 @@ import {  MatIconModule } from '@angular/material';
     exports: [],
     providers: [],
 })
-export class ServeurModule {}
+export class ServeurModule { }

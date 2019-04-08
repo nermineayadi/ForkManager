@@ -52,6 +52,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
 
 
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -90,7 +91,7 @@ import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inve
     AppRoutingModule,
     //angular-material
     MatangModule,
-
+    MatTabsModule,
     //flex
     FlexLayoutModule,
 
