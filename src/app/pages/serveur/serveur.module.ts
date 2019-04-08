@@ -4,10 +4,9 @@ import { ServeurRoutingModule } from './serveur-routing.module';
 import { ServeurComponent } from './serveur.component';
 import { MatangModule } from 'src/assets/matang.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {  MatIconModule } from '@angular/material';
 
 @NgModule({
-    declarations: [ServeurComponent,MatIconModule,],
+    declarations: [ServeurComponent],
     imports: [ CommonModule ,ServeurRoutingModule,  CommonModule,
         //flex
         FlexLayoutModule,
