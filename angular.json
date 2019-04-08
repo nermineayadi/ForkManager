@@ -27,13 +27,22 @@
               "src/assets"
             ],
             "styles": [
-                "src/styles.scss",
-                "src/assets/styles/bootstrap.min.css",
-                "src/assets/styles/font-awesome.min.css",
-                "src/assets/styles/style.css"
-                      
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "src/styles.scss",
+              "src/assets/styles/bootstrap.min.css",
+              "src/assets/styles/font-awesome.min.css",
+              "src/assets/styles/style.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.js"],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -90,7 +99,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["../node_modules/jquery"],
+            "scripts": [
+              "../node_modules/jquery"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import * as $ from "jquery";
@@ -81,6 +81,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     
   ],
   imports: [
+
     ImageCropperModule,
     //important
     CommonModule,
