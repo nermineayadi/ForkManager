@@ -6,7 +6,8 @@ import { PagesRoutingModule } from "./pages-routing.module";
 import { ResponsableComponent } from "./responsable/responsable.component";
 import { ServeurComponent } from "./serveur/serveur.component";
 import { BarmanComponent } from "./barman/barman.component";
-
+//mattab
+import {MatTabsModule} from '@angular/material/tabs';
 
 //navigation
 import { NavBarModule } from '../navbar/navbar.module';//module impoté pourqu'on trouve pas l'erreur de composant appelé dans 2 modules
@@ -14,10 +15,11 @@ import { NavBarModule } from '../navbar/navbar.module';//module impoté pourqu'o
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { PagesComponent } from './pages.component';
+import { MatangModule } from 'src/assets/matang.module';
+
 
 @NgModule({
   declarations: [
-
     PagesComponent,
    
     ServeurComponent,
@@ -27,7 +29,9 @@ import { PagesComponent } from './pages.component';
   ],
   imports: [
     CommonModule, RouterModule,
-     PagesRoutingModule,
+     PagesRoutingModule,MatTabsModule,
+     MatangModule,
+
      //flex
      FlexLayoutModule
     ],

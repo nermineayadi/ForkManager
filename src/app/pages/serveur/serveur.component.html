@@ -1,3 +1,79 @@
-<p>
-  serveur works!
-</p>
+
+
+
+
+
+
+
+<mat-toolbar class="toolbar w-100" style="padding:0px;">
+  <div class="w-100" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+      <div style="padding-left: 15px;" [fxHide.xs]="true">
+          <h1>Fork<span class="primary-text">Manager</span></h1>
+      </div>
+      <div class="toolbar-items" fxLayout="row" fxLayoutAlign="center center">
+          <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+              <button mat-icon-button matTooltip="Localisation" (click)="toggleSearch()">
+                  <mat-icon>location_on</mat-icon>
+              </button>
+          </div>
+          <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+              <button class="notification" mat-icon-button matTooltip="Notifications" (click)="toggleNotification()">
+                  <mat-icon>notifications</mat-icon>
+                  <!-- notification state -->
+                  <span class="badge"></span>
+              </button>
+          </div>
+          <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" [matMenuTriggerFor]="menu">
+              <img [src]="(shareService.avatar$| async)">
+              <span style="font-size: 17px;">Jhon Doe</span>
+              <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
+          </div>
+          <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="[ '/inscription' ]"><mat-icon>account_circle</mat-icon>My Profile</button>
+              <button mat-menu-item router [routerLink]="['']">
+                  <mat-icon>exit_to_app</mat-icon>
+                  <span>Déconnecter</span>
+              </button>
+          </mat-menu>
+      </div>
+  </div>
+</mat-toolbar>
+
+<div class="main" fxLayout="row">
+  <div class="sidebar" fxLayout="column" fxLayoutAlign="space-around center">
+      <div class="w-100" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <nav class="navbar-default  navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+              <ul class="nav metismenu" id="side-menu">
+                <br>
+                <br>
+                <br>
+                <li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
+                  <a [routerLink]="[item.link]"><i class="fas fa-{{item.icon}}"></i> <span class="nav-label">{{item.title}}</span></a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      </div>
+  </div>
+  <div class="content">
+    <mat-tab-group>
+        <mat-tab label="First"> Content 1 </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group> 
+     </div>
+  <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
+      Notification
+  </div>
+</div>
+
+
+
+<!-- SEARCH -->
+<div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
+    
+    
+    <p (click)="toggleSearch()">close</p>
+</div>
+

@@ -29,9 +29,6 @@
         <button mat-menu-item  [routerLink]="[ '/inscription' ]" >
           <mat-icon>account_circle</mat-icon>Profile
         </button>
-        <!-- <button mat-menu-item [routerLink]="['/parametre']" >
-          <mat-icon>settings</mat-icon>Parametre
-        </button> -->
         <button mat-menu-item   >
           <mat-icon>exit_to_app</mat-icon>
           <span>Déconnecter</span>
@@ -40,15 +37,7 @@
     </div>
   </div>
 </mat-toolbar>
-<!-- <div class="main" fxLayout="row">
-    <div class="sidebar" fxLayout="column" fxLayoutAlign="space-around center">
-        <div class="w-100" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <div class="item" fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'active': page == 1}">
-              
-            <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
-                Notification
-            </div>
-</div> --> 
+
 <!-- SEARCH -->
 <div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
   <p (click)="toggleSearch()">close</p>

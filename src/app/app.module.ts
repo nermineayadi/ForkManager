@@ -108,6 +108,7 @@ import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inve
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
+   
   ],
 
   
