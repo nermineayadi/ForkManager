@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+// import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import * as $ from "jquery";
@@ -53,6 +53,8 @@ import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inve
 
 
 import {MatTabsModule} from '@angular/material/tabs';
+import { FamillePipe } from './pipes/famille.pipe';
+import { SfamillePipe } from './pipes/sfamille.pipe';
 
 
 
@@ -77,8 +79,17 @@ import {MatTabsModule} from '@angular/material/tabs';
     CropperComponent,
     InventaireBComponent,
     InventaireBComponent,
+
+//pipes
+    SfamillePipe,
+    FamillePipe,
+
     
-    
+  ],
+  exports:[
+    FamillePipe,
+    SfamillePipe,
+
   ],
   imports: [
 

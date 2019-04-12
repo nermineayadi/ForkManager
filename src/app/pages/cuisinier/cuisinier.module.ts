@@ -23,7 +23,7 @@ import { FlatpickrModule } from "angularx-flatpickr";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { PlatService } from './plat-cuisine/plat.service';
 
 @NgModule({
   declarations: [ 
@@ -41,7 +41,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     
   ],
   imports: [
-    MDBBootstrapModule.forRoot(),
+
 
     //important
     CommonModule,
@@ -63,6 +63,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   ],
   
   exports: [],
-  providers: []
+  providers: [PlatService]
 })
 export class CuisineModule {}

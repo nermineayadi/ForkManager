@@ -1,5 +1,79 @@
-<h1 mat-dialog-title>Ajout Plat</h1>
-<div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between">
+<div class="dialog" fxLayout="column">
+  <mat-toolbar>
+    <h5>Plat</h5>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    <h6>Basic info</h6>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Plat</mat-label>
+        <input matInput [formControl]="nomPlat" required autocomplete="off">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>categorie</mat-label>
+        <mat-select [formControl]="category">
+            <mat-option *ngFor="let categorie of payload.categories" [value]="categorie.key">
+              {{categorie.payload.val().name}}
+            </mat-option>
+            </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
+        <mat-label>famille</mat-label>
+        <mat-select [formControl]="famille" >
+            <mat-option *ngFor="let famille of payload.familles |filterbycategory:category.value" [value]="famille.key">{{famille.payload.val().name}}</mat-option>
+          </mat-select>      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>sous famille</mat-label>
+        <mat-select [formControl]="sfamille" >
+            <mat-option *ngFor="let sfamille of payload.sfamilles |filterbyfamille:famille.value" [value]="sfamille.key">{{sfamille.payload.val().name}}</mat-option>
+          </mat-select>      </mat-form-field>
+    </div>
+    <div  fxLayout="row"  fxLayoutGap="10px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Nbr Parts</mat-label>
+        <input matInput type="number" maxlength="2" [formControl]="nbparts">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>durée Preparation</mat-label>
+        <input matInput [formControl]="duree">
+      </mat-form-field>
+    </div>
+    <h6>Ingredients</h6>
+    <mat-form-field appearance="outline">
+        <mat-label>ingredient</mat-label>
+        <mat-select [formControl]="toppings"   multiple>
+            <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">{{row.payload.val().name}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+    <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
+        
+        <mat-form-field appearance="outline">
+          <mat-label>quantité</mat-label>
+          <input matInput [(ngModel)]="qte">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>unité</mat-label>
+            <mat-select [(ngModel)]="unite">
+              <mat-option *ngFor="let unite of unites" [value]="unite">
+                {{unite}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+    
+    <h6>Sous recette</h6>
+    
+  </div>
+  <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary" disabled>Enregistrer</button>
+    <button mat-button (click)="onNoClick()"> Annuler</button>
+  </div>
+</div>
+
+<!-- <h1 mat-dialog-title>Ajout Plat</h1>
+<div fxLayout="row" fxLayoutAlign="space-between">
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Plat</mat-label>
@@ -38,7 +112,7 @@
 <mat-tab-group>
   <mat-tab label="Ingredients">
     <form [formGroup]="ingredient">
-      <div fxLayout="row" fxLayoutAlign="space-between">
+      <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
         <mat-form-field appearance="outline">
           <mat-label>ingredient</mat-label>
           <input matInput formControlName="nom" required>
@@ -62,25 +136,21 @@
       </div>
     </form>
     <table mat-table [dataSource]="ingredient_tab" class="mat-elevation-z8" style="width : 100% ;">
-      <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> ingredient </th>
         <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="quantité">
         <th mat-header-cell *matHeaderCellDef> quantité </th>
         <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="unité">
         <th mat-header-cell *matHeaderCellDef> unité </th>
         <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
@@ -93,7 +163,7 @@
   </mat-tab>
   <mat-tab label="Sous Recette">
     <form [formGroup]="sousRecette">
-      <div fxLayout="row" fxLayoutAlign="space-between">
+      <div fxLayout="row"  fxLayoutAlign="space-between">
         <mat-form-field appearance="outline">
           <mat-label>sous recette</mat-label>
           <input matInput formControlName="nom" required>
@@ -117,25 +187,22 @@
       </div>
     </form>
     <table mat-table [dataSource]="sousRecette_tab" class="mat-elevation-z8" style="width : 100% ;">
-      <!-- Position Column -->
+
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> sous recette </th>
         <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="quantité">
         <th mat-header-cell *matHeaderCellDef> quantité </th>
         <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="unité">
         <th mat-header-cell *matHeaderCellDef> unité </th>
         <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
@@ -171,19 +238,16 @@
       </div>
     </form>
     <table mat-table [dataSource]="etape_tab" class="mat-elevation-z8" style="width : 100% ;">
-      <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> étape </th>
         <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
       </ng-container>
 
-      <!-- description Column -->
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef> description </th>
         <td mat-cell *matCellDef="let element"> {{element.description}} </td>
@@ -200,4 +264,4 @@
             <input  hidden #file type="file" accept="image/*">
           </span>
         </div>   </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->

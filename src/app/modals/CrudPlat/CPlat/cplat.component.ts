@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 export interface Ingredients {
   position: number;
   nom: string;
@@ -47,6 +47,10 @@ const etapes: Etapes[] = [
 export class CplatComponent implements OnInit {
   photo : string;
   unites:string[] = ['g','ml','portion']
+  categories:string[] = ['entree','ml','portion']
+
+  toppings = new FormControl();
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   //colonnes
   ingredientColumns: string[] = ['position', 'nom', 'quantité', 'unité'];
   sousRecetteColumns: string[] = ['position', 'nom', 'quantité', 'unité','voir'];
@@ -60,23 +64,26 @@ export class CplatComponent implements OnInit {
   sousRecette: FormGroup;
   etape: FormGroup;
   //constructeur
-  constructor(private _formBuilder: FormBuilder, public dialogRef: MatDialogRef<CplatComponent>) { }
+  nomPlat = new FormControl('', Validators.required);
+  category = new FormControl('', Validators.required);
+  nbparts = new FormControl('', Validators.required);
+  duree = new FormControl('', Validators.required);
+
+  famille = new FormControl('', Validators.required);
+  sfamille = new FormControl('', Validators.required);
+  constructor(private _formBuilder: FormBuilder,
+     public dialogRef: MatDialogRef<CplatComponent>,
+     @Inject(MAT_DIALOG_DATA) public payload: any) { }
 
   ngOnInit() {
-    this.ingredient = this._formBuilder.group({
-      nom: ['', Validators.required],
-      quantite: ['', Validators.required],
-      unite: ['', Validators.required]
-    });
-    this.sousRecette = this._formBuilder.group({
-      nom: ['', Validators.required],
-      quantite: ['', Validators.required],
-      unite: ['', Validators.required]
-    });
-    this.etape = this._formBuilder.group({
-      nom: ['', Validators.required],
-      description: ['', Validators.required],
-    });
+    console.log(this.payload);
+
+    // this.ingredient = this._formBuilder.group({
+    //   nom: ['', Validators.required],
+    //   quantite: ['', Validators.required],
+    //   unite: ['', Validators.required]
+    // });
+
   }
   onchange(evt){
  // const file = event.target.files[0]
@@ -84,6 +91,9 @@ export class CplatComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  // get validate() : boolean {
+  //   return this.
+  // }
 
 }
 

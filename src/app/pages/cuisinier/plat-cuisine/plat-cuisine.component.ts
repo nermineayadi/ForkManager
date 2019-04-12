@@ -3,6 +3,7 @@ import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Plats {
     plat: string;
@@ -40,24 +41,24 @@ export interface Plats {
 
     dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
     selection = new SelectionModel<Plats>(true, []);
-
+    plat : any ; 
     
-    constructor(public dialog: MatDialog) {}
+    constructor(public dialog: MatDialog, private route: ActivatedRoute) {}
 
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     //pagination
     ngOnInit() {
       this.dataSource.paginator = this.paginator;
+      this.route.data.subscribe((data)=>{
+        this.plat = data.plat;
+      })
 
     }
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
         //taille du modal 
-        
-        width: '800px',
-        maxHeight:'350px',
-        data:{ }
+        data:this.plat
       });
   
       dialogRef.afterClosed().subscribe(result => {

@@ -49,4 +49,35 @@ updateProfile(user : User){
           duration : 2500
       })
   }
+
+  createingredient() {
+    const itemsRef = this.db.list(`ingredient`);
+    // return itemsRef.push({obj});   / OBJET JSON 
+    //push : uid auto generated
+    return itemsRef.push({name:"fraise",categorie:"fruit"});
+  }
+  // createcategorie() {
+  //   const itemsRef = this.db.list(`categories`);
+  //   // return itemsRef.push({obj});   / OBJET JSON 
+  //   //push : uid auto generated
+  //   return itemsRef.push({name:"suite"});
+  // }
+  createcategorie() {
+    const itemsRef = this.db.list(`sfamille`);
+    // return itemsRef.push({obj});   / OBJET JSON 
+    //push : uid auto generated
+    return itemsRef.push({name:"spaguetti"});
+  }
+  createfamille() {
+    const itemsRef = this.db.list(`famille/`);
+    // return itemsRef.push({obj});   / OBJET JSON 
+    //push : uid auto generated
+    return itemsRef.push({name:"pizza" , categorie:"-LcBOZV-II9iUpSc6VRf"});
+  }
+  createsfamille() {
+    const itemsRef = this.db.list(`sfamille`);
+    // return itemsRef.push({obj});   / OBJET JSON 
+    //push : uid auto generated
+    return itemsRef.push({name:"spaguetti" , famille:"-LcBsv3jdhBBhC4NIljL"});
+  }
 }

@@ -24,6 +24,9 @@ const ELEMENT_DATA: Personnel[] = [
   { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', fonction: "25684557", cin: "09854067" },
   { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', fonction: "26862856", cin: "09854067" },
   { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', fonction: "25684557", cin: "09854067" },
+  { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', fonction: "25684557", cin: "09854067" },
+  { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', fonction: "26862856", cin: "09854067" },
+  { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', fonction: "25684557", cin: "09854067" },
 ];
 
 @Component({
