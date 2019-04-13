@@ -10,6 +10,7 @@ import { InventaireCuisineComponent } from "./inventaire-cuisine/inventaire-cuis
 import { AcceuilCuisineComponent } from "./acceuil-cuisine/acceuil-cuisine.component";
 import { CuisinierComponent } from "./cuisinier.component";
 import { PlatService } from './plat-cuisine/plat.service';
+import { CommandeService } from './commande-cuisine/commande.service';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
       { path: "menu", component: MenuCuisineComponent },
       { path: "reservation", component: ReservationCuisineComponent },
       { path: "commande", component: CommandeCuisineComponent },
-      { path: "inventaire", component: InventaireCuisineComponent },
+      { path: "inventaire", component: InventaireCuisineComponent,resolve:{commande : CommandeService} },
       { path: "", component: AcceuilCuisineComponent }
     ]
   }

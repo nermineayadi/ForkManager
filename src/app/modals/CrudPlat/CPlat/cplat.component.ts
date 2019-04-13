@@ -68,9 +68,13 @@ export class CplatComponent implements OnInit {
   category = new FormControl('', Validators.required);
   nbparts = new FormControl('', Validators.required);
   duree = new FormControl('', Validators.required);
-
+  qte = new FormControl('', Validators.required);
+  unite = new FormControl('', Validators.required);
+  quantite = new FormControl('', Validators.required);
+valider: false ;
   famille = new FormControl('', Validators.required);
   sfamille = new FormControl('', Validators.required);
+  shareService: any;
   constructor(private _formBuilder: FormBuilder,
      public dialogRef: MatDialogRef<CplatComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any) { }
@@ -78,11 +82,10 @@ export class CplatComponent implements OnInit {
   ngOnInit() {
     console.log(this.payload);
 
-    // this.ingredient = this._formBuilder.group({
-    //   nom: ['', Validators.required],
-    //   quantite: ['', Validators.required],
-    //   unite: ['', Validators.required]
-    // });
+    this.ingredient = this._formBuilder.group({
+      quantite: ['', Validators.required],
+      unite: ['', Validators.required]
+    });
 
   }
   onchange(evt){
@@ -91,9 +94,32 @@ export class CplatComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  // get validate() : boolean {
-  //   return this.
-  // }
+  get validate() : boolean {
+    return this.validate
+  }
+
+//   valider() {
+
+//     this.valider=true;
+//     const obj = {
+//       quantite: this.quantite.value,
+//       unite: this.unite.value
+//     };
+//     this.shareService
+//     .Valid(obj.quantite, obj.unite)
+//     .then((data: any) => {
+//       this.shareService.showMsg("user registred");
+//       console.log(data);
+//       localStorage.setItem("uid", data.user.uid);
+//       this.valid= false;
+//     })
+//     .catch(error => {
+//       console.error(error.message);
+//       this.shareService.showMsg(error.message);
+//       this.valid= false;
+
+//     });
+// }
 
 }
 

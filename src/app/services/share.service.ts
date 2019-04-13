@@ -31,7 +31,10 @@ export class ShareService {
     //push : uid auto generated
     return itemsRef.set(obj);
   }
-
+ //valider
+ Valid(quantite : string ,unite : string){
+  return this.afAuth.auth.signInWithEmailAndPassword(quantite ,unite);
+}
 
   //login
   logIn(email : string , password : string){
@@ -80,4 +83,13 @@ updateProfile(user : User){
     //push : uid auto generated
     return itemsRef.push({name:"spaguetti" , famille:"-LcBsv3jdhBBhC4NIljL"});
   }
+  createcategories() {
+    const itemsRef = this.db.list(`ingredient`);
+    // return itemsRef.push({obj});   / OBJET JSON 
+    //push : uid auto generated
+    return itemsRef.push({name:"spaguetti"});
+}
+
+
+
 }

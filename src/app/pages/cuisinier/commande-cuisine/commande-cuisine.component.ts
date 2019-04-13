@@ -33,6 +33,8 @@ export class CommandeCuisineComponent implements OnInit {
     "quantite"
   ];
   dataSource = new MatTableDataSource<Commande>(ELEMENT_DATA);
+  commande: any;
+  route: any;
 
   constructor(public dialog: MatDialog) {}
   //pagination
@@ -40,6 +42,9 @@ export class CommandeCuisineComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+      this.route.data.subscribe((data)=>{
+        this.commande = data.plat;
+      })
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
