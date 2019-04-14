@@ -49,7 +49,7 @@ updateProfile(user : User){
 //snackbar
   showMsg(message: string){
       this.snackBar.open(message ,'close',{
-          duration : 2500
+          duration : 2000
       })
   }
 

@@ -55,6 +55,10 @@ import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inve
 import {MatTabsModule} from '@angular/material/tabs';
 import { FamillePipe } from './pipes/famille.pipe';
 import { SfamillePipe } from './pipes/sfamille.pipe';
+import { LoginModule } from './auth/login/login.module';
+import { InscriptionModule } from './auth/inscription/inscription.module';
+import { LoginService } from './auth/login/login.service';
+import { ProfileService } from './auth/inscription/inscription.service';
 
 
 
@@ -92,7 +96,7 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
 
   ],
   imports: [
-
+     
     ImageCropperModule,
     //important
     CommonModule,
@@ -137,7 +141,7 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
     InventaireBComponent,
     CropperComponent,
   ],
-  providers: [],
+  providers: [LoginService,ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

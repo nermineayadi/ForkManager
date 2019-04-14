@@ -21,6 +21,7 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
+import { CPersonnelService } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -49,6 +50,6 @@ NavigationResponsableComponent;
     }),  
 ],
   exports: [],
-  providers: []
+  providers: [CPersonnelService]
 })
 export class ResponsableModule {}

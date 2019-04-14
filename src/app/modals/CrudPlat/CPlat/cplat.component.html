@@ -86,7 +86,7 @@
          
         </div>
         <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-            <button mat-stroked-button color="primary" disabled>Enregistrer</button>
+            <button mat-stroked-button color="primary" [disabled]="isValid || valider" (click)="ajoutPlat()">Enregistrer</button>
             <button mat-button (click)="onNoClick()"> Annuler</button>
           </div>
       <!-- <table mat-table [dataSource]="sousRecette_tab" class="mat-elevation-z8" style="width : 100% ;">

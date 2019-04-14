@@ -1,12 +1,22 @@
-<nav class="navbar-default  navbar-static-side" role="navigation"  >
+<nav class="navbar-default  navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
     <ul class="nav metismenu" id="side-menu">
-    
+        <div class="dropdown profile-element">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+          <span class="clear">
+            <img src="../../../assets/img/golfcourse.png" height="100px" width="220px" alt="Golf Course">
+          </span>
+          </a>
+        </div>
+      <div class="logo-element">
+        <img src="../../../assets/img/golfcourse.png" height="40px" width="50px" alt="Golf Course"> 
+      </div>
+      <!-- <br>
       <br>
-      <br>
-      <br>
+      <br> -->
       <li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
-        <a [routerLink]="[item.link]" matTooltip="{{item.title}}" matTooltipPosition="right" ><i class="fas fa-{{item.icon}}"></i> <span class="nav-label">{{item.title}}</span></a>
+        <a [routerLink]="[item.link]" matTooltip="{{item.title}}" matTooltipPosition="right"><i
+            class="fas fa-{{item.icon}}"></i> <span class="nav-label">{{item.title}}</span></a>
       </li>
     </ul>
   </div>

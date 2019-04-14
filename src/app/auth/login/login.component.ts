@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ShareService } from "src/app/services/share.service";
+import { LoginService } from "./login.service";
 import { User } from "src/app/models/user.model";
 import {FormControl, Validators} from '@angular/forms';
 
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 password = new FormControl('', [Validators.required]);
 loading = false;
 
-  constructor(private shareService: ShareService) {}
+  constructor(private LoginService: LoginService) {}
 
   ngOnInit(): void {}
 
@@ -38,41 +38,19 @@ get isValid():boolean{
       email: this.email.value,
       password: this.password.value
     };
-    this.shareService
+    this.LoginService
       .logIn(obj.email, obj.password)
       .then((data: any) => {
-        this.shareService.showMsg("user registred");
+        this.LoginService.showMsg("Bonjour");
         console.log(data);
         localStorage.setItem("uid", data.user.uid);
         this.loading= false;
       })
       .catch(error => {
         console.error(error.message);
-        this.shareService.showMsg(error.message);
+        this.LoginService.showMsg(error.message);
         this.loading= false;
 
-      });
-  }
-
-  updateProfile() {
-    const obj = {
-      prenom: "meriem",
-      nom :"chaieb",
-      cin :12838233,
-      telephone : 58414498,
-    };
-    this.user = obj
-
-//.set : ecrase les autres informations 
-
-    this.shareService
-      .updateProfile(this.user)
-      .then((data: any) => {
-        this.shareService.showMsg("user updated");
-        console.log(data);
-      })
-      .catch(error => {
-        console.error(error.message);
       });
   }
 }

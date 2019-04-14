@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CPlatService } from "./cplat.service";
+import { Plat } from 'src/app/models/plat.model';
 export interface Ingredients {
   position: number;
   nom: string;
@@ -60,10 +62,9 @@ export class CplatComponent implements OnInit {
   sousRecette_tab = sousRecettes;
   etape_tab = etapes;
   //formGroups
-  ingredient: FormGroup;
-  sousRecette: FormGroup;
-  etape: FormGroup;
   //constructeur
+  valider= false ;
+  plat  = new Plat() ;
   nomPlat = new FormControl('', Validators.required);
   category = new FormControl('', Validators.required);
   nbparts = new FormControl('', Validators.required);
@@ -71,21 +72,15 @@ export class CplatComponent implements OnInit {
   qte = new FormControl('', Validators.required);
   unite = new FormControl('', Validators.required);
   quantite = new FormControl('', Validators.required);
-valider: false ;
   famille = new FormControl('', Validators.required);
   sfamille = new FormControl('', Validators.required);
-  shareService: any;
   constructor(private _formBuilder: FormBuilder,
      public dialogRef: MatDialogRef<CplatComponent>,
-     @Inject(MAT_DIALOG_DATA) public payload: any) { }
+     @Inject(MAT_DIALOG_DATA) public payload: any , private  CPlatservice: CPlatService
+     ) { }
 
   ngOnInit() {
     console.log(this.payload);
-
-    this.ingredient = this._formBuilder.group({
-      quantite: ['', Validators.required],
-      unite: ['', Validators.required]
-    });
 
   }
   onchange(evt){
@@ -94,32 +89,38 @@ valider: false ;
   onNoClick(): void {
     this.dialogRef.close();
   }
-  get validate() : boolean {
-    return this.validate
-  }
+  get isValid():boolean{
+    return this.nomPlat.invalid || this.category.invalid || this.famille.invalid 
+    || this.sfamille.invalid || this.nbparts.invalid || this.duree.invalid; 
+}
 
-//   valider() {
+  ajoutPlat() {
 
-//     this.valider=true;
-//     const obj = {
-//       quantite: this.quantite.value,
-//       unite: this.unite.value
-//     };
-//     this.shareService
-//     .Valid(obj.quantite, obj.unite)
-//     .then((data: any) => {
-//       this.shareService.showMsg("user registred");
-//       console.log(data);
-//       localStorage.setItem("uid", data.user.uid);
-//       this.valid= false;
-//     })
-//     .catch(error => {
-//       console.error(error.message);
-//       this.shareService.showMsg(error.message);
-//       this.valid= false;
+    this.valider=true;
+    const obj = {
+      nomPlat : this.nomPlat.value,
+      categorie : this.category.value,
+      famille : this.famille.value,
+      sfamille : this.sfamille.value,
+      nbPart : this.nbparts.value,
+      duree : this.duree.value
+    };
+    this.plat = obj ;
+    this.CPlatservice
+    .ajoutPlat(this.plat)
+    .then((data: any) => {
+      this.CPlatservice.showMsg("plat ajouté");
+      console.log(data);
+      //localStorage.setItem("uid", data.user.uid);
+      this.valider= false;
+    })
+    .catch(error => {
+      console.error(error.message);
+      this.CPlatservice.showMsg(error.message);
+      this.valider= false;
 
-//     });
-// }
+    });
+}
 
 }
 

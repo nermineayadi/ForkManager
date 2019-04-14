@@ -7,7 +7,7 @@ import {
   Validators
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { ShareService } from "src/app/services/share.service";
+import { ProfileService } from "./inscription.service";
 import { User } from 'src/app/models/user.model';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
@@ -38,16 +38,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ["./inscription.component.scss"]
 })
 export class InscriptionComponent {
-// user : User = new User();
+user : User = new User();
 avatar : string;
 selectedItem : string ='';
-  constructor(private shareService: ShareService,
+  constructor(private ProfileService: ProfileService,
     public dialog: MatDialog, 
       private router : Router) {}
 
 //cropper
 ngOnInit(): void {
-  this.shareService.getAvatar().subscribe((croppedImage)=>{
+  this.ProfileService.getAvatar().subscribe((croppedImage)=>{
       this.avatar = croppedImage;
   })
 
@@ -69,6 +69,27 @@ onchange(evt){
     this.openModel(evt);
 
 }
+updateProfile() {
+  const obj = {
+    prenom: "meriem",
+    nom :"chaieb",
+    cin :12838233,
+    telephone : 58414498,
+  };
+  this.user = obj
+
+//.set : ecrase les autres informations 
+
+  this.ProfileService
+    .updateProfile(this.user)
+    .then((data: any) => {
+      this.ProfileService.showMsg("user updated");
+      console.log(data);
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
+}
 
 
 
@@ -78,36 +99,19 @@ onchange(evt){
   //     email: "ali.bensalah@gmail.com",
   //     password: "654789123"
   //   };
-  //   this.shareService.register(obj.email, obj.password).then((data: any) => {
+  //   this.ProfileService.register(obj.email, obj.password).then((data: any) => {
 
   //     this.user.email = obj.email;
-  //     this.shareService
+  //     this.ProfileService
   //       .createUsers(this.user, data.user.uid)
   //       .then(() => {
-  //         this.shareService.showMsg("user created");
+  //         this.ProfileService.showMsg("user created");
   //       })
   //       .catch(error => {
   //         console.error(error.message);
   //       });
   //   });
   // }
-
-  //login
-  login() {
-    const obj = {
-      email: "meriem.chaieb@live.fr",
-      password: "123456789"
-    };
-    this.shareService
-      .logIn(obj.email, obj.password)
-      .then(() => {
-        this.shareService.showMsg("user registred");
-      })
-      .catch(error => {
-        console.error(error.message);
-      });
-  }
-
   // mot de passe hidden
 
   hide = true;

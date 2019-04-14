@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';
-import { AutofillMonitor } from '@angular/cdk/text-field';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase,AngularFireList } from '@angular/fire/database';
 
 export interface Plats {
     plat: string;
@@ -37,22 +37,37 @@ export interface Plats {
     templateUrl: './plat-cuisine.component.html',
   })
   export class PlatCuisineComponent implements OnInit {
+    plats : AngularFireList<any>
+    dataSource = new MatTableDataSource();
+
     displayedColumns: string[] = ['select','position', 'plat', 'categorie', 'famille','sfamille','actions'];
 
-    dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
     selection = new SelectionModel<Plats>(true, []);
     plat : any ; 
     
-    constructor(public dialog: MatDialog, private route: ActivatedRoute) {}
+    constructor(public dialog: MatDialog, private route: ActivatedRoute,private db: AngularFireDatabase) {}
 
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     //pagination
-    ngOnInit() {
+    async ngOnInit() {
+      var listePlat = [];
+      this.plats = await this.db.list('plats');
+      console.log(this.plats);
+      await this.plats.snapshotChanges().subscribe(item => {
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          console.log(y);
+          listePlat.push(y);
+        })
+
+      this.dataSource = new MatTableDataSource(listePlat.reverse());
       this.dataSource.paginator = this.paginator;
       this.route.data.subscribe((data)=>{
-        this.plat = data.plat;
+      this.plat = data.plat;
+
       })
+    })
 
     }
     openDialog(): void {
@@ -83,14 +98,16 @@ export interface Plats {
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-      this.isAllSelected() ?
-          this.selection.clear() :
-          this.dataSource.data.forEach(row => this.selection.select(row));
+  masterToggle()
+  {
+      // this.isAllSelected() ?
+      // this.selection.clear() :
+      // this.dataSource.data.forEach(row  => this.selection.select(row.toJSON));
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Plats): string {
+  checkboxLabel(row?: Plats): string
+  {
       if (!row) {
           return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
       }

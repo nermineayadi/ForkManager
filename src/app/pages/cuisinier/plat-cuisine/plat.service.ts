@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { promise } from 'protractor';
 import { ShareService } from 'src/app/services/share.service';
 import { AngularFireDatabase } from "@angular/fire/database";
+import * as firebase from 'firebase';
 
 ShareService
 @Injectable()
@@ -41,6 +42,14 @@ export class PlatService implements Resolve<any> {
 getCategories(){
     const ref = this.db.list('categories').snapshotChanges();
     return ref ;
+}
+getCategorie(key : string){
+    var cat = firebase.database().ref("categories");
+    cat.orderByChild("key").equalTo(key).on("child_added", function(snapshot) {
+        console.log(snapshot.key);
+      });
+    //const ref = this.db.list('categories').orderByChild('size').equalTo(key).snapshotChanges();
+    return cat ;
 }
 getIngredients(){
     const ref = this.db.list('ingredient').snapshotChanges();

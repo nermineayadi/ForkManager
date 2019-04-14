@@ -36,9 +36,8 @@
   </mat-form-field>
  
     <mat-form-field appearance="outline">
-      <mat-select placeholder="Fonction">
+      <mat-select [formControl]="fonction" placeholder="Fonction">
         <mat-option value="cuisinier">cuisinier</mat-option>
-        <mat-option value="Responsable Comptoire">responsable comptoire</mat-option>
         <mat-option value="Portionneur">portionneur</mat-option>
         <mat-option value="Serveur">serveur</mat-option>
         <mat-option value="Barman">Barman</mat-option>
@@ -48,7 +47,7 @@
 </div>
   <div >
       <button class="btn-modal" mat-stroked-button color="primary" (click)="register()" >Enregistrer</button>
-      <button  class="btn-modal"mat-stroked-button color="primary" > Annuler</button>
+      <button  class="btn-modal"mat-stroked-button color="primary" (click)="close()" > Annuler</button>
 
   </div>
 </div>
