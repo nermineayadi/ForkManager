@@ -7,13 +7,19 @@ import { StockPortionnageComponent } from './stock-portionnage/stock-portionnage
 import { InventairePortionnageComponent } from './inventaire-portionnage/inventaire-portionnage.component';
 import { NavigationPortionneurComponent } from 'src/app/navigation/navigation-portionneur/navigation-portionneur.component';
 import { NavBarModule } from 'src/app/navbar/navbar.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 //assets
 import { MatangModule } from "src/assets/matang.module";
+
+
+
 @NgModule({
     declarations: [PortionneurComponent, AcceuilPortionnageComponent, StockPortionnageComponent, InventairePortionnageComponent
     ,NavigationPortionneurComponent,
     ],
-    imports: [ CommonModule,PortionneurRoutingModule,NavBarModule,MatangModule ],
+    imports: [ CommonModule,PortionneurRoutingModule,NavBarModule,MatangModule, FlexLayoutModule ],
     exports: [],
     providers: [],
 })

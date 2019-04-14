@@ -7,8 +7,10 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
+import { TestbaseComponent } from './pages/InterfaceTest/testbase/testbase.component';
 const routes: Routes = [
   
+
       {
         path: "",
         component: LoginComponent
@@ -24,7 +26,7 @@ const routes: Routes = [
            }]
    
   
-
+          
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CPortionComponent } from 'src/app/modals/CrudPortion/cportion/cportion.component';
+import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 export interface Portionnage {
     position: number;
     ingredient: string;
@@ -38,7 +39,29 @@ export class PortionResponsableComponent implements OnInit {
 
     
     constructor(public dialog: MatDialog) {}
-    
+    openDialog(): void {
+      const dialogRef = this.dialog.open(CPortionComponent , {
+        //taille du modal 
+        width: '900px',
+        data:{ }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    openDialog2(): void {
+      const dialogRef = this.dialog.open(SupprimerComponent, {
+        //taille du modal 
+        
+        width: '900px',
+        data:{ }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
     //pagination
     ngOnInit() {
       this.dataSource.paginator = this.paginator;
