@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';import { ShareService } from 'src/app/services/share.service';
+import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.component';
+import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 export interface Plats {
     plat: string;
     position: number;
@@ -41,8 +43,34 @@ export interface Plats {
     
     constructor(public dialog: MatDialog,
       private shareService: ShareService) {}
+      //modal ajout plat
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
+        //taille du modal 
+        
+        width: '900px',
+        data:{ }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    // modal editer plat 
+    openDialog1(): void {
+      const dialogRef = this.dialog.open(DetailPComponent, {
+        //taille du modal 
+        
+        width: '900px',
+        data:{ }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    openDialog2(): void {
+      const dialogRef = this.dialog.open(SupprimerComponent, {
         //taille du modal 
         
         width: '900px',

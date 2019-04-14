@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { CBoissonComponent } from 'src/app/modals/CrudBoisson/CBoisson/cboisson.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 export interface Boisson {
     boisson: string;
     position: number;
@@ -42,6 +43,18 @@ export class BoissonResponsableComponent implements OnInit {
     constructor(public dialog: MatDialog) {}
     openDialog(): void {
       const dialogRef = this.dialog.open(CBoissonComponent, {
+        //taille du modal 
+        
+        width: '900px',
+        data:{ }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    openDialog2(): void {
+      const dialogRef = this.dialog.open(SupprimerComponent, {
         //taille du modal 
         
         width: '900px',

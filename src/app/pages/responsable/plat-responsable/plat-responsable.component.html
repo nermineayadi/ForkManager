@@ -18,7 +18,7 @@
         </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" [ngStyle.xs]="{'padding.px': 10}">
-        <div fxLayout="row" fxLayoutAlign="center center" style="color: red; cursor:pointer;" fxLayoutGap="5px">
+        <div fxLayout="row" (click)="openDialog2()"  fxLayoutAlign="center center" style="color: red; cursor:pointer;" fxLayoutGap="5px">
           <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
           <span [fxHide.xs]="true">Supprimer</span>
         </div>

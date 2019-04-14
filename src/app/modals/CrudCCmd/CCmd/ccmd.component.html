@@ -57,59 +57,60 @@
 
 
 <div class="dialog" fxLayout="column">
-    <mat-toolbar>
-      <h5>Ajout Commande</h5>
-    </mat-toolbar>
-    <div class="body" fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-          <mat-form-field appearance="outline">
-              <mat-label>ingredient</mat-label>
-              <mat-select [formControl]="toppings"   multiple>
-                  <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">{{row.payload.val().name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>categorie</mat-label>
-          <mat-select [formControl]="category">
-              <mat-option *ngFor="let categorie of payload.categories" [value]="categorie.key">
-                {{categorie.payload.val().name}}
-              </mat-option>
-              </mat-select>
-        </mat-form-field>
-       
-      </div>
-    
-      <div  fxLayout="row"  fxLayoutGap="10px" fxLayout.xs="column">
-          
-        <mat-form-field appearance="outline">
-          <mat-label>Nbr Parts</mat-label>
-          <input matInput type="number" maxlength="2" [formControl]="nbpart">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-      </div>
-     
-     
-       
-           <div>
-            <mat-form-field appearance="outline">
-              <mat-label>quantité</mat-label>
-              <input matInput type="number" [formControl]="quantite">        
-              </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>unité</mat-label>
-              <mat-select [formControl]="unite">
-                <mat-option *ngFor="let unite of unites" [value]="unite">
-                  {{unite}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-           </div>
-          </div>
-          <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-              <button mat-stroked-button color="primary" >Enregistrer</button>
-              <button mat-button (click)="onNoClick()"> Annuler</button>
-            </div>
+  <mat-toolbar>
+    <h5>Ajout Commande</h5>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
+        <mat-label>ingredient</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+          <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">
+            {{row.payload.val().name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>categorie</mat-label>
+        <mat-select [formControl]="category">
+          <mat-option *ngFor="let categorie of payload.categories" [value]="categorie.key">
+            {{categorie.payload.val().name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nbr Parts</mat-label>
+        <input matInput type="number" maxlength="2" [formControl]="nbpart">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>quantité</mat-label>
+        <input matInput type="number" [formControl]="quantite">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>unité</mat-label>
+        <mat-select [formControl]="unite">
+          <mat-option *ngFor="let unite of unites" [value]="unite">
+            {{unite}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary">Enregistrer</button>
+    <button mat-button (click)="onNoClick()"> Annuler</button>
+  </div>

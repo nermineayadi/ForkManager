@@ -5,6 +5,7 @@ import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpe
 import { SelectionModel } from '@angular/cdk/collections';
 import { User } from 'src/app/models/user.model';
 import { ShareService } from 'src/app/services/share.service';
+import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 
 
 export interface Personnel {
@@ -53,6 +54,18 @@ export class PersonnelResponsableComponent implements OnInit {
 
       width: '900px',
       data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openDialog2(): void {
+    const dialogRef = this.dialog.open(SupprimerComponent, {
+      //taille du modal 
+      
+      width: '900px',
+      data:{ }
     });
 
     dialogRef.afterClosed().subscribe(result => {

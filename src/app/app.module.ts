@@ -52,9 +52,13 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
 
 
+
 import {MatTabsModule} from '@angular/material/tabs';
 import { FamillePipe } from './pipes/famille.pipe';
 import { SfamillePipe } from './pipes/sfamille.pipe';
+import { DetailPComponent } from './modals/DetailsPlat/detail-p/detail-p.component';
+import { SupprimerComponent } from './modals/ModalSupprimer/supprimer/supprimer.component';
+import { TestbaseComponent } from './pages/InterfaceTest/testbase/testbase.component';
 
 
 
@@ -67,7 +71,6 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
     //components necessaires
     LoginComponent,
     InscriptionComponent,
-    
    
     //modals
     InventaireCComponent ,
@@ -79,10 +82,14 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
     CropperComponent,
     InventaireBComponent,
     InventaireBComponent,
+    DetailPComponent,
+    TestbaseComponent,
 
 //pipes
     SfamillePipe,
     FamillePipe,
+    DetailPComponent,
+    SupprimerComponent,
 
     
   ],
@@ -136,6 +143,8 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
     CPortionComponent,
     InventaireBComponent,
     CropperComponent,
+    DetailPComponent,
+    SupprimerComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
