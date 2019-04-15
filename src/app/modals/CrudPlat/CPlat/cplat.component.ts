@@ -20,13 +20,6 @@ export interface Etapes {
   nom: string;
   description: string;
 }
-const ingredients: Ingredients[] = [
-  { position: 1, nom: 'Hydrogen', quantite: 1.0079, unite: 'H' },
-  { position: 2, nom: 'Helium', quantite: 4.0026, unite: 'He' },
-  { position: 3, nom: 'Lithium', quantite: 6.941, unite: 'Li' },
-  { position: 4, nom: 'Beryllium', quantite: 9.0122, unite: 'Be' },
-
-];
 const sousRecettes: SousRecettes[] = [
   { position: 1, nom: 'Hydrogen', quantite: 1.0079, unite: 'H' },
   { position: 2, nom: 'Helium', quantite: 4.0026, unite: 'He' },
@@ -48,6 +41,9 @@ const etapes: Etapes[] = [
 })
 export class CplatComponent implements OnInit {
   photo : string;
+  ingredients: any[] = [
+    {nom: '', quantite: 0 , unite: '' }
+  ];
   unites:string[] = ['g','ml','portion']
   categories:string[] = ['entree','ml','portion']
 
@@ -58,7 +54,6 @@ export class CplatComponent implements OnInit {
   sousRecetteColumns: string[] = ['position', 'nom', 'quantité', 'unité','voir'];
   etapeColumns: string[] = ['position', 'nom', 'description'];
   //tableaux dataSource
-  ingredient_tab = ingredients;
   sousRecette_tab = sousRecettes;
   etape_tab = etapes;
   //formGroups
@@ -83,6 +78,11 @@ export class CplatComponent implements OnInit {
     console.log(this.payload);
 
   }
+  addNew(){
+    
+    this.ingredients.push({nom: '', quantite: 0 , unite: '' })
+    console.log(this.ingredients)
+  }
   onchange(evt){
  // const file = event.target.files[0]
 }
@@ -99,19 +99,26 @@ export class CplatComponent implements OnInit {
     this.valider=true;
     const obj = {
       nomPlat : this.nomPlat.value,
-      categorie : this.category.value,
-      famille : this.famille.value,
-      sfamille : this.sfamille.value,
+      categorie : {
+        key: this.category.value.key,
+        name: this.category.value.payload.val().name
+      },
+      famille : {
+        key: this.famille.value.key,
+        name: this.famille.value.payload.val().name
+      },
+      sfamille : {
+        key: this.sfamille.value.key,
+        name: this.sfamille.value.payload.val().name
+      },
       nbPart : this.nbparts.value,
       duree : this.duree.value
     };
-    this.plat = obj ;
-    this.CPlatservice
-    .ajoutPlat(this.plat)
-    .then((data: any) => {
+    console.log(obj)
+     this.CPlatservice
+    .ajoutPlat(obj)
+    .then(() => {
       this.CPlatservice.showMsg("plat ajouté");
-      console.log(data);
-      //localStorage.setItem("uid", data.user.uid);
       this.valider= false;
     })
     .catch(error => {

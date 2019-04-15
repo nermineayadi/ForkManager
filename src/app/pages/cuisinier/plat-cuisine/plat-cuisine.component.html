@@ -65,29 +65,25 @@
         </mat-checkbox>
       </td>
     </ng-container>
-    <ng-container matColumnDef="position" >
-      <th mat-header-cell *matHeaderCellDef > No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="plat" >
       <th mat-header-cell *matHeaderCellDef > Plat </th>
-      <td mat-cell *matCellDef="let element"> {{element.nomPlat}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().nomPlat}} </td>
     </ng-container>
 
     <ng-container matColumnDef="categorie">
       <th mat-header-cell *matHeaderCellDef>  Categorie </th>
-      <td mat-cell *matCellDef="let element"> {{element.categorie}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().categorie.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="famille">
       <th mat-header-cell *matHeaderCellDef> Famille </th>
-      <td mat-cell *matCellDef="let element"> {{element.famille}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().famille.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="sfamille" >
       <th mat-header-cell *matHeaderCellDef> Sous Famille </th>
-      <td mat-cell *matCellDef="let element" > {{element.sfamille}} </td>
+      <td mat-cell *matCellDef="let element" > {{element.payload.val().sfamille.name}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
@@ -97,7 +93,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Edit</button>
-          <button mat-menu-item>Delete</button>
+          <button mat-menu-item (click)="onDelete(element.key)">Delete</button>
         </mat-menu>
       </td>
     </ng-container>

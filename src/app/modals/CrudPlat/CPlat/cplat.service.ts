@@ -20,9 +20,9 @@ showMsg(message: string){
       duration : 2000
   })
 }
-ajoutPlat(plat : Plat) {
+ajoutPlat(plat : any) {
   const itemsRef = this.db.list(`plats`);
-  return itemsRef.push({nomPlat:plat.nomPlat ,categorie:plat.categorie , famille : plat.famille , sfamille : plat.sfamille});
+  return itemsRef.push(plat);
 }
 
     createcategorie() {

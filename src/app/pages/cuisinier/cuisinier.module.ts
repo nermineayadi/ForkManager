@@ -25,6 +25,7 @@ import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
 import { PlatService } from './plat-cuisine/plat.service';
 import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [ 
@@ -49,6 +50,7 @@ import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
     cuisineRoutingModule,
     MatangModule, 
     NavBarModule,
+    MatDialogModule,
     //calendar
     FlatpickrModule,
     FlatpickrModule.forRoot(),
@@ -64,6 +66,6 @@ import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
   ],
   
   exports: [],
-  providers: [CPlatService , PlatService]
+  providers: [CPlatService , PlatService ]
 })
 export class CuisineModule {}

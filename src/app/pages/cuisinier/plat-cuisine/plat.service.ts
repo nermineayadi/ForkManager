@@ -14,31 +14,37 @@ export class PlatService implements Resolve<any> {
     }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve, reject) => {
-            const ref1 = this.getCategories().subscribe((categories)=>{
-                const ref2 = this.getIngredients().subscribe((ingredient)=>{
-                    const ref3 =   this.getFamilles().subscribe((familles)=>{
-                        const ref4 =    this.getSfamilles().subscribe((sfamilles)=>{
-                            const obj= {
-                                categories: categories,
-                                ingredient : ingredient,
-                                familles : familles, 
-                                sfamilles : sfamilles
-                            };
-                            ref1.unsubscribe();
-                            ref2.unsubscribe();
-                            ref3.unsubscribe();
-                            ref4.unsubscribe();
-                            resolve(obj)
+            const ref = this.getPlats().subscribe((plats: any[])=>{
+                const ref1 = this.getCategories().subscribe((categories)=>{
+                    const ref2 = this.getIngredients().subscribe((ingredient)=>{
+                        const ref3 =   this.getFamilles().subscribe((familles)=>{
+                            const ref4 =    this.getSfamilles().subscribe((sfamilles)=>{
+                                const obj= {
+                                    plats: plats,
+                                    categories: categories,
+                                    ingredient : ingredient,
+                                    familles : familles, 
+                                    sfamilles : sfamilles
+                                };
+                                ref.unsubscribe();
+                                ref1.unsubscribe();
+                                ref2.unsubscribe();
+                                ref3.unsubscribe();
+                                ref4.unsubscribe();
+                                resolve(obj)
+                            })
                         })
                     })
-                   
                 })
-            })
-
+            });
         }
 )
 }
 
+getPlats(){
+    const ref = this.db.list('plats').snapshotChanges();
+   return ref;
+}
 getCategories(){
     const ref = this.db.list('categories').snapshotChanges();
     return ref ;
