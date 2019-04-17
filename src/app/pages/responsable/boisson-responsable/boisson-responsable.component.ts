@@ -56,7 +56,6 @@ export class BoissonResponsableComponent implements OnInit {
     openDialog2(): void {
       const dialogRef = this.dialog.open(SupprimerComponent, {
         //taille du modal 
-        
         width: '900px',
         data:{ }
       });

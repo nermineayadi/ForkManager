@@ -21,8 +21,8 @@ const routes: Routes = [
       { path: "stock", component: StockCuisineComponent },
       { path: "menu", component: MenuCuisineComponent },
       { path: "reservation", component: ReservationCuisineComponent },
-      { path: "commande", component: CommandeCuisineComponent },
-      { path: "inventaire", component: InventaireCuisineComponent,resolve:{commande : CommandeService} },
+      { path: "commande", component: CommandeCuisineComponent,resolve:{commande : CommandeService} },
+      { path: "inventaire", component: InventaireCuisineComponent },
       { path: "", component: AcceuilCuisineComponent }
     ]
   }

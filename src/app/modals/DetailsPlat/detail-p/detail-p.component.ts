@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { DetailPService } from './detail-p.service';
 export interface Ingredients {
   position: number;
   nom: string;
@@ -79,7 +80,17 @@ export class DetailPComponent implements OnInit {
   shareService: any;
   _formBuilder: any;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
-    @Inject(MAT_DIALOG_DATA) public payload: any) { }
+    @Inject(MAT_DIALOG_DATA) public payload: any ,private detailpService : DetailPService) {
+     
+      console.log(this.payload);
+      const plat = this.detailpService.getDetail(this.payload)
+        console.log(plat)}
+     getDetail(){
+      console.log(this.payload);
+      const plat = this.detailpService.getDetail(this.payload)
+        console.log(plat)
+      
+     }
 
     onNoClick(): void {
       this.dialogRef.close();

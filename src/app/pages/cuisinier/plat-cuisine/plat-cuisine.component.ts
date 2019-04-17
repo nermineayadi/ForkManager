@@ -4,6 +4,8 @@ import { CplatComponent } from 'src/app/modals/CrudPlat/CPlat/cplat.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { PlatService } from './plat.service';
+import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.component';
 
 export interface Plats {
   plat: string;
@@ -40,32 +42,48 @@ export class PlatCuisineComponent implements OnInit {
   plats: AngularFireList<any>
   dataSource: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['select', 'plat', 'categorie', 'famille', 'sfamille', 'actions'];
+  displayedColumns: string[] = ['select', 'plat', 'categorie', 'famille', 'sfamille', 'detail','actions'];
   selection = new SelectionModel<Plats>(true, []);
   plat: any;
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
-              private db: AngularFireDatabase
-              ) { }
+              private db: AngularFireDatabase,
+              private platService : PlatService
+              ) {
+               }
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   //pagination
-   ngOnInit() {
+  async ngOnInit() {
     this.route.data.subscribe((data) => {
       console.log(data)
       this.dataSource = new MatTableDataSource(data.plat.plats);
       this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
-
     })
 
   }
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(CplatComponent, {
       //taille du modal 
       data: this.plat
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openDetail(key : string) : void {
+    console.log(key);
+    console.log('bonjour');
+
+    const dialogRef = this.dialog.open(DetailPComponent, {
+      //taille du modal 
+      height: '400px',
+      data: key
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -87,25 +105,32 @@ export class PlatCuisineComponent implements OnInit {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-  }
+}
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
     this.isAllSelected() ?
-    this.selection.clear() :
-    this.dataSource.data.forEach(row  => this.selection.select(row.toJSON));
-  }
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+}
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Plats): string {
+/** The label for the checkbox on the passed row */
+checkboxLabel(row?: any): string {
     if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+        return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
+}
 
   onDelete(key: string){
-    console.log(key)
+    console.log(key);
+    this.platService.supprimePlat(key).then(()=>{
+      this.platService.showMsg("plat supprimé");
+    })
+    .catch(error => {
+      console.error(error.message);
+      this.platService.showMsg(error.message)
+    })
   }
 
 }

@@ -26,6 +26,7 @@ import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisin
 import { PlatService } from './plat-cuisine/plat.service';
 import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
 import { MatDialogModule } from '@angular/material';
+import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.component';
 
 @NgModule({
   declarations: [ 
@@ -64,6 +65,7 @@ import { MatDialogModule } from '@angular/material';
     FlexLayoutModule,
 
   ],
+  entryComponents: [],
   
   exports: [],
   providers: [CPlatService , PlatService ]

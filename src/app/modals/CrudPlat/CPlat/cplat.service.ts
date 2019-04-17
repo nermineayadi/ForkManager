@@ -25,6 +25,7 @@ ajoutPlat(plat : any) {
   return itemsRef.push(plat);
 }
 
+
     createcategorie() {
         const itemsRef = this.db.list(`sfamille`);
         // return itemsRef.push({obj});   / OBJET JSON 

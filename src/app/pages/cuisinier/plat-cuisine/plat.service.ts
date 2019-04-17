@@ -5,13 +5,21 @@ import { promise } from 'protractor';
 import { ShareService } from 'src/app/services/share.service';
 import { AngularFireDatabase } from "@angular/fire/database";
 import * as firebase from 'firebase';
+import { MatSnackBar } from '@angular/material';
 
 ShareService
 @Injectable()
 export class PlatService implements Resolve<any> {
-    constructor(private db: AngularFireDatabase ,) {
+    constructor(private db: AngularFireDatabase ,private snackBar : MatSnackBar,) {
 
     }
+    
+//snackbar
+showMsg(message: string){
+    this.snackBar.open(message ,'fermer',{
+        duration : 2000
+    })
+  }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve, reject) => {
             const ref = this.getPlats().subscribe((plats: any[])=>{
@@ -40,6 +48,10 @@ export class PlatService implements Resolve<any> {
         }
 )
 }
+supprimePlat(key : string) {
+    const itemsRef = this.db.object(`plats/${key}`);
+    return itemsRef.remove();
+  }
 
 getPlats(){
     const ref = this.db.list('plats').snapshotChanges();
