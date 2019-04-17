@@ -27,6 +27,7 @@ import { PlatService } from './plat-cuisine/plat.service';
 import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
 import { MatDialogModule } from '@angular/material';
 import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.component';
+import { DetailPService } from 'src/app/modals/DetailsPlat/detail-p/detail-p.service';
 
 @NgModule({
   declarations: [ 
@@ -68,6 +69,6 @@ import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.c
   entryComponents: [],
   
   exports: [],
-  providers: [CPlatService , PlatService ]
+  providers: [CPlatService , PlatService , DetailPService]
 })
 export class CuisineModule {}

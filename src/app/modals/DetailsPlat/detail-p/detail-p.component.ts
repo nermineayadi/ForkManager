@@ -77,14 +77,17 @@ export class DetailPComponent implements OnInit {
   quantite = new FormControl('', Validators.required);
 
   
-  shareService: any;
   _formBuilder: any;
+  plat : any ;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any ,private detailpService : DetailPService) {
      
-      console.log(this.payload);
-      const plat = this.detailpService.getDetail(this.payload)
-        console.log(plat)}
+      this.detailpService.getDetail(this.payload).snapshotChanges().subscribe(action => {
+        console.log(action.payload.val())
+        this.plat= action.payload.val();
+        console.log(this.plat);
+        })
+        }
      getDetail(){
       console.log(this.payload);
       const plat = this.detailpService.getDetail(this.payload)
