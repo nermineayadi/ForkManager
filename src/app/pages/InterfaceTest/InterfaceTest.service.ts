@@ -13,40 +13,40 @@ export class TestService {
             duration: 2000
         })
     }
-    addCategories(categories: any[]) {
+    addCategorie(categories: any[]) {
         const itemsRef = this.db.list(`categories`);
         return itemsRef.push(categories);
     }
 
-    addfamilles(familles: any[]) {
+    addfamille(familles: any[]) {
         const itemsRef = this.db.list(`familles`);
         return itemsRef.push(familles);
     }
-    addsfamilles(sfamilles: any[]) {
+    addsfamille(sfamilles: any[]) {
         const itemsRef = this.db.list(`sfamille`);
         return itemsRef.push(sfamilles);
     }
     addachat(achat: any[]) {
-        const itemsRef = this.db.list(`achat`);
+        const itemsRef = this.db.list(`achats`);
         return itemsRef.push(achat);
     }
     addstockage(stockage: any[]) {
-        const itemsRef = this.db.list(`stockage`);
+        const itemsRef = this.db.list(`stockages`);
         return itemsRef.push(stockage);
     }
-    addingredients(ingredients: any[]) {
+    addingredient(ingredients: any[]) {
         const itemsRef = this.db.list(`ingredients`);
         return itemsRef.push(ingredients);
     }
-      addboissons(boissons: any[]) {
+      addboisson(boissons: any[]) {
         const itemsRef = this.db.list(`boissons`);
         return itemsRef.push(boissons);
     }
-    addunites(unites: any[]) {
+    addunite(unites: any[]) {
         const itemsRef = this.db.list(`unites`);
         return itemsRef.push(unites);
     }
-    addclasses(classes: any[]) {
+    addclasse(classes: any[]) {
         const itemsRef = this.db.list(`classes`);
         return itemsRef.push(classes);
     }

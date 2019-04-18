@@ -1,81 +1,196 @@
 <div style="background-color : white ; width:100% ;height: 100%;"  >
 <mat-tab-group>
     <!-- categories -->
-
   <mat-tab label="categories"> 
     <div >
-      <div style="width:100%" *ngFor="let item of categories; let i= index">
+      <div style="width:100%">
         <mat-form-field appearance="outline">
-          <mat-label>categorie</mat-label>
-          <input [(ngModel)]="categories[i].nom" matInput>
+          <mat-label>numero</mat-label>
+          <input [(ngModel)]="categorie.numcategorie" matInput>
         </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>categorie</mat-label>
+            <input [(ngModel)]="categorie.nomcategorie" matInput>
+          </mat-form-field>
       </div>
       <br>
       <div fxLayout="row" fxLayoutGap="10px">
-        <button mat-mini-fab (click)="addNewCategories()">
+        <button mat-mini-fab (click)="addNewCategorie()">
           <mat-icon>add</mat-icon>
         </button>
-        <button mat-mini-fab (click)="addFamilles()">
-            <mat-icon>done</mat-icon>
-          </button>
       </div>
     </div>
-    <br>
   </mat-tab>
-    <!-- familles -->
 
+    <!-- familles -->
   <mat-tab label="familles"> 
      <div >
-      <div style="width:100%" *ngFor="let item of familles; let i= index">
+      <div style="width:100%" >
         <mat-form-field appearance="outline">
           <mat-label>num famille</mat-label>
-          <input [(ngModel)]="familles[i].numfamille" matInput>
+          <input [(ngModel)]="famille.numfamille" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>nom famille</mat-label>
-          <input [(ngModel)]="familles[i].nomfamille" matInput>
+          <input [(ngModel)]="famille.nomfamille" matInput>
         </mat-form-field>
+        <mat-select  [(ngModel)]="classe" name="classe">
+          <mat-option *ngFor="let classe of classes" [value]="classe.value">
+            {{classe.viewValue}}
+          </mat-option>
+        </mat-select>
       </div>
       <br>
       <div fxLayout="row" fxLayoutGap="10px" >
-        <button mat-mini-fab (click)="addNewFamilles()">
+        <button mat-mini-fab (click)="addNewFamille()">
           <mat-icon>add</mat-icon>
         </button>
-        <button mat-mini-fab (click)="addFamilles()">
-            <mat-icon>done</mat-icon>
-          </button>
+
       </div>
       <br>
     </div>
-    <br> 
   </mat-tab>
     <!-- sfamilles -->
 
   <mat-tab label="Sous Familles">  
     <div >
-      <div style="width:100%" *ngFor="let item of sfamilles; let i= index">
+      <div style="width:100%" >
         <mat-form-field appearance="outline">
           <mat-label>num sfamille</mat-label>
-          <input [(ngModel)]="sfamilles[i].numsfamille" matInput>
+          <input [(ngModel)]="sfamille.numsfamille" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>nom sfamille</mat-label>
-          <input [(ngModel)]="sfamilles[i].nomsfamille" matInput>
+          <input [(ngModel)]="sfamille.nomsfamille" matInput>
+        </mat-form-field>
+         <mat-select  [(ngModel)]="famille" name="famille">
+          <mat-option *ngFor="let famille of familles" [value]="famille.value">
+            {{famille.viewValue}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutGap="10px" >
+        <button mat-mini-fab (click)="addNewSfamille()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <br>
+    </div>
+  </mat-tab>
+  <!-- achats -->
+    <mat-tab label="achats">  
+    <div >
+      <div style="width:100%" >
+        <mat-form-field appearance="outline">
+          <mat-label>nom</mat-label>
+          <input [(ngModel)]="achat.nom" matInput>
         </mat-form-field>
       </div>
       <br>
       <div fxLayout="row" fxLayoutGap="10px" >
-        <button mat-mini-fab (click)="addNewSfamilles()">
+        <button mat-mini-fab (click)="addNewAchat()">
           <mat-icon>add</mat-icon>
         </button>
-        <button mat-mini-fab (click)="addFamilles()">
-            <mat-icon>done</mat-icon>
-          </button>
       </div>
       <br>
     </div>
-    <br> </mat-tab>
+  </mat-tab>
+  <!-- stockage -->
+  <mat-tab label="stockage">  
+      <div >
+        <div style="width:100%" >
+          <mat-form-field appearance="outline">
+            <mat-label>nom</mat-label>
+            <input [(ngModel)]="stockage.nom" matInput>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" >
+          <button mat-mini-fab (click)="addNewStockage()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <!-- unite -->
+  <mat-tab label="unité">  
+      <div >
+        <div style="width:100%" >
+          <mat-form-field appearance="outline">
+            <mat-label>nom</mat-label>
+            <input [(ngModel)]="unite.nom" matInput>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" >
+          <button mat-mini-fab (click)="addNewUnite()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <br> 
+    </mat-tab>
+        <!-- classe -->
+  <mat-tab label="classe">  
+      <div >
+        <div style="width:100%" >
+            <mat-form-field appearance="outline">
+                <mat-label>numero</mat-label>
+                <input [(ngModel)]="classe.numclasse" matInput>
+              </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>nom</mat-label>
+            <input [(ngModel)]="classe.nomclasse" matInput>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" >
+          <button mat-mini-fab (click)="addNewClasse()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <br> 
+    </mat-tab>
+            <!-- ingredients -->
+  <mat-tab label="ingredients">  
+      <div >
+        <div style="width:100%" >
+            <mat-form-field appearance="outline">
+                <mat-label>code</mat-label>
+                <input [(ngModel)]="ingredient.code" matInput>
+              </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>libelle</mat-label>
+            <input [(ngModel)]="ingredient.libelle" matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>quantite</mat-label>
+              <input [(ngModel)]="ingredient.quantite" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>prix</mat-label>
+                <input [(ngModel)]="ingredient.prix" matInput>
+              </mat-form-field>
+              <mat-select  [(ngModel)]="ingredient.famille" name="famille">
+                  <mat-option *ngFor="let fam of famille" [value]="fam.value">
+                    {{famille.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-select  [(ngModel)]="ingredient.sfamille" name="famille">
+                    <mat-option *ngFor="let sfamille of sfamille" [value]="sfamille.value">
+                      {{sfamille.viewValue}}
+                    </mat-option>
+                  </mat-select>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" >
+          <button mat-mini-fab (click)="addNewClasse()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <br> 
+    </mat-tab>
 </mat-tab-group>
+
   
  
 

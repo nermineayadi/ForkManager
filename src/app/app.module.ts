@@ -64,6 +64,7 @@ import { DetailPComponent } from './modals/DetailsPlat/detail-p/detail-p.compone
 import { SupprimerComponent } from './modals/ModalSupprimer/supprimer/supprimer.component';
 import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
+import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
 
 
 
@@ -153,7 +154,7 @@ import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.comp
     DetailPComponent,
     SupprimerComponent,
   ],
-  providers: [LoginService,ProfileService],
+  providers: [LoginService,ProfileService,TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

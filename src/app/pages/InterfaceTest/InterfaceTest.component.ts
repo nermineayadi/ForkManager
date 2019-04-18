@@ -7,131 +7,124 @@ import { TestService } from './InterfaceTest.service';
   styleUrls: ['./InterfaceTest.component.scss']
 })
 export class InterfaceTestComponent implements OnInit {
-  
-  constructor(private testService : TestService) { }
+
+  constructor(private testService: TestService) { }
 
   ngOnInit() {
   }
-  categories: any[] = [
-    { nomcategorie: '',numcategorie:'' }
-  ];
-  familles: any[] = [
-    {numfamille:0,nomfamille:'',classe:''}
-  ];
-  sfamilles: any[] = [
-    {numsfamille:0,nomsfamille:'',famille:''}
-  ];
-  achats: any[] = [
-    { nom: '' }
-  ];
-  unites: any[] = [
-    { nom: '' }
-  ];
-  stockages: any[] = [
-    { nom: '' }
-  ];
-  ingredients: any[] = [
-    { code :'' , libelle :'', classe:'' , famille:'' , sfamilles:'' , achats:'',stockage:'',quantite:0,prix : 0  }
-  ];
-  boissons: any[] = [
-    { code :'' , libelle :'', classe:'' , famille:'' , sfamilles:'' , achats:'',stockage:'',quantite:0,prix : 0  }
-  ];
-  classes : any[]=[
-    {numclasse:0 ,nomclasse:''}
-  ]
 
-  addNewCategories() {
-    this.categories.push({ nomcategorie: '',numcategorie:'' })
-  }
-  addCategories() {
-this.testService.addCategories(this.categories).then(()=>{
-  this.testService.showMsg('categories ajoutées')
-}).catch(error =>{
-  this.testService.showMsg(error.message)
-})
-  }
-  addNewFamilles() {
-    this.familles.push( {numfamille:0,nomfamille:'',classe:''})
-  }
-  addFamilles() {
-    this.testService.addfamilles(this.familles).then(()=>{
-      this.testService.showMsg('familles ajoutées')
-    }).catch(error =>{
+  categorie: any =
+    { nomcategorie: '', numcategorie: '' }
+    ;
+  addNewCategorie() {
+    this.testService.addCategorie(this.categorie).then(() => {
+      this.testService.showMsg('categorie ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.categorie = { nomcategorie: '', numcategorie: '' }
   }
-  addNewSfamilles() {
-    this.sfamilles.push({numsfamille:0,nomsfamille:'',famille:''})
-  }
-  addSfamilles() {
-    this.testService.addsfamilles(this.sfamilles).then(()=>{
-      this.testService.showMsg('sfamilles ajoutées')
-    }).catch(error =>{
+
+
+  famille: any =
+    { numfamille: 0, nomfamille: '', classe: '' }
+    ;
+  addNewFamille() {
+    this.testService.addfamille(this.famille).then(() => {
+      this.testService.showMsg('famille ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.famille = { numfamille: 0, nomfamille: '', classe: '' }
+
   }
-  addNewAchats() {
-    this.achats.push({ nom: '' })
-  }
-  addAchats() {
-    this.testService.addachat(this.achats).then(()=>{
-      this.testService.showMsg('achats ajoutés')
-    }).catch(error =>{
+  sfamille: any =
+    { numsfamille: 0, nomsfamille: '', famille: '' }
+    ;
+  addNewSfamille() {
+    this.testService.addsfamille(this.sfamille).then(() => {
+      this.testService.showMsg('sfamille ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.sfamille = { numsfamille: 0, nomsfamille: '', famille: '' }
   }
+
+  achat: any =
+    { nom: '' }
+    ;
+  addNewAchat() {
+    this.testService.addachat(this.achat).then(() => {
+      this.testService.showMsg('achat ajouté')
+    }).catch(error => {
+      this.testService.showMsg(error.message)
+    })
+    this.achat = { nom: '' }
+  }
+
+
+  stockage: any =
+    { nom: '' }
+    ;
   addNewStockage() {
-    this.stockages.push( { nom: '' })
+    this.testService.addstockage(this.stockage).then(() => {
+      this.testService.showMsg('stockage ajouté')
+    }).catch(error => {
+      this.testService.showMsg(error.message)
+    })
+    this.stockage = { nom: '' }
+
+  }
+  ingredient: any =
+    { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    ;
+  addNewIngredient() {
+    this.testService.addingredient(this.ingredient).then(() => {
+      this.testService.showMsg('ingredients ajoutés')
+    }).catch(error => {
+      this.testService.showMsg(error.message)
+    })
+    this.ingredient = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+
   }
 
-  addStockage() {
-    this.testService.addstockage(this.stockages).then(()=>{
-      this.testService.showMsg('stockages ajoutés')
-    }).catch(error =>{
+  boisson: any =
+    { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    ;
+  addNewBoisson() {
+    this.testService.addboisson(this.boisson).then(() => {
+      this.testService.showMsg('boisson ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.boisson = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+
   }
-  addNewIngredients() {
-    this.ingredients.push( { code :'' , libelle :'', classe:'' , famille:'' , sfamilles:'' , achats:'',stockage:'',quantite:0,prix : 0 })
-  }
-  addIngredients() {
-    this.testService.addingredients(this.ingredients).then(()=>{
-      this.testService.showMsg('ingredients ajoutés')
-    }).catch(error =>{
+  unite: any =
+    { nom: '' }
+    ;
+  addNewUnite() {
+    this.testService.addunite(this.unite).then(() => {
+      this.testService.showMsg('unité ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.unite = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+
   }
-  addNewBoissons() {
-    this.boissons.push( { code :'' , libelle :'', classe:'' , famille:'' , sfamilles:'' , achats:'',stockage:'',quantite:0,prix : 0 })
-  }
-  addBoissons() {
-    this.testService.addboissons(this.boissons).then(()=>{
-      this.testService.showMsg('boissons ajoutées')
-    }).catch(error =>{
+  classe: any =
+    { numclasse: 0, nomclasse: '' }
+  addNewClasse() {
+    this.testService.addclasse(this.classe).then(() => {
+      this.testService.showMsg('classe ajoutée')
+    }).catch(error => {
       this.testService.showMsg(error.message)
     })
+    this.classe = { numclasse: 0, nomclasse: '' }
+
   }
-  addNewUnites() {
-    this.unites.push({ nom: '' })
-  }
-  addUnites() {
-    this.testService.addunites(this.unites).then(()=>{
-      this.testService.showMsg('unités ajoutées')
-    }).catch(error =>{
-      this.testService.showMsg(error.message)
-    })
-  }
-  addNewClasses() {
-    this.classes.push( {numclasse:0 ,nomclasse:''})
-  }
-  addClasses() {
-    this.testService.addclasses(this.classes).then(()=>{
-      this.testService.showMsg('classes ajoutées')
-    }).catch(error =>{
-      this.testService.showMsg(error.message)
-    })
-  }
-  
+
+
 
 
 }
