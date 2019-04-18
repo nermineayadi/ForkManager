@@ -7,7 +7,6 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
-import { TestbaseComponent } from './pages/InterfaceTest/testbase/testbase.component';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 const routes: Routes = [
       {

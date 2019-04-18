@@ -62,7 +62,6 @@ import { LoginService } from './auth/login/login.service';
 import { ProfileService } from './auth/inscription/inscription.service';
 import { DetailPComponent } from './modals/DetailsPlat/detail-p/detail-p.component';
 import { SupprimerComponent } from './modals/ModalSupprimer/supprimer/supprimer.component';
-import { TestbaseComponent } from './pages/InterfaceTest/testbase/testbase.component';
 import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 
@@ -89,7 +88,6 @@ import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.comp
     InventaireBComponent,
     InventaireBComponent,
     DetailPComponent,
-    TestbaseComponent,
     InterfaceTestComponent,
 
 //pipes
@@ -139,6 +137,7 @@ import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.comp
    
   ],
 
+  
   
   entryComponents: [
 

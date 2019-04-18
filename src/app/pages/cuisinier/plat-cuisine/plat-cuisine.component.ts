@@ -77,8 +77,7 @@ export class PlatCuisineComponent implements OnInit {
     });
   }
   openDetail(key : string) : void {
-    console.log(key);
-    console.log('bonjour');
+  
 
     const dialogRef = this.dialog.open(DetailPComponent, {
       //taille du modal 
