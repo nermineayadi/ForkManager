@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from './InterfaceTest.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-InterfaceTest',
@@ -7,10 +8,16 @@ import { TestService } from './InterfaceTest.service';
   styleUrls: ['./InterfaceTest.component.scss']
 })
 export class InterfaceTestComponent implements OnInit {
+test: any ;
+  constructor(
+    private route: ActivatedRoute,
+    private testService: TestService) { }
 
-  constructor(private testService: TestService) { }
-
-  ngOnInit() {
+     ngOnInit() {
+      this.route.data.subscribe((data) => {
+        console.log(data)
+       this.test = data.test;
+      })
   }
 
   categorie: any =
@@ -25,7 +32,6 @@ export class InterfaceTestComponent implements OnInit {
     this.categorie = { nomcategorie: '', numcategorie: '' }
   }
 
-
   famille: any =
     { numfamille: 0, nomfamille: '', classe: '' }
     ;
@@ -36,7 +42,6 @@ export class InterfaceTestComponent implements OnInit {
       this.testService.showMsg(error.message)
     })
     this.famille = { numfamille: 0, nomfamille: '', classe: '' }
-
   }
   sfamille: any =
     { numsfamille: 0, nomsfamille: '', famille: '' }
@@ -49,7 +54,6 @@ export class InterfaceTestComponent implements OnInit {
     })
     this.sfamille = { numsfamille: 0, nomsfamille: '', famille: '' }
   }
-
   achat: any =
     { nom: '' }
     ;
@@ -61,7 +65,6 @@ export class InterfaceTestComponent implements OnInit {
     })
     this.achat = { nom: '' }
   }
-
 
   stockage: any =
     { nom: '' }
@@ -109,7 +112,8 @@ export class InterfaceTestComponent implements OnInit {
     }).catch(error => {
       this.testService.showMsg(error.message)
     })
-    this.unite = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    this.unite =     { nom: '' }
+
 
   }
   classe: any =

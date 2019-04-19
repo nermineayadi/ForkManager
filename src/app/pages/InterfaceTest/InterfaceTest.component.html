@@ -1,197 +1,304 @@
-<div style="background-color : white ; width:100% ;height: 100%;"  >
-<mat-tab-group>
+<div style="background-color : white ; width:100% ;height: 100%;">
+  <mat-tab-group>
     <!-- categories -->
-  <mat-tab label="categories"> 
-    <div >
-      <div style="width:100%">
-        <mat-form-field appearance="outline">
-          <mat-label>numero</mat-label>
-          <input [(ngModel)]="categorie.numcategorie" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>categorie</mat-label>
-            <input [(ngModel)]="categorie.nomcategorie" matInput>
+    <mat-tab label="categories">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline" >
+            <mat-label>numero</mat-label>
+            <input [(ngModel)]="categorie.numcategorie" matInput required>
           </mat-form-field>
-      </div>
-      <br>
-      <div fxLayout="row" fxLayoutGap="10px">
-        <button mat-mini-fab (click)="addNewCategorie()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-tab>
-
-    <!-- familles -->
-  <mat-tab label="familles"> 
-     <div >
-      <div style="width:100%" >
-        <mat-form-field appearance="outline">
-          <mat-label>num famille</mat-label>
-          <input [(ngModel)]="famille.numfamille" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>nom famille</mat-label>
-          <input [(ngModel)]="famille.nomfamille" matInput>
-        </mat-form-field>
-        <mat-select  [(ngModel)]="classe" name="classe">
-          <mat-option *ngFor="let classe of classes" [value]="classe.value">
-            {{classe.viewValue}}
-          </mat-option>
-        </mat-select>
-      </div>
-      <br>
-      <div fxLayout="row" fxLayoutGap="10px" >
-        <button mat-mini-fab (click)="addNewFamille()">
-          <mat-icon>add</mat-icon>
-        </button>
-
-      </div>
-      <br>
-    </div>
-  </mat-tab>
-    <!-- sfamilles -->
-
-  <mat-tab label="Sous Familles">  
-    <div >
-      <div style="width:100%" >
-        <mat-form-field appearance="outline">
-          <mat-label>num sfamille</mat-label>
-          <input [(ngModel)]="sfamille.numsfamille" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>nom sfamille</mat-label>
-          <input [(ngModel)]="sfamille.nomsfamille" matInput>
-        </mat-form-field>
-         <mat-select  [(ngModel)]="famille" name="famille">
-          <mat-option *ngFor="let famille of familles" [value]="famille.value">
-            {{famille.viewValue}}
-          </mat-option>
-        </mat-select>
-      </div>
-      <br>
-      <div fxLayout="row" fxLayoutGap="10px" >
-        <button mat-mini-fab (click)="addNewSfamille()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <br>
-    </div>
-  </mat-tab>
-  <!-- achats -->
-    <mat-tab label="achats">  
-    <div >
-      <div style="width:100%" >
-        <mat-form-field appearance="outline">
-          <mat-label>nom</mat-label>
-          <input [(ngModel)]="achat.nom" matInput>
-        </mat-form-field>
-      </div>
-      <br>
-      <div fxLayout="row" fxLayoutGap="10px" >
-        <button mat-mini-fab (click)="addNewAchat()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <br>
-    </div>
-  </mat-tab>
-  <!-- stockage -->
-  <mat-tab label="stockage">  
-      <div >
-        <div style="width:100%" >
           <mat-form-field appearance="outline">
-            <mat-label>nom</mat-label>
-            <input [(ngModel)]="stockage.nom" matInput>
+            <mat-label>categorie</mat-label>
+            <input [(ngModel)]="categorie.nomcategorie" matInput required>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px" >
-          <button mat-mini-fab (click)="addNewStockage()">
+        <br>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewCategorie()">
             <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
     </mat-tab>
     <!-- unite -->
-  <mat-tab label="unité">  
-      <div >
-        <div style="width:100%" >
+    <mat-tab label="unité">
+      <div>
+        <div style="width:100%">
           <mat-form-field appearance="outline">
             <mat-label>nom</mat-label>
-            <input [(ngModel)]="unite.nom" matInput>
+            <input [(ngModel)]="unite.nom" matInput required>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px" >
+        <div fxLayout="row" fxLayoutGap="10px">
           <button mat-mini-fab (click)="addNewUnite()">
             <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
-      <br> 
+      <br>
     </mat-tab>
-        <!-- classe -->
-  <mat-tab label="classe">  
-      <div >
-        <div style="width:100%" >
-            <mat-form-field appearance="outline">
-                <mat-label>numero</mat-label>
-                <input [(ngModel)]="classe.numclasse" matInput>
-              </mat-form-field>
+    <!-- classe -->
+    <mat-tab label="classe">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>numero</mat-label>
+            <input [(ngModel)]="classe.numclasse" matInput required>
+          </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>nom</mat-label>
-            <input [(ngModel)]="classe.nomclasse" matInput>
+            <input [(ngModel)]="classe.nomclasse" matInput required>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutGap="10px" >
+        <div fxLayout="row" fxLayoutGap="10px">
           <button mat-mini-fab (click)="addNewClasse()">
             <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
-      <br> 
+      <br>
     </mat-tab>
-            <!-- ingredients -->
-  <mat-tab label="ingredients">  
-      <div >
-        <div style="width:100%" >
-            <mat-form-field appearance="outline">
-                <mat-label>code</mat-label>
-                <input [(ngModel)]="ingredient.code" matInput>
-              </mat-form-field>
+    <!-- familles -->
+    <mat-tab label="familles">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>num famille</mat-label>
+            <input [(ngModel)]="famille.numfamille" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>nom famille</mat-label>
+            <input [(ngModel)]="famille.nomfamille" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+          <mat-select [(ngModel)]="classe" name="classe" required>
+            <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
+              {{classe.payload.val().nomclasse}}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewFamille()">
+            <mat-icon>add</mat-icon>
+          </button>
+
+        </div>
+        <br>
+      </div>
+    </mat-tab>
+    <!-- sfamilles -->
+
+    <mat-tab label="Sous Familles">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>num sfamille</mat-label>
+            <input [(ngModel)]="sfamille.numsfamille" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>nom sfamille</mat-label>
+            <input [(ngModel)]="sfamille.nomsfamille" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>nom famille</mat-label>
+          <mat-select [(ngModel)]="famille" name="famille" required>
+            <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
+              {{famille.payload.val().nomfamille}}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewSfamille()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <br>
+      </div>
+    </mat-tab>
+    <!-- achats -->
+    <mat-tab label="achats">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>nom</mat-label>
+            <input [(ngModel)]="achat.nom" matInput required>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewAchat()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <br>
+      </div>
+    </mat-tab>
+    <!-- stockage -->
+    <mat-tab label="stockage">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>nom</mat-label>
+            <input [(ngModel)]="stockage.nom" matInput required>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewStockage()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- ingredients -->
+    <mat-tab label="ingredients">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>code</mat-label>
+            <input [(ngModel)]="ingredient.code" matInput required>
+          </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>libelle</mat-label>
-            <input [(ngModel)]="ingredient.libelle" matInput>
+            <input [(ngModel)]="ingredient.libelle" matInput required>
           </mat-form-field>
           <mat-form-field appearance="outline">
-              <mat-label>quantite</mat-label>
-              <input [(ngModel)]="ingredient.quantite" matInput>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>prix</mat-label>
-                <input [(ngModel)]="ingredient.prix" matInput>
-              </mat-form-field>
-              <mat-select  [(ngModel)]="ingredient.famille" name="famille">
-                  <mat-option *ngFor="let fam of famille" [value]="fam.value">
-                    {{famille.viewValue}}
-                  </mat-option>
-                </mat-select>
-                <mat-select  [(ngModel)]="ingredient.sfamille" name="famille">
-                    <mat-option *ngFor="let sfamille of sfamille" [value]="sfamille.value">
-                      {{sfamille.viewValue}}
-                    </mat-option>
-                  </mat-select>
+            <mat-label>quantite</mat-label>
+            <input [(ngModel)]="ingredient.quantite" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>prix</mat-label>
+            <input [(ngModel)]="ingredient.prix" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>famille</mat-label>
+            <mat-select [(ngModel)]="ingredient.famille" required>
+              <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
+                {{famille.payload.val().nomfamille}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>sous famille</mat-label>
+            <mat-select [(ngModel)]="ingredient.sfamille" required>
+              <mat-option *ngFor="let sfamille of test.sfamilles" [value]="sfamille.payload.key">
+                {{sfamille.payload.val().nomsfamille}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>achat</mat-label>
+            <mat-select [(ngModel)]="ingredient.achat" required>
+              <mat-option *ngFor="let achat of test.achats" [value]="achat.payload.key">
+                {{achat.payload.val().nom}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>stockage</mat-label>
+            <mat-select [(ngModel)]="ingredient.stockage" required>
+              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage.payload.key">
+                {{stockage.payload.val().nom}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+            <mat-select [(ngModel)]="ingredient.classe" required>
+              <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
+                {{classe.payload.val().nomclasse}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
         </div>
-        <div fxLayout="row" fxLayoutGap="10px" >
-          <button mat-mini-fab (click)="addNewClasse()">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewIngredient()">
             <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
-      <br> 
+      <br>
     </mat-tab>
-</mat-tab-group>
+    <!-- boissons -->
+    <mat-tab label="boissons">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>code</mat-label>
+            <input [(ngModel)]="boisson.code" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>libelle</mat-label>
+            <input [(ngModel)]="boisson.libelle" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>quantite</mat-label>
+            <input [(ngModel)]="boisson.quantite" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>prix</mat-label>
+            <input [(ngModel)]="boisson.prix" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>famille</mat-label>
+            <mat-select [(ngModel)]="boisson.famille" required>
+              <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
+                {{famille.payload.val()}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>sous famille</mat-label>
+            <mat-select [(ngModel)]="boisson.sfamille" required>
+              <mat-option *ngFor="let sfamille of test.sfamilles" [value]="sfamille.payload.key">
+                {{sfamille.payload.val().nomfamille}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>achat</mat-label>
+            <mat-select [(ngModel)]="boisson.achat" required>
+              <mat-option *ngFor="let achat of test.achats" [value]="achat.payload.key">
+                {{achat.payload.val().nomsfamille}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>stockage</mat-label>
+            <mat-select [(ngModel)]="boisson.stockage" required>
+              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage.payload.key">
+                {{stockage.payload.val().nom}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+            <mat-select [(ngModel)]="boisson.classe" required>
+              <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
+                {{classe.payload.val().nomclasse}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-  
- 
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mat-mini-fab (click)="addNewBoisson()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+      <br>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
 
 </div>

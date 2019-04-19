@@ -8,10 +8,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
+import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
 const routes: Routes = [
       {
         path: "test",
         component: InterfaceTestComponent
+        ,resolve:{test : TestService}
       },
 
       {
