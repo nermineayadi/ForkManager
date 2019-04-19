@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { HttpClient } from '@angular/common/http';
+import { Plat } from 'src/app/models/plat.model';
 
 @Injectable()
 export class CPlatService {
     constructor(private db: AngularFireDatabase ,
         private snackBar : MatSnackBar,
         public afAuth: AngularFireAuth ,
-        ) {}
+        private http: HttpClient) {}
 
 
 

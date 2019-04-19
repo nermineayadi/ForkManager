@@ -15,9 +15,15 @@ import { InscriptionComponent } from "./auth/inscription/inscription.component";
 
 
 //modals
-import { CplatComponent } from "./modals/CrudPlat/CPlat/cplat.component";
 import { InventaireCComponent } from './modals/CrudIventaire/Inventaire/InventaireC.component';
-
+import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
+import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
+import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
+import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
+import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
+import { CplatComponent } from "./pages/cuisinier/modals/CPlat/cplat.component";
+import { DetailPComponent } from './pages/cuisinier/modals/detail-p/detail-p.component';
+import { SupprimerComponent } from './pages/cuisinier/modals/supprimer/supprimer.component';
 //assets
 import { MatangModule } from "../assets/matang.module";
 
@@ -43,28 +49,20 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
-import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
-import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
-import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
+//cropper
 import { CropperComponent } from './auth/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
-
-
-
 import {MatTabsModule} from '@angular/material/tabs';
-import { FamillePipe } from './pipes/famille.pipe';
-import { SfamillePipe } from './pipes/sfamille.pipe';
-import { LoginModule } from './auth/login/login.module';
-import { InscriptionModule } from './auth/inscription/inscription.module';
+
+
+//services
 import { LoginService } from './auth/login/login.service';
 import { ProfileService } from './auth/inscription/inscription.service';
-import { DetailPComponent } from './modals/DetailsPlat/detail-p/detail-p.component';
-import { SupprimerComponent } from './modals/ModalSupprimer/supprimer/supprimer.component';
+
 import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
+
 
 
 
@@ -80,7 +78,6 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
    
     //modals
     InventaireCComponent ,
-    CplatComponent,
     CCmdComponent,
     CBoissonComponent,
     CPersonnelComponent,
@@ -88,20 +85,15 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     CropperComponent,
     InventaireBComponent,
     InventaireBComponent,
-    DetailPComponent,
     InterfaceTestComponent,
 
-//pipes
-    SfamillePipe,
-    FamillePipe,
-    DetailPComponent,
-    SupprimerComponent,
+ 
+
 
     
   ],
   exports:[
-    FamillePipe,
-    SfamillePipe,
+    
 
   ],
   imports: [
@@ -143,7 +135,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
   entryComponents: [
 
     //entry components (modals)
-    CplatComponent,
+    
     CCmdComponent,
     InventaireCComponent,
     CBoissonComponent,
@@ -151,10 +143,10 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     CPortionComponent,
     InventaireBComponent,
     CropperComponent,
-    DetailPComponent,
-    SupprimerComponent,
+
   ],
-  providers: [LoginService,ProfileService,TestService],
+  providers: [LoginService,ProfileService,TestService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -22,7 +22,7 @@
         <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
         <span [fxHide.xs]="true">Supprimer</span>
       </div> -->
-      <div fxLayout="row" (click)="openDialog()" fxLayoutAlign="center center" style="cursor:pointer;"
+      <div fxLayout="row" (click)="openCplat()" fxLayoutAlign="center center" style="cursor:pointer;"
         fxLayoutGap="5px">
         <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
         <span [fxHide.xs]="true">Ajouter</span>
@@ -101,7 +101,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Edit</button>
-          <button mat-menu-item (click)="onDelete(element.key)">Delete</button>
+          <button mat-menu-item (click)="openSupprime(element.key)">Delete</button>
         </mat-menu>
       </td>
     </ng-container>

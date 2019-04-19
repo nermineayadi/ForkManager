@@ -26,8 +26,12 @@ import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisin
 import { PlatService } from './plat-cuisine/plat.service';
 import { CPlatService } from 'src/app/modals/CrudPlat/CPlat/cplat.service';
 import { MatDialogModule } from '@angular/material';
-import { DetailPComponent } from 'src/app/modals/DetailsPlat/detail-p/detail-p.component';
 import { DetailPService } from 'src/app/modals/DetailsPlat/detail-p/detail-p.service';
+import { CplatComponent } from './modals/CPlat/cplat.component';
+import { SupprimerComponent } from './modals/supprimer/supprimer.component';
+import { DetailPComponent } from './modals/detail-p/detail-p.component';
+import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
+import { FamillePipe } from 'src/app/pipes/famille.pipe';
 
 @NgModule({
   declarations: [ 
@@ -41,7 +45,11 @@ import { DetailPService } from 'src/app/modals/DetailsPlat/detail-p/detail-p.ser
     CommandeCuisineComponent,
     InventaireCuisineComponent,
     AcceuilCuisineComponent,
-    NavigationCuisineComponent
+    NavigationCuisineComponent,
+    SupprimerComponent , CplatComponent , DetailPComponent,
+    //pipes
+    SfamillePipe,
+    FamillePipe,
     
   ],
   imports: [
@@ -66,9 +74,13 @@ import { DetailPService } from 'src/app/modals/DetailsPlat/detail-p/detail-p.ser
     FlexLayoutModule,
 
   ],
-  entryComponents: [],
+  entryComponents: [
+    SupprimerComponent , CplatComponent , DetailPComponent
+  ],
   
-  exports: [],
+  exports: [//pipes
+    SfamillePipe,
+    FamillePipe,],
   providers: [CPlatService , PlatService , DetailPService]
 })
 export class CuisineModule {}
