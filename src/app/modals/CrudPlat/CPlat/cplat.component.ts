@@ -60,43 +60,70 @@ export class CplatComponent implements OnInit {
     return this.nomPlat.invalid || this.category.invalid || this.famille.invalid 
     || this.sfamille.invalid || this.nbparts.invalid || this.duree.invalid; 
 }
+ajoutPlat() {
 
-  ajoutPlat() {
+  this.valider=true;
+  const obj = {
+    nomPlat : this.nomPlat.value,
+    categorie :this.category.value.key,
+    famille: this.famille.value.key,
+    sfamille : this.sfamille.value.key,
+    nbPart : this.nbparts.value,
+    duree : this.duree.value,
+    valide : "faux"
+  };
+  console.log(obj)
+   this.CPlatservice
+  .ajoutPlat(obj)
+  .then(() => {
+    this.CPlatservice.showMsg("plat ajouté");
+    this.valider= false;
+  })
+  .catch(error => {
+    console.error(error.message);
+    this.CPlatservice.showMsg(error.message);
+    this.valider= false;
 
-    this.valider=true;
-    const obj = {
-      nomPlat : this.nomPlat.value,
-      categorie : {
-        key: this.category.value.key,
-        name: this.category.value.payload.val().name
-      },
-      famille : {
-        key: this.famille.value.key,
-        name: this.famille.value.payload.val().name
-      },
-      sfamille : {
-        key: this.sfamille.value.key,
-        name: this.sfamille.value.payload.val().name
-      },
-      ingredients: this.ingredients ,
-      nbPart : this.nbparts.value,
-      duree : this.duree.value
-    };
-    console.log(obj)
-     this.CPlatservice
-    .ajoutPlat(obj)
-    .then(() => {
-      this.CPlatservice.showMsg("plat ajouté");
-      this.valider= false;
-    })
-    .catch(error => {
-      console.error(error.message);
-      this.CPlatservice.showMsg(error.message);
-      this.valider= false;
-
-    });
-    this.dialogRef.close();
+  });
+  this.dialogRef.close();
 }
+
+//   ajoutPlat() {
+
+//     this.valider=true;
+//     const obj = {
+//       nomPlat : this.nomPlat.value,
+//       categorie : {
+//         key: this.category.value.key,
+//         name: this.category.value.payload.val().name
+//       },
+//       famille : {
+//         key: this.famille.value.key,
+//         name: this.famille.value.payload.val().name
+//       },
+//       sfamille : {
+//         key: this.sfamille.value.key,
+//         name: this.sfamille.value.payload.val().name
+//       },
+//       ingredients: this.ingredients ,
+//       nbPart : this.nbparts.value,
+//       duree : this.duree.value
+//     };
+//     console.log(obj)
+//      this.CPlatservice
+//     .ajoutPlat(obj)
+//     .then(() => {
+//       this.CPlatservice.showMsg("plat ajouté");
+//       this.valider= false;
+//     })
+//     .catch(error => {
+//       console.error(error.message);
+//       this.CPlatservice.showMsg(error.message);
+//       this.valider= false;
+
+//     });
+//     this.dialogRef.close();
+// }
 
 }
 

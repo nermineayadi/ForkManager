@@ -24,8 +24,12 @@ export class TestService {
                         const ref3 =   this.getstockages().subscribe((stockages)=>{
                             const ref4 =    this.getfamilles().subscribe((familles)=>{
                                 const ref5 =    this.getsfamilles().subscribe((sfamilles)=>{
+                                    const ref6 = this.getCategories().subscribe((categories)=>{
+
+                                    
 
                                 const obj= {
+                                    categories:categories,
                                     classes:classes,
                                     unites:unites,
                                     achats:achats,
@@ -40,7 +44,10 @@ export class TestService {
                                 ref3.unsubscribe();
                                 ref4.unsubscribe();
                                 ref5.unsubscribe();
+                                ref6.unsubscribe();
+
                                 resolve(obj)
+                            })
                             })
                         })
                         })

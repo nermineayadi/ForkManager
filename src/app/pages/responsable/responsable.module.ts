@@ -20,8 +20,10 @@ import { CalendarModule, DateAdapter } from "angular-calendar";
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { NgbModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { FlatpickrModule } from "angularx-flatpickr";
-import { NavigationCuisineComponent } from 'src/app/navigation/navigation-cuisine/navigation-cuisine.component';
 import { CPersonnelService } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.service';
+import { PlatResponsableService } from './plat-responsable/plat-responsable.service';
+import { DetailPService } from './plat-responsable/modals/detail-p/detail-p.service';
+import { CPlatService } from './plat-responsable/modals/CPlat/cplat.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -50,6 +52,6 @@ NavigationResponsableComponent;
     }),  
 ],
   exports: [],
-  providers: [CPersonnelService]
+  providers: [CPersonnelService,PlatResponsableService,DetailPService,CPlatService]
 })
 export class ResponsableModule {}

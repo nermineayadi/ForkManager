@@ -13,13 +13,13 @@ export class CplatComponent implements OnInit {
   //photo : string;
   
   ingredients: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+    {nom: '', quantite: 0 , unite: '' }
   ];
   srecettes: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+    {nom: '', quantite: 0 , unite: '' }
   ];
   etapes:any[]=[
-    {num:'', etape : ''}
+    {etape : ''}
   ]
   unites:string[] = ['g','ml','portion']
 

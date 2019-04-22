@@ -21,9 +21,7 @@ import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.compon
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
-import { CplatComponent } from "./pages/cuisinier/modals/CPlat/cplat.component";
-import { DetailPComponent } from './pages/cuisinier/modals/detail-p/detail-p.component';
-import { SupprimerComponent } from './pages/cuisinier/modals/supprimer/supprimer.component';
+
 //assets
 import { MatangModule } from "../assets/matang.module";
 

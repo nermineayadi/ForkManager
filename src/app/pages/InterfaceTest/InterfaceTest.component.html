@@ -73,9 +73,17 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>classe</mat-label>
-          <mat-select [(ngModel)]="classe" name="classe" required>
+          <mat-select [(ngModel)]="famille.classe" name="classe" required>
             <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
               {{classe.payload.val().nomclasse}}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>categorie</mat-label>
+          <mat-select [(ngModel)]="famille.classe" name="categorie" required>
+            <mat-option *ngFor="let categorie of test.categories" [value]="categorie.payload.key">
+              {{categorie.payload.val().nomcategorie}}
             </mat-option>
           </mat-select>
           </mat-form-field>
@@ -105,7 +113,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>nom famille</mat-label>
-          <mat-select [(ngModel)]="famille" name="famille" required>
+          <mat-select [(ngModel)]="sfamille.famille" name="famille" required>
             <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
               {{famille.payload.val().nomfamille}}
             </mat-option>

@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
 
 ShareService
 @Injectable()
-export class PlatService implements Resolve<any> {
+export class PlatResponsableService implements Resolve<any> {
     constructor(private db: AngularFireDatabase ,private snackBar : MatSnackBar,) {
 
     }
@@ -70,11 +70,11 @@ getCategorie(key : string){
     return cat ;
 }
 getIngredients(){
-    const ref = this.db.list('ingredients').snapshotChanges();
+    const ref = this.db.list('ingredient').snapshotChanges();
     return ref ;
 }
 getFamilles(){
-    const ref = this.db.list('familles').snapshotChanges();
+    const ref = this.db.list('famille').snapshotChanges();
     return ref ;
 }
 getSfamilles(){
