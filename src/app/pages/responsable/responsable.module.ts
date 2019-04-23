@@ -24,6 +24,9 @@ import { CPersonnelService } from 'src/app/modals/CrudPersonnel/cpersonnel/cpers
 import { PlatResponsableService } from './plat-responsable/plat-responsable.service';
 import { DetailPService } from './plat-responsable/modals/detail-p/detail-p.service';
 import { CPlatService } from './plat-responsable/modals/CPlat/cplat.service';
+import { CplatComponent } from './plat-responsable/modals/CPlat/cplat.component';
+import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
+import { FamillePipe } from 'src/app/pipes/famille.pipe';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -37,6 +40,10 @@ NavigationResponsableComponent;
     PlatResponsableComponent,
     InventaireResponsableComponent,
     NavigationResponsableComponent,
+    CplatComponent,
+       //pipes
+       SfamillePipe,
+       FamillePipe,
     
   ],
   imports: [CommonModule, ResponsableRoutingModule ,
@@ -51,6 +58,7 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
+entryComponents:[CplatComponent],
   exports: [],
   providers: [CPersonnelService,PlatResponsableService,DetailPService,CPlatService]
 })

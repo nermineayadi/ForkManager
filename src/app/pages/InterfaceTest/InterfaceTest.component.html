@@ -81,7 +81,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>categorie</mat-label>
-          <mat-select [(ngModel)]="famille.classe" name="categorie" required>
+          <mat-select [(ngModel)]="famille.categorie" name="categorie" required>
             <mat-option *ngFor="let categorie of test.categories" [value]="categorie.payload.key">
               {{categorie.payload.val().nomcategorie}}
             </mat-option>

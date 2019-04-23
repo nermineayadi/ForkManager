@@ -10,25 +10,19 @@ import { Plat } from 'src/app/models/plat.model';
   styleUrls: ['./cplat.component.scss'],
 })
 export class CplatComponent implements OnInit {
-  //photo : string;
+   //photo : string;
   
-  ingredients: any[] = [
-    {nom: '', quantite: 0 , unite: '' }
+   ingredients: any[] = [
+    {nom: '', quantite: '' , unite: '' }
   ];
   srecettes: any[] = [
-    {nom: '', quantite: 0 , unite: '' }
+    {nom: '', quantite: '' , unite: '' }
   ];
   etapes:any[]=[
-    {etape : ''}
+    {num:'', etape : ''}
   ]
   unites:string[] = ['g','ml','portion']
 
-  toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  //colonnes
-  ingredientColumns: string[] = ['position', 'nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['position', 'nom', 'quantité', 'unité','voir'];
-  etapeColumns: string[] = ['position', 'nom', 'description'];
 
   valider= false ;
   plat  = new Plat() ;

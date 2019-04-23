@@ -46,7 +46,6 @@ export interface Plats {
       //modal ajout plat
     openDialog(): void {
       const dialogRef = this.dialog.open(CplatComponent, {
-        width: '800px',
         data:{ }
       });
   
@@ -59,7 +58,6 @@ export interface Plats {
       const dialogRef = this.dialog.open(DetailPComponent, {
         //taille du modal 
         
-        width: '900px',
         data:{ }
       });
   
@@ -71,7 +69,6 @@ export interface Plats {
       const dialogRef = this.dialog.open(SupprimerComponent, {
         //taille du modal 
         
-        width: '900px',
         data:{ }
       });
   

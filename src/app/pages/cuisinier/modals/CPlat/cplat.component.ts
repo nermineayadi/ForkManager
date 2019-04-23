@@ -43,11 +43,11 @@ export class CplatComponent implements OnInit {
  
   constructor(
      public dialogRef: MatDialogRef<CplatComponent>,
-     @Inject(MAT_DIALOG_DATA) public payload: any , private  CPlatservice: CPlatService
+     @Inject(MAT_DIALOG_DATA) public payload: any ,
+      private  CPlatservice: CPlatService
      ) { }
 
   ngOnInit() {
-    //console.log(this.payload);
 
   }
   addNewIngredient(){  
@@ -73,23 +73,16 @@ export class CplatComponent implements OnInit {
     this.valider=true;
     const obj = {
       nomPlat : this.nomPlat.value,
-      categorie : {
-        key: this.category.value.key,
-        name: this.category.value.payload.val().name
-      },
-      famille : {
-        key: this.famille.value.key,
-        name: this.famille.value.payload.val().name
-      },
-      sfamille : {
-        key: this.sfamille.value.key,
-        name: this.sfamille.value.payload.val().name
-      },
-      ingredients: this.ingredients ,
-      srecettes: this.srecettes,
-      etapes:this.etapes,
+        categorie: this.category.value.key,
+      famille: this.famille.value.key,
+      sfamille :  this.sfamille.value.key,
+       
+     // ingredients: this.ingredients ,
+    //  srecettes: this.srecettes,
+     // etapes:this.etapes,
       nbPart : this.nbparts.value,
-      duree : this.duree.value
+      duree : this.duree.value,
+      valide:false
     };
     console.log(obj)
      this.CPlatservice

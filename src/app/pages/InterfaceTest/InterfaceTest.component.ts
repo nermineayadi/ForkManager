@@ -33,7 +33,7 @@ test: any ;
   }
 
   famille: any =
-    { numfamille: 0, nomfamille: '', classe: '' }
+    { numfamille: 0, nomfamille: '', classe: '',categorie :'' }
     ;
   addNewFamille() {
     this.testService.addfamille(this.famille).then(() => {
@@ -41,7 +41,7 @@ test: any ;
     }).catch(error => {
       this.testService.showMsg(error.message)
     })
-    this.famille = { numfamille: 0, nomfamille: '', classe: '' }
+    this.famille = { numfamille: 0, nomfamille: '', classe: '',categorie :''}
   }
   sfamille: any =
     { numsfamille: 0, nomsfamille: '', famille: '' }
