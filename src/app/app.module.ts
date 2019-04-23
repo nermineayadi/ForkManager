@@ -60,6 +60,7 @@ import { ProfileService } from './auth/inscription/inscription.service';
 import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
+import { InterfaceTestModule } from './pages/InterfaceTest/InterfaceTest.module';
 
 
 
@@ -83,7 +84,6 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     CropperComponent,
     InventaireBComponent,
     InventaireBComponent,
-    InterfaceTestComponent,
 
  
 
@@ -96,7 +96,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
   ],
   imports: [
     MatDialogModule,
-
+    InterfaceTestModule,
     ImageCropperModule,
     //important
     CommonModule,

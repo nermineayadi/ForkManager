@@ -12,8 +12,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
 const routes: Routes = [
       {
         path: "test",
-        component: InterfaceTestComponent
-        ,resolve:{test : TestService}
+        loadChildren:"./pages/InterfaceTest/InterfaceTest.module#InterfaceTestModule",
       },
 
       {
