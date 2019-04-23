@@ -33,7 +33,9 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer" fxLayoutGap="5px">
           <mat-icon style="font-size: 21px;">file_copy</mat-icon>
-          <span [fxHide.xs]="true">Exporter</span>
+
+
+          <span  (click)="downloadCSV()" class="btn-default">Exporter</span>
         </div>
       </div>
     </div>
