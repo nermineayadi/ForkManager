@@ -50,22 +50,7 @@
 
   <table mat-table [dataSource]="dataSource" class="table table-responsive-md table-striped " class="mat-elevation-z8 ">
 
-    <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-        [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
-        [aria-label]="checkboxLabel()">
-      </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-          [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-
+   
     <ng-container matColumnDef="plat">
       <th mat-header-cell *matHeaderCellDef> Plat </th>
       <td mat-cell *matCellDef="let element"> {{element.payload.val().nomPlat}} </td>
@@ -73,17 +58,17 @@
 
     <ng-container matColumnDef="categorie">
       <th mat-header-cell *matHeaderCellDef> Categorie </th>
-      <td mat-cell *matCellDef="let element"> {{element.payload.val().categorie}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().categorie.nomcategorie}} </td>
     </ng-container>
 
     <ng-container matColumnDef="famille">
       <th mat-header-cell *matHeaderCellDef> Famille </th>
-      <td mat-cell *matCellDef="let element"> {{element.payload.val().famille}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().famille.nomfamille}} </td>
     </ng-container>
 
     <ng-container matColumnDef="sfamille">
       <th mat-header-cell *matHeaderCellDef> Sous Famille </th>
-      <td mat-cell *matCellDef="let element"> {{element.payload.val().sfamille}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.payload.val().sfamille.nomsfamille}} </td>
     </ng-container>
     <ng-container matColumnDef="detail">
       <th mat-header-cell *matHeaderCellDef> voir details </th>
@@ -91,19 +76,6 @@
           <mat-icon>add</mat-icon> 
         </button></td>
     </ng-container>
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>actions</th>
-      <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutAlign="center end">
-        <button mat-icon-button [matMenuTriggerFor]="menu" style="color: #506169;">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Edit</button>
-          <button mat-menu-item (click)="openSupprime(element.key)">Delete</button>
-        </mat-menu>
-      </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

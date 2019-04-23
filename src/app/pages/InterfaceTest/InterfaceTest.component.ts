@@ -79,7 +79,7 @@ test: any ;
 
   }
   ingredient: any =
-    { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 0, prix: 0 }
     ;
   addNewIngredient() {
     this.testService.addingredient(this.ingredient).then(() => {
@@ -87,12 +87,12 @@ test: any ;
     }).catch(error => {
       this.testService.showMsg(error.message)
     })
-    this.ingredient = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    this.ingredient = { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 0, prix: 0 }
 
   }
 
   boisson: any =
-    { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 0, prix: 0 }
     ;
   addNewBoisson() {
     this.testService.addboisson(this.boisson).then(() => {
@@ -100,7 +100,7 @@ test: any ;
     }).catch(error => {
       this.testService.showMsg(error.message)
     })
-    this.boisson = { code: '', libelle: '', classe: '', famille: '', sfamilles: '', achats: '', stockage: '', quantite: 0, prix: 0 }
+    this.boisson = { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 0, prix: 0 }
 
   }
   unite: any =
