@@ -13,7 +13,7 @@ export class UplatComponent implements OnInit {
    //photo : string;
   
    ingredients: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+  {nom: '', quantite: '' , unite: '' }
   ];
   srecettes: any[] = [
     {nom: '', quantite: '' , unite: '' }
@@ -25,23 +25,19 @@ export class UplatComponent implements OnInit {
 
 
   valider= false ;
-  plat  = new Plat() ;
-   //informations necessaires 
-  nomPlat = new FormControl('', Validators.required);
-  category = new FormControl('', Validators.required);
-  famille = new FormControl('', Validators.required);
-  sfamille = new FormControl('', Validators.required);
-  nbparts = new FormControl('', Validators.required);
-  duree = new FormControl('', Validators.required);
   
- 
+   plat:any;
   constructor(
      public dialogRef: MatDialogRef<UplatComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any , private  UPlatService: UPlatService
-     ) { }
+     ) { 
+      this.UPlatService.getPlat(this.payload.key).snapshotChanges().subscribe(action => {
+        console.log(action.payload.val())
+        this.plat= action.payload.val();
+        console.log(this.plat);})
+     }
 
   ngOnInit() {
-    //console.log(this.payload);
 
   }
   addNewIngredient(){  
@@ -57,39 +53,30 @@ export class UplatComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  get isValid():boolean{
-    return this.nomPlat.invalid || this.category.invalid || this.famille.invalid 
-    || this.sfamille.invalid || this.nbparts.invalid || this.duree.invalid; 
-}
+  
 
   EditPlat() {
+    this.plat.ingredient = this.ingredients;
+    console.log(this.plat);
+
 
     this.valider=true;
-    const obj = {
-      nomPlat : this.nomPlat.value,
-      categorie : {
-        key: this.category.value.key,
-        name: this.category.value.payload.val().name
-      },
-      famille : {
-        key: this.famille.value.key,
-        name: this.famille.value.payload.val().name
-      },
-      sfamille : {
-        key: this.sfamille.value.key,
-        name: this.sfamille.value.payload.val().name
-      },
-      ingredients: this.ingredients ,
-      srecettes: this.srecettes,
-      etapes:this.etapes,
-      nbPart : this.nbparts.value,
-      duree : this.duree.value
-    };
-    console.log(obj)
+    // const obj = {
+    //   nomPlat : this.nomPlat.value,
+    //   categorie : this.category.value,
+    //   famille : this.famille.value,
+    //   sfamille : this.famille.value,
+    //   ingredients: this.ingredients ,
+    //   srecettes: this.srecettes,
+    //   etapes:this.etapes,
+    //   nbPart : this.nbparts.value,
+    //   duree : this.duree.value
+    // };
+    // console.log(obj)
      this.UPlatService
-    .ajoutPlat(obj)
+    .updatePlat(this.plat,this.payload.key)
     .then(() => {
-      this.UPlatService.showMsg("plat ajouté");
+      this.UPlatService.showMsg("plat modifié");
       this.valider= false;
     })
     .catch(error => {

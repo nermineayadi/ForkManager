@@ -7,10 +7,11 @@ import { InterfaceTestRoutingModule } from './InterfaceTest-routing.module';
 import { InterfaceTestComponent } from './InterfaceTest.component';
 import { MatangModule } from 'src/assets/matang.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-    declarations: [FamillePipe,SfamillePipe,Famille_Pipe,InterfaceTestComponent],
-    imports: [ CommonModule,InterfaceTestRoutingModule ,MatangModule,FlexLayoutModule],
+    declarations: [],
+    imports: [ CommonModule,InterfaceTestRoutingModule ,MatangModule,FlexLayoutModule,PipesModule.forRoot()],
     exports: [],
     providers: [],
 })

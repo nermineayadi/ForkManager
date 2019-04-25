@@ -5,9 +5,7 @@ import { InterfaceTestComponent } from './InterfaceTest.component';
 import { TestService } from './InterfaceTest.service';
 
 const routes: Routes = [
-    { path: '', component: InterfaceTestComponent ,
-    resolve:{test : TestService}
-}
+
 ];
 
 @NgModule({

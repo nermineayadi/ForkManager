@@ -24,13 +24,13 @@ showMsg(message: string){
         return new Promise((resolve, reject) => {
             const ref = this.getPlats().subscribe((plats: any[])=>{
                 const ref1 = this.getCategories().subscribe((categories)=>{
-                    const ref2 = this.getIngredients().subscribe((ingredient)=>{
+                    const ref2 = this.getIngredients().subscribe((ingredients)=>{
                         const ref3 =   this.getFamilles().subscribe((familles)=>{
                             const ref4 =    this.getSfamilles().subscribe((sfamilles)=>{
                                 const obj= {
                                     plats: plats,
                                     categories: categories,
-                                    ingredient : ingredient,
+                                    ingredients : ingredients,
                                     familles : familles, 
                                     sfamilles : sfamilles
                                 };
@@ -70,11 +70,11 @@ getCategorie(key : string){
     return cat ;
 }
 getIngredients(){
-    const ref = this.db.list('ingredient').snapshotChanges();
+    const ref = this.db.list('ingredients').snapshotChanges();
     return ref ;
 }
 getFamilles(){
-    const ref = this.db.list('famille').snapshotChanges();
+    const ref = this.db.list('familles').snapshotChanges();
     return ref ;
 }
 getSfamilles(){
