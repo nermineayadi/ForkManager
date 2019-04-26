@@ -32,8 +32,6 @@ getAvatar(){
 
 // updateProfile
 updateProfile(user : User){
-
-
     const itemRef = this.db.object(`users/${this.uid}`);
    return itemRef.update(user);
 }

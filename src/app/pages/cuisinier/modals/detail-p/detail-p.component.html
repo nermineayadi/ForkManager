@@ -1,38 +1,12 @@
 <mat-tab-group>
   <mat-tab label="Ingredients">
-    <!-- <form [formGroup]="ingredient">
-      <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
-        <mat-form-field appearance="outline">
-          <mat-label>ingredient</mat-label>
-          <input matInput formControlName="nom" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>quantité</mat-label>
-          <input matInput formControlName="quantite" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>unité</mat-label>
-          <mat-select formControlName="unite" name="unité">
-            <mat-option *ngFor="let unite of unites" [value]="unite">
-              {{unite}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <button mat-stroked-button color="primary"
-            style="width : 100px ; margin-top: 3px ; height: 45px;">valider</button>
-        </div>
-      </div>
-    </form> -->
-    <table mat-table [dataSource]="ingredient_tab" class="mat-elevation-z8" style="width : 100% ;">
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
+
+    <table mat-table [dataSource]="dataSource.ingredient" class="mat-elevation-z8" style="width : 100% ;">
+      
 
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> ingredient </th>
-        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
       </ng-container>
 
       <ng-container matColumnDef="quantité">

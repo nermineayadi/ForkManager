@@ -1,18 +1,18 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { CPlatService } from "./cplat.service";
+import { UPlatService } from "./uplat.service";
 import { Plat } from 'src/app/models/plat.model';
 
 @Component({
   selector: 'app-cplat',
-  templateUrl: './cplat.component.html',
-  styleUrls: ['./cplat.component.scss'],
+  templateUrl: './Uplat.component.html',
+  styleUrls: ['./Uplat.component.scss'],
 })
-export class CplatComponent implements OnInit {
-  //photo : string;
+export class UplatComponent implements OnInit {
+   //photo : string;
   
-  ingredients: any[] = [
+   ingredients: any[] = [
     {nom: '', quantite: '' , unite: '' }
   ];
   srecettes: any[] = [
@@ -23,12 +23,6 @@ export class CplatComponent implements OnInit {
   ]
   unites:string[] = ['g','ml','portion']
 
-  toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  //colonnes
-  ingredientColumns: string[] = ['position', 'nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['position', 'nom', 'quantité', 'unité','voir'];
-  etapeColumns: string[] = ['position', 'nom', 'description'];
 
   valider= false ;
   plat  = new Plat() ;
@@ -42,12 +36,12 @@ export class CplatComponent implements OnInit {
   
  
   constructor(
-     public dialogRef: MatDialogRef<CplatComponent>,
-     @Inject(MAT_DIALOG_DATA) public payload: any ,
-      private  CPlatservice: CPlatService
+     public dialogRef: MatDialogRef<UplatComponent>,
+     @Inject(MAT_DIALOG_DATA) public payload: any , private  UPlatService: UPlatService
      ) { }
 
   ngOnInit() {
+    //console.log(this.payload);
 
   }
   addNewIngredient(){  
@@ -68,40 +62,39 @@ export class CplatComponent implements OnInit {
     || this.sfamille.invalid || this.nbparts.invalid || this.duree.invalid; 
 }
 
-  ajoutPlat() {
+  EditPlat() {
 
     this.valider=true;
     const obj = {
       nomPlat : this.nomPlat.value,
       categorie : {
         key: this.category.value.key,
-        nomcategorie: this.category.value.payload.val().nomcategorie
+        name: this.category.value.payload.val().name
       },
       famille : {
         key: this.famille.value.key,
-        nomfamille: this.famille.value.payload.val().nomfamille
+        name: this.famille.value.payload.val().name
       },
       sfamille : {
         key: this.sfamille.value.key,
-        nomsfamille: this.sfamille.value.payload.val().nomsfamille
+        name: this.sfamille.value.payload.val().name
       },
-     // ingredients: this.ingredients ,
-    //  srecettes: this.srecettes,
-     // etapes:this.etapes,
+      ingredients: this.ingredients ,
+      srecettes: this.srecettes,
+      etapes:this.etapes,
       nbPart : this.nbparts.value,
-      duree : this.duree.value,
-      valide:false
+      duree : this.duree.value
     };
     console.log(obj)
-     this.CPlatservice
+     this.UPlatService
     .ajoutPlat(obj)
     .then(() => {
-      this.CPlatservice.showMsg("plat ajouté");
+      this.UPlatService.showMsg("plat ajouté");
       this.valider= false;
     })
     .catch(error => {
       console.error(error.message);
-      this.CPlatservice.showMsg(error.message);
+      this.UPlatService.showMsg(error.message);
       this.valider= false;
 
     });

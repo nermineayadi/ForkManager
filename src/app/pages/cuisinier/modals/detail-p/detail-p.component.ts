@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DetailPService } from './detail-p.service';
 export interface Ingredients {
@@ -46,6 +46,8 @@ const etapes: Etapes[] = [
   styleUrls: ['./detail-p.component.scss']
 })
 export class DetailPComponent implements OnInit {
+  dataSource: MatTableDataSource<any>;
+
   ngOnInit(): void {
    
   }
@@ -85,6 +87,7 @@ export class DetailPComponent implements OnInit {
       this.detailpService.getDetail(this.payload).snapshotChanges().subscribe(action => {
         console.log(action.payload.val())
         this.plat= action.payload.val();
+        this.dataSource = new MatTableDataSource(this.plat);
         console.log(this.plat);
         })
         }
