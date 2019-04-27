@@ -60,6 +60,11 @@ import { ProfileService } from './auth/inscription/inscription.service';
 import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
+import { InterfaceTestModule } from './pages/InterfaceTest/InterfaceTest.module';
+import { SfamillePipe } from './pipes/sfamille.pipe';
+import { FamillePipe } from './pipes/famille.pipe';
+import { Famille_Pipe } from './pipes/famille1.pipe';
+import { PipesModule } from './pipes/pipes.module';
 
 
 
@@ -73,6 +78,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     //components necessaires
     LoginComponent,
     InscriptionComponent,
+    InterfaceTestComponent,
    
     //modals
     InventaireCComponent ,
@@ -83,7 +89,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     CropperComponent,
     InventaireBComponent,
     InventaireBComponent,
-    InterfaceTestComponent,
+
 
  
 
@@ -96,7 +102,7 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
   ],
   imports: [
     MatDialogModule,
-
+    InterfaceTestModule,
     ImageCropperModule,
     //important
     CommonModule,
@@ -124,7 +130,8 @@ import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    PipesModule.forRoot()
    
   ],
 

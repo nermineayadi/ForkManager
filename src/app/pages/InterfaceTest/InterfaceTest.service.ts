@@ -83,9 +83,10 @@ export class TestService {
         const itemsRef = this.db.list(`ingredients`);
         return itemsRef.push(ingredients);
     }
-      addboisson(boissons: any) {
+      addboisson(boisson: any) {
         const itemsRef = this.db.list(`boissons`);
-        return itemsRef.push(boissons);
+        console.log(boisson)
+        return itemsRef.push(boisson);
     }
     addunite(unites: any) {
         const itemsRef = this.db.list(`unites`);

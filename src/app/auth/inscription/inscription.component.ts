@@ -4,7 +4,9 @@ import {
   FormControl,
   FormGroupDirective,
   NgForm,
-  Validators
+  Validators,
+  FormBuilder,
+  FormGroup
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ProfileService } from "./inscription.service";
@@ -12,11 +14,12 @@ import { User } from 'src/app/models/user.model';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { CropperComponent } from '../cropper/cropper.component';
+import { Location } from '@angular/common';
 
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  
+
   isErrorState(
     control: FormControl | null,
     form: FormGroupDirective | NgForm | null
@@ -38,58 +41,72 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ["./inscription.component.scss"]
 })
 export class InscriptionComponent {
-user : User = new User();
-avatar : string;
-selectedItem : string ='';
-  constructor(private ProfileService: ProfileService,
-    public dialog: MatDialog, 
-      private router : Router) {}
+  avatar: string;
+  selectedItem: string = '';
+  profileForm: FormGroup
+  profile = JSON.parse(localStorage.getItem('profile'))
+  constructor(private ProfileService: ProfileService, private formBuilder: FormBuilder,private location : Location,
+    public dialog: MatDialog,
+    private router: Router) {
+    this.profileForm = this.formBuilder.group({
+      nom: new FormControl(this.profile.nom, Validators.required),
+      prenom: new FormControl(this.profile.prenom, Validators.required),
+      adresse: new FormControl(this.profile.adresse, Validators.required),
+      codePostal: new FormControl(this.profile.codePostal, Validators.required),
+      telephone: new FormControl(this.profile.telephone, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+      ville: new FormControl(this.profile.ville, Validators.required),
+      dateNaiss: new FormControl(this.profile.dateNaiss, Validators.required),
+    })
+  }
 
-//cropper
-ngOnInit(): void {
-  this.ProfileService.getAvatar().subscribe((croppedImage)=>{
+  //cropper
+  ngOnInit(): void {
+    this.ProfileService.getAvatar().subscribe((croppedImage) => {
       this.avatar = croppedImage;
-  })
+    })
 
-}
-//bouton enregistrer 
-onChange(topic : string ){
-  this.selectedItem= topic ;
-  this.router.navigate(['/'+topic]);
-}
+  }
+  //bouton enregistrer 
+  onChange(topic: string) {
+    this.selectedItem = topic;
+    this.router.navigate(['/' + topic]);
+  }
 
-openModel(e){
-const dialogRef = this.dialog.open(CropperComponent, {
-    data: e,
-    width:"400px"
-  });
-}
-//quand je click j'ouvre la fenetre pour choisir mon avatar //
-onchange(evt){
+  openModel(e) {
+    const dialogRef = this.dialog.open(CropperComponent, {
+      data: e,
+      width: "400px"
+    });
+  }
+  //quand je click j'ouvre la fenetre pour choisir mon avatar //
+  onchange(evt) {
     this.openModel(evt);
 
-}
-updateProfile() {
-  const obj = {
-    prenom: "meriem",
-    nom :"chaieb",
-    cin :12838233,
-    telephone : 58414498,
-  };
-  this.user = obj
+  }
+  update() {
+    //.set : ecrase les autres informations 
 
-//.set : ecrase les autres informations 
+    this.ProfileService
+      .updateProfile(this.profileForm.value)
+      .then(()=> {
+        this.ProfileService.showMsg("profile modifié");
+        this.profile.nom = this.profileForm.value.nom
+        this.profile.prenom = this.profileForm.value.prenom
+        this.profile.dateNaiss = this.profileForm.value.dateNaiss
+        this.profile.telephone = this.profileForm.value.telephone
+        this.profile.adresse = this.profileForm.value.adresse
+        this.profile.ville = this.profileForm.value.ville
+        this.profile.codePostal = this.profileForm.value.codePostal
+        localStorage.setItem('profile',JSON.stringify(this.profile))
 
-  this.ProfileService
-    .updateProfile(this.user)
-    .then((data: any) => {
-      this.ProfileService.showMsg("user updated");
-      console.log(data);
-    })
-    .catch(error => {
-      console.error(error.message);
-    });
-}
+      })
+      .catch(error => {
+        console.error(error.message);
+      });
+  }
+  goBack(){
+    this.location.back();
+  }
 
 
 

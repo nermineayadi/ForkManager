@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 @Injectable({providedIn : 'root'})
 export class ShareService {
-    uid = localStorage.getItem('uid');
+  uid = localStorage.getItem('uid');
+  profile : any ;
   constructor(private db: AngularFireDatabase ,
     private snackBar : MatSnackBar,
     public afAuth: AngularFireAuth ,
@@ -45,6 +46,11 @@ export class ShareService {
 updateProfile(user : User){
     const itemRef = this.db.object(`users/${this.uid}`);
    return itemRef.update(user);
+}
+//get profile
+getProfile(uid : string){
+  const itemRef = this.db.object(`users/${uid}`);
+ return itemRef.valueChanges();
 }
 //snackbar
   showMsg(message: string){

@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { LoginService } from "./login.service";
 import { User } from "src/app/models/user.model";
 import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: "app-login",
@@ -13,10 +15,10 @@ export class LoginComponent implements OnInit {
 
   user: User = new User();
   email = new FormControl('', [Validators.required, Validators.email]);
-password = new FormControl('', [Validators.required]);
-loading = false;
+  password = new FormControl('', [Validators.required]);
+  loading = false;
 
-  constructor(private LoginService: LoginService) {}
+  constructor(private LoginService: LoginService , private router : Router, private shareService : ShareService) {}
 
   ngOnInit(): void {}
 
@@ -41,10 +43,16 @@ get isValid():boolean{
     this.LoginService
       .logIn(obj.email, obj.password)
       .then((data: any) => {
-        this.LoginService.showMsg("Bonjour");
-        console.log(data);
-        localStorage.setItem("uid", data.user.uid);
-        this.loading= false;
+        this.shareService.getProfile(data.user.uid).subscribe((profile : any)=>{
+          this.LoginService.showMsg("Bonjour");
+          console.log(data);
+          localStorage.setItem("uid", data.user.uid);
+         localStorage.setItem('fonction', profile.fonction);
+         localStorage.setItem('profile', JSON.stringify(profile));
+
+         this.router.navigate(['']);
+          this.loading= false;
+        })
       })
       .catch(error => {
         console.error(error.message);

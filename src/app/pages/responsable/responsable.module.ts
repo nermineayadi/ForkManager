@@ -27,6 +27,11 @@ import { CPlatService } from './plat-responsable/modals/CPlat/cplat.service';
 import { CplatComponent } from './plat-responsable/modals/CPlat/cplat.component';
 import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
 import { FamillePipe } from 'src/app/pipes/famille.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { SupprimerComponent } from './plat-responsable/modals/supprimer/supprimer.component';
+import { DetailPComponent } from './plat-responsable/modals/detail-p/detail-p.component';
+import { UplatComponent } from './plat-responsable/modals/UPlat/uplat.component';
+import { UPlatService } from './plat-responsable/modals/UPlat/uplat.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -40,14 +45,19 @@ NavigationResponsableComponent;
     PlatResponsableComponent,
     InventaireResponsableComponent,
     NavigationResponsableComponent,
+
+
     CplatComponent,
+    SupprimerComponent,
+    DetailPComponent,
+    UplatComponent
        //pipes
-       SfamillePipe,
-       FamillePipe,
+   
     
   ],
   imports: [CommonModule, ResponsableRoutingModule ,
     NavBarModule,FlexLayoutModule ,MatangModule,MatTableModule,
+    PipesModule.forRoot(),
     //calendar
     FlatpickrModule,
     FlatpickrModule.forRoot(),
@@ -58,8 +68,8 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
-entryComponents:[CplatComponent],
+entryComponents:[CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent],
   exports: [],
-  providers: [CPersonnelService,PlatResponsableService,DetailPService,CPlatService]
+  providers: [CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService]
 })
 export class ResponsableModule {}

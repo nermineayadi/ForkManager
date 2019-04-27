@@ -10,6 +10,7 @@ import { ReservationResponsableComponent } from './reservation-responsable/reser
 import { PersonnelResponsableComponent } from './personnel-responsable/personnel-responsable.component';
 import { MenuResponsableComponent } from './menu-responsable/menu-responsable.component';
 import { InventaireResponsableComponent } from './inventaire-responsable/inventaire-responsable.component';
+import { PlatResponsableService } from './plat-responsable/plat-responsable.service';
 
 const routes: Routes = [
     {
@@ -17,7 +18,7 @@ const routes: Routes = [
         component: ResponsableComponent,
         children: [
           { path: "", component: AcceuilResponsableComponent },
-          { path: "plats", component: PlatResponsableComponent },
+          { path: "plats", component: PlatResponsableComponent,resolve:{plat : PlatResponsableService}  },
           { path: "boissons", component: BoissonResponsableComponent },
           { path: "menu", component: MenuResponsableComponent },
           { path: "portions", component: PortionResponsableComponent },

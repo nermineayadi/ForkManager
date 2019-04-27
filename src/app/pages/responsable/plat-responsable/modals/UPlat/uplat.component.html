@@ -7,49 +7,49 @@
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
         <mat-label>Plat</mat-label>
-        <input matInput [formControl]="nomPlat" required autocomplete="off">
+        <input matInput [(ngModel)]="plat.nomPlat" autocomplete="off">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>categorie</mat-label>
-        <mat-select [formControl]="category">
-          <mat-option *ngFor="let categorie of payload.categories" [value]="categorie">
+        <mat-select  [(ngModel)]="plat.categorie">
+          <mat-option *ngFor="let categorie of payload.plat.categories" [value]="categorie">
             {{categorie.payload.val().nomcategorie}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+    <!-- <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
         <mat-label>famille</mat-label>
-        <mat-select [formControl]="famille">
-          <mat-option *ngFor="let famille of payload.familles |filterbycategory:category.value.key" [value]="famille">
+        <mat-select  [(ngModel)]="plat.famille">
+          <mat-option *ngFor="let famille of payload.plat.familles |filterbycategory:plat.categorie.key" [value]="famille">
             {{famille.payload.val().nomfamille}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>sous famille</mat-label>
-        <mat-select [formControl]="sfamille">
-          <mat-option *ngFor="let sfamille of payload.sfamilles | filterbyfamille:famille.value.key" [value]="sfamille">
+        <mat-select [(ngModel)]="plat.sfamille">
+          <mat-option *ngFor="let sfamille of payload.plat.sfamilles | filterbyfamille:plat.famille.key" [value]="sfamille">
             {{sfamille.payload.val().nomsfamille}}</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
+    </div> -->
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
         <mat-label>Nbr Parts</mat-label>
-        <input matInput type="number" maxlength="2" [formControl]="nbparts">
+        <input matInput type="number" maxlength="2" [(ngModel)]="plat.nbPart">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>durée Preparation</mat-label>
-        <input matInput [formControl]="duree">
+        <input matInput [(ngModel)]="plat.duree">
       </mat-form-field>
     </div>
     <h5>Ingredients</h5>
     <div style="width:100%" *ngFor="let item of ingredients; let i= index">
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>ingredient</mat-label>
-        <mat-select [(ngModel)]="ingredients[i].nom">
-          <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">{{row.payload.val().name}}</mat-option>
+        <mat-select [(ngModel)]="ingredients[i].ingredient">
+          <mat-option *ngFor="let row of payload.plat.ingredients" [value]="row">{{row.payload.val().libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
@@ -68,7 +68,7 @@
 
         </mat-form-field>
       </div>
-    </div>
+    </div> 
 
     <div fxLayout="row" fxLayoutAlign="end center">
       <button mat-mini-fab (click)="addNewIngredient()">
@@ -147,8 +147,10 @@
     </div>
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <button mat-stroked-button color="primary" [disabled]="isValid || valider"
-      (click)="ajoutPlat()">Enregistrer</button>
+    <button mat-stroked-button color="primary"       [disabled]="valider"
+
+      (click)="EditPlat()">Enregistrer</button>
+
     <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>
 </div>

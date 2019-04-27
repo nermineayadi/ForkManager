@@ -9,26 +9,28 @@ import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
+import { AuthGuard } from './services/guard.service';
 const routes: Routes = [
       {
         path: "test",
-        component: InterfaceTestComponent
-        ,resolve:{test : TestService}
-      },
+        component: InterfaceTestComponent ,
+        resolve:{test : TestService}},
 
       {
-        path: "",
+        path: "login",
         component: LoginComponent
       },
       {
-        path: "inscription",
+        path: "profile",
         component: InscriptionComponent
       },
       
       {
-        path: "pages",
-        loadChildren:"./pages/pages.module#PagesModule"
-           }]
+        path: "",
+        loadChildren:"./pages/pages.module#PagesModule",
+        canActivate : [AuthGuard]
+      }
+    ]
    
   
           

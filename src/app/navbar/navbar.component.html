@@ -22,14 +22,14 @@
       </div>
       <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"
         [matMenuTriggerFor]="menu">
-        <img  [src]="(shareService.avatar$| async)" width ="40" height="40" alt="avatar" style="border-radius: 50% ;cursor: pointer"  [matMenuTriggerFor]="menu"><span style="font-size: 17px;">Jhon Doe</span>
+        <img  [src]="(shareService.avatar$| async)" width ="40" height="40" alt="avatar" style="border-radius: 50% ;cursor: pointer"  [matMenuTriggerFor]="menu"><span style="font-size: 17px;">{{profile.nom+' '+profile.prenom}}</span>
         <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
       </div>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item  [routerLink]="[ '/inscription' ]" >
+        <button mat-menu-item  [routerLink]="[ '/profile' ]" >
           <mat-icon>account_circle</mat-icon>Profile
         </button>
-        <button mat-menu-item   >
+        <button mat-menu-item (click)="logout()"  >
           <mat-icon>exit_to_app</mat-icon>
           <span>Déconnecter</span>
         </button>

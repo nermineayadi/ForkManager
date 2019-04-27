@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { PagesComponent } from './pages.component';
 import { MatangModule } from 'src/assets/matang.module';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @NgModule({
   declarations: [

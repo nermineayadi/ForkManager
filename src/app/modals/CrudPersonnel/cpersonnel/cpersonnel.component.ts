@@ -35,7 +35,6 @@ export class CPersonnelComponent implements OnInit {
       email: this.email.value,
       nom: this.nom.value,
       prenom: this.prenom.value,
-      cin: this.cin.value,
       fonction: this.fonction.value,
       password: this.password.value,
     };
@@ -44,7 +43,6 @@ export class CPersonnelComponent implements OnInit {
       this.user.email = obj.email;
       this.user.nom = obj.nom;
       this.user.prenom = obj.prenom;
-      this.user.cin = obj.cin;
       this.user.fonction = obj.fonction;
 
       this.CPersonnelService

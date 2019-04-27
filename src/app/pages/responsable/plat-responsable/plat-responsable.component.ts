@@ -5,39 +5,27 @@ import { DetailPComponent } from './modals/detail-p/detail-p.component';
 import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AngularCsv } from 'angular7-csv/dist/Angular-csv'
-export interface Plats {
-    plat: string;
-    position: number;
-    categorie: string;
-    famille: string;
-    sfamille:string;
-  }
-  
+import { PlatResponsableService } from './plat-responsable.service';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { UplatComponent } from './modals/UPlat/uplat.component';
+
   //initialisations plats 
 
-  const ELEMENT_DATA: Plats[] = [
-    {position: 1, plat: 'soupe au poulet', categorie: "entrée", famille: 'soupe',sfamille:"frick"},
-    {position: 2, plat: 'césar', categorie: "entrée", famille: 'salade',sfamille:"verte"},
-    {position: 3, plat: 'marguerita', categorie: "suite" ,famille: 'pizza',sfamille:"moyenne"},
-    {position: 4, plat: 'spaguetti fruit de mer', categorie: "suite", famille: 'pate',sfamille:"spaguetti"},
-    {position: 5, plat: 'escalope panné ', categorie: "suite", famille: 'volaille',sfamille:"escalope"},
-    {position: 6, plat: 'steak grillé', categorie: "suite", famille: 'viande',sfamille:"steak"},
-    {position: 7, plat: 'cordon bleu', categorie: "suite", famille: 'volaille',sfamille:"escalope"},
-    {position: 8, plat: 'napolitaine', categorie: "suite", famille: 'pizza',sfamille:"petite"},
-    {position: 9, plat: 'sandwitch thon', categorie: "suite", famille: 'léger',sfamille:"sandwitch"},
-    {position: 10, plat: 'salade de fruit', categorie: "dessert", famille: 'salade',sfamille:"fruit"},
-  ];
+ 
   @Component({
     selector: 'app-plat-responsable',
     styleUrls: ['./plat-responsable.component.scss'],
     templateUrl: './plat-responsable.component.html',
   })
   export class PlatResponsableComponent implements OnInit {
-     //csv 
+   plat: any;
+
+    //csv 
    dtHolidays :any;
 
   csvOptions = {
-    fieldSeparator: ',',
+    //fieldSeparator: ',',
     quoteStrings: '"',
     decimalseparator: '.',
     showLabels: true,
@@ -47,73 +35,92 @@ export interface Plats {
     noDownload: false,
     headers: ["Holiday ID", "Holiday Date", "Holiday Comment", "Holiday Status"]
   };
-    displayedColumns: string[] = ['select','position', 'plat', 'categorie', 'famille','sfamille','actions'];
+    displayedColumns: string[] = ['select','plat', 'categorie', 'famille','sfamille','detail','actions'];
 
-    dataSource = new MatTableDataSource<Plats>(ELEMENT_DATA);
+    dataSource: MatTableDataSource<any>;
   
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    selection = new SelectionModel<Plats>(true, []);
+    selection = new SelectionModel<any>(true, []);
 
     
-    constructor(public dialog: MatDialog) {}
+    constructor(public dialog: MatDialog,           
+         private route: ActivatedRoute,
+      private db: AngularFireDatabase,
+      ) {}
+      
+      async ngOnInit() {
+        // Vos données à télécharger dans un fichier csv.
+      this. dtHolidays = [
+        { "id" : 101 , "Holiday_Date" : "21/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 102 , "Holiday_Date" : "22/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 103 , "Holiday_Date" : "23/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "En attente" }, 
+        { "id" : 104 , "Holiday_Date" : "24/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 105 , "Holiday_Date" : "25/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "NotActive" }, 
+        { "id" : 106 , "Holiday_Date" : "26/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 107 , "Holiday_Date" : "27/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "En attente" }, 
+        { "id" : 108 , "Holiday_Date" : "28/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 109 , "Holiday_Date" : "02/03/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "NotActive" }, 
+        { "id" : 110 , "Holiday_Date" : "03/04/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
+        { "id" : 111 , "Holiday_Date" : "21/05/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" } 
+      ]; 
+    
+      
+        this.route.data.subscribe((data) => {
+          console.log(data)
+          this.dataSource = new MatTableDataSource(data.plat.plats);
+          this.dataSource.paginator = this.paginator;
+         this.plat = data.plat;
+        })
+    
+      
+    // 
+      }
       //modal ajout plat
-    openDialog(): void {
-      const dialogRef = this.dialog.open(CplatComponent, {
-        data:{ }
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    }
-    // modal editer plat 
-    openDialog1(): void {
-      const dialogRef = this.dialog.open(DetailPComponent, {
-        //taille du modal 
-        
-        data:{ }
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    }
-    openDialog2(): void {
-      const dialogRef = this.dialog.open(SupprimerComponent, {
-        //taille du modal 
-        
-        data:{ }
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    }
+      openCplat(): void {
+        const dialogRef = this.dialog.open(CplatComponent, {
+          data: this.plat
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      }
+      openDetail(key : string) : void {
+    
+        const dialogRef = this.dialog.open(DetailPComponent, {
+          //taille du modal 
+          height: '400px',
+          data: key
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      }
+      openSupprime(key : string):void{
+        const dialogRef = this.dialog.open(SupprimerComponent, {
+          data: key
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      }
+      openEdit(row : any):void{
+        const dialogRef = this.dialog.open(UplatComponent, {
+          data: {key : row.key, value : row.payload.val() , plat: this.plat}
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+        });
+      }
     //pagination
-    async ngOnInit() {
-      // Vos données à télécharger dans un fichier csv.
-    this. dtHolidays = [
-      { "id" : 101 , "Holiday_Date" : "21/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 102 , "Holiday_Date" : "22/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 103 , "Holiday_Date" : "23/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "En attente" }, 
-      { "id" : 104 , "Holiday_Date" : "24/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 105 , "Holiday_Date" : "25/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "NotActive" }, 
-      { "id" : 106 , "Holiday_Date" : "26/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 107 , "Holiday_Date" : "27/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "En attente" }, 
-      { "id" : 108 , "Holiday_Date" : "28/02/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 109 , "Holiday_Date" : "02/03/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "NotActive" }, 
-      { "id" : 110 , "Holiday_Date" : "03/04/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" }, 
-      { "id" : 111 , "Holiday_Date" : "21/05/2019" , "Holiday_Comment" : "calendrier de vacances d'entreprise de 2019." , "Holiday_Status" : "Actif" } 
-    ]; 
-  
 
-  // 
-      this.dataSource.paginator = this.paginator;
-    }
     downloadCSV () {
         //this.dtHolidays: JSONDATA, HolidayList: nom du fichier CSV, this.csvOptions: options de fichier
-        new AngularCsv ( this . dtHolidays , "HolidayList" , this . csvOptions ); 
+        new AngularCsv ( this.dataSource , "HolidayList" , this . csvOptions ); 
       }
       //filtrer
 
@@ -137,7 +144,7 @@ export interface Plats {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Plats): string {
+  checkboxLabel(row?: any): string {
       if (!row) {
           return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
       }

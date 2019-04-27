@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-pages',
     templateUrl: './pages.component.html',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class PagesComponent implements OnInit {
 
    
-    constructor() { }
+    constructor(
+        private router: Router
+    ) { 
+        this.router.navigate([`/${localStorage.getItem('fonction')}`]);
+    }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+    }
 }

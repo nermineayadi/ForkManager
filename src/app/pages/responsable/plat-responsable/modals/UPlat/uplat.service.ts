@@ -22,11 +22,14 @@ showMsg(message: string){
 }
 getPlat(key : string){
   const itemref = this.db.object(`plats/${key}`);
+  console.log(itemref);
   return itemref ;
 
 }
 updatePlat(plat : any , key : string){
   const itemRef = this.db.object(`plats/${key}`);
+  console.log(itemRef);
+
   return itemRef.update(plat);
 
 }

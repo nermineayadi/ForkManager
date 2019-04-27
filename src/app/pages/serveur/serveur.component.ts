@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
+import { ServeurService } from './serveur.service';
 export interface Transaction {
-  item: string;
-  cost: number;
+  key : string ;
+  nom: string;
+  prix: number;
+  qte : number ; 
 }
 
 @Component({
@@ -12,24 +15,37 @@ export interface Transaction {
   styleUrls: ['./serveur.component.scss']
 })
 export class ServeurComponent implements OnInit {
-  displayedColumns: string[] = ['item', 'cost'];
-  transactions: Transaction[] = [
-    {item: 'Beach ball', cost: 4},
-    {item: 'Towel', cost: 5},
-    {item: 'Frisbee', cost: 2},
-    {item: 'Sunscreen', cost: 4},
-    {item: 'Cooler', cost: 25},
-    {item: 'Swim suit', cost: 15},
-  ];
-  getTotalCost() {
-    return this.transactions.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  plats : any[];
+  displayedColumns: string[] = ['nom', 'qte', 'prix'];
+  transactions: Transaction[]= [];
+  getTotalprix() {
+    return this.transactions.map(t => t.prix).reduce((acc, value) => acc + value, 0);
   }
   page: number = 3;
     opened = false;
     onSerch = false;
     selectedItem: string ='' ;
 
+addPlat(plat : any){
+  const index= this.transactions.findIndex((item:any)=>{
+    return item.key == plat.key ; 
+  })
+  if ( index == -1){
+    const obj = {
+      key : plat.key ,
+      nom : plat.payload.val().nomPlat, 
+      prix : plat.payload.val().prix , 
+      qte : 1 ,
+    }
+    this.transactions.push(obj)
+  } 
+  else {
+    this.transactions[index].qte +=1;
+    this.transactions[index].prix = this.transactions[index].prix*this.transactions[index].qte;
+  }
+  this.transactions = [...this.transactions]
 
+}
   
 
     setSelectedPage(m: number): void{
@@ -43,10 +59,14 @@ export class ServeurComponent implements OnInit {
     toggleSearch(): void{
         this.onSerch = !this.onSerch;
     }
-    constructor(private router: Router,public shareService : ShareService) { }
+    constructor(private router: Router,public shareService : ShareService , private serveurservice : ServeurService,
+      private route: ActivatedRoute) { }
 
     ngOnInit() {
-     
+     this.route.data.subscribe((data)=>{
+       this.plats = data.serveur.plats; 
+       console.log(data)
+     })
     }
     onchange(topic : string ){
       this.selectedItem= topic ;

@@ -4,7 +4,7 @@
     <mat-tab label="categories">
       <div>
         <div style="width:100%">
-          <mat-form-field appearance="outline" >
+          <mat-form-field appearance="outline">
             <mat-label>numero</mat-label>
             <input [(ngModel)]="categorie.numcategorie" matInput required>
           </mat-form-field>
@@ -71,22 +71,24 @@
             <mat-label>nom famille</mat-label>
             <input [(ngModel)]="famille.nomfamille" matInput required>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>classe</mat-label>
-          <mat-select [(ngModel)]="famille.classe" name="classe" required>
-            <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
-              {{classe.payload.val().nomclasse}}
-            </mat-option>
-          </mat-select>
-          </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>categorie</mat-label>
-          <mat-select [(ngModel)]="famille.categorie" name="categorie" required>
-            <mat-option *ngFor="let categorie of test.categories" [value]="categorie.payload.key">
-              {{categorie.payload.val().nomcategorie}}
-            </mat-option>
-          </mat-select>
+            <mat-select [(ngModel)]="famille.categorie" name="categorie" required>
+              <mat-option *ngFor="let categorie of test.categories" [value]="categorie.payload.key">
+                {{categorie.payload.val().nomcategorie}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+            <mat-select [(ngModel)]="famille.classe" name="classe" required>
+              <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
+                {{classe.payload.val().nomclasse}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
         </div>
         <br>
         <div fxLayout="row" fxLayoutGap="10px">
@@ -113,11 +115,11 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>nom famille</mat-label>
-          <mat-select [(ngModel)]="sfamille.famille" name="famille" required>
-            <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
-              {{famille.payload.val().nomfamille}}
-            </mat-option>
-          </mat-select>
+            <mat-select [(ngModel)]="sfamille.famille" name="famille" required>
+              <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
+                {{famille.payload.val().nomfamille}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
         <br>
@@ -185,9 +187,18 @@
             <input [(ngModel)]="ingredient.prix" matInput required>
           </mat-form-field>
           <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+            <mat-select [(ngModel)]="ingredient.classe" required>
+              <mat-option *ngFor="let classe of test.classes" [value]="classe">
+                {{classe.payload.val().nomclasse}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>famille</mat-label>
             <mat-select [(ngModel)]="ingredient.famille" required>
-              <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
+              <mat-option *ngFor="let famille of test.familles |filterbyclasse:ingredient.classe.key "
+                [value]="famille">
                 {{famille.payload.val().nomfamille}}
               </mat-option>
             </mat-select>
@@ -195,7 +206,8 @@
           <mat-form-field appearance="outline">
             <mat-label>sous famille</mat-label>
             <mat-select [(ngModel)]="ingredient.sfamille" required>
-              <mat-option *ngFor="let sfamille of test.sfamilles" [value]="sfamille.payload.key">
+              <mat-option *ngFor="let sfamille of test.sfamilles |  filterbyfamille:ingredient.famille.key "
+                [value]="sfamille">
                 {{sfamille.payload.val().nomsfamille}}
               </mat-option>
             </mat-select>
@@ -203,7 +215,7 @@
           <mat-form-field appearance="outline">
             <mat-label>achat</mat-label>
             <mat-select [(ngModel)]="ingredient.achat" required>
-              <mat-option *ngFor="let achat of test.achats" [value]="achat.payload.key">
+              <mat-option *ngFor="let achat of test.achats" [value]="achat">
                 {{achat.payload.val().nom}}
               </mat-option>
             </mat-select>
@@ -211,16 +223,8 @@
           <mat-form-field appearance="outline">
             <mat-label>stockage</mat-label>
             <mat-select [(ngModel)]="ingredient.stockage" required>
-              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage.payload.key">
+              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage">
                 {{stockage.payload.val().nom}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>classe</mat-label>
-            <mat-select [(ngModel)]="ingredient.classe" required>
-              <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
-                {{classe.payload.val().nomclasse}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -255,45 +259,48 @@
             <input [(ngModel)]="boisson.prix" matInput required>
           </mat-form-field>
           <mat-form-field appearance="outline">
+            <mat-label>classe</mat-label>
+            <mat-select [(ngModel)]="boisson.classe" required>
+              <mat-option *ngFor="let classe of test.classes" [value]="classe">
+                {{classe.payload.val().nomclasse}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
             <mat-label>famille</mat-label>
             <mat-select [(ngModel)]="boisson.famille" required>
-              <mat-option *ngFor="let famille of test.familles" [value]="famille.payload.key">
-                {{famille.payload.val()}}
+              <mat-option *ngFor="let famille of test.familles |filterbyclasse:ingredient.classe.key  "
+                [value]="famille">
+                {{famille.payload.val().nomfamille}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>sous famille</mat-label>
             <mat-select [(ngModel)]="boisson.sfamille" required>
-              <mat-option *ngFor="let sfamille of test.sfamilles" [value]="sfamille.payload.key">
-                {{sfamille.payload.val().nomfamille}}
+              <mat-option *ngFor="let sfamille of test.sfamilles |  filterbyfamille:boisson.famille?.key  "
+                [value]="sfamille">
+                {{sfamille.payload.val().nomsfamille}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>achat</mat-label>
             <mat-select [(ngModel)]="boisson.achat" required>
-              <mat-option *ngFor="let achat of test.achats" [value]="achat.payload.key">
-                {{achat.payload.val().nomsfamille}}
+              <mat-option *ngFor="let achat of test.achats" [value]="achat">
+                {{achat.payload.val().nom}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>stockage</mat-label>
             <mat-select [(ngModel)]="boisson.stockage" required>
-              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage.payload.key">
+              <mat-option *ngFor="let stockage of test.stockages" [value]="stockage">
                 {{stockage.payload.val().nom}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>classe</mat-label>
-            <mat-select [(ngModel)]="boisson.classe" required>
-              <mat-option *ngFor="let classe of test.classes" [value]="classe.payload.key">
-                {{classe.payload.val().nomclasse}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+
 
         </div>
         <div fxLayout="row" fxLayoutGap="10px">

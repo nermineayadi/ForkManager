@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
     opened = false;
     onSerch = false;
     selectedItem: string ='' ;
-
+    profile = JSON.parse(localStorage.getItem('profile'));
     constructor(private router : Router,
         public shareService : ShareService) { }
     ngOnInit() { }
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
     }
     logout() {
         localStorage.clear();
-        location.href='localhost:4200';
+        this.router.navigate(['/login'])
     }
     setSelectedPage(m: number): void{
         this.page = m;
