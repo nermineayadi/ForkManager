@@ -107,9 +107,9 @@ import { UplatComponent } from './modals/UPlat/uplat.component';
           console.log('The dialog was closed');
         });
       }
-      openEdit(key : string):void{
+      openEdit(row : any):void{
         const dialogRef = this.dialog.open(UplatComponent, {
-          data: {key : key , plat :this.plat}
+          data: row
         });
     
         dialogRef.afterClosed().subscribe(result => {

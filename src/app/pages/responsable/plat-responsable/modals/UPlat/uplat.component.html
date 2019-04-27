@@ -12,7 +12,7 @@
       <mat-form-field appearance="outline">
         <mat-label>categorie</mat-label>
         <mat-select  [(ngModel)]="plat.categorie">
-          <mat-option *ngFor="let categorie of payload.plat.categories" (value)="categorie" [value]="plat.categorie.nomcategorie">
+          <mat-option *ngFor="let categorie of payload.plat.categories" [value]="categorie">
             {{categorie.payload.val().nomcategorie}}
           </mat-option>
         </mat-select>
