@@ -11,8 +11,15 @@ export class ServeurService implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve, reject) => {
             this.getPlats().subscribe((plats)=>{
-                resolve({plats: plats})
+    
+                this.getBoisson().subscribe((boissons)=>{
+                    resolve({
+                        plats : plats, 
+                        boissons: boissons
+                    })
+                })
             })
+
         });
     }
 
@@ -24,5 +31,5 @@ export class ServeurService implements Resolve<any> {
         const ref = this.db.list('boissons').snapshotChanges();
         return ref;
     }
-
+   
 }

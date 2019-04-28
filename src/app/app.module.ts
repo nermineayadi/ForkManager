@@ -43,10 +43,11 @@ import { FlatpickrModule } from "angularx-flatpickr";
 
 //firebase
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireStorageModule,StorageBucket } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //cropper
 import { CropperComponent } from './auth/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -151,6 +152,7 @@ import { PipesModule } from './pipes/pipes.module';
 
   ],
   providers: [LoginService,ProfileService,TestService,
+    {provide: StorageBucket, useValue: 'forkmanager-8402a.appspot.com'} 
   ],
   bootstrap: [AppComponent]
 })

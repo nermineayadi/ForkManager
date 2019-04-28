@@ -18,6 +18,8 @@ export class ServeurComponent implements OnInit {
   plats : any[];
   displayedColumns: string[] = ['nom', 'qte', 'prix'];
   transactions: Transaction[]= [];
+  boissons: any[];
+  action : string ='';
   getTotalprix() {
     return this.transactions.map(t => t.prix).reduce((acc, value) => acc + value, 0);
   }
@@ -46,7 +48,26 @@ addPlat(plat : any){
   this.transactions = [...this.transactions]
 
 }
-  
+addBoisson(boisson : any){
+  const index= this.transactions.findIndex((item:any)=>{
+    return item.key == boisson.key ; 
+  })
+  if ( index == -1){
+    const obj = {
+      key : boisson.key ,
+      nom : boisson.payload.val().nomboisson, 
+      prix : boisson.payload.val().prix , 
+      qte : 1 ,
+    }
+    this.transactions.push(obj)
+  } 
+  else {
+    this.transactions[index].qte +=1;
+    this.transactions[index].prix = this.transactions[index].prix*this.transactions[index].qte;
+  }
+  this.transactions = [...this.transactions]
+
+}
 
     setSelectedPage(m: number): void{
         this.page = m;
@@ -65,6 +86,8 @@ addPlat(plat : any){
     ngOnInit() {
      this.route.data.subscribe((data)=>{
        this.plats = data.serveur.plats; 
+       this.boissons = data.serveur.boissons ; 
+       this.action = "ENTREE" ;
        console.log(data)
      })
     }
@@ -74,5 +97,9 @@ addPlat(plat : any){
   }
     activeRoute(routename: string): boolean {
       return this.router.url.indexOf(routename) > -1;
+    }
+    setAction ( newaction : string){
+      this.action = newaction ; 
+      console.log(this.action)
     }
 }

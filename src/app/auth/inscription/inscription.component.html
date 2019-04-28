@@ -5,7 +5,7 @@
       <div class="user w-100 " fxLayout="row" fxLayoutGap="20px">
         <mat-card class="user-avatar " style="padding:0;">
           <div class="card-header" fxLayout="column" fxLayoutAlign="center center">
-            <img (click)="file.click()" [src]="avatar" alt="avatar" class="avatar">
+            <img (click)="file.click()" [src]="(shareService.avatar$ | async)" alt="avatar" class="avatar">
             <span class="hiddenFileInput">
               <input (change)="onchange($event)" visbility="hidden" #file type="file" accept="image/*">
             </span>

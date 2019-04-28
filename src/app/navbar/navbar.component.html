@@ -22,7 +22,7 @@
       </div>
       <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"
         [matMenuTriggerFor]="menu">
-        <img  [src]="(shareService.avatar$| async)" width ="40" height="40" alt="avatar" style="border-radius: 50% ;cursor: pointer"  [matMenuTriggerFor]="menu"><span style="font-size: 17px;">{{profile.nom+' '+profile.prenom}}</span>
+        <img   [src]="profile.avatar==''?'./assets/img/avatar/avatar.png':profile.avatar" width ="40" height="40" alt="avatar" style="border-radius: 50% ;cursor: pointer"  [matMenuTriggerFor]="menu"><span style="font-size: 17px;">{{profile.nom+' '+profile.prenom}}</span>
         <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
       </div>
       <mat-menu #menu="matMenu">

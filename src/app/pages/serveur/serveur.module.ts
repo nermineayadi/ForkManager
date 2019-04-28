@@ -7,11 +7,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { ServeurService } from './serveur.service';
 import { NavBarModule } from 'src/app/navbar/navbar.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
     declarations: [ServeurComponent,   
     ],
-    imports: [ CommonModule ,ServeurRoutingModule,  CommonModule,
+    imports: [ CommonModule ,ServeurRoutingModule,  CommonModule,PipesModule,
         //flex
         FlexLayoutModule,
         MatangModule,

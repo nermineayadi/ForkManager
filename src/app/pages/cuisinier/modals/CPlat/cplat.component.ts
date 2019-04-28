@@ -90,14 +90,18 @@ export class CplatComponent implements OnInit {
      // etapes:this.etapes,
       nbPart : this.nbparts.value,
       duree : this.duree.value,
-      valide:false
+      valide:true
     };
     console.log(obj)
      this.CPlatservice
     .ajoutPlat(obj)
-    .then(() => {
+    .then((data : any) => {
       this.CPlatservice.showMsg("plat ajouté");
       this.valider= false;
+      this.dialogRef.close({
+        key: data.key,
+        ...obj
+      });
     })
     .catch(error => {
       console.error(error.message);
@@ -105,7 +109,6 @@ export class CplatComponent implements OnInit {
       this.valider= false;
 
     });
-    this.dialogRef.close();
 }
 
 }

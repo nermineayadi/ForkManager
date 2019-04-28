@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,13 +13,14 @@ export class ShareService {
   constructor(private db: AngularFireDatabase ,
     private snackBar : MatSnackBar,
     public afAuth: AngularFireAuth ,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private storage: AngularFireStorage) {}
    //authentification
    authentification(email : string , password : string){
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
 }
 //cropper 
-    avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/img/avatar/av.jpg"); 
+    avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/img/avatar/avatar.png"); 
     setAvatar(croppedFile: string){
         this.avatar$.next(croppedFile);
     }
@@ -95,7 +97,26 @@ getProfile(uid : string){
     //push : uid auto generated
     return itemsRef.push({name:"spaguetti"});
 }
-
+uploadUserAvatar(file : File , uid : string){
+  const filePath = 'avatar/'+uid+'.png';
+  const fileref = this.storage.ref(filePath);
+   this.storage.upload(filePath, file).then(()=>{
+  fileref.getDownloadURL().subscribe((url : string)=>{
+  this.updateAvatar(uid,url).then(()=>{
+    this.showMsg('image sauvgarder')
+    const profile = JSON.parse(localStorage.getItem('profile'))
+    profile.avatar = url ; 
+    localStorage.setItem('profile',JSON.stringify(profile));
+  })
+  })
+});
+}
+updateAvatar(uid: string, url : string ){
+const itemref = this.db.object('users/'+uid); 
+ return itemref.update({
+  avatar : url
+});
+}
 
 
 }

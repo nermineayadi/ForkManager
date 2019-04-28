@@ -17,6 +17,7 @@ const routes: Routes = [
         path: "cuisine",
         loadChildren: "./cuisinier/cuisinier.module#CuisineModule"
       },
+      
       {
         path: "controle",
         loadChildren: "./controle/controle.module#ControleModule"

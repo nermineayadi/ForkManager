@@ -1,5 +1,5 @@
 <image-cropper
-    [imageChangedEvent]="file"
+    [imageChangedEvent]="file.file"
     [maintainAspectRatio]="true"
     [aspectRatio]="4 / 3"
     [resizeToWidth]="128"
@@ -7,3 +7,7 @@
     (imageCropped)="imageCropped($event)"
     
 ></image-cropper>
+<div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" style="padding-bottom : 5px" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary" (click)="updateAvatar()">Enregistrer</button>
+    <button mat-button (click)="goBack()"> Annuler</button>
+  </div>

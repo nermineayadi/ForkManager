@@ -55,7 +55,7 @@
         <section id="t-cards">
           <div class="container">
             <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats">
+              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyserveur : 'ENTREE'">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
                     <img src="../../../assets/plat/soupe.jpg" />
@@ -214,7 +214,42 @@
 
         </section>
       </mat-tab>
-      <mat-tab label="Dessert">
+      <mat-tab label="Suite" >  
+
+        <section id="t-cards">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats  | filterbyserveur : 'SUITE'">
+                <div class="panel panel-default panel-card">
+                  <div class="panel-heading">
+                    <img src="../../../assets/plat/Lasagne.jpg" />
+                    <button class="btn btn-primary btn-sm" role="button" (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
+                  </div>
+
+                  <div class="panel-body text-center">
+                    <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+                    <small>A short description goes here.</small>
+                  </div>
+                  <div class="panel-thumbnails">
+                    <div class="row">
+                      <div class="col-xs-4">
+                      </div>
+                      <div class="col-xs-4">
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </section>
+      </mat-tab>
+      <mat-tab label="Dessert" >
         <section id="t-cards">
           <div class="container">
             <div class="row">
@@ -488,21 +523,21 @@
 
         </section>
       </mat-tab>
-      <mat-tab label="Boisson ">
+      <mat-tab label="Boisson " (change)="setAction('Boissons')">
 
 
         <section id="t-cards">
           <div class="container">
             <div class="row">
-              <div class="col-sm-4 col-md-2">
+              <div class="col-sm-4 col-md-2" *ngFor="let boisson of boissons  | filterbyserveur : 'Boissons'">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
                     <img src="../../../assets/boisson/café créme.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">4.5dt</button>
+                    <button class="btn btn-primary btn-sm" role="button"(click)="addBoisson(boisson)">{{boisson.payload.val().prix}}dt></button>
                   </div>
 
                   <div class="panel-body text-center">
-                    <h4 class="panel-header">Café Créme</h4>
+                    <h4 class="panel-header">{{boisson.payload.val().sfamille.value}}</h4>
                     <small>A short description goes here.</small>
                   </div>
                   <div class="panel-thumbnails">
@@ -772,6 +807,7 @@
 
 
       </mat-tab>
+      
     </mat-tab-group>
   </div>
   <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">

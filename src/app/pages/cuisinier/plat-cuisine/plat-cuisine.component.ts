@@ -6,6 +6,7 @@ import { AngularFireList } from '@angular/fire/database';
 import { DetailPComponent } from '../modals/detail-p/detail-p.component';
 import { SupprimerComponent } from '../modals/supprimer/supprimer.component';
 import { Plat } from 'src/app/models/plat.model';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-plat-cuisine',
@@ -13,14 +14,15 @@ import { Plat } from 'src/app/models/plat.model';
   templateUrl: './plat-cuisine.component.html',
 })
 export class PlatCuisineComponent implements OnInit {
-  plats: AngularFireList<any>
-  dataSource: Plat[]= [];
+  plats: any[]=[];
+  dataSource: MatTableDataSource<Plat>;
 
   displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail'];
   plat: any;
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
+              private shareservice : ShareService,
               ) {
                }
 
@@ -30,9 +32,15 @@ export class PlatCuisineComponent implements OnInit {
    ngOnInit() {
     this.route.data.subscribe((data) => {
       console.log(data)
-      this.dataSource = data.plat.plats;
+      data.plat.plats.forEach(element => {
+        this.plats.push({key : element.key , ...element.payload.val()})
+      });
+      console.log(this.plats)
+
+      this.dataSource = new MatTableDataSource<Plat>(this.plats);
      // this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
+     this.dataSource.filter = 'true';
     })
 
   }
@@ -41,23 +49,32 @@ export class PlatCuisineComponent implements OnInit {
     const dialogRef = this.dialog.open(CplatComponent, {
       data: this.plat
     });   
-    dialogRef.afterClosed().subscribe(() => {
-      this.dataSource = [...this.dataSource];
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result){
+        this.plats.push(result);
+        this.dataSource = new MatTableDataSource<Plat>(this.plats);
+        this.dataSource.filter = 'true';
+      }
       console.log( this.dataSource )
       console.log('The dialog was closed');
     });
   }
   openDetail(element : any) : void {
+    if (element.hasOwnProperty("ingredient")){
+      const dialogRef = this.dialog.open(DetailPComponent, {
+        //taille du modal 
+        height: '400px',
+        data: element
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    }
+    else {
+      this.shareservice.showMsg("Plat non valide")
+    }
 
-    const dialogRef = this.dialog.open(DetailPComponent, {
-      //taille du modal 
-      height: '400px',
-      data: element
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
   openSupprime(key : string):void{
     const dialogRef = this.dialog.open(SupprimerComponent, {
@@ -68,14 +85,11 @@ export class PlatCuisineComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  
-
-
 
   //filtrer
 
   applyFilter(filterValue: string) {
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
   }
 
 

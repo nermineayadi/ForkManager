@@ -15,6 +15,8 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { CropperComponent } from '../cropper/cropper.component';
 import { Location } from '@angular/common';
+import { ShareService } from 'src/app/services/share.service';
+import { Profile } from 'selenium-webdriver/firefox';
 
 
 
@@ -47,7 +49,9 @@ export class InscriptionComponent {
   profile = JSON.parse(localStorage.getItem('profile'))
   constructor(private ProfileService: ProfileService, private formBuilder: FormBuilder,private location : Location,
     public dialog: MatDialog,
-    private router: Router) {
+    private router: Router,
+    public shareService : ShareService , 
+    ) {
     this.profileForm = this.formBuilder.group({
       nom: new FormControl(this.profile.nom, Validators.required),
       prenom: new FormControl(this.profile.prenom, Validators.required),
@@ -64,6 +68,9 @@ export class InscriptionComponent {
     this.ProfileService.getAvatar().subscribe((croppedImage) => {
       this.avatar = croppedImage;
     })
+    if (this.profile.avatar!=''){
+      this.shareService.setAvatar(this.profile.avatar)
+    }
 
   }
   //bouton enregistrer 
@@ -74,7 +81,7 @@ export class InscriptionComponent {
 
   openModel(e) {
     const dialogRef = this.dialog.open(CropperComponent, {
-      data: e,
+      data: {file : e, filename : e.target.files[0].name},
       width: "400px"
     });
   }

@@ -79,12 +79,7 @@ export class DetailPComponent implements OnInit {
   plat = new Plat() ;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any ) {
-        console.log(payload)
-        this.plat= payload.payload.val();
-        this.plat.ingredient.forEach(element => {
-          this.ingredients.push(element);
-          console.log(element)
-        });
+        this.plat= payload;
         }
     onNoClick(): void {
       this.dialogRef.close();

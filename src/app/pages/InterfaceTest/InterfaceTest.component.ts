@@ -90,15 +90,15 @@ ingredient = new Ingredient();
       prix : this.ingredient.prix, 
       classe : {
         key : this.ingredient.classe.key, 
-        value : this.ingredient.classe.payload.val().nomclasse
+       nom : this.ingredient.classe.payload.val().nomclasse
       },
       famille : {
         key : this.ingredient.famille.key, 
-        value : this.ingredient.famille.payload.val().nomfamille
+        nom: this.ingredient.famille.payload.val().nomfamille
       },
       sfamille: {
         key : this.ingredient.sfamille.key, 
-        value : this.ingredient.sfamille.payload.val().nomsfamille
+        nom : this.ingredient.sfamille.payload.val().nomsfamille
       },
      achat : {
         key : this.ingredient.achat.key, 
@@ -106,7 +106,7 @@ ingredient = new Ingredient();
       },
       stockage : {
         key : this.ingredient.stockage.key, 
-        value : this.ingredient.stockage.payload.val().nom
+        nom : this.ingredient.stockage.payload.val().nom
       },
     }
     this.testService.addingredient(obj).then(() => {
@@ -127,23 +127,23 @@ ingredient = new Ingredient();
       prix : this.boisson.prix, 
       classe : {
         key : this.boisson.classe.key, 
-        value : this.boisson.classe.payload.val().nomclasse
+        nom : this.boisson.classe.payload.val().nomclasse
       },
       famille : {
         key : this.boisson.famille.key, 
-        value : this.boisson.famille.payload.val().nomfamille
+        nom : this.boisson.famille.payload.val().nomfamille
       },
       sfamille: {
         key : this.boisson.sfamille.key, 
-        value : this.boisson.sfamille.payload.val().nomsfamille
+        nom : this.boisson.sfamille.payload.val().nomsfamille
       },
      achat : {
         key : this.boisson.achat.key, 
-        value : this.boisson.achat.payload.val().nom
+        nom : this.boisson.achat.payload.val().nom
       },
       stockage : {
         key : this.boisson.stockage.key, 
-        value : this.boisson.stockage.payload.val().nom
+        nom : this.boisson.stockage.payload.val().nom
       },
     }
     this.testService.addboisson(obj).then(() => {
