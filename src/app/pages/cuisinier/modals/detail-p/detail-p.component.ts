@@ -2,12 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DetailPService } from './detail-p.service';
-export interface Ingredients {
-  position: number;
-  nom: string;
-  quantite: number;
-  unite: string;
-}
+import { Plat } from 'src/app/models/plat.model';
+// export interface Ingredients {
+//   position: number;
+//   nom: string;
+//   quantite: number;
+//   unite: string;
+// }
 export interface SousRecettes {
   position: number;
   nom: string;
@@ -19,13 +20,13 @@ export interface Etapes {
   nom: string;
   description: string;
 }
-const ingredients: Ingredients[] = [
-  { position: 1, nom: 'Hydrogen', quantite: 1.0079, unite: 'H' },
-  { position: 2, nom: 'Helium', quantite: 4.0026, unite: 'He' },
-  { position: 3, nom: 'Lithium', quantite: 6.941, unite: 'Li' },
-  { position: 4, nom: 'Beryllium', quantite: 9.0122, unite: 'Be' },
+// const ingredients: Ingredients[] = [
+//   { position: 1, nom: 'Hydrogen', quantite: 1.0079, unite: 'H' },
+//   { position: 2, nom: 'Helium', quantite: 4.0026, unite: 'He' },
+//   { position: 3, nom: 'Lithium', quantite: 6.941, unite: 'Li' },
+//   { position: 4, nom: 'Beryllium', quantite: 9.0122, unite: 'Be' },
 
-];
+// ];
 const sousRecettes: SousRecettes[] = [
   { position: 1, nom: 'Hydrogen', quantite: 1.0079, unite: 'H' },
   { position: 2, nom: 'Helium', quantite: 4.0026, unite: 'He' },
@@ -46,29 +47,24 @@ const etapes: Etapes[] = [
   styleUrls: ['./detail-p.component.scss']
 })
 export class DetailPComponent implements OnInit {
-  dataSource: MatTableDataSource<any>;
 
   ngOnInit(): void {
    
   }
   photo : string;
   unites:string[] = ['g','ml','portion']
-  categories:string[] = ['entree','ml','portion']
 
   toppings = new FormControl();
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   //colonnes
-  ingredientColumns: string[] = ['position', 'nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['position', 'nom', 'quantité', 'unité','voir'];
-  etapeColumns: string[] = ['position', 'nom', 'description'];
+  ingredientColumns: string[] = [ 'nom', 'quantité', 'unité'];
+  sousRecetteColumns: string[] = [ 'nom', 'quantité', 'unité','voir'];
+  etapeColumns: string[] = [ 'nom', 'description'];
   //tableaux dataSource
-  ingredient_tab = ingredients;
-  sousRecette_tab = sousRecettes;
-  etape_tab = etapes;
-  //formGroups
-  ingredient: FormGroup;
-  sousRecette: FormGroup;
-  etape: FormGroup;
+  ingredients:any[] = [];
+  sousRecettes:any[] = [];
+   etapes:any[] = [];
+
   //constructeur
   nomPlat = new FormControl('', Validators.required);
   category = new FormControl('', Validators.required);
@@ -80,24 +76,16 @@ export class DetailPComponent implements OnInit {
 
   
   _formBuilder: any;
-  plat : any ;
+  plat = new Plat() ;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
-    @Inject(MAT_DIALOG_DATA) public payload: any ,private detailpService : DetailPService) {
-     
-      this.detailpService.getDetail(this.payload).snapshotChanges().subscribe(action => {
-        console.log(action.payload.val())
-        this.plat= action.payload.val();
-        this.dataSource = new MatTableDataSource(this.plat);
-        console.log(this.plat);
-        })
+    @Inject(MAT_DIALOG_DATA) public payload: any ) {
+        console.log(payload)
+        this.plat= payload.payload.val();
+        this.plat.ingredient.forEach(element => {
+          this.ingredients.push(element);
+          console.log(element)
+        });
         }
-     getDetail(){
-      console.log(this.payload);
-      const plat = this.detailpService.getDetail(this.payload)
-        console.log(plat)
-      
-     }
-
     onNoClick(): void {
       this.dialogRef.close();
     }

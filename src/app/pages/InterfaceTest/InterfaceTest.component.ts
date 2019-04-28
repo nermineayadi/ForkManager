@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestService } from './InterfaceTest.service';
 import { ActivatedRoute } from '@angular/router';
 import { Boisson } from 'src/app/models/boisson.model';
+import { Ingredient } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-InterfaceTest',
@@ -79,16 +80,40 @@ test: any ;
     this.stockage = { nom: '' }
 
   }
-  ingredient: any =
-    { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 10, prix: 0 }
-    ;
+ingredient = new Ingredient();
   addNewIngredient() {
-    this.testService.addingredient(this.ingredient).then(() => {
+    console.log(this.ingredient)
+    const obj = {
+      code : this.ingredient.code,
+      libelle : this.ingredient.libelle, 
+      quantite : this.ingredient.quantite , 
+      prix : this.ingredient.prix, 
+      classe : {
+        key : this.ingredient.classe.key, 
+        value : this.ingredient.classe.payload.val().nomclasse
+      },
+      famille : {
+        key : this.ingredient.famille.key, 
+        value : this.ingredient.famille.payload.val().nomfamille
+      },
+      sfamille: {
+        key : this.ingredient.sfamille.key, 
+        value : this.ingredient.sfamille.payload.val().nomsfamille
+      },
+     achat : {
+        key : this.ingredient.achat.key, 
+        value : this.ingredient.achat.payload.val().nom
+      },
+      stockage : {
+        key : this.ingredient.stockage.key, 
+        value : this.ingredient.stockage.payload.val().nom
+      },
+    }
+    this.testService.addingredient(obj).then(() => {
       this.testService.showMsg('ingredients ajoutés')
     }).catch(error => {
       this.testService.showMsg(error.message)
     })
-    this.ingredient = { code: '', libelle: '', classe: '', famille: '', sfamille: '', achat: '', stockage: '', quantite: 10, prix: 0 }
 
   }
 

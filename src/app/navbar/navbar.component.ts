@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     ngOnInit() { }
     onChange(topic : string ){
         this.selectedItem= topic ;
-        this.router.navigate(['/pages'+topic]);
+        this.router.navigate([''+topic]);
     }
     toggleNavigation(): void {
         jQuery("body").toggleClass("mini-navbar");

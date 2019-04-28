@@ -32,6 +32,7 @@ import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
 import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
 import { FamillePipe } from 'src/app/pipes/famille.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [ 
@@ -47,9 +48,7 @@ import { FamillePipe } from 'src/app/pipes/famille.pipe';
     AcceuilCuisineComponent,
     NavigationCuisineComponent,
     SupprimerComponent , CplatComponent , DetailPComponent,
-    //pipes
-    SfamillePipe,
-    FamillePipe,
+  
     
   ],
   imports: [
@@ -72,15 +71,14 @@ import { FamillePipe } from 'src/app/pipes/famille.pipe';
     }),  
     //flex
     FlexLayoutModule,
+    PipesModule
 
   ],
   entryComponents: [
     SupprimerComponent , CplatComponent , DetailPComponent
   ],
   
-  exports: [//pipes
-    SfamillePipe,
-    FamillePipe,],
+  exports: [],
   providers: [CPlatService , PlatService , DetailPService]
 })
 export class CuisineModule {}

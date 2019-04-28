@@ -55,8 +55,6 @@ export class UplatComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  
-
   EditPlat() {
     this.plat.ingredient = this.ingredients;
     console.log(this.plat);

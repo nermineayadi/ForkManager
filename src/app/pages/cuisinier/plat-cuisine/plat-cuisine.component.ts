@@ -1,20 +1,12 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog, } from '@angular/material';
 import { CplatComponent } from '../modals/CPlat/cplat.component';
-import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { PlatService } from './plat.service';
+import { AngularFireList } from '@angular/fire/database';
 import { DetailPComponent } from '../modals/detail-p/detail-p.component';
 import { SupprimerComponent } from '../modals/supprimer/supprimer.component';
+import { Plat } from 'src/app/models/plat.model';
 
-//initialisations plats 
-
-
-
-/**
- * @title Table with filtering
- */
 @Component({
   selector: 'app-plat-cuisine',
   styleUrls: ['./plat-cuisine.component.scss'],
@@ -22,15 +14,13 @@ import { SupprimerComponent } from '../modals/supprimer/supprimer.component';
 })
 export class PlatCuisineComponent implements OnInit {
   plats: AngularFireList<any>
-  dataSource: MatTableDataSource<any>;
+  dataSource: Plat[]= [];
 
   displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail'];
   plat: any;
 
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
-              private db: AngularFireDatabase,
-              private platService : PlatService
               ) {
                }
 
@@ -40,8 +30,8 @@ export class PlatCuisineComponent implements OnInit {
    ngOnInit() {
     this.route.data.subscribe((data) => {
       console.log(data)
-      this.dataSource = new MatTableDataSource(data.plat.plats);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource = data.plat.plats;
+     // this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
     })
 
@@ -50,18 +40,19 @@ export class PlatCuisineComponent implements OnInit {
   openCplat(): void {
     const dialogRef = this.dialog.open(CplatComponent, {
       data: this.plat
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
+    });   
+    dialogRef.afterClosed().subscribe(() => {
+      this.dataSource = [...this.dataSource];
+      console.log( this.dataSource )
       console.log('The dialog was closed');
     });
   }
-  openDetail(key : string) : void {
+  openDetail(element : any) : void {
 
     const dialogRef = this.dialog.open(DetailPComponent, {
       //taille du modal 
       height: '400px',
-      data: key
+      data: element
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -84,7 +75,7 @@ export class PlatCuisineComponent implements OnInit {
   //filtrer
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 

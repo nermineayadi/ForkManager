@@ -1,8 +1,9 @@
 export class Plat {
 nomPlat : string ;
-categorie : string;
-famille : string ;
-sfamille : string ;
+categorie : any;
+famille : any ;
+sfamille : any ;
 nbPart : number ;
 duree : string ;
+ingredient : any
 }

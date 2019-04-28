@@ -269,7 +269,7 @@
           <mat-form-field appearance="outline">
             <mat-label>famille</mat-label>
             <mat-select [(ngModel)]="boisson.famille" required>
-              <mat-option *ngFor="let famille of test.familles |filterbyclasse:ingredient.classe.key  "
+              <mat-option *ngFor="let famille of test.familles |filterbyclasse:boisson.classe.key  "
                 [value]="famille">
                 {{famille.payload.val().nomfamille}}
               </mat-option>
