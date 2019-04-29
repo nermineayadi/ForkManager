@@ -56,6 +56,7 @@ export class InscriptionComponent {
       nom: new FormControl(this.profile.nom, Validators.required),
       prenom: new FormControl(this.profile.prenom, Validators.required),
       adresse: new FormControl(this.profile.adresse, Validators.required),
+      specialite: new FormControl(this.profile.specialite, Validators.required),
       codePostal: new FormControl(this.profile.codePostal, Validators.required),
       telephone: new FormControl(this.profile.telephone, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
       ville: new FormControl(this.profile.ville, Validators.required),
@@ -99,6 +100,7 @@ export class InscriptionComponent {
         this.ProfileService.showMsg("profile modifié");
         this.profile.nom = this.profileForm.value.nom
         this.profile.prenom = this.profileForm.value.prenom
+        this.profile.specialite = this.profileForm.value.specialite
         this.profile.dateNaiss = this.profileForm.value.dateNaiss
         this.profile.telephone = this.profileForm.value.telephone
         this.profile.adresse = this.profileForm.value.adresse

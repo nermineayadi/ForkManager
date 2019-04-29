@@ -1,88 +1,83 @@
-<div class=" center">
+<div class=" centre">
   <mat-card>
-    <mat-card-title fxLayoutAlign="center center">
+    <mat-card-title>
+      
+      Profile
+      <div class="mattitle" fxLayoutAlign="center center">
+        <div class="user w-100 " fxLayout="row" fxLayoutGap="20px">
+          <mat-card class="user-avatar " style="padding:0;">
+            <div class="card-header" fxLayout="column" fxLayoutAlign="center center">
+              <img (click)="file.click()" [src]="(shareService.avatar$ | async)" alt="avatar" class="avatar">
+              <span class="hiddenFileInput">
+                <input (change)="onchange($event)" visbility="hidden" #file type="file" accept="image/*">
+              </span>
+            </div>
 
-      <div class="user w-100 " fxLayout="row" fxLayoutGap="20px">
-        <mat-card class="user-avatar " style="padding:0;">
-          <div class="card-header" fxLayout="column" fxLayoutAlign="center center">
-            <img (click)="file.click()" [src]="(shareService.avatar$ | async)" alt="avatar" class="avatar">
-            <span class="hiddenFileInput">
-              <input (change)="onchange($event)" visbility="hidden" #file type="file" accept="image/*">
-            </span>
-          </div>
 
-
-        </mat-card>
+          </mat-card>
+        </div>
       </div>
+
     </mat-card-title>
     <mat-card-content>
       <form [formGroup]="profileForm" class="example-form ">
- 
-        <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Tapez votre Nom</mat-label>
-          <input formControlName="nom" matInput placeholder="Nom" required>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Tapez votre Prénom</mat-label>
-          <input formControlName="prenom" matInput placeholder=" Prénom" required>
-        </mat-form-field>
-        <br>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Date de Naissance</mat-label>
-          <input formControlName="dateNaiss" matInput [matDatepicker]="picker" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
-          <mat-label>Téléphone</mat-label>
-          <span matPrefix>+216 &nbsp;</span>
-          <input formControlName="telephone" type="tel" maxlength="8" matInput placeholder="Telephone">
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <br>
-
-        <mat-form-field appearance="outline">
-          <mat-label>adresse</mat-label>
-          <input formControlName="adresse" matInput placeholder="adresse">
-          <mat-icon matSuffix>add_location</mat-icon>
-        </mat-form-field>
-        <br>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="outline">
-              <mat-label>ville</mat-label>
-              <input formControlName="ville" matInput placeholder="ville">
-
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Code postal</mat-label>
-              <input formControlName="codePostal" matInput #postalCode maxlength="5" placeholder="Code Postale">
-            </mat-form-field>
-          </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <mat-form-field appearance="outline">
+            <mat-label>Tapez votre Nom</mat-label>
+            <input formControlName="nom" matInput placeholder="Nom" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tapez votre Prénom</mat-label>
+            <input formControlName="prenom" matInput placeholder=" Prénom" required>
+          </mat-form-field>
         </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <mat-form-field appearance="outline">
+            <mat-label>Date de Naissance</mat-label>
+            <input formControlName="dateNaiss" matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Spécialité</mat-label>
+            <input formControlName="specialite" matInput placeholder="specialite" required>
+          </mat-form-field>
 
-       
-        <br>
-        <br>
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <button [disabled]="profileForm.invalid" class="center" mat-raised-button color="primary" type="submit" (click)="update()">
-              
-              Modifier
-            </button>
-            <button class="center" mat-raised-button color="primary" type="submit" (click)="goBack()">
-                Retour
-              </button>
-          </div>
-          <div class="col-md-4"></div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <mat-form-field appearance="outline">
+            <mat-label>Téléphone</mat-label>
+            <span matPrefix>+216 &nbsp;</span>
+            <input formControlName="telephone" type="tel" maxlength="8" matInput placeholder="Telephone">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>adresse</mat-label>
+            <input formControlName="adresse" matInput placeholder="adresse">
+            <mat-icon matSuffix>add_location</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+          <mat-form-field appearance="outline">
+            <mat-label>ville</mat-label>
+            <input formControlName="ville" matInput placeholder="ville">
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Code postal</mat-label>
+            <input formControlName="codePostal" matInput #postalCode maxlength="5" placeholder="Code Postale">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end start">
+
+          <button [disabled]="profileForm.invalid" class="center" mat-raised-button color="primary" type="submit"
+            (click)="update()">
+            Modifier
+          </button>
+          <button class="center" mat-raised-button color="basic" type="submit" (click)="goBack()">
+            Retour
+          </button>
         </div>
       </form>
     </mat-card-content>

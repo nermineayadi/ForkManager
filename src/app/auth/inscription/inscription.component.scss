@@ -4,12 +4,17 @@
             padding: 0;
            
             mat-card-title {
-                border-radius: 3%;
                 background-color: rgb(211, 207, 214);
+                padding: 5px;
+                color: #283e4a ;
+                height: 40px;
+
+                .mattitle{
+
+               
                 width: 100%;
                 text-align: center;
-                height: 50px;
-               padding-top: 8px;
+                height: 40px;
                .user{
                              padding: 80px 20px 20px 20px ; 
                             .user-avatar{
@@ -23,7 +28,7 @@
                                 }
                                 .avatar{ 
                                     position: absolute;
-                                    top: -111px;
+                                    top: -140px;
                                     width: 100px;
                                     height: 100px;
                                     border-radius: 50%;
@@ -39,6 +44,7 @@
     }  
            
             }
+        }
             mat-icon{
                 padding-bottom: 0%;
             }
@@ -46,17 +52,21 @@
                 padding: 12px;
                 form{
                 mat-form-field {
-                    margin: 0;
+                    margin: 5px;
                     padding: 0;
                     width: 100% ;
-                  
                    
                 }
-                button{ width: 100%;
+                button{ 
+                    margin: 5px;
+                    width: 100%;
                 }
                 }
             }
         }
+    }
+    .centre{
+        margin :5% 25% ;
     }
 }
 

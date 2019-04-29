@@ -32,6 +32,8 @@ imageChangedEvent: any = '';
     updateAvatar(){
       const file = this.dataURLtoFile(this.croppedImage, this.file.filename);
       this.shareService.uploadUserAvatar(file , localStorage.getItem('uid'));
+      this.dialogRef.close();
+
     }
     dataURLtoFile(dataurl, filename) {
       var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
