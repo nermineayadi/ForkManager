@@ -4,16 +4,12 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import * as $ from "jquery";
-
 //component & module necessaires 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-
 //components necessaires
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
-
-
 //modals
 import { InventaireCComponent } from './modals/CrudIventaire/Inventaire/InventaireC.component';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
@@ -21,11 +17,8 @@ import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.compon
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
-
 //assets
 import { MatangModule } from "../assets/matang.module";
-
-
 //environment
 import { environment } from "../environments/environment";
 
