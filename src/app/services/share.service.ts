@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({providedIn : 'root'})
 export class ShareService {
   uid = localStorage.getItem('uid');
@@ -18,6 +18,27 @@ export class ShareService {
    //authentification
    authentification(email : string , password : string){
     return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
+}
+updateToken(token : string){
+  const ref = this.db.object(`users/${this.uid}`);
+return ref.update({
+  token : token
+})
+}
+sendNotification(msg : any){
+  const header = new HttpHeaders()
+  .set('Content-Type' ,'application/json')
+  .set('Authorization','key=AAAAghKcbmY:APA91bFHKMxwQtEepAvCkvpPKqQ3jSlyppjECHuIiF0CUBjHToljfwTxSDjdZArgkM-i7WRi3YRP_X0zNwyAOazK9iVE3h9cWBi6CWKoHzaohr8003qGZGLYygHcsWpmCoWrIpMwR9pF')
+  const body = {
+    notification : {
+      title : msg.title ,
+      body : msg.body
+    },
+    to : msg.token
+  }
+  console.log(body);
+  return this.http.post('https://fcm.googleapis.com/fcm/send',body,{headers : header});
+
 }
 //cropper 
     avatar$ : BehaviorSubject<string>= new BehaviorSubject<string>("./assets/img/avatar/avatar.png"); 

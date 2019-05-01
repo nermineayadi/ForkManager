@@ -10,15 +10,11 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ProfileService } from "./inscription.service";
-import { User } from 'src/app/models/user.model';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { CropperComponent } from '../cropper/cropper.component';
 import { Location } from '@angular/common';
 import { ShareService } from 'src/app/services/share.service';
-import { Profile } from 'selenium-webdriver/firefox';
-
-
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
 

@@ -52,7 +52,7 @@ export class PersonnelResponsableComponent implements OnInit {
     const dialogRef = this.dialog.open(CPersonnelComponent, {
       //taille du modal 
 
-      width: '900px',
+      width: '800px',
       data: {}
     });
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { mergeMapTo } from 'rxjs/operators';
+import { ShareService } from 'src/app/services/share.service';
 
 
 
@@ -11,7 +12,7 @@ import { mergeMapTo } from 'rxjs/operators';
 })
 export class CuisinierComponent implements OnInit {
 
-  constructor(private afMessaging: AngularFireMessaging) {
+  constructor(private afMessaging: AngularFireMessaging , private shareService : ShareService) {
 
   }
 
@@ -23,9 +24,21 @@ export class CuisinierComponent implements OnInit {
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
-        (token) => { console.log('Permission granted! Save to the server!', token); },
+        (token) => { 
+          console.log('Permission granted! Save to the server!', token);
+          this.shareService.updateToken(token).then(()=>{
+            this.receiveMessage()
+          })
+           
+        },
         (error) => { console.error(error); },  
       );
   }
-
+  receiveMessage() {
+    this.afMessaging.messages.subscribe(
+      (payload) => {
+        console.log("new message received. ", payload);
+        
+      })
+  }
 }

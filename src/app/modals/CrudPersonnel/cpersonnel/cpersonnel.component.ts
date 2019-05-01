@@ -32,6 +32,7 @@ export class CPersonnelComponent implements OnInit {
   //creer utilisateur
   register() {
     const obj = {
+      token :'',
       email: this.email.value,
       nom: this.nom.value,
       prenom: this.prenom.value,
@@ -44,6 +45,7 @@ export class CPersonnelComponent implements OnInit {
       this.user.nom = obj.nom;
       this.user.prenom = obj.prenom;
       this.user.fonction = obj.fonction;
+      this.user.token = obj.token;
 
       this.CPersonnelService
         .createUsers(this.user, data.user.uid)

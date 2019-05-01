@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UPlatService } from "./uplat.service";
 import { Ingredient } from 'src/app/models/ingredient.model';
 import { Ingredients } from 'src/app/models/ingredients.model';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-cplat',
@@ -28,7 +29,7 @@ export class UplatComponent implements OnInit {
    plat:any;
   constructor(
      public dialogRef: MatDialogRef<UplatComponent>,
-     @Inject(MAT_DIALOG_DATA) public payload: any , private  UPlatService: UPlatService
+     @Inject(MAT_DIALOG_DATA) public payload: any , private  UPlatService: UPlatService , private shareService : ShareService
      ) { 
             console.log(payload.value)
             this.plat= payload.value;
@@ -62,7 +63,7 @@ export class UplatComponent implements OnInit {
      }
 
   ngOnInit() {
-
+    console.log(this.payload.value)
   }
   addNewIngredient(){  
     this.ingredients.push({libelle: '', quantite: 0 , unite: '' ,key:''}) 
@@ -78,6 +79,7 @@ export class UplatComponent implements OnInit {
   }
 
   EditPlat() {
+    
     this.valider=true;
     const obj = {
       nomPlat : this.plat.nomPlat,
@@ -110,6 +112,13 @@ export class UplatComponent implements OnInit {
     .then(() => {
       this.UPlatService.showMsg("plat modifié");
       this.valider= false;
+      this.shareService.sendNotification({
+        title : 'validation' , 
+        body : 'Plat validé',
+        to : this.payload.value.token
+      }).subscribe(()=>{
+        console.log('notification envoyée avec succes')
+      })
     })
     .catch(error => {
       console.error(error.message);

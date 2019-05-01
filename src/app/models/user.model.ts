@@ -11,5 +11,6 @@ export class User{
     ville? : string = '';
     codePostal ? : number =0 ;
     fonction? : string = '';
+    token?:string='';
 
 }

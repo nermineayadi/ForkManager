@@ -85,12 +85,13 @@ export class CplatComponent implements OnInit {
         key: this.sfamille.value.key,
         nomsfamille: this.sfamille.value.payload.val().nomsfamille
       },
+      token: JSON.parse(localStorage.getItem('profile')).token,
      // ingredients: this.ingredients ,
     //  srecettes: this.srecettes,
      // etapes:this.etapes,
       nbPart : this.nbparts.value,
       duree : this.duree.value,
-      valide:true
+      valide:false
     };
     console.log(obj)
      this.CPlatservice
