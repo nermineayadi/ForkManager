@@ -69,6 +69,7 @@ import { PipesModule } from './pipes/pipes.module';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from './client/client.service';
 
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 
 
@@ -84,6 +85,7 @@ import { ClientService } from './client/client.service';
     InterfaceTestComponent,
     ClientComponent,
    
+    
     //modals
     InventaireCComponent ,
     CCmdComponent,
@@ -135,6 +137,7 @@ import { ClientService } from './client/client.service';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireMessagingModule,
     PipesModule.forRoot()
    
   ],
