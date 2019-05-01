@@ -1,846 +1,317 @@
 
-    
-        <app-navbar></app-navbar>
-   
+
+<app-navbar></app-navbar>
+
 <div class="main" fxLayout="row">
-  <div class="sidebar" fxLayout="column" fxLayoutAlign="start start ">
-    <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
-      <!-- Item Column -->
-      <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef> nom </th>
-        <td mat-cell *matCellDef="let transaction"> {{transaction.nom}} </td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
-      </ng-container>
+<div class="sidebar" fxLayout="column" fxLayoutAlign="start start ">
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+<!-- Item Column -->
+<ng-container matColumnDef="nom">
+<th mat-header-cell *matHeaderCellDef> nom </th>
+<td mat-cell *matCellDef="let transaction"> {{transaction.nom}} </td>
+<td mat-footer-cell *matFooterCellDef> Total </td>
+</ng-container>
 <!-- Cost qte-->
 <ng-container matColumnDef="qte">
-    <th mat-header-cell *matHeaderCellDef> qte </th>
-    <td mat-cell *matCellDef="let transaction"> {{transaction.qte}} </td>
-    <td mat-footer-cell *matFooterCellDef>  </td>
-  </ng-container>
-      <!-- Cost Column -->
-      <ng-container matColumnDef="prix">
-        <th mat-header-cell *matHeaderCellDef> prix </th>
-        <td mat-cell *matCellDef="let transaction"> {{transaction.prix }}DT </td>
-        <td mat-footer-cell *matFooterCellDef> {{getTotalprix() }}DT </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-    </table>
-    <div class="w-100" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
-
-
-
-    </div>
-    <nav class="navbar-default  navbar-static-side" role="navigation">
-
-      <div class="sidebar-collapse">
-        <ul class="nav metismenu" id="side-menu">
-          <br>
-          <br>
-          <br>
-          <li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
-            <a [routerLink]="[item.link]"><i class="fas fa-{{item.icon}}"></i> <span
-                class="nav-label">{{item.title}}</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="content">
-    <mat-tab-group>
-                                                      <mat-tab label="Plat">  
-
-        <section id="t-cards">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyserveur : 'ENTREE'">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/plat/soupe.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button" (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-
-            </div>
-          </div>
-          <!-- <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/plat/Beef-Hamburgers_7-2.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">16dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Beef-Hamburgers</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/plat/poulet-creme.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">25dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Poulet-Creme</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/plat/s.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">12dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Salade</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/plat/salade_de_couscous_2000.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">11dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">salade_de_couscous</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/plat/pizza.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">15dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Pizza</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div> -->
-
-
-
-        </section>
-      </mat-tab>
-      <mat-tab label="Suite" >  
-
-        <section id="t-cards">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats  | filterbyserveur : 'SUITE'">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/plat/Lasagne.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button" (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-
-        </section>
-      </mat-tab>
-      <mat-tab label="Dessert" >
-        <section id="t-cards">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/dessert/20170526-no-bake-cheesecake-vicky-wasik-18-625x469.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">8dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Cheese Cake</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/dessert/creme-banane-thermomix-800x600.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">10dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Créme Banane</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/dessert/exps21585_THCA153054D10_15_4b-1.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">12dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Vérine</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/dessert/fondant.jfif" />
-                    <button class="btn btn-primary btn-sm" role="button">12dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Fondant Chocolat</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/dessert/images.jfif" />
-                    <button class="btn btn-primary btn-sm" role="button">14dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Gateau Chocolat</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-          <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/dessert/panckake.jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">12dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Panckake</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/dessert/recipe-driedubbel-verwen-cheesecake.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">10dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Cheesecake</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/dessert/téléchargement.jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">14dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Vérine chocolat</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/dessert/CrémeBrulée.jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">15dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Créme Brulée</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/dessert/Mousse au Chocolat .jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">10dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Mousse au Chocolat</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-        </section>
-      </mat-tab>
-      <mat-tab label="Boisson " (change)="setAction('Boissons')">
-
-
-        <section id="t-cards">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let boisson of boissons  | filterbyserveur : 'Boissons'">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/boisson/café créme.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button"(click)="addBoisson(boisson)">{{boisson.payload.val().prix}}dt></button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">{{boisson.payload.val().sfamille.value}}</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/boisson/cafémousse.jfif" />
-                    <button class="btn btn-primary btn-sm" role="button">7dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Café Mousse</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/boisson/fraise.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">6.5dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Jus Fraise</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src=".././../../assets/boisson/i100990-jus-de-carotte-et-pomme.jpg" />
-                    <button class="btn btn-primary btn-sm" role="button">8dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Jus De Carotte</h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-4 col-md-2">
-                <div class="panel panel-default panel-card">
-                  <div class="panel-heading">
-                    <img src="../../../assets/boisson/orange.jpeg" />
-                    <button class="btn btn-primary btn-sm" role="button">6dt</button>
-                  </div>
-
-                  <div class="panel-body text-center">
-                    <h4 class="panel-header">Jus d'Orange </h4>
-                    <small>A short description goes here.</small>
-                  </div>
-                  <div class="panel-thumbnails">
-                    <div class="row">
-                      <div class="col-xs-4">
-                      </div>
-                      <div class="col-xs-4">
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-          <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/boisson/thé.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">3.5dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Thé</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/boisson/légeois.jpg" />
-                  <button class="btn btn-primary btn-sm" role="button">7dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Café Légeois</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/boisson/images.jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">6dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Jus Pamplemousse</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="column">
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/boisson/images (1).jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">4dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Express</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 col-md-2">
-              <div class="panel panel-default panel-card">
-                <div class="panel-heading">
-                  <img src="../../../assets/boisson/images (2).jfif" />
-                  <button class="btn btn-primary btn-sm" role="button">7.5dt</button>
-                </div>
-
-                <div class="panel-body text-center">
-                  <h4 class="panel-header">Chaucolat Chaud</h4>
-                  <small>A short description goes here.</small>
-                </div>
-                <div class="panel-thumbnails">
-                  <div class="row">
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-        </section>
-
-
-
-
-
-
-
-
-      </mat-tab>
-      
-    </mat-tab-group>
-  </div>
-  <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
-    Notification
-  </div>
+<th mat-header-cell *matHeaderCellDef> qte </th>
+<td mat-cell *matCellDef="let transaction"> {{transaction.qte}} </td>
+<td mat-footer-cell *matFooterCellDef>  </td>
+</ng-container>
+<!-- Cost Column -->
+<ng-container matColumnDef="prix">
+<th mat-header-cell *matHeaderCellDef> prix </th>
+<td mat-cell *matCellDef="let transaction"> {{transaction.prix }}DT </td>
+<td mat-footer-cell *matFooterCellDef> {{getTotalprix() }}DT </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
+<div class="w-100" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+
+
+</div>
+<nav class="navbar-default  navbar-static-side" role="navigation">
+
+<div class="sidebar-collapse">
+<ul class="nav metismenu" id="side-menu">
+<br>
+<br>
+<br>
+<li *ngFor="let item of items" [ngClass]="{active: activeRoute('item.link')}">
+<a [routerLink]="[item.link]"><i class="fas fa-{{item.icon}}"></i> <span
+class="nav-label">{{item.title}}</span></a>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+<div class="content">
+<mat-tab-group>
+  <!-- ENTREE -->
+<mat-tab label="Entree">  
+<section id="t-cards">
+<div class="container">
+<div class="row">
+<div class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyserveur : 'ENTREE'">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/soupe.jpg" />
+<button class="btn btn-primary btn-sm" role="button" (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
+</div>
+<div class="panel-body text-center">
+<h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- <div class="column">
+<div class="col-sm-4 col-md-2">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/Beef-Hamburgers_7-2.jpg" />
+<button class="btn btn-primary btn-sm" role="button">16dt</button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">Beef-Hamburgers</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-4 col-md-2">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/poulet-creme.jpg" />
+<button class="btn btn-primary btn-sm" role="button">25dt</button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">Poulet-Creme</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
 </div>
 
 
+<div class="col-sm-4 col-md-2">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/s.jpg" />
+<button class="btn btn-primary btn-sm" role="button">12dt</button>
+</div>
 
+<div class="panel-body text-center">
+<h4 class="panel-header">Salade</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="column">
+<div class="col-sm-4 col-md-2">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/salade_de_couscous_2000.jpg" />
+<button class="btn btn-primary btn-sm" role="button">11dt</button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">salade_de_couscous</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="col-sm-4 col-md-2">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/pizza.jpg" />
+<button class="btn btn-primary btn-sm" role="button">15dt</button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">Pizza</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div> -->
+</section>
+</mat-tab>
+<!-- SUITE -->
+<mat-tab label="Suite" >  
+<section id="t-cards">
+<div class="container">
+<div class="row">
+<div class="col-sm-4 col-md-2" *ngFor="let plat of plats  | filterbyserveur : 'SUITE'">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/plat/Lasagne.jpg" />
+<button class="btn btn-primary btn-sm" role="button" (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+</section>
+</mat-tab>
+<!-- DESSERT -->
+<mat-tab label="Dessert" >
+<section id="t-cards">
+<div class="container">
+<div class="row">
+<div class="col-sm-4 col-md-2 " *ngFor="let plat of plats  | filterbyserveur : 'DESSERT'">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/dessert/20170526-no-bake-cheesecake-vicky-wasik-18-625x469.jpg" />
+<button class="btn btn-primary btn-sm" role="button">8dt</button>
+</div>
+<div class="panel-body text-center">
+<h4 class="panel-header">Cheese Cake</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</mat-tab>
+<!-- BOISSON  -->
+<mat-tab label="Boisson " (change)="setAction('Boissons')">
+<section id="t-cards">
+<div class="container">
+<div class="row">
+<div class="col-sm-4 col-md-2" *ngFor="let boisson of boissons  | filterbyserveur : 'Boissons'">
+<div class="panel panel-default panel-card">
+<div class="panel-heading">
+<img src="../../../assets/boisson/café créme.jpg" />
+<button class="btn btn-primary btn-sm" role="button"(click)="addBoisson(boisson)">{{boisson.payload.val().prix}}dt></button>
+</div>
+
+<div class="panel-body text-center">
+<h4 class="panel-header">{{boisson.payload.val().sfamille.value}}</h4>
+<small>A short description goes here.</small>
+</div>
+<div class="panel-thumbnails">
+<div class="row">
+<div class="col-xs-4">
+</div>
+<div class="col-xs-4">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+</mat-tab>
+
+</mat-tab-group>
+</div>
+<div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
+Notification
+</div>
+</div>
 <!-- SEARCH -->
 <div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
-  <!--     
-        <div class="container">
-                <div class="row-fluid">
-                    <div class="span8">
-                        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=15+Springfield+Way,+Hythe,+CT21+5SH&aq=t&sll=52.8382,-2.327815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe>
-                    </div>
-                    
-                      <div class="span4">
-                        <h2>Adresse</h2>
-                        <address>
-                            <strong>Restaurant Club House</strong><br>
-                            Port El Kantaoui
-                             <br>
-                            Sousse<br>
-                            Kantaoui<br>
-                            Tunisie<br>
-                            B.P. 32, 4089<br>
-                            <abbr title="Phone">Téléphone</abbr> +216 73 348 756 / 73 346 527
-                        </address>
-                    </div>
-                </div>
-            </div> -->
-  <button class="btn btn-primary btn-sm" (click)="toggleSearch()">close</button>
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+<button class="btn btn-primary btn-sm" (click)="toggleSearch()">close</button>
 
 </div>

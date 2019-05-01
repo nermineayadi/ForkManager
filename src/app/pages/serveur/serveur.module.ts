@@ -8,6 +8,7 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { ServeurService } from './serveur.service';
 import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     declarations: [ServeurComponent,   
@@ -16,7 +17,10 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
         //flex
         FlexLayoutModule,
         MatangModule,
-        NavBarModule
+        NavBarModule,
+        AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyDcB2n8SVTSqkO-Be6XXXNSvvqB8UVfPH4'
+        })
       ],
     exports: [],
     providers: [ServeurService],

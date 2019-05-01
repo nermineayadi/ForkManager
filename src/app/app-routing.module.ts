@@ -20,11 +20,8 @@ const routes: Routes = [
         path: "login",
         component: LoginComponent
       },
-      // {
-      //   path: "client",
-      //   component: LoginComponent
-      // },
       {
+       
         path: "profile",
         component: InscriptionComponent,
         canActivate : [AuthGuard]

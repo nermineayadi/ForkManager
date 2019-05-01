@@ -66,7 +66,7 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
 import { FamillePipe } from './pipes/famille.pipe';
 import { Famille_Pipe } from './pipes/famille1.pipe';
 import { PipesModule } from './pipes/pipes.module';
-
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 
 
@@ -80,7 +80,7 @@ import { PipesModule } from './pipes/pipes.module';
     LoginComponent,
     InscriptionComponent,
     InterfaceTestComponent,
-   
+    
     //modals
     InventaireCComponent ,
     CCmdComponent,
@@ -132,6 +132,7 @@ import { PipesModule } from './pipes/pipes.module';
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireMessagingModule,
     PipesModule.forRoot()
    
   ],
@@ -151,7 +152,7 @@ import { PipesModule } from './pipes/pipes.module';
     CropperComponent,
 
   ],
-  providers: [LoginService,ProfileService,TestService,
+  providers: [LoginService,ProfileService,TestService ,
     {provide: StorageBucket, useValue: 'forkmanager-8402a.appspot.com'} 
   ],
   bootstrap: [AppComponent]
