@@ -21,8 +21,18 @@ export class ResponsableComponent implements OnInit {
     this.afMessaging.requestPermission
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
-        (token) => { console.log('Permission granted! Save to the server!', token); },
+        (token) => { 
+          console.log('Permission granted! Save to the server!', token);
+          this.receiveMessage() 
+        },
         (error) => { console.error(error); },  
       );
+  }
+  receiveMessage() {
+    this.afMessaging.messages.subscribe(
+      (payload) => {
+        console.log("new message received. ", payload);
+        
+      })
   }
 }
