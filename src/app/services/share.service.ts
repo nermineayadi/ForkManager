@@ -34,7 +34,7 @@ sendNotification(msg : any){
       title : msg.title ,
       body : msg.body
     },
-    to : msg.token
+    to : msg.to
   }
   console.log(body);
   return this.http.post('https://fcm.googleapis.com/fcm/send',body,{headers : header});
