@@ -66,6 +66,8 @@ import { SfamillePipe } from './pipes/sfamille.pipe';
 import { FamillePipe } from './pipes/famille.pipe';
 import { Famille_Pipe } from './pipes/famille1.pipe';
 import { PipesModule } from './pipes/pipes.module';
+import { ClientComponent } from './client/client.component';
+import { ClientService } from './client/client.service';
 
 
 
@@ -80,6 +82,7 @@ import { PipesModule } from './pipes/pipes.module';
     LoginComponent,
     InscriptionComponent,
     InterfaceTestComponent,
+    ClientComponent,
    
     //modals
     InventaireCComponent ,
@@ -151,7 +154,7 @@ import { PipesModule } from './pipes/pipes.module';
     CropperComponent,
 
   ],
-  providers: [LoginService,ProfileService,TestService,
+  providers: [LoginService,ProfileService,TestService,ClientService,
     {provide: StorageBucket, useValue: 'forkmanager-8402a.appspot.com'} 
   ],
   bootstrap: [AppComponent]

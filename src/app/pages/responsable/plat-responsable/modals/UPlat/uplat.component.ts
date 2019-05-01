@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UPlatService } from "./uplat.service";
+import { Ingredient } from 'src/app/models/ingredient.model';
+import { Ingredients } from 'src/app/models/ingredients.model';
 
 @Component({
   selector: 'app-cplat',
@@ -11,31 +13,51 @@ export class UplatComponent implements OnInit {
    //photo : string;
   
    ingredients: any[] = [
-  {nom: '', quantite: '' , unite: '' }
+  { libelle: '', quantite: '' , unite: '' ,key:''}
   ];
   srecettes: any[] = [
     {nom: '', quantite: '' , unite: '' }
   ];
   etapes:any[]=[
-    {num:'', etape : ''}
+    {num:'', etape : '',desc:''}
   ]
   unites:string[] = ['g','ml','portion']
-
-
   valider= false ;
+  ing:Ingredients[]=[]
   
    plat:any;
   constructor(
      public dialogRef: MatDialogRef<UplatComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any , private  UPlatService: UPlatService
      ) { 
-       console.log(payload)
-            this.plat= payload;
+            console.log(payload.value)
+            this.plat= payload.value;
+            this.plat.nomPlat=payload.value.nomPlat;   
+            this.plat.nbPart=payload.value.nbPart;            
+            this.plat.duree=payload.value.duree;
+
+            payload.plat.ingredients.forEach((item)=>{
+              this.ing.push({key:item.key , code : item.payload.val().code , libelle : item.payload.val().libelle  })
+            })
+            console.log(this.ing);
+
             payload.plat.categories.forEach((item)=>{
               if (item.key==payload.value.categorie.key){
                 this.plat.categorie=item;
               }
             })
+            payload.plat.familles.forEach((item)=>{
+              if (item.key==payload.value.famille.key){
+                this.plat.famille=item;
+              }
+            })
+            payload.plat.sfamilles.forEach((item)=>{
+              if (item.key==payload.value.sfamille.key){
+                this.plat.sfamille=item;
+              }
+            })
+
+
             // this.plat.categorie = payload.value.categorie.key;
      }
 
@@ -43,7 +65,7 @@ export class UplatComponent implements OnInit {
 
   }
   addNewIngredient(){  
-    this.ingredients.push({nom: '', quantite: 0 , unite: '' }) 
+    this.ingredients.push({libelle: '', quantite: 0 , unite: '' ,key:''}) 
    }
     addNewSrecette(){  
       this.srecettes.push({nom: '', quantite: 0 , unite: '' }) 
@@ -56,23 +78,35 @@ export class UplatComponent implements OnInit {
   }
 
   EditPlat() {
-    this.plat.ingredient = this.ingredients;
-    console.log(this.plat);
     this.valider=true;
-    // const obj = {
-    //   nomPlat : this.nomPlat.value,
-    //   categorie : this.category.value,
-    //   famille : this.famille.value,
-    //   sfamille : this.famille.value,
-    //   ingredients: this.ingredients ,
-    //   srecettes: this.srecettes,
-    //   etapes:this.etapes,
-    //   nbPart : this.nbparts.value,
-    //   duree : this.duree.value
-    // };
-    // console.log(obj)
+    const obj = {
+      nomPlat : this.plat.nomPlat,
+      nbPart : this.plat.nbPart,
+      duree : this.plat.duree,
+      valide: true,
+      categorie : {
+        key : this.plat.categorie.key,
+        nomcategorie : this.plat.categorie.payload.val().nomcategorie
+      }
+      ,
+      famille :{
+        key : this.plat.famille.key,
+        nomfamille : this.plat.famille.payload.val().nomfamille
+      }
+      ,
+      sfamille : {
+        key : this.plat.sfamille.key,
+        nomsfamille : this.plat.sfamille.payload.val().nomsfamille
+      }
+      ,
+      ingredient:  this.ingredients 
+      // srecette: this.srecettes,
+      // etape:this.etapes,
+
+    };
+    console.log(obj)
      this.UPlatService
-    .updatePlat(this.plat,this.payload.key)
+    .updatePlat(obj,this.payload.key)
     .then(() => {
       this.UPlatService.showMsg("plat modifié");
       this.valider= false;

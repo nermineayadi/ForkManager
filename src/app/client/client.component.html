@@ -1,0 +1,95 @@
+
+<div id="wrapper">
+        <nav class="navbar-default  navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <form style="background-color : white" fxLayout="column">
+                            <mat-form-field appearance="outline">
+                                    <mat-label>Identifiant</mat-label>
+                                    <input matInput type="number" placeholder="Identifiant">
+                                  </mat-form-field>
+                            <label id="example-radio-group-label">Parcours</label>
+                            <mat-radio-group
+                              aria-labelledby="example-radio-group-label"
+                              class="example-radio-group"
+                              >
+                              <mat-radio-button class="example-radio-button"  [value]="season">
+                                Panorama Course
+                              </mat-radio-button>
+                              <mat-radio-button class="example-radio-button"  [value]="season">
+                                Sea Course
+                            </mat-radio-button>
+                            </mat-radio-group>  
+                          </form>  
+                </div>
+              </nav>
+      
+        <div id="page-wrapper" class="gray-bg">
+      
+          <!-- <app-navbar style="width: 50px"></app-navbar> -->
+      
+          <div >
+
+                <mat-tab-group>
+                    <mat-tab label="Fast Food" style="color : white"  >
+                        <mat-card class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
+                                <div class="panel panel-default panel-card">
+                                        <div class="panel-heading">
+                                          <img src="../../../assets/plat/soupe.jpg" />
+                                          <!-- (click)="addPlat(plat) -->
+                                          <button class="btn btn-primary btn-sm" role="button" >{{plat.payload.val().prix}}dt</button>
+                                        </div>
+                      
+                                        <div class="panel-body text-center">
+                                          <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+                                          <small>A short description goes here.</small>
+                                        </div>
+                                        <div class="panel-thumbnails">
+                                          <div class="row">
+                                            <div class="col-xs-4">
+                                            </div>
+                                            <div class="col-xs-4">
+                      
+                                            </div>
+                      
+                                          </div>
+                                        </div>
+                                      </div>
+                        </mat-card>
+                    </mat-tab>
+                    <mat-tab label="Boissons" style="color : white"  >
+                            <mat-card class="col-sm-4 col-md-2" *ngFor="let boisson of boissons | filterbyclient : 'BOIS. NON ALCOOLISEES'">
+                                    <div class="panel panel-default panel-card">
+                                            <div class="panel-heading">
+                                              <img src="../../../assets/plat/soupe.jpg" />
+                                              <!-- (click)="addPlat(plat) -->
+                                              <button class="btn btn-primary btn-sm" role="button" >{{boisson.payload.val().prix}}dt</button>
+                                            </div>
+                          
+                                            <div class="panel-body text-center">
+                                              <h4 class="panel-header">{{boisson.payload.val().libelle}}</h4>
+                                              <small>A short description goes here.</small>
+                                            </div>
+                                            <div class="panel-thumbnails">
+                                              <div class="row">
+                                                <div class="col-xs-4">
+                                                </div>
+                                                <div class="col-xs-4">
+                          
+                                                </div>
+                          
+                                              </div>
+                                            </div>
+                                          </div>
+                            </mat-card>
+                        </mat-tab>
+                </mat-tab-group>
+            </div>
+      
+         
+        </div>
+      </div>
+
+
+
+
+      

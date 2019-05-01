@@ -5,5 +5,9 @@ famille : any ;
 sfamille : any ;
 nbPart : number ;
 duree : string ;
-ingredient : any
+ingredient : any;
+srecette : any;
+etape : any
+
+
 }

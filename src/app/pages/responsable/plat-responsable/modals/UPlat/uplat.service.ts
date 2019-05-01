@@ -10,10 +10,6 @@ export class UPlatService {
         private snackBar : MatSnackBar,
         public afAuth: AngularFireAuth ,
         private http: HttpClient) {}
-
-
-
-
 //snackbar
 showMsg(message: string){
   this.snackBar.open(message ,'close',{

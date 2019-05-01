@@ -9,7 +9,7 @@ export class Famille_Pipe implements PipeTransform {
         }
         else {
            return array.filter((item)=>{
-            console.log(item.payload.val().classe);
+            //console.log(item.payload.val().classe);
                return item.payload.val().classe == key;
            })
         }

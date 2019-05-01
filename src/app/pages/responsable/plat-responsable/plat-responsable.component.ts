@@ -67,7 +67,7 @@ import { UplatComponent } from './modals/UPlat/uplat.component';
     
       
         this.route.data.subscribe((data) => {
-          console.log(data)
+          //console.log(data)
           this.dataSource = new MatTableDataSource(data.plat.plats);
           this.dataSource.paginator = this.paginator;
          this.plat = data.plat;
