@@ -48,7 +48,7 @@
     <div style="width:100%" *ngFor="let item of ingredients; let i= index">
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>ingredient</mat-label>
-        <mat-select [(ngModel)]="ingredients[i].ingredient">
+        <mat-select [(ngModel)]="ingredients[i].libelle">
           <mat-option *ngFor="let row of ing" [value]="row">{{row.libelle}}</mat-option>
         </mat-select>
       </mat-form-field>

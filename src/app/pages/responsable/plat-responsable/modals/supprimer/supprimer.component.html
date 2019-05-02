@@ -4,7 +4,7 @@
   </mat-toolbar>
   <div class="body" fxLayout="column">
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-      <mat-label>Etes vous sure de vouloir supprimer cet élèment ?</mat-label>
+      <mat-label>Etes vous sure de vouloir supprimer le plat : <b>{{element.nomPlat}}</b> ?</mat-label>
     </div>
     <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
       <button mat-stroked-button  (click)="onDelete()" color="primary">Supprimer</button>

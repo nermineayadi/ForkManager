@@ -34,11 +34,6 @@ showMsg(message: string){
                                     familles : familles, 
                                     sfamilles : sfamilles
                                 };
-                                ref.unsubscribe();
-                                ref1.unsubscribe();
-                                ref2.unsubscribe();
-                                ref3.unsubscribe();
-                                ref4.unsubscribe();
                                 resolve(obj)
                             })
                         })

@@ -6,7 +6,7 @@
 
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> ingredient </th>
-        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.ingredient.libelle}} </td>
       </ng-container>
 
       <ng-container matColumnDef="quantité">
@@ -25,31 +25,8 @@
 
   </mat-tab>
   <mat-tab label="Sous Recette">
-    <!-- <form [formGroup]="sousRecette">
-      <div fxLayout="row"  fxLayoutAlign="space-between">
-        <mat-form-field appearance="outline">
-          <mat-label>sous recette</mat-label>
-          <input matInput formControlName="nom" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>quantité</mat-label>
-          <input matInput formControlName="quantite" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>unité</mat-label>
-          <mat-select formControlName="unite" name="unité">
-            <mat-option *ngFor="let unite of unites" [value]="unite">
-              {{unite}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <button mat-stroked-button color="primary"
-            style="width : 100px ; margin-top: 3px ;height: 45px;">valider</button>
-        </div>
-      </div>
-    </form> -->
-    <table mat-table [dataSource]="sousRecette_tab" class="mat-elevation-z8" style="width : 100% ;">
+    
+    <table mat-table [dataSource]="plat.srecettes" class="mat-elevation-z8" style="width : 100% ;">
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -84,23 +61,8 @@
     </table>
   </mat-tab>
   <mat-tab label="Etapes">
-    <!-- <form [formGroup]="etape">
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <mat-form-field appearance="outline">
-          <mat-label>étape</mat-label>
-          <input matInput formControlName="nom" required>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>description</mat-label>
-          <input matInput formControlName="description" required>
-        </mat-form-field>
-        <div>
-          <button mat-stroked-button color="primary"
-            style="width : 100px ; margin-top: 3px ; height: 45px;">valider</button>
-        </div>
-      </div>
-    </form> -->
-    <table mat-table [dataSource]="etape_tab" class="mat-elevation-z8" style="width : 100% ;">
+   
+    <table mat-table [dataSource]="plat.etapes" class="mat-elevation-z8" style="width : 100% ;">
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>

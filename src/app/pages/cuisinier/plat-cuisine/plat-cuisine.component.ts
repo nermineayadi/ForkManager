@@ -14,21 +14,24 @@ import { ShareService } from 'src/app/services/share.service';
   templateUrl: './plat-cuisine.component.html',
 })
 export class PlatCuisineComponent implements OnInit {
+  // var
   plats: any[]=[];
-  dataSource: MatTableDataSource<Plat>;
-
-  displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail'];
   plat: any;
+  dataSource: MatTableDataSource<Plat>;
+  displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail'];
+ 
+ 
+  //pagination
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  // constructor
   constructor(public dialog: MatDialog,
               private route: ActivatedRoute,
               private shareservice : ShareService,
-              ) {
-               }
+              ) 
+              {}
 
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  //pagination
+   //onInit
    ngOnInit() {
     this.route.data.subscribe((data) => {
       console.log(data)
@@ -38,7 +41,7 @@ export class PlatCuisineComponent implements OnInit {
       console.log(this.plats)
 
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
-     // this.dataSource.paginator = this.paginator;
+     this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
      this.dataSource.filter = 'true';
     })
@@ -62,7 +65,6 @@ export class PlatCuisineComponent implements OnInit {
   openDetail(element : any) : void {
     if (element.hasOwnProperty("ingredient")){
       const dialogRef = this.dialog.open(DetailPComponent, {
-        //taille du modal 
         height: '400px',
         data: element
       });
@@ -76,15 +78,7 @@ export class PlatCuisineComponent implements OnInit {
     }
 
   }
-  openSupprime(key : string):void{
-    const dialogRef = this.dialog.open(SupprimerComponent, {
-      data: key
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
 
   //filtrer
 

@@ -10,14 +10,17 @@ import { PlatResponsableService } from '../../plat-responsable.service';
 })
 export class SupprimerComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SupprimerComponent>,
-    @Inject(MAT_DIALOG_DATA) public key: string,
-    private platService : PlatResponsableService) { }
+    @Inject(MAT_DIALOG_DATA) public element: any,
+    private platService : PlatResponsableService) { 
+      console.log(this.element);
+
+    }
   ngOnInit() {
 
   }
   onDelete(){
-    console.log(this.key);
-    this.platService.supprimePlat(this.key).then(()=>{
+    console.log(this.element.key);
+    this.platService.supprimePlat(this.element.key).then(()=>{
       this.platService.showMsg("plat supprimé");
     })
     .catch(error => {

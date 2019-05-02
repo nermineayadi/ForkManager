@@ -9,11 +9,14 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ["./responsable.component.scss"]
 })
 export class ResponsableComponent implements OnInit {
-
-  constructor(private afMessaging: AngularFireMessaging , private shareService : ShareService) {
-
-  }
-
+   // constructor
+  constructor(
+    private afMessaging: AngularFireMessaging ,
+    private shareService : ShareService
+    ) 
+    {}
+    
+  //onInit
   ngOnInit() {
     this.requestPermission();
   }
