@@ -14,10 +14,23 @@
         </button>
       </div>
       <div class="divider" fxLayout="row" fxLayoutAlign="center center">
-        <button class="notification" mat-icon-button matTooltip="Notifications" (click)="toggleNotification()">
-            <mat-icon>notifications</mat-icon>
-            <!-- notification state -->
-            <span class="badge"></span>
+        <button [matMenuTriggerFor]="menunotif"   class="notification" mat-icon-button matTooltip="Notifications" (click)="toggleNotification()">
+          <mat-icon  matBadge="{{nbnotifications}}" [matBadgeHidden]="ishidden" matBadgePosition="after" matBadgeColor="accent">notifications</mat-icon>
+          <mat-menu #menunotif="matMenu" class="notification-container">
+            <div *ngIf="ishidden" class="empty" fxLayout="column" fxLayoutGap="25px" fxLayoutAlign="center center">
+              <mat-icon style="font-size: 36px;">notifications</mat-icon>
+              <span>No notification yet!</span>
+            </div>
+
+            <div class="fill" *ngIf="!ishidden" fxLayout="column" fxLayoutGap="8px">
+              <div class="notification-item" fxLayout="column" fxLayoutGap="5px" *ngFor="let notif of shareService.notifications">
+                <h3 style="margin:0">{{notif.title}}</h3>
+                <span>{{notif.body}}</span>
+              </div>
+            </div>
+              <!-- <button *ngFor="let notification of shareService.notifications" mat-menu-item>notification</button> -->
+          </mat-menu>
+         
         </button>
       </div>
       <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"

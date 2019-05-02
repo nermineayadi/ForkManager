@@ -38,7 +38,7 @@ export class CuisinierComponent implements OnInit {
     this.afMessaging.messages.subscribe(
       (payload) => {
         console.log("new message received. ", payload);
-        
+        this.shareService.notifications.push({title:payload['notification'].title, body:payload['notification'].body});
       })
   }
 }

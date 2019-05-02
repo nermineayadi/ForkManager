@@ -92,3 +92,25 @@
         height: 0;
     }
 }
+.empty{
+    width: 280px;
+    height: 300px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.fill{
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px;
+    width: 280px;
+    height: 300px;
+}
+.notification-item{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c4c4c7;
+}
+

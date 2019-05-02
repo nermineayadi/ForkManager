@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({providedIn : 'root'})
 export class ShareService {
+  notifications : any[] = [] ; 
   uid = localStorage.getItem('uid');
   profile : any ;
   constructor(private db: AngularFireDatabase ,

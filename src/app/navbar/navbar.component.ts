@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
     styleUrls:['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+    // notifications : any [] = [];
     page: number = 3;
     opened = false;
     onSerch = false;
@@ -38,6 +39,15 @@ export class NavbarComponent implements OnInit {
 
     toggleSearch(): void{
         this.onSerch = !this.onSerch;
+    }
+    get ishidden(): boolean {
+        return this.shareService.notifications.length == 0 ; 
+    }
+    get nbnotifications() : number {
+        return this.shareService.notifications.length ; 
+    }
+    get notifications() : any[] {
+        return this.shareService.notifications ; 
     }
 }
 
