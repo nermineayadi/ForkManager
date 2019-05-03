@@ -43,7 +43,7 @@ export class PlatCuisineComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
      this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
-     this.dataSource.filter = 'true';
+    //  this.dataSource.filter = 'true';
     })
 
   }
@@ -81,10 +81,14 @@ export class PlatCuisineComponent implements OnInit {
 
 
   //filtrer
+  //filtrer
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
+  // }
 
 
 

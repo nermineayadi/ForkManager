@@ -29,4 +29,9 @@ export class StockCuisineComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void { }
+      //filtrer
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
