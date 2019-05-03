@@ -110,7 +110,8 @@ ingredient = new Ingredient();
       },
     }
     this.testService.addingredient(obj).then(() => {
-      this.testService.showMsg('ingredients ajoutés')
+      this.testService.showMsg('ingredients ajoutés');
+      this.ingredient =new Ingredient();
     }).catch(error => {
       this.testService.showMsg(error.message)
     })

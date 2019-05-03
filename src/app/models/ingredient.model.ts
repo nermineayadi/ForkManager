@@ -1,7 +1,7 @@
 export class Ingredient {
     code : number ; 
     libelle : string;
-    quantite : number;
+    quantite : number = 10;
     prix : number; 
     famille : any ;
     sfamille : any ;
