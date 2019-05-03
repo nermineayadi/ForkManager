@@ -30,8 +30,7 @@ import { DetailPService } from './modals/detail-p/detail-p.service';
 import { CplatComponent } from './modals/CPlat/cplat.component';
 import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
-import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
-import { FamillePipe } from 'src/app/pipes/famille.pipe';
+
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({

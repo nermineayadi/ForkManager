@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CPlatService } from "./cplat.service";
 import { Plat } from 'src/app/models/plat.model';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-cplat',
@@ -37,7 +38,10 @@ export class CplatComponent implements OnInit {
  
   constructor(
      public dialogRef: MatDialogRef<CplatComponent>,
-     @Inject(MAT_DIALOG_DATA) public payload: any , private  CPlatservice: CPlatService
+     @Inject(MAT_DIALOG_DATA) public payload: any , 
+     private  CPlatservice: CPlatService
+     ,private shareService : ShareService
+
      ) { }
 
   ngOnInit() {
@@ -89,12 +93,12 @@ export class CplatComponent implements OnInit {
      this.CPlatservice
     .ajoutPlat(obj)
     .then(() => {
-      this.CPlatservice.showMsg("plat ajouté");
+      this.shareService.showMsg("plat ajouté");
       this.valider= false;
     })
     .catch(error => {
       console.error(error.message);
-      this.CPlatservice.showMsg(error.message);
+      this.shareService.showMsg(error.message);
       this.valider= false;
 
     });

@@ -92,7 +92,7 @@ export class PlatResponsableComponent implements OnInit {
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.platResponsableService.getPlats().subscribe(data => {
+      this.shareservice.getPlats().subscribe(data => {
         console.log(data)
         this.plats = [];
         data.forEach(element => {
@@ -112,7 +112,7 @@ export class PlatResponsableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.platResponsableService.getPlats().subscribe(data => {
+      this.shareservice.getPlats().subscribe(data => {
         console.log(data)
         this.plats = [];
         data.forEach(element => {

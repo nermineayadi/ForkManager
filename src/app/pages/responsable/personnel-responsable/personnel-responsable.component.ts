@@ -3,8 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { SelectionModel } from '@angular/cdk/collections';
-import { User } from 'src/app/models/user.model';
-import { ShareService } from 'src/app/services/share.service';
+
 import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 
 

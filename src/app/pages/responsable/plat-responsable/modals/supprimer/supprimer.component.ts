@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormBuilder } from '@angular/forms';
 import { PlatResponsableService } from '../../plat-responsable.service';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-supprimer',
@@ -11,7 +11,8 @@ import { PlatResponsableService } from '../../plat-responsable.service';
 export class SupprimerComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SupprimerComponent>,
     @Inject(MAT_DIALOG_DATA) public element: any,
-    private platService : PlatResponsableService) { 
+    private platService : PlatResponsableService,
+    private shareService : ShareService) { 
       console.log(this.element);
 
     }
@@ -21,11 +22,11 @@ export class SupprimerComponent implements OnInit {
   onDelete(){
     console.log(this.element.key);
     this.platService.supprimePlat(this.element.key).then(()=>{
-      this.platService.showMsg("plat supprimé");
+      this.shareService.showMsg("plat supprimé");
     })
     .catch(error => {
       console.error(error.message);
-      this.platService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.dialogRef.close();
   }

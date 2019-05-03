@@ -7,15 +7,9 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UPlatService {
     constructor(private db: AngularFireDatabase ,
-        private snackBar : MatSnackBar,
         public afAuth: AngularFireAuth ,
         private http: HttpClient) {}
-//snackbar
-showMsg(message: string){
-  this.snackBar.open(message ,'close',{
-      duration : 2000
-  })
-}
+
 getPlat(key : string){
   const itemref = this.db.object(`plats/${key}`);
   console.log(itemref);
@@ -34,29 +28,4 @@ ajoutPlat(plat : any) {
   return itemsRef.push(plat);
 }
 
-
-    createcategorie() {
-        const itemsRef = this.db.list(`sfamille`);
-        // return itemsRef.push({obj});   / OBJET JSON 
-        //push : uid auto generated
-        return itemsRef.push({name:"spaguetti"});
-      }
-      createfamille() {
-        const itemsRef = this.db.list(`famille/`);
-        // return itemsRef.push({obj});   / OBJET JSON 
-        //push : uid auto generated
-        return itemsRef.push({name:"pizza" , categorie:"-LcBOZV-II9iUpSc6VRf"});
-      }
-      createsfamille() {
-        const itemsRef = this.db.list(`sfamille`);
-        // return itemsRef.push({obj});   / OBJET JSON 
-        //push : uid auto generated
-        return itemsRef.push({name:"spaguetti" , famille:"-LcBsv3jdhBBhC4NIljL"});
-      }
-      createcategories() {
-        const itemsRef = this.db.list(`ingredient`);
-        // return itemsRef.push({obj});   / OBJET JSON 
-        //push : uid auto generated
-        return itemsRef.push({name:"spaguetti"});
-    }
 }

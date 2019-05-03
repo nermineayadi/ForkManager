@@ -3,6 +3,7 @@ import { TestService } from './InterfaceTest.service';
 import { ActivatedRoute } from '@angular/router';
 import { Boisson } from 'src/app/models/boisson.model';
 import { Ingredient } from 'src/app/models/ingredient.model';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-InterfaceTest',
@@ -13,7 +14,9 @@ export class InterfaceTestComponent implements OnInit {
 test: any ;
   constructor(
     private route: ActivatedRoute,
-    private testService: TestService) { }
+    private testService: TestService
+    ,private shareService : ShareService
+) { }
 
      ngOnInit() {
       this.route.data.subscribe((data) => {
@@ -27,9 +30,9 @@ test: any ;
     ;
   addNewCategorie() {
     this.testService.addCategorie(this.categorie).then(() => {
-      this.testService.showMsg('categorie ajoutée')
+      this.shareService.showMsg('categorie ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.categorie = { nomcategorie: '', numcategorie: '' }
   }
@@ -39,9 +42,9 @@ test: any ;
     ;
   addNewFamille() {
     this.testService.addfamille(this.famille).then(() => {
-      this.testService.showMsg('famille ajoutée')
+      this.shareService.showMsg('famille ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.famille = { numfamille: 0, nomfamille: '', classe: '',categorie :''}
   }
@@ -50,9 +53,9 @@ test: any ;
     ;
   addNewSfamille() {
     this.testService.addsfamille(this.sfamille).then(() => {
-      this.testService.showMsg('sfamille ajoutée')
+      this.shareService.showMsg('sfamille ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.sfamille = { numsfamille: 0, nomsfamille: '', famille: '' }
   }
@@ -61,9 +64,9 @@ test: any ;
     ;
   addNewAchat() {
     this.testService.addachat(this.achat).then(() => {
-      this.testService.showMsg('achat ajouté')
+      this.shareService.showMsg('achat ajouté')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.achat = { nom: '' }
   }
@@ -73,9 +76,9 @@ test: any ;
     ;
   addNewStockage() {
     this.testService.addstockage(this.stockage).then(() => {
-      this.testService.showMsg('stockage ajouté')
+      this.shareService.showMsg('stockage ajouté')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.stockage = { nom: '' }
 
@@ -110,10 +113,10 @@ ingredient = new Ingredient();
       },
     }
     this.testService.addingredient(obj).then(() => {
-      this.testService.showMsg('ingredients ajoutés');
+      this.shareService.showMsg('ingredients ajoutés');
       this.ingredient =new Ingredient();
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
 
   }
@@ -148,9 +151,9 @@ ingredient = new Ingredient();
       },
     }
     this.testService.addboisson(obj).then(() => {
-      this.testService.showMsg('boisson ajoutée')
+      this.shareService.showMsg('boisson ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
 
   }
@@ -159,9 +162,9 @@ ingredient = new Ingredient();
     ;
   addNewUnite() {
     this.testService.addunite(this.unite).then(() => {
-      this.testService.showMsg('unité ajoutée')
+      this.shareService.showMsg('unité ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.unite =     { nom: '' }
 
@@ -171,9 +174,9 @@ ingredient = new Ingredient();
     { numclasse: 0, nomclasse: '' }
   addNewClasse() {
     this.testService.addclasse(this.classe).then(() => {
-      this.testService.showMsg('classe ajoutée')
+      this.shareService.showMsg('classe ajoutée')
     }).catch(error => {
-      this.testService.showMsg(error.message)
+      this.shareService.showMsg(error.message)
     })
     this.classe = { numclasse: 0, nomclasse: '' }
 

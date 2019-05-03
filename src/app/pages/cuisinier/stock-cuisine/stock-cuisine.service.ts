@@ -1,20 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { promise } from 'protractor';
 import { ShareService } from 'src/app/services/share.service';
 import { AngularFireDatabase } from "@angular/fire/database";
+import * as firebase from 'firebase';
 
 ShareService
 @Injectable()
-export class CommandeService  {
+export class StockCuisineService {
     constructor(private db: AngularFireDatabase ) {
+
     }
 
 
-
 }
-
-
-
-

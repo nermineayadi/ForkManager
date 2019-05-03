@@ -10,21 +10,21 @@ import { ReservationResponsableComponent } from './reservation-responsable/reser
 import { PersonnelResponsableComponent } from './personnel-responsable/personnel-responsable.component';
 import { MenuResponsableComponent } from './menu-responsable/menu-responsable.component';
 import { InventaireResponsableComponent } from './inventaire-responsable/inventaire-responsable.component';
-import { PlatResponsableService } from './plat-responsable/plat-responsable.service';
+import { ShareService } from 'src/app/services/share.service';
 
 const routes: Routes = [
     {
         path: "",
         component: ResponsableComponent,
         children: [
-          { path: "", component: AcceuilResponsableComponent },
-          { path: "plats", component: PlatResponsableComponent,resolve:{plat : PlatResponsableService}  },
-          { path: "boissons", component: BoissonResponsableComponent },
-          { path: "menu", component: MenuResponsableComponent },
-          { path: "portions", component: PortionResponsableComponent },
-          { path: "reservations", component: ReservationResponsableComponent },
-          { path: "personnels", component: PersonnelResponsableComponent },
-          { path: "inventaire", component: InventaireResponsableComponent },
+          { path: "", component: AcceuilResponsableComponent,resolve:{acceuil : ShareService}  },
+          { path: "plats", component: PlatResponsableComponent,resolve:{plat : ShareService}  },
+          { path: "boissons", component: BoissonResponsableComponent,resolve:{boisson : ShareService}  },
+          { path: "srecettes", component: MenuResponsableComponent,resolve:{srecette : ShareService}  },
+          { path: "portions", component: PortionResponsableComponent ,resolve:{portion : ShareService} },
+          { path: "reservations", component: ReservationResponsableComponent,resolve:{reservation : ShareService}  },
+          { path: "personnels", component: PersonnelResponsableComponent,resolve:{personnel : ShareService}  },
+          { path: "inventaire", component: InventaireResponsableComponent ,resolve:{inventaire : ShareService} },
 
         ]
       }

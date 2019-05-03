@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DetailPService } from './detail-p.service';
 
 @Component({
   selector: 'app-detail-p',
@@ -23,6 +22,7 @@ export class DetailPComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public payload: any) {
             this.plat= payload;
     }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

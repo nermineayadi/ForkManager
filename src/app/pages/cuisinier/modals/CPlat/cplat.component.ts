@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CPlatService } from "./cplat.service";
 import { Plat } from 'src/app/models/plat.model';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-cplat',
@@ -45,6 +46,8 @@ export class CplatComponent implements OnInit {
      public dialogRef: MatDialogRef<CplatComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any ,
       private  CPlatservice: CPlatService
+      ,private shareService : ShareService
+
      ) { }
 
   ngOnInit() {
@@ -86,9 +89,7 @@ export class CplatComponent implements OnInit {
         nomsfamille: this.sfamille.value.payload.val().nomsfamille
       },
       token: JSON.parse(localStorage.getItem('profile')).token,
-     // ingredients: this.ingredients ,
-    //  srecettes: this.srecettes,
-     // etapes:this.etapes,
+  
       nbPart : this.nbparts.value,
       duree : this.duree.value,
       valide:false
@@ -97,7 +98,7 @@ export class CplatComponent implements OnInit {
      this.CPlatservice
     .ajoutPlat(obj)
     .then((data : any) => {
-      this.CPlatservice.showMsg("plat ajouté");
+      this.shareService.showMsg("plat ajouté");
       this.valider= false;
       this.dialogRef.close({
         key: data.key,
@@ -106,7 +107,7 @@ export class CplatComponent implements OnInit {
     })
     .catch(error => {
       console.error(error.message);
-      this.CPlatservice.showMsg(error.message);
+      this.shareService.showMsg(error.message);
       this.valider= false;
 
     });
