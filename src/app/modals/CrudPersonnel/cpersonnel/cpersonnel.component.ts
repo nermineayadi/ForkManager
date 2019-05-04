@@ -32,7 +32,7 @@ export class CPersonnelComponent implements OnInit {
   //creer utilisateur
   register() {
     const obj = {
-      responsable:JSON.parse(localStorage.getItem('profile')).key,
+      responsable:localStorage.getItem('uid'),
       token :'',
       email: this.email.value,
       nom: this.nom.value,

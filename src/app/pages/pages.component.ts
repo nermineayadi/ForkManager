@@ -20,15 +20,15 @@ export class PagesComponent implements OnInit {
  
   
     ngOnInit() {
-      this.requestPermission();
+      //this.requestPermission();
     }
   
-    requestPermission() {
-      this.afMessaging.requestPermission
-        .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-        .subscribe(
-          (token) => { console.log('Permission granted! Save to the server!', token); },
-          (error) => { console.error(error); },  
-        );
-    }
+    // requestPermission() {
+    //   this.afMessaging.requestPermission
+    //     .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+    //     .subscribe(
+    //       (token) => { console.log('Permission granted! Save to the server!', token); },
+    //       (error) => { console.error(error); },  
+    //     );
+    // }
 }
