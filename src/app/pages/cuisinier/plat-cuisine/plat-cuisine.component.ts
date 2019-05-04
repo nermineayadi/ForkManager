@@ -2,9 +2,7 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog, } from '@angular/material';
 import { CplatComponent } from '../modals/CPlat/cplat.component';
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireList } from '@angular/fire/database';
 import { DetailPComponent } from '../modals/detail-p/detail-p.component';
-import { SupprimerComponent } from '../modals/supprimer/supprimer.component';
 import { Plat } from 'src/app/models/plat.model';
 import { ShareService } from 'src/app/services/share.service';
 
@@ -43,7 +41,7 @@ export class PlatCuisineComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
      this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
-    //  this.dataSource.filter = 'true';
+    this.dataSource.filter = 'true';
     })
 
   }
@@ -80,15 +78,10 @@ export class PlatCuisineComponent implements OnInit {
   }
 
 
-  //filtrer
-  //filtrer
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
   }
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
-  // }
 
 
 

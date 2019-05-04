@@ -5,7 +5,6 @@ import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AngularCsv } from 'angular7-csv/dist/Angular-csv'
 import { ActivatedRoute } from '@angular/router';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { UplatComponent } from './modals/UPlat/uplat.component';
 import { CplatComponent } from './modals/CPlat/cplat.component';
 import { ShareService } from 'src/app/services/share.service';

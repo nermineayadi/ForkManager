@@ -158,7 +158,13 @@ export class ShareService {
   //get profile
   getProfile(uid: string) {
     const itemRef = this.db.object(`users/${uid}`);
+    console.log(itemRef.valueChanges())
     return itemRef.valueChanges();
+  }
+  getUser(uid: string) {
+    const itemRef = this.db.object(`users/${uid}`);
+    console.log(itemRef.snapshotChanges())
+    return itemRef.snapshotChanges();
   }
   //snackbar
   showMsg(message: string) {
