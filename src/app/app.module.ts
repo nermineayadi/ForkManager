@@ -82,7 +82,6 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
     //modals
     InventaireCComponent ,
     CCmdComponent,
-    CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
     CropperComponent,
@@ -143,7 +142,6 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
     
     CCmdComponent,
     InventaireCComponent,
-    CBoissonComponent,
     CPersonnelComponent,
     CPortionComponent,
     InventaireBComponent,

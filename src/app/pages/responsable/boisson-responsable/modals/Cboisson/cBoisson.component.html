@@ -1,0 +1,77 @@
+<div class="dialog" fxLayout="column">
+  <mat-toolbar>
+    <h5>Boisson</h5>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    
+
+    <div style="width:100%" fxLayoutGap="50px">
+      <mat-form-field appearance="outline">
+        <mat-label>code</mat-label>
+        <input [formControl]="code" matInput required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>libelle</mat-label>
+        <input [formControl]="libelle" matInput required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>quantite</mat-label>
+        <input [formControl]="quantite" matInput required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>prix</mat-label>
+        <input [formControl]="prix" matInput required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>classe</mat-label>
+        <mat-select [formControl]="classe" required>
+          <mat-option *ngFor="let classe of payload.classes" [value]="classe">
+            {{classe.payload.val().nomclasse}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>famille</mat-label>
+        <mat-select [formControl]="famille" required>
+          <mat-option *ngFor="let famille of boisson.familles |filterbyclasse:classe?.value.key  "
+            [value]="famille">
+            {{famille.payload.val().nomfamille}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>sous famille</mat-label>
+        <mat-select [formControl]="sfamille" required>
+          <mat-option *ngFor="let sfamille of boisson.sfamilles |  filterbyfamille:famille?.value.key  "
+            [value]="sfamille">
+            {{sfamille.payload.val().nomsfamille}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>achat</mat-label>
+        <mat-select [formControl]="achat" required>
+          <mat-option *ngFor="let achat of boisson.achats" [value]="achat">
+            {{achat.payload.val().nom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>stockage</mat-label>
+        <mat-select [formControl]="stockage" required>
+          <mat-option *ngFor="let stockage of boisson.stockages" [value]="stockage">
+            {{stockage.payload.val().nom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    </div>
+    
+  </div>
+  <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary" [disabled]="valider"
+      (click)="ajoutBoisson()">Enregistrer</button>
+    <button mat-button (click)="onNoClick()"> Annuler</button>
+  </div>
+</div>

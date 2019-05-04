@@ -25,13 +25,18 @@ import { PlatResponsableService } from './plat-responsable/plat-responsable.serv
 import { DetailPService } from './plat-responsable/modals/detail-p/detail-p.service';
 import { CPlatService } from './plat-responsable/modals/CPlat/cplat.service';
 import { CplatComponent } from './plat-responsable/modals/CPlat/cplat.component';
-import { SfamillePipe } from 'src/app/pipes/sfamille.pipe';
-import { FamillePipe } from 'src/app/pipes/famille.pipe';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SupprimerComponent } from './plat-responsable/modals/supprimer/supprimer.component';
+
 import { DetailPComponent } from './plat-responsable/modals/detail-p/detail-p.component';
 import { UplatComponent } from './plat-responsable/modals/UPlat/uplat.component';
 import { UPlatService } from './plat-responsable/modals/UPlat/uplat.service';
+import { CBoissonComponent } from './boisson-responsable/modals/Cboisson/cBoisson.component';
+import { UBoissonComponent } from './boisson-responsable/modals/UBoisson/uBoisson.component';
+import { CBoissonService } from './boisson-responsable/modals/Cboisson/cBoisson.service';
+import { UBoissonService } from './boisson-responsable/modals/UBoisson/uBoisson.service';
+import { SupprimerBComponent } from './boisson-responsable/modals/supprimer/supprimerB.component';
+import { BoissonResponsableService } from './boisson-responsable/boisson-responsable.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -50,7 +55,7 @@ NavigationResponsableComponent;
     CplatComponent,
     SupprimerComponent,
     DetailPComponent,
-    UplatComponent
+    UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent
        //pipes
    
     
@@ -68,8 +73,8 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
-entryComponents:[CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent],
+entryComponents:[CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
   exports: [],
-  providers: [CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService]
+  providers: [BoissonResponsableService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
 })
 export class ResponsableModule {}
