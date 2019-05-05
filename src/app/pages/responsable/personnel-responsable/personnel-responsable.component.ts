@@ -5,29 +5,10 @@ import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpe
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
-
-
-export interface Personnel {
-  nom: string;
-  id: number;
-  prenom: string;
-  mail: string;
-  datenaiss: string;
-  fonction: string;
-  cin: string;
-}
-
-//initialisations plats 
-
-const ELEMENT_DATA: Personnel[] = [
-  { id: 1, nom: 'nermine', prenom: 'ayadi', mail: 'nermine.ayadi15@gmail.com', datenaiss: '17/09/1996', fonction: "25684557", cin: "09854067" },
-  { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', fonction: "25684557", cin: "09854067" },
-  { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', fonction: "26862856", cin: "09854067" },
-  { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', fonction: "25684557", cin: "09854067" },
-  { id: 2, nom: 'mariem', prenom: 'chaieb', mail: 'mariemch@gmail.com', datenaiss: '11/10/1997', fonction: "25684557", cin: "09854067" },
-  { id: 3, nom: 'sally', prenom: 'ayadi', mail: 'sally.ayadi@gmail.com', datenaiss: '04/02/1995', fonction: "26862856", cin: "09854067" },
-  { id: 4, nom: 'ahmed', prenom: 'salah', mail: 'ahmedsalah@gmail.com', datenaiss: '22/09/1996', fonction: "25684557", cin: "09854067" },
-];
+import { User } from 'src/app/models/user.model';
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
 
 @Component({
   selector: 'app-personnel-responsable',
@@ -37,44 +18,75 @@ const ELEMENT_DATA: Personnel[] = [
 export class PersonnelResponsableComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['select', 'id', 'nom', 'prenom', 'mail', 'datenaiss', 'fonction', 'cin', 'actions'];
+ displayedColumns: string[] = [  'nom', 'prenom', 'mail', 'fonction','actions'];
 
-  dataSource = new MatTableDataSource<Personnel>(ELEMENT_DATA);
+ //var
+ users: any[] = [];
+ user: any;
+ dataSource: MatTableDataSource<any>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+ //pagination
+ @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  selection = new SelectionModel<Personnel>(true, []);
 
+ // constructor
+ constructor(
+   public dialog: MatDialog,
+   private route: ActivatedRoute,
+   private shareservice: ShareService,
+ ) { }
 
-  constructor(public dialog: MatDialog, ) { }
-  openDialog(): void {
+ //onInit
+ ngOnInit() {
+   this.route.data.subscribe((data) => {
+    //  console.log(data)
+     data.personnel.users.forEach(element => {
+       this.users.push({ key: element.key, ...element.payload.val() })
+     });
+    //  console.log(this.users)
+     this.dataSource = new MatTableDataSource<User>(this.users);
+     this.dataSource.paginator = this.paginator;
+     this.user = data.personnel;
+
+   })
+
+ }
+  openCPersonnel(): void {
     const dialogRef = this.dialog.open(CPersonnelComponent, {
-      //taille du modal 
-
-      width: '800px',
       data: {}
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+      this.shareservice.getUsers().subscribe(data => {
+        // console.log(data)
+        this.users = [];
+        data.forEach(element => {
+          this.users.push({ key: element.key, ...element.payload.val() })
+        })
+        // console.log(this.users)
+        this.dataSource = new MatTableDataSource<User>(this.users);
+        // console.log('The dialog was closed');
+      })
+    })
   }
-  openDialog2(): void {
-    const dialogRef = this.dialog.open(SupprimerComponent, {
-      //taille du modal 
-      
-      width: '900px',
-      data:{ }
+  openSupprime(element : any): void {
+    const dialogRef = this.dialog.open(DPersonnelComponent, {
+      data: element
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+      this.shareservice.getUsers().subscribe(data => {
+        // console.log(data)
+        this.users = [];
+        data.forEach(element => {
+          this.users.push({ key: element.key, ...element.payload.val() })
+        })
+        // console.log(this.users)
+        this.dataSource = new MatTableDataSource<User>(this.users);
+        // console.log('The dialog was closed');
+      })
+
+    })
   }
-  //pagination
-  ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+ 
 
   //filtrer
 
@@ -82,28 +94,6 @@ export class PersonnelResponsableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Personnel): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
   
 
 }

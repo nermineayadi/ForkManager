@@ -37,6 +37,8 @@ import { CBoissonService } from './boisson-responsable/modals/Cboisson/cBoisson.
 import { UBoissonService } from './boisson-responsable/modals/UBoisson/uBoisson.service';
 import { SupprimerBComponent } from './boisson-responsable/modals/supprimer/supprimerB.component';
 import { BoissonResponsableService } from './boisson-responsable/boisson-responsable.service';
+import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
+import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ NavigationResponsableComponent;
     InventaireResponsableComponent,
     NavigationResponsableComponent,
 
-
+    DPersonnelComponent,
     CplatComponent,
     SupprimerComponent,
     DetailPComponent,
@@ -73,8 +75,8 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
-entryComponents:[CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
+entryComponents:[DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
   exports: [],
-  providers: [BoissonResponsableService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
+  providers: [BoissonResponsableService,DPersonnelService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
 })
 export class ResponsableModule {}

@@ -1,50 +1,57 @@
-<h1 mat-dialog-title>Ajout Personnel</h1>
-<div mat-dialog-content fxLayout="row"fxLayoutAlign="space-between space-between">
-  <div>
+<div class="dialog" fxLayout="column">
+  <mat-toolbar>
+    <h5>Ajout Personnel</h5>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column" fxLayoutAlign="space-between center">
+      <mat-form-field appearance="outline"auto>
+        <mat-label>Nom</mat-label>
+        <input matInput [formControl]="nom" autocomplete="off">
+      </mat-form-field>
       <mat-form-field appearance="outline">
-      <mat-label>Nom</mat-label>
-      <input matInput [formControl]="nom"> 
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label> Prénom</mat-label>
-      <input matInput  [formControl]="prenom" >
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="outline">
+        <mat-label> Prénom</mat-label>
+        <input matInput [formControl]="prenom">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+      <mat-form-field appearance="outline">
         <mat-label>E-mail</mat-label>
-      <input matInput placeholder="Email" [formControl]="email">
-      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+        <input matInput placeholder="Email" [formControl]="email" autocomplete="off">
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+          tapez une adresse valide
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email est <strong> obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required autocomplete="off">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+        <mat-form-field appearance="outline"auto>
+            <mat-label>Telephone</mat-label>
+            <input matInput [formControl]="telephone" type="number" autocomplete="off">
+          </mat-form-field>
      
+
+      <mat-form-field appearance="outline">
+        <mat-select [formControl]="fonction" placeholder="Fonction">
+          <mat-option value="cuisine">cuisine</mat-option>
+          <mat-option value="Portionneur">portionneur</mat-option>
+          <mat-option value="Serveur">serveur</mat-option>
+          <mat-option value="Barman">bar</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
   </div>
-<div>
-  <mat-form-field appearance="outline">
-    <mat-label>Tapez votre mot de passe</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-
-  </mat-form-field>
- 
-    <mat-form-field appearance="outline">
-      <mat-select [formControl]="fonction" placeholder="Fonction">
-        <mat-option value="cuisine">cuisine</mat-option>
-        <mat-option value="Portionneur">portionneur</mat-option>
-        <mat-option value="Serveur">serveur</mat-option>
-        <mat-option value="Barman">bar</mat-option>
-      </mat-select>
-    </mat-form-field>
- 
-</div>
-  <div >
-      <button class="btn-modal" mat-stroked-button color="primary" (click)="register()" >Enregistrer</button>
-      <button  class="btn-modal"mat-stroked-button color="primary" (click)="onNoClick()" > Annuler</button>
-
+  <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary" [disabled]="isValid || valider"
+      (click)="register()">Enregistrer</button>
+    <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>
 </div>
-

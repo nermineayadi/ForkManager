@@ -19,101 +19,51 @@
         <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" [ngStyle.xs]="{'padding.px': 10}">
-      <div fxLayout="row" (click)="openDialog2()" fxLayoutAlign="center center" style="color: red; cursor:pointer;" fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
-        <span [fxHide.xs]="true">Supprimer</span>
-      </div>
-      <div fxLayout="row" (click)="openDialog()" fxLayoutAlign="center center" style="cursor:pointer;"
+      <div fxLayout="row" (click)="openCPersonnel()" fxLayoutAlign="center center" style="cursor:pointer;"
         fxLayoutGap="5px">
         <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
         <span [fxHide.xs]="true">Ajouter</span>
       </div>
-      <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer;" fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">note_add</mat-icon>
-        <span [fxHide.xs]="true">Importer Excel</span>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer" fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">file_copy</mat-icon>
-        <span [fxHide.xs]="true">Exporter</span>
-      </div>
-    </div>
+
+    
   </div>
 
 </div>
 
-<!-- <div fxLayout="row" fxLayoutAlign="space-between start">
 
-  <button mat-stroked-button color="primary" (click)="openDialog()">Ajouter</button>
-</div> -->
+  <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8 table table-responsive-md table-striped " >
 
 
-<div class="mat-elevation-z8 ">
-
-  <table mat-table [dataSource]="dataSource" class="table table-responsive-md table-striped " >
-
-    <!-- Checkbox Column -->
-    <ng-container matColumnDef="select" >
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-          [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
-          [aria-label]="checkboxLabel()">
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-          [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
-     <!-- ID Column -->
-     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> id   </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
  <!-- Name Column -->
  <ng-container matColumnDef="nom">
-  <th mat-header-cell *matHeaderCellDef> nom  </th>
+  <th mat-header-cell *matHeaderCellDef> Nom  </th>
   <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
 </ng-container>
  <!-- Prénom Column -->
  <ng-container matColumnDef="prenom">
-  <th mat-header-cell *matHeaderCellDef> prenom  </th>
+  <th mat-header-cell *matHeaderCellDef> Prenom  </th>
   <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
 </ng-container>
 
   
    <!-- mail Column -->
  <ng-container matColumnDef="mail">
-  <th mat-header-cell *matHeaderCellDef>mail  </th>
-  <td mat-cell *matCellDef="let row"> {{row.mail}} </td>
+  <th mat-header-cell *matHeaderCellDef>Email  </th>
+  <td mat-cell *matCellDef="let row"> {{row.email}} </td>
 </ng-container>
-     <!-- datenaiss Column -->
- <ng-container matColumnDef="datenaiss">
-  <th mat-header-cell *matHeaderCellDef>datenaiss  </th>
-  <td mat-cell *matCellDef="let row"> {{row.datenaiss}} </td>
-</ng-container>
+
   <!-- fonction Column -->
   <ng-container matColumnDef="fonction">
-    <th mat-header-cell *matHeaderCellDef> fonction   </th>
+    <th mat-header-cell *matHeaderCellDef> Fonction   </th>
     <td mat-cell *matCellDef="let row"> {{row.fonction}} </td>
   </ng-container>
-  <!--cin Column -->
-  <ng-container matColumnDef="cin">
-    <th mat-header-cell *matHeaderCellDef> cin   </th>
-    <td mat-cell *matCellDef="let row"> {{row.cin}} </td>
-  </ng-container>
+  
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef fxLayout="column" fxLayoutAlign="center start"></th>
-      <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutAlign="center end">
-        <button mat-icon-button [matMenuTriggerFor]="menu" style="color: #506169;">
-          <mat-icon>more_vert</mat-icon>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row"  fxLayoutAlign="center end">
+        <button mat-icon-button  style="color: #506169;" (click)="openSupprime(row)">
+          <mat-icon>delete</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Edit</button>
-          <button mat-menu-item>Delete</button>
-        </mat-menu>
       </td>
     </ng-container>
 
@@ -122,8 +72,7 @@
   </table>
 
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+  <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
 
     
   

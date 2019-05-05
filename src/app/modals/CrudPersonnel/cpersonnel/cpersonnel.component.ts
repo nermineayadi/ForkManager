@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-cpersonnel',
   templateUrl: './cpersonnel.component.html',
+  styleUrls:['./cpersonnel.component.scss']
 
 })
 export class CPersonnelComponent implements OnInit {
@@ -14,15 +15,11 @@ export class CPersonnelComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   nom = new FormControl('', [Validators.required]);
   prenom = new FormControl('', [Validators.required]);
-  cin = new FormControl('', [Validators.required]);
-
   fonction = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
+  telephone= new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]);
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+
   constructor(public dialogRef: MatDialogRef<CPersonnelComponent>, private CPersonnelService: CPersonnelService, ) { }
   ngOnInit() {
   }
@@ -39,9 +36,10 @@ export class CPersonnelComponent implements OnInit {
       prenom: this.prenom.value,
       fonction: this.fonction.value,
       password: this.password.value,
+      telephone : this.telephone.value
     };
     this.CPersonnelService.authentification(obj.email, obj.password).then((data: any) => {
-
+      this.user.telephone=obj.telephone;
       this.user.email = obj.email;
       this.user.nom = obj.nom;
       this.user.prenom = obj.prenom;
@@ -50,8 +48,9 @@ export class CPersonnelComponent implements OnInit {
       this.user.responsable=obj.responsable;
       this.CPersonnelService
         .createUsers(this.user, data.user.uid)
-        .then(() => {
+        .then((user : any) => {
           this.CPersonnelService.showMsg("personnel créé avec succès");
+          this.dialogRef.close({user})
         })
         .catch(error => {
           console.error(error.message);
@@ -59,7 +58,10 @@ export class CPersonnelComponent implements OnInit {
     })
       .catch(error => { this.CPersonnelService.showMsg(error.message); });
   }
-
+  get isValid(): boolean {
+    return this.nom.invalid || this.prenom.invalid || this.email.invalid
+      || this.password.invalid || this.fonction.invalid || this.telephone.invalid ;
+  }
   close(){
     this.dialogRef.close();
   }

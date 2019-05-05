@@ -33,6 +33,9 @@
         padding: 0 !important;
       }
     }
+
+    
+  
   }
 
 
@@ -46,9 +49,19 @@
 
   table {
     width: 100%;
-height: 100%;
+    border-radius: 4%;
+
     th {
       text-decoration: bold;
+      vertical-align: middle;
     }
+    td{
+      vertical-align: middle;
+
+      button{
+        width : 50%;
+      .mat-icon{
+      vertical-align: top;}
+    }}
   }
 }

@@ -11,3 +11,20 @@
 .mat-dialog-container{
   padding: 0 !important;
 }
+
+table {
+  width: 100%;
+  border-radius: 4%;
+
+  th {
+    text-decoration: bold;
+    vertical-align: middle;
+  }
+  td{
+    vertical-align: middle;
+
+    button{
+      width : 50%;
+  
+  }}
+}

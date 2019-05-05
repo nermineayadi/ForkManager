@@ -22,9 +22,9 @@ export class NavigationResponsableComponent implements OnInit {
       link: "./boissons",
     },
     {
-      title: "Sous Familles",
+      title: "Sous Recettes",
       icon: "book-open",
-      link: "./sfamilles"
+      link: "./srecettes"
     },
     {
       title: "Portions",

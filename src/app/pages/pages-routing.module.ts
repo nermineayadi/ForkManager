@@ -2,10 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
-import { PortionneurComponent } from "./portionneur/portionneur.component";
-import { ResponsableComponent } from "./responsable/responsable.component";
-import { ServeurComponent } from "./serveur/serveur.component";
-import { BarmanComponent } from "./barman/barman.component";
 import { PagesComponent } from "./pages.component";
 
 const routes: Routes = [
