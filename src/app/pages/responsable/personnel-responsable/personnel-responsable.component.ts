@@ -2,13 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.component';
-import { SelectionModel } from '@angular/cdk/collections';
-
-import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 import { User } from 'src/app/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-personnel-responsable',
@@ -27,6 +25,8 @@ export class PersonnelResponsableComponent implements OnInit {
 
  //pagination
  @ViewChild(MatPaginator) paginator: MatPaginator;
+ //sort
+ @ViewChild(MatSort) sort: MatSort;
 
 
  // constructor
@@ -34,6 +34,7 @@ export class PersonnelResponsableComponent implements OnInit {
    public dialog: MatDialog,
    private route: ActivatedRoute,
    private shareservice: ShareService,
+   private location: Location
  ) { }
 
  //onInit
@@ -46,6 +47,8 @@ export class PersonnelResponsableComponent implements OnInit {
     //  console.log(this.users)
      this.dataSource = new MatTableDataSource<User>(this.users);
      this.dataSource.paginator = this.paginator;
+     this.dataSource.sort = this.sort;
+
      this.user = data.personnel;
 
    })
@@ -92,6 +95,9 @@ export class PersonnelResponsableComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
   
