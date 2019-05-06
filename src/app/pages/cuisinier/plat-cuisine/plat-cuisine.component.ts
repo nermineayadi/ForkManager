@@ -32,11 +32,11 @@ export class PlatCuisineComponent implements OnInit {
    //onInit
    ngOnInit() {
     this.route.data.subscribe((data) => {
-      console.log(data)
+     // console.log(data)
       data.plat.plats.forEach(element => {
         this.plats.push({key : element.key , ...element.payload.val()})
       });
-      console.log(this.plats)
+      //console.log(this.plats)
 
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
      this.dataSource.paginator = this.paginator;
@@ -57,7 +57,7 @@ export class PlatCuisineComponent implements OnInit {
         this.dataSource.filter = 'true';
       }
       console.log( this.dataSource )
-      console.log('The dialog was closed');
+    //  console.log('The dialog was closed');
     });
   }
   openDetail(element : any) : void {
@@ -80,7 +80,10 @@ export class PlatCuisineComponent implements OnInit {
 
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';
+    if (filterValue==''){
+      this.dataSource.filter = 'true';
+    }else{
+    this.dataSource.filter = filterValue.trim().toLowerCase() && 'true';}
   }
 
 

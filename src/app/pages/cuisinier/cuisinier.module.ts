@@ -6,7 +6,7 @@ import { CuisinierComponent } from "./cuisinier.component";
 //childs of cuisinier
 import { PlatCuisineComponent } from "./plat-cuisine/plat-cuisine.component";
 import { StockCuisineComponent } from "./stock-cuisine/stock-cuisine.component";
-import { MenuCuisineComponent } from "./menu-cuisine/menu-cuisine.component";
+import { SrecetteCuisineComponent } from "./srecette-cuisine/srecette-cuisine.component";
 import { ReservationCuisineComponent } from "./reservation-cuisine/reservation-cuisine.component";
 import { CommandeCuisineComponent } from "./commande-cuisine/commande-cuisine.component";
 import { InventaireCuisineComponent } from "./inventaire-cuisine/inventaire-cuisine.component";
@@ -40,7 +40,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     //childs of cuisinier
     PlatCuisineComponent,
     StockCuisineComponent,
-    MenuCuisineComponent,
+    SrecetteCuisineComponent,
     ReservationCuisineComponent,
     CommandeCuisineComponent,
     InventaireCuisineComponent,

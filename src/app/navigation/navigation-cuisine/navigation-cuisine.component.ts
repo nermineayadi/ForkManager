@@ -19,9 +19,9 @@ export class NavigationCuisineComponent implements OnInit {
       link: "./plats",
     },
     {
-      title: "Sous Familles",
+      title: "Sous Recettes",
       icon: "book-open",
-      link: "./sfamilles"
+      link: "./srecettes"
     },
     {
       title: "Réservation",

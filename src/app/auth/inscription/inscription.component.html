@@ -1,7 +1,6 @@
-<div class=" centre">
+<div class="container"style="margin: 70px">
   <mat-card>
     <mat-card-title>
-      
       Profile
       <div class="mattitle" fxLayoutAlign="center center">
         <div class="user w-100 " fxLayout="row" fxLayoutGap="20px">
@@ -12,16 +11,13 @@
                 <input (change)="onchange($event)" visbility="hidden" #file type="file" accept="image/*">
               </span>
             </div>
-
-
           </mat-card>
         </div>
       </div>
-
     </mat-card-title>
     <mat-card-content>
-      <form [formGroup]="profileForm" class="example-form ">
-        <div fxLayout="row" fxLayoutAlign="space-between start">
+      <form [formGroup]="profileForm" class="example-form "fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxLayout.xs="column">
           <mat-form-field appearance="outline">
             <mat-label>Tapez votre Nom</mat-label>
             <input formControlName="nom" matInput placeholder="Nom" required>
@@ -31,7 +27,7 @@
             <input formControlName="prenom" matInput placeholder=" Prénom" required>
           </mat-form-field>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxLayout.xs="column">
           <mat-form-field appearance="outline">
             <mat-label>Date de Naissance</mat-label>
             <input formControlName="dateNaiss" matInput [matDatepicker]="picker" placeholder="Choose a date">
@@ -44,7 +40,7 @@
           </mat-form-field>
 
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxLayout.xs="column" >
           <mat-form-field appearance="outline">
             <mat-label>Téléphone</mat-label>
             <span matPrefix>+216 &nbsp;</span>

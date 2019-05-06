@@ -9,7 +9,6 @@ import { UplatComponent } from './modals/UPlat/uplat.component';
 import { CplatComponent } from './modals/CPlat/cplat.component';
 import { ShareService } from 'src/app/services/share.service';
 import { Plat } from 'src/app/models/plat.model';
-import { PlatResponsableService } from './plat-responsable.service';
 
 //initialisations plats 
 
@@ -35,7 +34,6 @@ export class PlatResponsableComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private shareservice: ShareService,
-    private platResponsableService: PlatResponsableService
   ) { }
 
   //onInit
@@ -45,7 +43,7 @@ export class PlatResponsableComponent implements OnInit {
       data.plat.plats.forEach(element => {
         this.plats.push({ key: element.key, ...element.payload.val() })
       });
-      console.log(this.plats)
+      //console.log(this.plats)
 
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
       this.dataSource.paginator = this.paginator;
@@ -64,8 +62,8 @@ export class PlatResponsableComponent implements OnInit {
         this.plats.push(result);
         this.dataSource = new MatTableDataSource<Plat>(this.plats);
       }
-      console.log(this.dataSource)
-      console.log('The dialog was closed');
+      //console.log(this.dataSource)
+     // console.log('The dialog was closed');
     });
   }
   //modal detail plat
@@ -78,7 +76,7 @@ export class PlatResponsableComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+       // console.log('The dialog was closed');
       });
     }
     else {
@@ -92,14 +90,14 @@ export class PlatResponsableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.shareservice.getPlats().subscribe(data => {
-        console.log(data)
+        //console.log(data)
         this.plats = [];
         data.forEach(element => {
           this.plats.push({ key: element.key, ...element.payload.val() })
         })
-        console.log(this.plats)
+      //  console.log(this.plats)
         this.dataSource = new MatTableDataSource<Plat>(this.plats);
-        console.log('The dialog was closed');
+      //  console.log('The dialog was closed');
       })
 
     })
