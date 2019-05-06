@@ -23,6 +23,7 @@ export class DetailPComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any, private detailpService: DetailPService) {
             this.plat= payload;
+            console.log(this.plat)
             }
    
 

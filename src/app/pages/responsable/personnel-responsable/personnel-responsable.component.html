@@ -15,11 +15,11 @@
     </div>
   </div>
   <div class="actions w-100" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
-    <div>
+    
       <mat-form-field appearance="outline">
         <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
-    </div>
+   
       <div fxLayout="row" (click)="openCPersonnel()" fxLayoutAlign="center center" style="cursor:pointer;"
         fxLayoutGap="5px">
         <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
@@ -33,8 +33,15 @@
 
 
   <table mat-table [dataSource]="dataSource" matSort  class=" mat-elevation-z8 table table-responsive-md table-striped " >
-
-
+ <!-- Name Column -->
+ <ng-container matColumnDef="avatar">
+  <th mat-header-cell mat-sort-header *matHeaderCellDef> Avatar  </th>
+  <td mat-cell *matCellDef="let row"> 
+  <div class="user-avatar" fxLayoutGap="5px">
+  <img   [src]="row.avatar==''?'./assets/img/avatar/avatar.png':row.avatar" width ="40" height="40" alt="avatar" style="border-radius: 50% "  >
+</div>
+</td>
+</ng-container>
  <!-- Name Column -->
  <ng-container matColumnDef="nom">
   <th mat-header-cell mat-sort-header *matHeaderCellDef> Nom  </th>
@@ -45,6 +52,11 @@
   <th mat-header-cell mat-sort-header *matHeaderCellDef> Prenom  </th>
   <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
 </ng-container>
+   <!-- mail Column -->
+   <ng-container matColumnDef="telephone">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>telephone  </th>
+    <td mat-cell *matCellDef="let row"> {{row.telephone}} </td>
+  </ng-container>
 
   
    <!-- mail Column -->
@@ -60,7 +72,7 @@
   </ng-container>
   
     <ng-container matColumnDef="actions">
-      <th mat-header-cell mat-sort-header *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row"  fxLayoutAlign="center end">
         <button mat-icon-button  style="color: #506169;" (click)="openSupprime(row)">
           <mat-icon>delete</mat-icon>

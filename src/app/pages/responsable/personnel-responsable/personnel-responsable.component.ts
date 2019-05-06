@@ -16,7 +16,7 @@ import { Location } from '@angular/common';
 export class PersonnelResponsableComponent implements OnInit {
 
 
- displayedColumns: string[] = [  'nom', 'prenom', 'mail', 'fonction','actions'];
+ displayedColumns: string[] = [ 'avatar', 'nom', 'prenom', 'telephone','mail', 'fonction','actions'];
 
  //var
  users: any[] = [];

@@ -1,7 +1,6 @@
 export class User{
     // '?' attribut optionnel
     email? : string ;
-    cin ?: number=0 ;
     nom? : string = '';
     prenom ? : string ='' ;
     avatar? : string ='';

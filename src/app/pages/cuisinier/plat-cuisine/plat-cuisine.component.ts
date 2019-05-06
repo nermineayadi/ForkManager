@@ -37,11 +37,10 @@ export class PlatCuisineComponent implements OnInit {
         this.plats.push({key : element.key , ...element.payload.val()})
       });
       //console.log(this.plats)
-
       this.dataSource = new MatTableDataSource<Plat>(this.plats);
+      this.dataSource.filter = 'true';
      this.dataSource.paginator = this.paginator;
      this.plat = data.plat;
-    this.dataSource.filter = 'true';
     })
 
   }
