@@ -1,16 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {  Validators, FormControl } from '@angular/forms';
-import { CPlatService } from "./cplat.service";
-import { Plat } from 'src/app/srecette/plat.model';
+import { CSrecetteService } from "./csrecette.service";
 import { ShareService } from 'src/app/services/share.service';
+import { Srecette } from 'src/app/models/srecette.model';
 
 @Component({
-  selector: 'app-cplat',
-  templateUrl: './cplat.component.html',
-  styleUrls: ['./cplat.component.scss'],
+  selector: 'app-csrecette',
+  templateUrl: './csrecette.component.html',
+  styleUrls: ['./csrecette.component.scss'],
 })
-export class CplatComponent implements OnInit {
+export class CSrecetteComponent implements OnInit {
    //photo : string;
   
    ingredients: any[] = [
@@ -26,20 +26,17 @@ export class CplatComponent implements OnInit {
 
 
   valider= false ;
-  plat  = new Plat() ;
+  srecette  = new Srecette() ;
    //informations necessaires 
-  nomPlat = new FormControl('', Validators.required);
-  category = new FormControl('', Validators.required);
-  famille = new FormControl('', Validators.required);
-  sfamille = new FormControl('', Validators.required);
+  nomsrecette = new FormControl('', Validators.required);
   nbparts = new FormControl('', Validators.required);
   duree = new FormControl('', Validators.required);
   
  
   constructor(
-     public dialogRef: MatDialogRef<CplatComponent>,
+     public dialogRef: MatDialogRef<CSrecetteComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any , 
-     private  CPlatservice: CPlatService
+     private  csrecetteservice: CSrecetteService
      ,private shareService : ShareService
 
      ) { }
@@ -62,28 +59,15 @@ export class CplatComponent implements OnInit {
   }
 
   get isValid():boolean{
-    return this.nomPlat.invalid || this.category.invalid || this.famille.invalid 
-    || this.sfamille.invalid || this.nbparts.invalid || this.duree.invalid; 
+    return this.nomsrecette.invalid  || this.nbparts.invalid || this.duree.invalid; 
 }
 
-  ajoutPlat() {
+  ajoutsrecette() {
 
     this.valider=true;
     const obj = {
       token: JSON.parse(localStorage.getItem('profile')).token,
-      nomPlat : this.nomPlat.value,
-      categorie : {
-        key: this.category.value.key,
-        nomcategorie: this.category.value.payload.val().nomcategorie
-      },
-      famille : {
-        key: this.famille.value.key,
-        nomfamille: this.famille.value.payload.val().nomfamille
-      },
-      sfamille : {
-        key: this.sfamille.value.key,
-        nomsfamille: this.sfamille.value.payload.val().nomsfamille
-      },
+      nomsrecette : this.nomsrecette.value,
       ingredients: this.ingredients ,
       srecettes: this.srecettes,
       etapes:this.etapes,
@@ -91,10 +75,10 @@ export class CplatComponent implements OnInit {
       duree : this.duree.value
     };
     console.log(obj)
-     this.CPlatservice
-    .ajoutPlat(obj)
+     this.csrecetteservice
+    .ajoutSrecette(obj)
     .then((data: any) => {
-      this.shareService.showMsg("plat ajouté");
+      this.shareService.showMsg("srecette ajouté");
       this.valider= false;
       this.dialogRef.close({
         key: data.key,

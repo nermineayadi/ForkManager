@@ -8,7 +8,7 @@ import { BoissonResponsableComponent } from './boisson-responsable/boisson-respo
 import { PortionResponsableComponent } from './portion-responsable/portion-responsable.component';
 import { ReservationResponsableComponent } from './reservation-responsable/reservation-responsable.component';
 import { PersonnelResponsableComponent } from './personnel-responsable/personnel-responsable.component';
-import { MenuResponsableComponent } from './menu-responsable/menu-responsable.component';
+import { SrecettesResponsableComponent } from './srecette-responsable/srecette-responsable.component';
 import { InventaireResponsableComponent } from './inventaire-responsable/inventaire-responsable.component';
 import { ShareService } from 'src/app/services/share.service';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
           { path: "", component: AcceuilResponsableComponent,resolve:{acceuil : ShareService}  },
           { path: "plats", component: PlatResponsableComponent,resolve:{plat : ShareService}  },
           { path: "boissons", component: BoissonResponsableComponent,resolve:{boisson : ShareService}  },
-          { path: "srecettes", component: MenuResponsableComponent,resolve:{srecette : ShareService}  },
+          { path: "srecettes", component: SrecettesResponsableComponent,resolve:{srecette : ShareService}  },
           { path: "portions", component: PortionResponsableComponent ,resolve:{portion : ShareService} },
           { path: "reservations", component: ReservationResponsableComponent,resolve:{reservation : ShareService}  },
           { path: "personnels", component: PersonnelResponsableComponent,resolve:{personnel : ShareService}  },

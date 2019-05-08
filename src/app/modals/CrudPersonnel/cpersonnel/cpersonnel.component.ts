@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { CPersonnelService } from './cpersonnel.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/srecette/user.model';
 @Component({
   selector: 'app-cpersonnel',
   templateUrl: './cpersonnel.component.html',

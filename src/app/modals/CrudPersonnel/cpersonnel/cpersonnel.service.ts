@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database/public_api';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../../models/user.model';
+import { User } from '../../../srecette/user.model';
 
 @Injectable()
 export class CPersonnelService {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.component';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/srecette/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';

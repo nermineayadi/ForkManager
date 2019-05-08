@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from './InterfaceTest.service';
 import { ActivatedRoute } from '@angular/router';
-import { Boisson } from 'src/app/models/boisson.model';
-import { Ingredient } from 'src/app/models/ingredient.model';
+import { Boisson } from 'src/app/srecette/boisson.model';
+import { Ingredient } from 'src/app/srecette/ingredient.model';
 import { ShareService } from 'src/app/services/share.service';
 
 @Component({

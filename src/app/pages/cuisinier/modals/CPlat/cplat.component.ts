@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CPlatService } from "./cplat.service";
-import { Plat } from 'src/app/models/plat.model';
+import { Plat } from 'src/app/srecette/plat.model';
 import { ShareService } from 'src/app/services/share.service';
 
 @Component({

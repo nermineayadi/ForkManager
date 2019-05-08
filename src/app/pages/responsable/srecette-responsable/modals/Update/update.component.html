@@ -1,0 +1,14 @@
+<div class="dialog" fxLayout="column">
+    <mat-toolbar>
+      <h5>Confirmation de modification </h5>
+    </mat-toolbar>
+    <div class="body" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+        <mat-label>Etes vous sure de modifier l'ingredient : <b>{{element.libelle}}</b> ?</mat-label>
+      </div>
+      <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-stroked-button  (click)="onUpdate()" color="primary">modifier</button>
+        <button mat-button (click)="onNoClick()"> Annuler</button>
+      </div>
+    </div>
+  </div>

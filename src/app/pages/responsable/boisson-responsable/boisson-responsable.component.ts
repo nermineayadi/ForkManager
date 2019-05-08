@@ -5,9 +5,9 @@ import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supp
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { PlatResponsableService } from '../plat-responsable/plat-responsable.service';
-import { Plat } from 'src/app/models/plat.model';
+import { Plat } from 'src/app/srecette/plat.model';
 import { UBoissonComponent } from './modals/UBoisson/uBoisson.component';
-import { Boisson } from 'src/app/models/boisson.model';
+import { Boisson } from 'src/app/srecette/boisson.model';
 import { SupprimerBComponent } from './modals/supprimer/supprimerB.component';
 import { CBoissonComponent } from './modals/Cboisson/cBoisson.component';
 

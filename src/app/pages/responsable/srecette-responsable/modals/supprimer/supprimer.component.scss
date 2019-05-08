@@ -1,0 +1,19 @@
+:host{
+    .dialog{
+        mat-toolbar{
+            background: #505252;
+            color: #fff;
+        }
+        .body{
+            padding: 10px 10px 0 10px;
+          
+            overflow-x: hidden;
+            
+        }
+        .dialog-footer{
+            padding: 10px 0;
+        }
+    }
+
+    
+}

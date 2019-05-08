@@ -8,7 +8,7 @@ import { BoissonResponsableComponent } from "./boisson-responsable/boisson-respo
 import { PortionResponsableComponent } from "./portion-responsable/portion-responsable.component";
 import { ReservationResponsableComponent } from "./reservation-responsable/reservation-responsable.component";
 import { PersonnelResponsableComponent } from "./personnel-responsable/personnel-responsable.component";
-import { MenuResponsableComponent } from "./menu-responsable/menu-responsable.component";
+import { SrecettesResponsableComponent } from "./srecette-responsable/srecette-responsable.component";
 import { InventaireResponsableComponent } from "./inventaire-responsable/inventaire-responsable.component";
 import { NavigationResponsableComponent } from "src/app/navigation/navigation-responsable/navigation-responsable.component";
 import { NavBarModule } from 'src/app/navbar/navbar.module';
@@ -47,7 +47,7 @@ NavigationResponsableComponent;
     PersonnelResponsableComponent,
     ReservationResponsableComponent,
     PortionResponsableComponent,
-    MenuResponsableComponent,
+    SrecettesResponsableComponent,
     BoissonResponsableComponent,
     AcceuilResponsableComponent,
     PlatResponsableComponent,
