@@ -37,13 +37,13 @@ export class UplatComponent implements OnInit {
     this.plat.nomPlat = payload.value.nomPlat;
     this.plat.nbPart = payload.value.nbPart;
     this.plat.duree = payload.value.duree;
-    if (this.plat.hasOwnProperty("ingredient")) {
+   
 
     payload.plat.ingredients.forEach((item) => {
       this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
     })
     console.log(this.ing);
-  }
+  
     payload.plat.categories.forEach((item) => {
       if (item.key == payload.value.categorie.key) {
         this.plat.categorie = item;

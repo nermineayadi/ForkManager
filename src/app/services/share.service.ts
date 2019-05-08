@@ -38,7 +38,7 @@ export class ShareService {
                               plats: plats,
                               categories: categories,
                               classes:classes,
-                              ingredient: ingredients,
+                              ingredients: ingredients,
                               boissons:boissons,
                               familles: familles,
                               sfamilles: sfamilles,

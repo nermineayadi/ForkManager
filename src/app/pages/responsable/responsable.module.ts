@@ -39,6 +39,7 @@ import { SupprimerBComponent } from './boisson-responsable/modals/supprimer/supp
 import { BoissonResponsableService } from './boisson-responsable/boisson-responsable.service';
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
 import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.service';
+import { UpdateComponent } from './plat-responsable/modals/Update/update.component';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ NavigationResponsableComponent;
     PlatResponsableComponent,
     InventaireResponsableComponent,
     NavigationResponsableComponent,
-
+    UpdateComponent,
     DPersonnelComponent,
     CplatComponent,
     SupprimerComponent,
@@ -75,7 +76,7 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
-entryComponents:[DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
+entryComponents:[UpdateComponent,DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
   exports: [],
   providers: [BoissonResponsableService,DPersonnelService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
 })

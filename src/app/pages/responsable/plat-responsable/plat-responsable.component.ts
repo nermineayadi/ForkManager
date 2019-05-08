@@ -80,7 +80,7 @@ export class PlatResponsableComponent implements OnInit {
       });
     }
     else {
-      this.shareservice.showMsg("Plat non valide")
+      this.shareservice.showMsg("Ce plat n'est pas encore validé")
     }
   }
   //modal supprime plat
