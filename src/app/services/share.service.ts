@@ -32,6 +32,7 @@ export class ShareService {
                       const stockages = this.getStockages().subscribe((stockages) => {
                         const achats = this.getAchats().subscribe((achats) => {
                           const unites = this.getUnites().subscribe((unites) => {
+                            const srecettes = this.getSrecettes().subscribe((srecettes) => {
 
                             const obj = {
                               users: users,
@@ -44,10 +45,12 @@ export class ShareService {
                               sfamilles: sfamilles,
                               stockages:stockages,
                               achats:achats,
-                              unites:unites
+                              unites:unites,
+                              srecettes:srecettes
                             };
                             resolve(obj)
                           })
+                        })
                         })
                       })
                     })
@@ -75,6 +78,10 @@ export class ShareService {
   }
   getSfamilles() {
     const ref = this.db.list('sfamille').snapshotChanges();
+    return ref;
+  }
+  getSrecettes() {
+    const ref = this.db.list('srecettes').snapshotChanges();
     return ref;
   }
   getIngredients() {

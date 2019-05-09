@@ -16,17 +16,20 @@
         }
     }
 
-    input[type="file"] {
-        display: inline-block;
-        opacity: 0;
-        position: absolute;
-        margin-left: 20px;
-        margin-right: 20px;
-        padding-top: 30px;
-        padding-bottom: 67px;
-        width: 85%;
-        z-index: 99;
-        margin-top: 10px;
-        cursor:pointer;
-    }
+
+    table {
+        width: 100%;
+        border-radius: 4%;
+      
+        th {
+          text-decoration: bold;
+          vertical-align: middle;
+        }
+        td{
+          vertical-align: middle;
+      
+          button{
+            width : 50%;
+        
+        }}}
 }

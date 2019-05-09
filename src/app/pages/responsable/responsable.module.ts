@@ -40,6 +40,8 @@ import { BoissonResponsableService } from './boisson-responsable/boisson-respons
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
 import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.service';
 import { UpdateComponent } from './plat-responsable/modals/Update/update.component';
+import { CSrecetteComponent } from './srecette-responsable/modals/C-srecette/csrecette.component';
+import { CSrecetteService } from './srecette-responsable/modals/C-srecette/csrecette.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ NavigationResponsableComponent;
     SupprimerComponent,
     DetailPComponent,
     UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent
+    ,CSrecetteComponent
        //pipes
    
     
@@ -76,8 +79,9 @@ NavigationResponsableComponent;
       useFactory: adapterFactory
     }),  
 ],
-entryComponents:[UpdateComponent,DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
+entryComponents:[
+  CSrecetteComponent,UpdateComponent,DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
   exports: [],
-  providers: [BoissonResponsableService,DPersonnelService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
+  providers: [CSrecetteService,BoissonResponsableService,DPersonnelService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
 })
 export class ResponsableModule {}

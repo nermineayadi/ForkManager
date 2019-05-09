@@ -1,39 +1,17 @@
 <div class="dialog" fxLayout="column">
   <mat-toolbar>
-    <h5>Plat</h5>
+    <h5>Sous recette</h5>
   </mat-toolbar>
   <div class="body" fxLayout="column">
     <h5>Basic info</h5>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
-        <mat-label>Plat</mat-label>
-        <input matInput [formControl]="nomPlat" required autocomplete="off">
+        <mat-label>Nom</mat-label>
+        <input matInput [formControl]="nomSrecette" required autocomplete="off">
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>categorie</mat-label>
-        <mat-select [formControl]="category">
-          <mat-option *ngFor="let categorie of payload.categories" [value]="categorie">
-            {{categorie.payload.val().nomcategorie}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+     
     </div>
-    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-      <mat-form-field appearance="outline">
-        <mat-label>famille</mat-label>
-        <mat-select [formControl]="famille">
-          <mat-option *ngFor="let famille of payload.familles |filterbycategory:category.value.key" [value]="famille">
-            {{famille.payload.val().nomfamille}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>sous famille</mat-label>
-        <mat-select [formControl]="sfamille">
-          <mat-option *ngFor="let sfamille of payload.sfamilles | filterbyfamille:famille.value.key" [value]="sfamille">
-            {{sfamille.payload.val().nomsfamille}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
         <mat-label>Nbr Parts</mat-label>
@@ -49,7 +27,7 @@
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>ingredient</mat-label>
         <mat-select [(ngModel)]="ingredients[i].nom">
-          <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">{{row.payload.val().name}}</mat-option>
+          <mat-option *ngFor="let row of payload.ingredients" [value]="row.key">{{row.payload.val().libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
@@ -81,7 +59,7 @@
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>sous recette</mat-label>
         <mat-select [(ngModel)]="srecettes[i].nom">
-          <mat-option *ngFor="let row of payload.srecette" [value]="row.key">{{row.payload.val().name}}</mat-option>
+          <mat-option *ngFor="let row of payload.srecettes" [value]="row.key">{{row.payload.val().nomsrecette}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
@@ -148,7 +126,7 @@
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
     <button mat-stroked-button color="primary" [disabled]="isValid || valider"
-      (click)="ajoutPlat()">Enregistrer</button>
+      (click)="ajoutsrecette()">Enregistrer</button>
     <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>
 </div>

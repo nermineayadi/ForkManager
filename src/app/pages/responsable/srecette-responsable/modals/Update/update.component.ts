@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { PlatResponsableService } from '../../plat-responsable.service';
-import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-update',

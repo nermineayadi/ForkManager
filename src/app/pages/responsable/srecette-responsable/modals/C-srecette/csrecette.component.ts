@@ -28,7 +28,7 @@ export class CSrecetteComponent implements OnInit {
   valider= false ;
   srecette  = new Srecette() ;
    //informations necessaires 
-  nomsrecette = new FormControl('', Validators.required);
+  nomSrecette = new FormControl('', Validators.required);
   nbparts = new FormControl('', Validators.required);
   duree = new FormControl('', Validators.required);
   
@@ -59,7 +59,7 @@ export class CSrecetteComponent implements OnInit {
   }
 
   get isValid():boolean{
-    return this.nomsrecette.invalid  || this.nbparts.invalid || this.duree.invalid; 
+    return this.nomSrecette.invalid  || this.nbparts.invalid || this.duree.invalid; 
 }
 
   ajoutsrecette() {
@@ -67,7 +67,7 @@ export class CSrecetteComponent implements OnInit {
     this.valider=true;
     const obj = {
       token: JSON.parse(localStorage.getItem('profile')).token,
-      nomsrecette : this.nomsrecette.value,
+      nomsrecette : this.nomSrecette.value,
       ingredients: this.ingredients ,
       srecettes: this.srecettes,
       etapes:this.etapes,

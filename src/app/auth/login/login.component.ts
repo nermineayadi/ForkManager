@@ -46,10 +46,9 @@ get isValid():boolean{
         this.shareService.getProfile(data.user.uid).subscribe((profile : any)=>{
           this.LoginService.showMsg("Bonjour");
           console.log(data);
-          localStorage.setItem("uid", data.user.uid);
+         localStorage.setItem("uid", data.user.uid);
          localStorage.setItem('fonction', profile.fonction);
          localStorage.setItem('profile', JSON.stringify(profile));
-
          this.router.navigate(['']);
           this.loading= false;
         })

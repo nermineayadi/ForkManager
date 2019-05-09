@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class LoginService {
-    uid = localStorage.getItem('uid');
+  uid = localStorage.getItem('uid');
   constructor(private db: AngularFireDatabase ,
     private snackBar : MatSnackBar,
     public afAuth: AngularFireAuth ,

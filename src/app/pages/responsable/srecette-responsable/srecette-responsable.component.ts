@@ -9,6 +9,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
     import { CSrecetteComponent } from './modals/C-srecette/csrecette.component';
     import { ShareService } from 'src/app/services/share.service';
     import { Plat } from 'src/app/srecette/plat.model';
+import { Srecette } from 'src/app/models/srecette.model';
 @Component({
     selector: 'app-responsable-srecette',
     templateUrl: './srecette-responsable.component.html',
@@ -17,10 +18,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class SrecettesResponsableComponent implements OnInit {
     
    
-      plats: any[] = [];
-      plat: any;
+      srecettes: any[] = [];
+      srecette: any;
       dataSource: MatTableDataSource<any>;
-      displayedColumns: string[] = ['select', 'plat', 'categorie', 'famille', 'sfamille', 'detail', 'actions'];
+      displayedColumns: string[] = ['select', 'srecette','detail', 'actions'];
     
       //pagination
       @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,27 +38,27 @@ export class SrecettesResponsableComponent implements OnInit {
       ngOnInit() {
         this.route.data.subscribe((data) => {
           console.log(data)
-          data.plat.plats.forEach(element => {
-            this.plats.push({ key: element.key, ...element.payload.val() })
+          data.srecette.srecettes.forEach(element => {
+            this.srecettes.push({ key: element.key, ...element.payload.val() })
           });
-          //console.log(this.plats)
+          //console.log(this.srecettes)
     
-          this.dataSource = new MatTableDataSource<Plat>(this.plats);
+          this.dataSource = new MatTableDataSource<Plat>(this.srecettes);
           this.dataSource.paginator = this.paginator;
-          this.plat = data.plat;
+          this.srecette = data.srecette;
     
         })
     
       }
       //modal ajout plat
-      openCplat(): void {
+      openCSRecette(): void {
         const dialogRef = this.dialog.open(CSrecetteComponent, {
-          data: this.plat
+          data: this.srecette
         });
         dialogRef.afterClosed().subscribe((result) => {
           if (result) {
-            this.plats.push(result);
-            this.dataSource = new MatTableDataSource<Plat>(this.plats);
+            this.srecettes.push(result);
+            this.dataSource = new MatTableDataSource<Srecette>(this.srecettes);
           }
           //console.log(this.dataSource)
          // console.log('The dialog was closed');
@@ -86,14 +87,14 @@ export class SrecettesResponsableComponent implements OnInit {
           data: element
         });
         dialogRef.afterClosed().subscribe(result => {
-          this.shareservice.getPlats().subscribe(data => {
+          this.shareservice.getSrecettes().subscribe(data => {
             //console.log(data)
-            this.plats = [];
+            this.srecettes = [];
             data.forEach(element => {
-              this.plats.push({ key: element.key, ...element.payload.val() })
+              this.srecettes.push({ key: element.key, ...element.payload.val() })
             })
-          //  console.log(this.plats)
-            this.dataSource = new MatTableDataSource<Plat>(this.plats);
+          //  console.log(this.srecettes)
+            this.dataSource = new MatTableDataSource<Srecette>(this.srecettes);
           //  console.log('The dialog was closed');
           })
     
@@ -102,18 +103,18 @@ export class SrecettesResponsableComponent implements OnInit {
       //modal modifier plat
       openEdit(row: any): void {
         const dialogRef = this.dialog.open(UplatComponent, {
-          data: { key: row.key, value: row, plat: this.plat }
+          data: { key: row.key, value: row, plat: this.srecette }
         });
     
         dialogRef.afterClosed().subscribe(result => {
-          this.shareservice.getPlats().subscribe(data => {
+          this.shareservice.getSrecettes().subscribe(data => {
             console.log(data)
-            this.plats = [];
+            this.srecettes = [];
             data.forEach(element => {
-              this.plats.push({ key: element.key, ...element.payload.val() })
+              this.srecettes.push({ key: element.key, ...element.payload.val() })
             })
-            console.log(this.plats)
-            this.dataSource = new MatTableDataSource<Plat>(this.plats);
+            console.log(this.srecettes)
+            this.dataSource = new MatTableDataSource<Plat>(this.srecettes);
             console.log('The dialog was closed');
           })
     
