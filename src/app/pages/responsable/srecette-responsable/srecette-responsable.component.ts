@@ -1,7 +1,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
     import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-    import { DetailPComponent } from './modals/detail-p/detail-p.component';
+    import { DetailSComponent } from './modals/detail-s/detail-s.component';
     import { SupprimerComponent } from './modals/supprimer/supprimer.component';
     import { SelectionModel } from '@angular/cdk/collections';
     import { ActivatedRoute } from '@angular/router';
@@ -68,7 +68,7 @@ export class SrecettesResponsableComponent implements OnInit {
       openDetail(element: any): void {
         console.log(element);
         if (element.hasOwnProperty("ingredient")) {
-          const dialogRef = this.dialog.open(DetailPComponent, {
+          const dialogRef = this.dialog.open(DetailSComponent, {
             height: '400px',
             data: element
           });

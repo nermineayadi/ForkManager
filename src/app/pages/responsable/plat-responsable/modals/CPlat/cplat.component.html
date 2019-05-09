@@ -49,7 +49,7 @@
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>ingredient</mat-label>
         <mat-select [(ngModel)]="ingredients[i].nom">
-          <mat-option *ngFor="let row of payload.ingredient" [value]="row.key">{{row.payload.val().name}}</mat-option>
+          <mat-option *ngFor="let row of payload.ingredients" [value]="row.key">{{row.payload.val().libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
@@ -81,7 +81,7 @@
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>sous recette</mat-label>
         <mat-select [(ngModel)]="srecettes[i].nom">
-          <mat-option *ngFor="let row of payload.srecette" [value]="row.key">{{row.payload.val().name}}</mat-option>
+          <mat-option *ngFor="let row of payload.srecettes" [value]="row.key">{{row.payload.val().nomsrecette}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">

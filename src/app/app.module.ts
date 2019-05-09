@@ -13,7 +13,6 @@ import { InscriptionComponent } from "./auth/inscription/inscription.component";
 //modals
 import { InventaireCComponent } from './modals/CrudIventaire/Inventaire/InventaireC.component';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
-import { CBoissonComponent } from './modals/CrudBoisson/CBoisson/cboisson.component';
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';

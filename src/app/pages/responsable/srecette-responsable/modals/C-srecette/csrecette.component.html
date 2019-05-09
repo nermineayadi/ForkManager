@@ -5,6 +5,10 @@
   <div class="body" fxLayout="column">
     <h5>Basic info</h5>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+        <mat-form-field appearance="outline">
+            <mat-label>code</mat-label>
+            <input matInput [formControl]="code" required autocomplete="off">
+          </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Nom</mat-label>
         <input matInput [formControl]="nomSrecette" required autocomplete="off">

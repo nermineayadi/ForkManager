@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UPlatService } from "./uplat.service";
 import { Ingredients } from 'src/app/srecette/ingredients.model';
 import { ShareService } from 'src/app/services/share.service';
+import { SRecettes } from 'src/app/models/srecettes.model';
 
 @Component({
   selector: 'app-cplat',
@@ -24,6 +25,7 @@ export class UplatComponent implements OnInit {
   unites: string[] = ['g', 'ml', 'portion']
   valider = false;
   ing: Ingredients[] = []
+  srec: SRecettes[] = []
 
   plat: any;
   constructor(
@@ -43,6 +45,10 @@ export class UplatComponent implements OnInit {
       this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
     })
     console.log(this.ing);
+    payload.plat.srecettes.forEach((item) => {
+      this.srec.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().nomsrecette })
+    })
+    console.log(this.srec);
   
     payload.plat.categories.forEach((item) => {
       if (item.key == payload.value.categorie.key) {
@@ -71,7 +77,7 @@ export class UplatComponent implements OnInit {
     this.ingredients.push({ libelle: '', quantite: 0, unite: '', key: '' })
   }
   addNewSrecette() {
-    this.srecettes.push({ nom: '', quantite: 0, unite: '' })
+    this.srecettes.push({ libelle: '', quantite: 0, unite: '' })
   }
   addNewEtape() {
     this.etapes.push({ numeo: '', etape: '' })
@@ -112,7 +118,37 @@ export class UplatComponent implements OnInit {
 
       })
     console.log(ingredient)
+    const srecette: any[] = []
+    if (this.plat.hasOwnProperty("srecette")) {
+      this.plat.srecette.forEach((item) => {
+        console.log(item)
+        srecette.push(item)
+      })
+    }
+    console.log(srecette)
 
+    this.srecettes.forEach((item) => {
+      console.log(item)
+      if (srecette.length > 0) {
+        srecette.forEach(element => {
+          console.log(element.key)
+          console.log(item.libelle.key)
+          if (element.key == item.libelle.key) {
+            element.quantite=item.quantite
+            element.unite=item.unite
+          } 
+          else
+          {
+            srecette.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
+
+          }
+
+        });}
+        else
+        srecette.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
+
+      })
+    console.log(srecette)
     this.valider = true;
     const obj = {
       nomPlat: this.plat.nomPlat,
@@ -134,8 +170,8 @@ export class UplatComponent implements OnInit {
         nomsfamille: this.plat.sfamille.payload.val().nomsfamille
       }
       ,
-      ingredient: ingredient
-      // srecette: this.srecettes,
+      ingredient: ingredient,
+      srecette: srecette,
       // etape:this.etapes,
     };
     console.log(obj)

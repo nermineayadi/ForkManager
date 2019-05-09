@@ -31,7 +31,8 @@ export class CSrecetteComponent implements OnInit {
   nomSrecette = new FormControl('', Validators.required);
   nbparts = new FormControl('', Validators.required);
   duree = new FormControl('', Validators.required);
-  
+  code = new FormControl('', Validators.required);
+
  
   constructor(
      public dialogRef: MatDialogRef<CSrecetteComponent>,
@@ -68,8 +69,8 @@ export class CSrecetteComponent implements OnInit {
     const obj = {
       token: JSON.parse(localStorage.getItem('profile')).token,
       nomsrecette : this.nomSrecette.value,
-      ingredients: this.ingredients ,
-      srecettes: this.srecettes,
+      ingredient: this.ingredients ,
+      srecette: this.srecettes,
       etapes:this.etapes,
       nbPart : this.nbparts.value,
       duree : this.duree.value
@@ -78,7 +79,7 @@ export class CSrecetteComponent implements OnInit {
      this.csrecetteservice
     .ajoutSrecette(obj)
     .then((data: any) => {
-      this.shareService.showMsg("srecette ajouté");
+      this.shareService.showMsg("srecette ajoutée");
       this.valider= false;
       this.dialogRef.close({
         key: data.key,

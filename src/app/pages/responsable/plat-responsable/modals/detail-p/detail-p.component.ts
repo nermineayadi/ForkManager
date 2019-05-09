@@ -14,7 +14,7 @@ export class DetailPComponent implements OnInit {
 
   //colonnes
   ingredientColumns: string[] = ['nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['nom', 'quantité', 'unité', 'voir'];
+  sousRecetteColumns: string[] = ['nom', 'quantité', 'unité'];
   etapeColumns: string[] = ['nom', 'description'];
 
   plat: any;

@@ -14,7 +14,7 @@ import { NavigationResponsableComponent } from "src/app/navigation/navigation-re
 import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatangModule } from 'src/assets/matang.module';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 //calendar
 import { CalendarModule, DateAdapter } from "angular-calendar";
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
@@ -27,7 +27,6 @@ import { CPlatService } from './plat-responsable/modals/CPlat/cplat.service';
 import { CplatComponent } from './plat-responsable/modals/CPlat/cplat.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { SupprimerComponent } from './plat-responsable/modals/supprimer/supprimer.component';
-
 import { DetailPComponent } from './plat-responsable/modals/detail-p/detail-p.component';
 import { UplatComponent } from './plat-responsable/modals/UPlat/uplat.component';
 import { UPlatService } from './plat-responsable/modals/UPlat/uplat.service';
@@ -42,6 +41,8 @@ import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpers
 import { UpdateComponent } from './plat-responsable/modals/Update/update.component';
 import { CSrecetteComponent } from './srecette-responsable/modals/C-srecette/csrecette.component';
 import { CSrecetteService } from './srecette-responsable/modals/C-srecette/csrecette.service';
+import { DetailSService } from './srecette-responsable/modals/detail-s/detail-s.service';
+import { DetailSComponent } from './srecette-responsable/modals/detail-s/detail-s.component';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -60,14 +61,23 @@ NavigationResponsableComponent;
     CplatComponent,
     SupprimerComponent,
     DetailPComponent,
-    UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent
-    ,CSrecetteComponent
-       //pipes
-   
-    
+    UplatComponent, 
+    CBoissonComponent,
+     SupprimerBComponent, 
+     UBoissonComponent
+    , CSrecetteComponent
+    , DetailSComponent
+    //pipes
+
+
   ],
-  imports: [CommonModule, ResponsableRoutingModule ,
-    NavBarModule,FlexLayoutModule ,MatangModule,MatTableModule,
+  imports: [
+    CommonModule,
+     ResponsableRoutingModule,
+    NavBarModule, 
+    FlexLayoutModule,
+     MatangModule,
+      MatTableModule,
     PipesModule.forRoot(),
     //calendar
     FlatpickrModule,
@@ -77,11 +87,31 @@ NavigationResponsableComponent;
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    }),  
-],
-entryComponents:[
-  CSrecetteComponent,UpdateComponent,DPersonnelComponent,CplatComponent , SupprimerComponent,DetailPComponent,UplatComponent,CBoissonComponent , SupprimerBComponent,UBoissonComponent],
+    }),
+  ],
+  entryComponents: [
+    DetailSComponent,
+    CSrecetteComponent,
+    UpdateComponent,
+    DPersonnelComponent,
+    CplatComponent,
+    SupprimerComponent,
+    DetailPComponent,
+    UplatComponent,
+    CBoissonComponent,
+    SupprimerBComponent,
+    UBoissonComponent],
   exports: [],
-  providers: [CSrecetteService,BoissonResponsableService,DPersonnelService,CPersonnelService,PlatResponsableService,DetailPService,CPlatService,UPlatService,CBoissonService,UBoissonService]
+  providers: [DetailSService,
+    CSrecetteService,
+    BoissonResponsableService,
+    DPersonnelService,
+    CPersonnelService,
+    PlatResponsableService,
+    DetailPService,
+    CPlatService,
+    UPlatService,
+    CBoissonService,
+    UBoissonService]
 })
-export class ResponsableModule {}
+export class ResponsableModule { }

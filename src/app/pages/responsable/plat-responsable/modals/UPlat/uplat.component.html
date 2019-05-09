@@ -65,7 +65,6 @@
               {{unite}}
             </mat-option>
           </mat-select>
-
         </mat-form-field>
       </div>
     </div> 
@@ -80,8 +79,8 @@
     <div style="width:100%" *ngFor="let item of srecettes; let i= index">
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>sous recette</mat-label>
-        <mat-select [(ngModel)]="srecettes[i].nom">
-          <mat-option *ngFor="let row of payload.plat.srecette" [value]="row">{{row.payload.val().name}}</mat-option>
+        <mat-select [(ngModel)]="srecettes[i].libelle">
+          <mat-option  *ngFor="let row of srec" [value]="row">{{row.libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
