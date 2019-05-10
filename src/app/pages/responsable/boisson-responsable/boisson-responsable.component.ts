@@ -1,15 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { SupprimerComponent } from 'src/app/modals/ModalSupprimer/supprimer/supprimer.component';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { PlatResponsableService } from '../plat-responsable/plat-responsable.service';
-import { Plat } from 'src/app/srecette/plat.model';
 import { UBoissonComponent } from './modals/UBoisson/uBoisson.component';
-import { Boisson } from 'src/app/srecette/boisson.model';
 import { SupprimerBComponent } from './modals/supprimer/supprimerB.component';
 import { CBoissonComponent } from './modals/Cboisson/cBoisson.component';
+import { Boisson } from 'src/app/models/boisson.model';
 
  
 @Component({
@@ -125,7 +123,7 @@ export class BoissonResponsableComponent implements OnInit {
         this.boissons.push({ key: element.key, ...element.payload.val() })
       })
       console.log(this.boissons)
-      this.dataSource = new MatTableDataSource<Plat>(this.boissons);
+      this.dataSource = new MatTableDataSource<Boisson>(this.boissons);
       console.log('The dialog was closed');
     })
    }

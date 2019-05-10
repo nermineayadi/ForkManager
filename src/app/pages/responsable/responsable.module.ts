@@ -5,7 +5,6 @@ import { ResponsableComponent } from "./responsable.component";
 import { AcceuilResponsableComponent } from "./acceuil-responsable/acceuil-responsable.component";
 import { PlatResponsableComponent } from "./plat-responsable/plat-responsable.component";
 import { BoissonResponsableComponent } from "./boisson-responsable/boisson-responsable.component";
-import { PortionResponsableComponent } from "./portion-responsable/portion-responsable.component";
 import { ReservationResponsableComponent } from "./reservation-responsable/reservation-responsable.component";
 import { PersonnelResponsableComponent } from "./personnel-responsable/personnel-responsable.component";
 import { SrecettesResponsableComponent } from "./srecette-responsable/srecette-responsable.component";
@@ -15,6 +14,8 @@ import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatangModule } from 'src/assets/matang.module';
 import { MatTableModule } from '@angular/material/table';
+IngredientResponsableComponent
+
 //calendar
 import { CalendarModule, DateAdapter } from "angular-calendar";
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
@@ -43,13 +44,18 @@ import { CSrecetteComponent } from './srecette-responsable/modals/C-srecette/csr
 import { CSrecetteService } from './srecette-responsable/modals/C-srecette/csrecette.service';
 import { DetailSService } from './srecette-responsable/modals/detail-s/detail-s.service';
 import { DetailSComponent } from './srecette-responsable/modals/detail-s/detail-s.component';
+import { IngredientResponsableComponent } from './ingredient-responsable/ingredient-responsable.component';
+import { CIngredientComponent } from './ingredient-responsable/modals/CIngredient/cIngredient.component';
+import { CIngredientService } from './ingredient-responsable/modals/CIngredient/cIngredient.service';
+import { UIngredientService } from './ingredient-responsable/modals/UIngredient/uIngredient.service';
+import { IngredientResponsableService } from './ingredient-responsable/ingredient-responsable.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
     ResponsableComponent,
     PersonnelResponsableComponent,
     ReservationResponsableComponent,
-    PortionResponsableComponent,
+    IngredientResponsableComponent,
     SrecettesResponsableComponent,
     BoissonResponsableComponent,
     AcceuilResponsableComponent,
@@ -63,10 +69,12 @@ NavigationResponsableComponent;
     DetailPComponent,
     UplatComponent, 
     CBoissonComponent,
+    CIngredientComponent,
      SupprimerBComponent, 
      UBoissonComponent
     , CSrecetteComponent
-    , DetailSComponent
+    , DetailSComponent,
+    IngredientResponsableComponent
     //pipes
 
 
@@ -90,6 +98,8 @@ NavigationResponsableComponent;
     }),
   ],
   entryComponents: [
+    
+    CIngredientComponent,
     DetailSComponent,
     CSrecetteComponent,
     UpdateComponent,
@@ -102,7 +112,10 @@ NavigationResponsableComponent;
     SupprimerBComponent,
     UBoissonComponent],
   exports: [],
-  providers: [DetailSService,
+  providers: [
+    CIngredientService,
+    UIngredientService,
+    DetailSService,
     CSrecetteService,
     BoissonResponsableService,
     DPersonnelService,
@@ -112,6 +125,7 @@ NavigationResponsableComponent;
     CPlatService,
     UPlatService,
     CBoissonService,
-    UBoissonService]
+    UBoissonService,
+    IngredientResponsableService]
 })
 export class ResponsableModule { }

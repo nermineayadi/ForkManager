@@ -8,8 +8,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
     import { UplatComponent } from './modals/UPlat/uplat.component';
     import { CSrecetteComponent } from './modals/C-srecette/csrecette.component';
     import { ShareService } from 'src/app/services/share.service';
-    import { Plat } from 'src/app/srecette/plat.model';
 import { Srecette } from 'src/app/models/srecette.model';
+import { Plat } from 'src/app/models/plat.model';
 @Component({
     selector: 'app-responsable-srecette',
     templateUrl: './srecette-responsable.component.html',

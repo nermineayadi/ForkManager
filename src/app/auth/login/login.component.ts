@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginService } from "./login.service";
-import { User } from "src/app/srecette/user.model";
 import {FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: "app-login",

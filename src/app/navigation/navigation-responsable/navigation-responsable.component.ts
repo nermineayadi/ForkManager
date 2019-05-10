@@ -27,9 +27,9 @@ export class NavigationResponsableComponent implements OnInit {
       link: "./srecettes"
     },
     {
-      title: "Portions",
+      title: "ingredients",
       icon: "balance-scale",
-      link: "./portions"
+      link: "./ingredients"
     },
     {
       title: "Réservations",

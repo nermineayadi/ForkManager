@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, } from '@angular/material';
-import { Boisson } from 'src/app/srecette/boisson.model';
+import { Boisson } from 'src/app/models/boisson.model';
 // import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

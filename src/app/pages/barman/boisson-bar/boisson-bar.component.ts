@@ -1,48 +1,51 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
-export interface Boisson {
-    boisson: string;
-    position: number;
-    categorie: string;
-    famille: string;
-    nbrbouteilles:number;
-  }
-   
-  //initialisations Boisson 
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource,MatPaginator, MatDialog} from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { Boisson } from 'src/app/models/boisson.model';
 
-  const ELEMENT_DATA: Boisson[] = [
-    {position: 1, boisson: 'becks', categorie: 'alcoolisé', famille: 'biére',nbrbouteilles:300},
-    {position: 2, boisson: 'celtia', categorie: 'alcoolisé', famille: 'biére',nbrbouteilles:250},
-    {position: 3, boisson: 'celtia', categorie: 'alcoolisé' ,famille: 'biére',nbrbouteilles:200},
-    {position: 4, boisson: 'jackDaniel', categorie: 'alcoolisé', famille: 'whiskey',nbrbouteilles:30},
-    {position: 5, boisson: 'coca ', categorie: 'Non alcoolisé ', famille: 'boisoo gazeuse',nbrbouteilles:70},
-    {position: 6, boisson: 'magon', categorie: 'alcoolisé', famille: 'vin',nbrbouteilles:50},
-    {position: 7, boisson: 'eau', categorie: 'Non alcoolisé', famille: 'eau',nbrbouteilles:200},
-    {position: 8, boisson: 'vodka', categorie: 'alcoolisé', famille: 'liqueur',nbrbouteilles:30},
-    {position: 9, boisson: 'jus', categorie: 'Non alcoolisé', famille: 'jus',nbrbouteilles:15},
-    {position: 10, boisson: 'jour et nuit', categorie: 'alcoolisé', famille: 'vin',nbrbouteilles:250},
-  ];
-@Component({
-  selector: 'app-boisson-bar',
-  templateUrl: './boisson-bar.component.html',
-  styleUrls: ['./boisson-bar.component.scss']
-})
-export class BoissonBarComponent implements OnInit {
-
-  
-  displayedColumns: string[] = ['position', 'boisson', 'categorie', 'famille','nbrbouteilles'];
-
-  dataSource = new MatTableDataSource<Boisson>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor() { }
 
  
-    //pagination
-    ngOnInit() {
+@Component({
+    selector: 'app-boisson-bar',
+    templateUrl: './boisson-bar.component.html',
+    styleUrls: ['./boisson-bar.component.scss']
+})
+export class BoissonBarComponent implements OnInit {
+   //var
+  boissons: any[] = [];
+  boisson: any;
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['select', 'code', 'boisson', 'classe', 'famille', 'sfamille' , 'prix', 'actions'];
+
+  //pagination
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  // constructor
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private shareservice: ShareService  ) { }
+
+  //onInit
+  ngOnInit() {
+    this.route.data.subscribe((data) => {
+      console.log(data)
+      data.boisson.boissons.forEach(element => {
+        this.boissons.push({ key: element.key, ...element.payload.val() })
+      });
+      console.log(this.boissons)
+      this.dataSource = new MatTableDataSource<Boisson>(this.boissons);
       this.dataSource.paginator = this.paginator;
-    }
+      this.boisson = data.boisson;
+
+    })
+
+  }
+
+
 
       //filtrer
 
@@ -50,5 +53,39 @@ export class BoissonBarComponent implements OnInit {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    selection = new SelectionModel<any>(true, []);
 
+    /** Whether the number of selected elements matches the total number of rows. */
+    isAllSelected() {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+      this.isAllSelected() ?
+          this.selection.clear() :
+          this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+      if (!row) {
+          return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      }
+      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+   getBoissons(){
+    this.shareservice.getBoissons().subscribe(data => {
+      console.log(data)
+      this.boissons = [];
+      data.forEach(element => {
+        this.boissons.push({ key: element.key, ...element.payload.val() })
+      })
+      console.log(this.boissons)
+      this.dataSource = new MatTableDataSource<Boisson>(this.boissons);
+      console.log('The dialog was closed');
+    })
+   }
 }

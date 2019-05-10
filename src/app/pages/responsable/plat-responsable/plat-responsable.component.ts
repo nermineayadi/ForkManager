@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UplatComponent } from './modals/UPlat/uplat.component';
 import { CplatComponent } from './modals/CPlat/cplat.component';
 import { ShareService } from 'src/app/services/share.service';
-import { Plat } from 'src/app/srecette/plat.model';
+import { Plat } from 'src/app/models/plat.model';
 
 //initialisations plats 
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UPlatService } from "./uplat.service";
-import { Ingredients } from 'src/app/srecette/ingredients.model';
 import { ShareService } from 'src/app/services/share.service';
 import { SRecettes } from 'src/app/models/srecettes.model';
+import { Ingredients } from 'src/app/models/ingredients.model';
 
 @Component({
   selector: 'app-cplat',
@@ -67,7 +67,7 @@ export class UplatComponent implements OnInit {
     })
 
 
-    // this.plat.categorie = payload.value.categorie.key;
+    //  this.plat.categorie = payload.value.categorie.key;
   }
 
   ngOnInit() {

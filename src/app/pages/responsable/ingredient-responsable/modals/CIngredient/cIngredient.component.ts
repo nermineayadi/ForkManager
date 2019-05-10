@@ -1,20 +1,20 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {  Validators, FormControl } from '@angular/forms';
-import { CBoissonService } from "./cBoisson.service";
+import { CIngredientService } from "./cIngredient.service";
 import { ShareService } from 'src/app/services/share.service';
 
 @Component({
-  selector: 'app-cBoisson',
-  templateUrl: './cBoisson.component.html',
-  styleUrls: ['./cBoisson.component.scss'],
+  selector: 'app-cingredient',
+  templateUrl: './cingredient.component.html',
+  styleUrls: ['./cingredient.component.scss'],
 })
-export class CBoissonComponent implements OnInit {
+export class CIngredientComponent implements OnInit {
 
 
 
   valider= false ;
-  boisson: any;
+  ingredient: any;
    //informations necessaires 
    libelle = new FormControl('', Validators.required);
    prix = new FormControl('', Validators.required);
@@ -28,15 +28,15 @@ export class CBoissonComponent implements OnInit {
 
  
   constructor(
-     public dialogRef: MatDialogRef<CBoissonComponent>,
+     public dialogRef: MatDialogRef<CIngredientComponent>,
      @Inject(MAT_DIALOG_DATA) public payload: any , 
-     private  CBoissonservice: CBoissonService
+     private  Cingredientservice: CIngredientService
      ,private shareService : ShareService
 
      ) { 
       console.log(payload.classes[0].payload.val());
 
-      this.boisson = this.payload;
+      this.ingredient = this.payload;
        console.log(payload);
 
       }
@@ -50,7 +50,7 @@ export class CBoissonComponent implements OnInit {
 
   
 
-  ajoutBoisson() {
+  ajoutingredient() {
 
     this.valider=true;
     const obj = {
@@ -85,14 +85,13 @@ export class CBoissonComponent implements OnInit {
         key: this.stockage.value.key,
         nom: this.stockage.value.payload.val().nom
       }
-      ,
 
     };
-    console.log(obj)
-     this.CBoissonservice
-    .ajoutBoisson(obj)
+    //console.log(obj)
+     this.Cingredientservice
+    .ajoutIngredient(obj)
     .then(() => {
-      this.shareService.showMsg("Boisson ajoutée");
+      this.shareService.showMsg("ingredient ajouté");
       this.valider= false;
     })
     .catch(error => {

@@ -3,11 +3,11 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import { MatSnackBar } from '@angular/material';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { User } from '../srecette/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import * as firebase from 'firebase';
+import { User } from '../models/user.model';
 @Injectable({ providedIn: 'root' })
 export class ShareService {
   notifications: any[] = [];

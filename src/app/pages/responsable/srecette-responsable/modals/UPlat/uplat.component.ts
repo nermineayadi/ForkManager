@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UPlatService } from "./uplat.service";
-import { Ingredients } from 'src/app/srecette/ingredients.model';
 import { ShareService } from 'src/app/services/share.service';
+import { Ingredients } from 'src/app/models/ingredients.model';
 
 @Component({
   selector: 'app-cplat',

@@ -1,7 +1,7 @@
 <mat-tab-group>
   <mat-tab label="Ingredients">
 
-    <table mat-table [dataSource]="plat.ingredient" class="mat-elevation-z8" style="width : 100% ;">
+    <table mat-table [dataSource]="srecette.ingredient" class="mat-elevation-z8" style="width : 100% ;">
       
 
       <ng-container matColumnDef="nom">
@@ -26,7 +26,7 @@
   </mat-tab>
   <mat-tab label="Sous Recette">
 
-    <table mat-table [dataSource]="plat.srecettes" class="mat-elevation-z8" style="width : 100% ;">
+    <table mat-table [dataSource]="srecette.srecettes" class="mat-elevation-z8" style="width : 100% ;">
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -62,11 +62,8 @@
   </mat-tab>
   <mat-tab label="Etapes">
     
-    <table mat-table [dataSource]="plat.etapes" class="mat-elevation-z8" style="width : 100% ;">
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
+    <table mat-table [dataSource]="srecette.etapes" class="mat-elevation-z8" style="width : 100% ;">
+
 
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> étape </th>

@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { CPersonnelComponent } from 'src/app/modals/CrudPersonnel/cpersonnel/cpersonnel.component';
-import { User } from 'src/app/srecette/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
 import { Location } from '@angular/common';
+import { AngularCsv } from 'angular7-csv/dist/Angular-csv';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-personnel-responsable',
@@ -100,6 +101,34 @@ export class PersonnelResponsableComponent implements OnInit {
     this.location.back(); // <-- go back to previous location on cancel
   }
 
-  
+  //csv 
+  dtHolidays: any[] = [
+    { "id": 101, "Holiday_Date": "21/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 102, "Holiday_Date": "22/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 103, "Holiday_Date": "23/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "En attente" },
+    { "id": 104, "Holiday_Date": "24/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 105, "Holiday_Date": "25/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "NotActive" },
+    { "id": 106, "Holiday_Date": "26/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 107, "Holiday_Date": "27/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "En attente" },
+    { "id": 108, "Holiday_Date": "28/02/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 109, "Holiday_Date": "02/03/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "NotActive" },
+    { "id": 110, "Holiday_Date": "03/04/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
+    { "id": 111, "Holiday_Date": "21/05/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" }
+  ];;
+
+  csvOptions = {
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Plats List :',
+    useBom: true,
+    noDownload: false,
+    headers: ["Holiday ID", "Holiday Date", "Holiday Comment", "Holiday Status"]
+  };
+  downloadCSV() {
+    //this.dtHolidays: JSONDATA, HolidayList: nom du fichier CSV, this.csvOptions: options de fichier
+    new AngularCsv(this.dataSource, "HolidayList", this.csvOptions);
+  }
 
 }

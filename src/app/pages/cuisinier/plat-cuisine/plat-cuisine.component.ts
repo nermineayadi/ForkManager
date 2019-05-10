@@ -3,8 +3,8 @@ import { MatTableDataSource, MatPaginator, MatDialog, } from '@angular/material'
 import { CplatComponent } from '../modals/CPlat/cplat.component';
 import { ActivatedRoute } from '@angular/router';
 import { DetailPComponent } from '../modals/detail-p/detail-p.component';
-import { Plat } from 'src/app/srecette/plat.model';
 import { ShareService } from 'src/app/services/share.service';
+import { Plat } from 'src/app/models/plat.model';
 
 @Component({
   selector: 'app-plat-cuisine',

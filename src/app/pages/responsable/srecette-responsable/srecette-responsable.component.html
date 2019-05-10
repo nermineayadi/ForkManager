@@ -18,23 +18,10 @@
         </mat-form-field>
       </div>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" [ngStyle.xs]="{'padding.px': 10}">
-        <div fxLayout="row" (click)="openDialog2()" fxLayoutAlign="center center" style="color: red; cursor:pointer;"
-          fxLayoutGap="5px">
-          <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
-          <span [fxHide.xs]="true">Supprimer</span>
-        </div>
         <div fxLayout="row" (click)=" openCSRecette()" fxLayoutAlign="center center" style="cursor:pointer;"
           fxLayoutGap="5px">
           <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
           <span [fxHide.xs]="true">Ajouter</span>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer;" fxLayoutGap="5px">
-          <mat-icon style="font-size: 21px;">note_add</mat-icon>
-          <span [fxHide.xs]="true">Importer Excel</span>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer" fxLayoutGap="5px">
-          <mat-icon style="font-size: 21px;">file_copy</mat-icon>
-          <span (click)="downloadCSV()" >Exporter</span>
         </div>
       </div>
     </div>

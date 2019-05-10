@@ -1,8 +1,9 @@
+
 <div class="header px-30" fxLayout="column" fxLayoutAlign="space-around start">
   <div class="details w-100" fxLayout="row" fxLayoutAlign="space-between center">
     <div class="breadcrumb" [fxHide.xs]="true">
       <span>Home/ </span>
-      <span>Boissons</span>
+      <span>ingredients</span>
     </div>
     <div class="back px-15" fxLayout="row" fxLayoutAlign="start center">
       <button mat-icon-button [routerLink]="['']">
@@ -24,7 +25,7 @@
         <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
         <span [fxHide.xs]="true">Supprimer</span>
       </div> -->
-      <div fxLayout="row" (click)="openCBoisson()" fxLayoutAlign="center center" style="cursor:pointer;"
+      <div fxLayout="row" (click)="openCingredient()" fxLayoutAlign="center center" style="cursor:pointer;"
         fxLayoutGap="5px">
         <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
         <span [fxHide.xs]="true">Ajouter</span>
@@ -45,42 +46,29 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-responsive-md table-striped ">
 
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-          [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
-          [aria-label]="checkboxLabel()">
-        </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-          [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </td>
-    </ng-container>
+
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef> Code </th>
       <td mat-cell *matCellDef="let element"> {{element.code}} </td>
     </ng-container>
-      <ng-container matColumnDef="boisson">
-        <th mat-header-cell *matHeaderCellDef> Boisson </th>
+      <ng-container matColumnDef="ingredient">
+        <th mat-header-cell *matHeaderCellDef> ingredient </th>
         <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
       </ng-container>
 
       <ng-container matColumnDef="classe">
         <th mat-header-cell *matHeaderCellDef> Classe </th>
-        <td mat-cell *matCellDef="let element"> {{element.classe.nomclasse}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.classe.nom}} </td>
       </ng-container>
 
       <ng-container matColumnDef="famille">
         <th mat-header-cell *matHeaderCellDef> Famille </th>
-        <td mat-cell *matCellDef="let element"> {{element.famille.nomfamille}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.famille.nom}} </td>
       </ng-container>
 
       <ng-container matColumnDef="sfamille">
         <th mat-header-cell *matHeaderCellDef> Sous Famille </th>
-        <td mat-cell *matCellDef="let element"> {{element.sfamille.nomsfamille}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.sfamille.nom}} </td>
       </ng-container>
       <ng-container matColumnDef="prix">
         <th mat-header-cell *matHeaderCellDef> Prix </th>
