@@ -1,6 +1,6 @@
 <div class="dialog" fxLayout="column">
   <mat-toolbar>
-    <h5>Boisson</h5>
+    <h5>ingredient</h5>
   </mat-toolbar>
   <div class="body" fxLayout="column">
     
@@ -8,32 +8,32 @@
     <div style="width:100%" fxLayoutGap="50px">
       <mat-form-field appearance="outline">
         <mat-label>code</mat-label>
-        <input [(ngModel)]="boisson.code" matInput required>
+        <input [(ngModel)]="ingredient.code" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>libelle</mat-label>
-        <input [(ngModel)]="boisson.libelle" matInput required>
+        <input [(ngModel)]="ingredient.libelle" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>quantite</mat-label>
-        <input [(ngModel)]="boisson.quantite" matInput required>
+        <input [(ngModel)]="ingredient.quantite" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>prix</mat-label>
-        <input [(ngModel)]="boisson.prix" matInput required>
+        <input [(ngModel)]="ingredient.prix" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>classe</mat-label>
-        <mat-select [(ngModel)]="boisson.classe" required>
-          <mat-option *ngFor="let classe of payload.boisson.classes" [value]="classe">
+        <mat-select [(ngModel)]="ingredient.classe" required>
+          <mat-option *ngFor="let classe of payload.ingredient.classes" [value]="classe">
             {{classe.payload.val().nomclasse}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>famille</mat-label>
-        <mat-select [(ngModel)]="boisson.famille" required>
-          <mat-option *ngFor="let famille of payload.boisson.familles |filterbyclasse:boisson?.classe?.key  "
+        <mat-select [(ngModel)]="ingredient.famille" required>
+          <mat-option *ngFor="let famille of payload.ingredient.familles |filterbyclasse:ingredient?.classe?.key  "
             [value]="famille">
             {{famille.payload.val().nomfamille}}
           </mat-option>
@@ -41,8 +41,8 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>sous famille</mat-label>
-        <mat-select [(ngModel)]="boisson.sfamille" required>
-          <mat-option *ngFor="let sfamille of payload.boisson.sfamilles |  filterbyfamille:boisson?.famille?.key  "
+        <mat-select [(ngModel)]="ingredient.sfamille" required>
+          <mat-option *ngFor="let sfamille of payload.ingredient.sfamilles |  filterbyfamille:ingredient?.famille?.key  "
             [value]="sfamille">
             {{sfamille.payload.val().nomsfamille}}
           </mat-option>
@@ -50,16 +50,16 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>achat</mat-label>
-        <mat-select [(ngModel)]="boisson.achat" required>
-          <mat-option *ngFor="let achat of payload.boisson.achats" [value]="achat">
+        <mat-select [(ngModel)]="ingredient.achat" required>
+          <mat-option *ngFor="let achat of payload.ingredient.achats" [value]="achat">
             {{achat.payload.val().nom}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>stockage</mat-label>
-        <mat-select [(ngModel)]="boisson.stockage" required>
-          <mat-option *ngFor="let stockage of payload.boisson.stockages" [value]="stockage">
+        <mat-select [(ngModel)]="ingredient.stockage" required>
+          <mat-option *ngFor="let stockage of payload.ingredient.stockages" [value]="stockage">
             {{stockage.payload.val().nom}}
           </mat-option>
         </mat-select>
@@ -71,7 +71,7 @@
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
     <button mat-stroked-button color="primary" [disabled]="isValid || valider"
-      (click)="EditBoisson()">Enregistrer</button>
+      (click)="EditIngredient()">Enregistrer</button>
     <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>
 </div>

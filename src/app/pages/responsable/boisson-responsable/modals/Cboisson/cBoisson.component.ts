@@ -63,17 +63,17 @@ export class CBoissonComponent implements OnInit {
 
       classe: {
         key: this.classe.value.key,
-        nomclasse: this.classe.value.payload.val().nomclasse
+        nom: this.classe.value.payload.val().nomclasse
       }
       ,
       famille: {
         key: this.famille.value.key,
-        nomfamille: this.famille.value.payload.val().nomfamille
+        nom: this.famille.value.payload.val().nomfamille
       }
       ,
       sfamille: {
         key: this.sfamille.value.key,
-        nomsfamille: this.sfamille.value.payload.val().nomsfamille
+        nom: this.sfamille.value.payload.val().nomsfamille
       }
       ,
       achat: {

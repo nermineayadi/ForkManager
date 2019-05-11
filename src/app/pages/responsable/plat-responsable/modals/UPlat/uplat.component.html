@@ -107,23 +107,7 @@
       </button>
 
     </div>
-    <h5>etapes</h5>
-    <div style="width:100%" fxLayout="row" [fxLayout.xs]="column" *ngFor="let item of etapes; let i= index">
-      <mat-form-field style="width:100%;" appearance="outline">
-        <mat-label>etape</mat-label>
-        <input [(ngModel)]="etapes[i].etape" matInput>
-      </mat-form-field>
-      <mat-form-field style="width:100%;" appearance="outline">
-          <mat-label>etape</mat-label>
-          <input [(ngModel)]="etapes[i].desc" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <button mat-mini-fab (click)="addNewEtape()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
+   
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
     <button mat-stroked-button color="primary"       [disabled]="valider"

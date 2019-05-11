@@ -13,9 +13,8 @@ export class DetailPComponent implements OnInit {
   photo: string;
 
   //colonnes
-  ingredientColumns: string[] = ['nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['nom', 'quantité', 'unité'];
-  etapeColumns: string[] = ['nom', 'description'];
+  ingredientColumns: string[] = ['libelle', 'quantité', 'unité'];
+  sousRecetteColumns: string[] = ['libelle', 'quantité', 'unité'];
 
   plat: any;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,

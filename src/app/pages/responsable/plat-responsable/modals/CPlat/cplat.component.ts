@@ -14,14 +14,12 @@ export class CplatComponent implements OnInit {
    //photo : string;
   
    ingredients: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+    {libelle: '', quantite: '' , unite: '' }
   ];
   srecettes: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+    {libelle: '', quantite: '' , unite: '' }
   ];
-  etapes:any[]=[
-    {num:'', etape : ''}
-  ]
+
   unites:string[] = ['g','ml','portion']
 
 
@@ -49,14 +47,12 @@ export class CplatComponent implements OnInit {
 
   }
   addNewIngredient(){  
-    this.ingredients.push({nom: '', quantite: 0 , unite: '' }) 
+    this.ingredients.push({libelle: '', quantite: 0 , unite: '' }) 
    }
     addNewSrecette(){  
-      this.srecettes.push({nom: '', quantite: 0 , unite: '' }) 
+      this.srecettes.push({libelle: '', quantite: 0 , unite: '' }) 
      }
-      addNewEtape(){
-        this.etapes.push({numeo :'',etape:''})
-      }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -67,7 +63,19 @@ export class CplatComponent implements OnInit {
 }
 
   ajoutPlat() {
+    const ingredient: any[] = []
+ console.log(this.ingredients)
+    this.ingredients.forEach((item) => {
+      console.log(item)
+      if(item.libelle.hasOwnProperty("key")){
+      ingredient.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })}})
 
+      const srecette: any[] = []
+      console.log(this.srecettes)
+         this.srecettes.forEach((item) => {
+           console.log(item)
+           if(item.libelle.hasOwnProperty("key")){
+            srecette.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })}})
     this.valider=true;
     const obj = {
       token: JSON.parse(localStorage.getItem('profile')).token,
@@ -84,9 +92,8 @@ export class CplatComponent implements OnInit {
         key: this.sfamille.value.key,
         nomsfamille: this.sfamille.value.payload.val().nomsfamille
       },
-      ingredients: this.ingredients ,
-      srecettes: this.srecettes,
-      etapes:this.etapes,
+      ingredients: ingredient ,
+      srecettes: srecette,
       nbPart : this.nbparts.value,
       duree : this.duree.value
     };

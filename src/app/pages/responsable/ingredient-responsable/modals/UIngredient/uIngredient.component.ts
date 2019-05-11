@@ -74,17 +74,17 @@ export class UIngredientComponent implements OnInit {
       
       classe: {
         key: this.ingredient.classe.key,
-        nomclasse: this.ingredient.classe.payload.val().nomclasse
+        nom: this.ingredient.classe.payload.val().nomclasse
       }
       ,
       famille: {
         key: this.ingredient.famille.key,
-        nomfamille: this.ingredient.famille.payload.val().nomfamille
+        nom: this.ingredient.famille.payload.val().nomfamille
       }
       ,
       sfamille: {
         key: this.ingredient.sfamille.key,
-        nomsfamille: this.ingredient.sfamille.payload.val().nomsfamille
+        nom: this.ingredient.sfamille.payload.val().nomsfamille
       },
       stockage: {
         key: this.ingredient.stockage.key,

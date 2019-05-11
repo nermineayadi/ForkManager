@@ -14,6 +14,10 @@ supprimePlat(key : string) {
     const itemsRef = this.db.object(`plats/${key}`);
     return itemsRef.remove();
   }
+  supprimeSrecette(key : string) {
+    const itemsRef = this.db.object(`srecettes/${key}`);
+    return itemsRef.remove();
+  }
 
 
 

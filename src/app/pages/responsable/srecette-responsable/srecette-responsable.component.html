@@ -29,21 +29,7 @@
   
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-responsive-md table-striped ">
   
-      <!-- Checkbox Column -->
-      <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-            [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"
-            [aria-label]="checkboxLabel()">
-          </mat-checkbox>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-            [aria-label]="checkboxLabel(row)">
-          </mat-checkbox>
-        </td>
-      </ng-container>
+
   
         <ng-container matColumnDef="srecette">
           <th mat-header-cell *matHeaderCellDef> Srecette </th>
@@ -64,8 +50,8 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="openEdit(element)" >Edit</button>
-              <button mat-menu-item (click)="openSupprime(element)" >Delete</button>
+              <button mat-menu-item (click)="openEdit(element)" >Modifier</button>
+              <button mat-menu-item (click)="openSupprime(element)" >Supprimer</button>
             </mat-menu>
           </td>
         </ng-container>

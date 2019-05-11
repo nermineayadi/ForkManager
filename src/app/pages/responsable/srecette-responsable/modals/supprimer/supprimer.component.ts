@@ -8,8 +8,8 @@ import { PlatResponsableService } from '../../../plat-responsable/plat-responsab
   templateUrl: './supprimer.component.html',
   styleUrls: ['./supprimer.component.scss']
 })
-export class SupprimerComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<SupprimerComponent>,
+export class SupprimerSComponent implements OnInit {
+  constructor(public dialogRef: MatDialogRef<SupprimerSComponent>,
     @Inject(MAT_DIALOG_DATA) public element: any,
     private srecetteService : PlatResponsableService,
     private shareService : ShareService) { 
@@ -21,8 +21,8 @@ export class SupprimerComponent implements OnInit {
   }
   onDelete(){
     console.log(this.element.key);
-    this.srecetteService.supprimePlat(this.element.key).then(()=>{
-      this.shareService.showMsg("plat supprimé");
+    this.srecetteService.supprimeSrecette(this.element.key).then(()=>{
+      this.shareService.showMsg("Sous Recette supprimée");
     })
     .catch(error => {
       console.error(error.message);

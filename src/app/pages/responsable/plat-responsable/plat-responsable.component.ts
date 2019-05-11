@@ -23,7 +23,7 @@ export class PlatResponsableComponent implements OnInit {
   plats: any[] = [];
   plat: any;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['select', 'plat', 'categorie', 'famille', 'sfamille', 'detail', 'actions'];
+  displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail', 'actions'];
 
   //pagination
   @ViewChild(MatPaginator) paginator: MatPaginator;

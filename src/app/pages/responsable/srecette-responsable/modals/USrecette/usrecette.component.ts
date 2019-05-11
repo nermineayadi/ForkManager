@@ -1,91 +1,84 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UPlatService } from "./uplat.service";
+import { USrecetteService } from "./usrecette.service";
 import { ShareService } from 'src/app/services/share.service';
-import { SRecettes } from 'src/app/models/srecettes.model';
 import { Ingredients } from 'src/app/models/ingredients.model';
+import { SRecettes } from 'src/app/models/srecettes.model';
 
 @Component({
-  selector: 'app-cplat',
-  templateUrl: './Uplat.component.html',
-  styleUrls: ['./Uplat.component.scss'],
+  selector: 'app-usrecette',
+  templateUrl: './usrecette.component.html',
+  styleUrls: ['./usrecette.component.scss'],
 })
-export class UplatComponent implements OnInit {
+export class USrecetteComponent implements OnInit {
   //photo : string;
 
   ingredients: any[] = [
-    { libelle: '', quantite: '', unite: '', key: '' }
+    { libelle: '', quantite: '', unite: ''}
   ];
   srecettes: any[] = [
-    { libelle: '', quantite: '', unite: '' ,key:''}
+    { libelle: '', quantite: '', unite: '' }
   ];
-  
-  unites: string[] = ['g', 'ml', 'portion']
+
+  unites: string[] = []
   valider = false;
   ing: Ingredients[] = []
   srec: SRecettes[] = []
-
-  plat: any;
+  srecette: any;
   constructor(
-    public dialogRef: MatDialogRef<UplatComponent>,
+    public dialogRef: MatDialogRef<USrecetteComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any, 
-    private UPlatService: UPlatService, 
+    private srecetteService: USrecetteService, 
     private shareService: ShareService
   ) {
     console.log(payload.value)
-    this.plat = payload.value;
-    this.plat.nomPlat = payload.value.nomPlat;
-    this.plat.nbPart = payload.value.nbPart;
-    this.plat.duree = payload.value.duree;
-   
+    this.srecette = payload.value;
+    this.srecette.nomsrecette = payload.value.nomsrecette;
+    this.srecette.nbPart = payload.value.nbPart;
+    this.srecette.duree = payload.value.duree;
+    this.srecette.code = payload.value.code;
 
-    payload.plat.ingredients.forEach((item) => {
+
+    payload.srecette.ingredients.forEach((item) => {
       this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
     })
     console.log(this.ing);
-    payload.plat.srecettes.forEach((item) => {
+
+
+    payload.srecette.srecettes.forEach((item) => {
       this.srec.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().nomsrecette })
     })
     console.log(this.srec);
-  
-    payload.plat.categories.forEach((item) => {
-      if (item.key == payload.value.categorie.key) {
-        this.plat.categorie = item;
-      }
+
+    payload.srecette.unites.forEach((item) => {
+      this.unites.push(item.payload.val().nom)
     })
-    payload.plat.familles.forEach((item) => {
-      if (item.key == payload.value.famille.key) {
-        this.plat.famille = item;
-      }
-    })
-    payload.plat.sfamilles.forEach((item) => {
-      if (item.key == payload.value.sfamille.key) {
-        this.plat.sfamille = item;
-      }
-    })
+    console.log(this.unites);
 
 
-    //  this.plat.categorie = payload.value.categorie.key;
+
+    // this.srecette.categorie = payload.value.categorie.key;
   }
 
   ngOnInit() {
     console.log(this.payload.value)
   }
   addNewIngredient() {
-    this.ingredients.push({ libelle: '', quantite: 0, unite: '', key: '' })
+    this.ingredients.push({ libelle: '', quantite: 0, unite: ''})
   }
   addNewSrecette() {
     this.srecettes.push({ libelle: '', quantite: 0, unite: '' })
   }
-  
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  EditPlat() {
+  Editsrecette() {
     const ingredient: any[] = []
-    if (this.plat.hasOwnProperty("ingredient")) {
-      this.plat.ingredient.forEach((item) => {
+    const srecette:any[]=[]
+    if (this.srecette.hasOwnProperty("ingredient")) {
+      this.srecette.ingredient.forEach((item) => {
         console.log(item)
         ingredient.push(item)
       })
@@ -93,8 +86,8 @@ export class UplatComponent implements OnInit {
     console.log(ingredient)
 
     this.ingredients.forEach((item) => {
-      console.log(item)
       if(item.libelle.hasOwnProperty("key")){
+      
       if (ingredient.length > 0) {
         ingredient.forEach(element => {
           console.log(element.key)
@@ -109,25 +102,28 @@ export class UplatComponent implements OnInit {
 
           }
 
-        });}
+        });
+      }
         else
         ingredient.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
-
-      }})
+}
+else
+console.log(item)
+      })
     console.log(ingredient)
-    const srecette: any[] = []
-    if (this.plat.hasOwnProperty("srecette")) {
-      this.plat.srecette.forEach((item) => {
-      
+
+    
+    if (this.srecette.hasOwnProperty("srecette")) {
+      this.srecette.srecette.forEach((item) => {
         console.log(item)
         srecette.push(item)
       })
     }
-    console.log(srecette)
+    console.log(this.srecettes)
 
     this.srecettes.forEach((item) => {
-      console.log(item)
       if(item.libelle.hasOwnProperty("key")){
+      
       if (srecette.length > 0) {
         srecette.forEach(element => {
           console.log(element.key)
@@ -142,46 +138,34 @@ export class UplatComponent implements OnInit {
 
           }
 
-        });}
+        });
+      }
         else
         srecette.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
-
-      }})
+}
+else
+console.log(item)
+      })
     console.log(srecette)
+
     this.valider = true;
     const obj = {
-      nomPlat: this.plat.nomPlat,
-      nbPart: this.plat.nbPart,
-      duree: this.plat.duree,
-      valide: true,
-      categorie: {
-        key: this.plat.categorie.key,
-        nomcategorie: this.plat.categorie.payload.val().nomcategorie
-      }
-      ,
-      famille: {
-        key: this.plat.famille.key,
-        nomfamille: this.plat.famille.payload.val().nomfamille
-      }
-      ,
-      sfamille: {
-        key: this.plat.sfamille.key,
-        nomsfamille: this.plat.sfamille.payload.val().nomsfamille
-      }
-      ,
+      code:this.srecette.code,
+      nomsrecette: this.srecette.nomsrecette,
+      nbPart: this.srecette.nbPart,
+      duree: this.srecette.duree,      
       ingredient: ingredient,
-      srecette: srecette,
-      // etape:this.etapes,
+       srecette: srecette,
     };
     console.log(obj)
-    this.UPlatService
-      .updatePlat(obj, this.payload.key)
+    this.srecetteService
+      .updateSrecette(obj, this.payload.key)
       .then(() => {
-        this.shareService.showMsg("plat modifié");
+        this.shareService.showMsg("srecette modifiée");
         this.valider = false;
         this.shareService.sendNotification({
           title: 'validation',
-          body: 'Plat validé',
+          body: 'srecette validée',
           to: this.payload.value.token
         }).subscribe(() => {
           console.log('notification envoyée avec succes')

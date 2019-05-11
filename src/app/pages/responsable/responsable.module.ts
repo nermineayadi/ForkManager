@@ -39,7 +39,6 @@ import { SupprimerBComponent } from './boisson-responsable/modals/supprimer/supp
 import { BoissonResponsableService } from './boisson-responsable/boisson-responsable.service';
 import { DPersonnelComponent } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.component';
 import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpersonnel.service';
-import { UpdateComponent } from './plat-responsable/modals/Update/update.component';
 import { CSrecetteComponent } from './srecette-responsable/modals/C-srecette/csrecette.component';
 import { CSrecetteService } from './srecette-responsable/modals/C-srecette/csrecette.service';
 import { DetailSService } from './srecette-responsable/modals/detail-s/detail-s.service';
@@ -49,6 +48,10 @@ import { CIngredientComponent } from './ingredient-responsable/modals/CIngredien
 import { CIngredientService } from './ingredient-responsable/modals/CIngredient/cIngredient.service';
 import { UIngredientService } from './ingredient-responsable/modals/UIngredient/uIngredient.service';
 import { IngredientResponsableService } from './ingredient-responsable/ingredient-responsable.service';
+import { UIngredientComponent } from './ingredient-responsable/modals/UIngredient/uIngredient.component';
+import { SupprimerSComponent } from './srecette-responsable/modals/supprimer/supprimer.component';
+import { USrecetteComponent } from './srecette-responsable/modals/USrecette/usrecette.component';
+import { USrecetteService } from './srecette-responsable/modals/USrecette/usrecette.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -62,7 +65,6 @@ NavigationResponsableComponent;
     PlatResponsableComponent,
     InventaireResponsableComponent,
     NavigationResponsableComponent,
-    UpdateComponent,
     DPersonnelComponent,
     CplatComponent,
     SupprimerComponent,
@@ -74,7 +76,11 @@ NavigationResponsableComponent;
      UBoissonComponent
     , CSrecetteComponent
     , DetailSComponent,
-    IngredientResponsableComponent
+    IngredientResponsableComponent,
+    UIngredientComponent,    
+    SupprimerSComponent,
+    USrecetteComponent,
+
     //pipes
 
 
@@ -98,11 +104,11 @@ NavigationResponsableComponent;
     }),
   ],
   entryComponents: [
-    
+    USrecetteComponent,
+    SupprimerSComponent,
     CIngredientComponent,
     DetailSComponent,
     CSrecetteComponent,
-    UpdateComponent,
     DPersonnelComponent,
     CplatComponent,
     SupprimerComponent,
@@ -110,7 +116,8 @@ NavigationResponsableComponent;
     UplatComponent,
     CBoissonComponent,
     SupprimerBComponent,
-    UBoissonComponent],
+    UBoissonComponent,
+    UIngredientComponent],
   exports: [],
   providers: [
     CIngredientService,
@@ -126,6 +133,7 @@ NavigationResponsableComponent;
     UPlatService,
     CBoissonService,
     UBoissonService,
-    IngredientResponsableService]
+    IngredientResponsableService,
+    USrecetteService]
 })
 export class ResponsableModule { }

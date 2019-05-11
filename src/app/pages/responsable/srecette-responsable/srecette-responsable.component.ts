@@ -2,10 +2,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
     import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
     import { DetailSComponent } from './modals/detail-s/detail-s.component';
-    import { SupprimerComponent } from './modals/supprimer/supprimer.component';
+    import { SupprimerSComponent } from './modals/supprimer/supprimer.component';
     import { SelectionModel } from '@angular/cdk/collections';
     import { ActivatedRoute } from '@angular/router';
-    import { UplatComponent } from './modals/UPlat/uplat.component';
+    import { USrecetteComponent } from './modals/USrecette/usrecette.component';
     import { CSrecetteComponent } from './modals/C-srecette/csrecette.component';
     import { ShareService } from 'src/app/services/share.service';
 import { Srecette } from 'src/app/models/srecette.model';
@@ -21,7 +21,7 @@ export class SrecettesResponsableComponent implements OnInit {
       srecettes: any[] = [];
       srecette: any;
       dataSource: MatTableDataSource<any>;
-      displayedColumns: string[] = ['select', 'srecette','detail', 'actions'];
+      displayedColumns: string[] = ['srecette','detail', 'actions'];
     
       //pagination
       @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -56,12 +56,17 @@ export class SrecettesResponsableComponent implements OnInit {
           data: this.srecette
         });
         dialogRef.afterClosed().subscribe((result) => {
-          if (result) {
-            this.srecettes.push(result);
-            this.dataSource = new MatTableDataSource<Srecette>(this.srecettes);
-          }
-          //console.log(this.dataSource)
-         // console.log('The dialog was closed');
+          this.shareservice.getSrecettes().subscribe(data => {
+                      //console.log(data)
+                      this.srecettes = [];
+                      data.forEach(element => {
+                        this.srecettes.push({ key: element.key, ...element.payload.val() })
+                      })
+                    //  console.log(this.srecettes)
+                      this.dataSource = new MatTableDataSource<Srecette>(this.srecettes);
+                    //  console.log('The dialog was closed');
+                   
+                    })
         });
       }
       //modal detail plat
@@ -83,7 +88,7 @@ export class SrecettesResponsableComponent implements OnInit {
       }
       //modal supprime plat
       openSupprime(element : any): void {
-        const dialogRef = this.dialog.open(SupprimerComponent, {
+        const dialogRef = this.dialog.open(SupprimerSComponent, {
           data: element
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -102,8 +107,8 @@ export class SrecettesResponsableComponent implements OnInit {
       }
       //modal modifier plat
       openEdit(row: any): void {
-        const dialogRef = this.dialog.open(UplatComponent, {
-          data: { key: row.key, value: row, plat: this.srecette }
+        const dialogRef = this.dialog.open(USrecetteComponent, {
+          data: { key: row.key, value: row, srecette: this.srecette }
         });
     
         dialogRef.afterClosed().subscribe(result => {
@@ -128,29 +133,5 @@ export class SrecettesResponsableComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
       }
     
-      selection = new SelectionModel<any>(true, []);
-      /** Whether the number of selected elements matches the total number of rows. */
-      isAllSelected() {
-        const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
-        return numSelected === numRows;
-      }
-    
-      /** Selects all rows if they are not all selected; otherwise clear selection. */
-      masterToggle() {
-        this.isAllSelected() ?
-          this.selection.clear() :
-          this.dataSource.data.forEach(row => this.selection.select(row));
-      }
-    
-      /** The label for the checkbox on the passed row */
-      checkboxLabel(row?: any): string {
-        if (!row) {
-          return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-        }
-        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-      }
-    
-    
-      
+     
 }

@@ -74,17 +74,17 @@ export class UBoissonComponent implements OnInit {
       
       classe: {
         key: this.boisson.classe.key,
-        nomclasse: this.boisson.classe.payload.val().nomclasse
+        nom: this.boisson.classe.payload.val().nomclasse
       }
       ,
       famille: {
         key: this.boisson.famille.key,
-        nomfamille: this.boisson.famille.payload.val().nomfamille
+        nom: this.boisson.famille.payload.val().nomfamille
       }
       ,
       sfamille: {
         key: this.boisson.sfamille.key,
-        nomsfamille: this.boisson.sfamille.payload.val().nomsfamille
+        nom: this.boisson.sfamille.payload.val().nomsfamille
       },
       stockage: {
         key: this.boisson.stockage.key,

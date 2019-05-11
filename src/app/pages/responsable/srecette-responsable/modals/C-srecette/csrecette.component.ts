@@ -4,6 +4,8 @@ import {  Validators, FormControl } from '@angular/forms';
 import { CSrecetteService } from "./csrecette.service";
 import { ShareService } from 'src/app/services/share.service';
 import { Srecette } from 'src/app/models/srecette.model';
+import { Ingredients } from 'src/app/models/ingredients.model';
+import { SRecettes } from 'src/app/models/srecettes.model';
 
 @Component({
   selector: 'app-csrecette',
@@ -11,18 +13,17 @@ import { Srecette } from 'src/app/models/srecette.model';
   styleUrls: ['./csrecette.component.scss'],
 })
 export class CSrecetteComponent implements OnInit {
-   //photo : string;
-  
-   ingredients: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+
+  ingredients: any[] = [
+    { libelle: '', quantite: '', unite: '' }
   ];
   srecettes: any[] = [
-    {nom: '', quantite: '' , unite: '' }
+    { libelle: '', quantite: '', unite: '' }
   ];
-  etapes:any[]=[
-    {num:'', etape : ''}
-  ]
-  unites:string[] = ['g','ml','portion']
+  ing: Ingredients[] = []
+  srec: SRecettes[] = []
+
+  unites:string[] =[]
 
 
   valider= false ;
@@ -40,21 +41,36 @@ export class CSrecetteComponent implements OnInit {
      private  csrecetteservice: CSrecetteService
      ,private shareService : ShareService
 
-     ) { }
+     ) {
+       console.log(payload.ingredients)
+      payload.ingredients.forEach((item) => {
+        this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
+      })
+      console.log(this.srec);
+
+      payload.srecettes.forEach((item) => {
+        this.srec.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().nomsrecette })
+      })
+      console.log(this.srec);
+
+      payload.unites.forEach((item) => {
+        this.unites.push(item.payload.val().nom)
+      })
+      console.log(this.unites);
+
+      }
 
   ngOnInit() {
     //console.log(this.payload);
 
   }
-  addNewIngredient(){  
-    this.ingredients.push({nom: '', quantite: 0 , unite: '' }) 
-   }
-    addNewSrecette(){  
-      this.srecettes.push({nom: '', quantite: 0 , unite: '' }) 
-     }
-      addNewEtape(){
-        this.etapes.push({numeo :'',etape:''})
-      }
+  addNewIngredient() {
+    this.ingredients.push({ libelle: '', quantite: 0, unite: '' })
+  }
+  addNewSrecette() {
+    this.srecettes.push({ libelle: '', quantite: 0, unite: '' })
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -64,16 +80,31 @@ export class CSrecetteComponent implements OnInit {
 }
 
   ajoutsrecette() {
-
+    const ingredient: any[] = []
+ console.log(this.ingredients)
     this.valider=true;
+    this.ingredients.forEach((item) => {
+      console.log(item)
+      if(item.libelle.hasOwnProperty("key")){
+      ingredient.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })}})
+
+      const srecette: any[] = []
+      console.log(this.srecettes)
+         this.valider=true;
+         this.srecettes.forEach((item) => {
+           console.log(item)
+           if(item.libelle.hasOwnProperty("key")){
+            srecette.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })}})
     const obj = {
-      token: JSON.parse(localStorage.getItem('profile')).token,
+     
       nomsrecette : this.nomSrecette.value,
-      ingredient: this.ingredients ,
-      srecette: this.srecettes,
-      etapes:this.etapes,
+      ingredient: ingredient,
+      srecette: srecette,
       nbPart : this.nbparts.value,
-      duree : this.duree.value
+      duree : this.duree.value,    
+      code : this.code.value
+
+
     };
     console.log(obj)
      this.csrecetteservice
@@ -90,7 +121,6 @@ export class CSrecetteComponent implements OnInit {
       console.error(error.message);
       this.shareService.showMsg(error.message);
       this.valider= false;
-
     });
     
 }

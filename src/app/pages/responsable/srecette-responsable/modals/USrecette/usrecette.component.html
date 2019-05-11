@@ -1,47 +1,31 @@
 <div class="dialog" fxLayout="column">
   <mat-toolbar>
-    <h5>Plat</h5>
+    <h5>srecette</h5>
   </mat-toolbar>
   <div class="body" fxLayout="column">
     <h5>Basic info</h5>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+        <mat-form-field appearance="outline">
+            <mat-label>code</mat-label>
+            <input matInput [(ngModel)]="srecette.code" required autocomplete="off">
+          </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Plat</mat-label>
-        <input matInput [(ngModel)]="plat.nomPlat" autocomplete="off">
+        <mat-label>srecette</mat-label>
+        <input matInput [(ngModel)]="srecette.nomsrecette" autocomplete="off">
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>categorie</mat-label>
-        <mat-select  [(ngModel)]="plat.categorie">
-          <mat-option *ngFor="let categorie of payload.plat.categories" [value]="categorie">
-            {{categorie.payload.val().nomcategorie}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-      <mat-form-field appearance="outline">
-        <mat-label>famille</mat-label>
-        <mat-select  [(ngModel)]="plat.famille">
-          <mat-option *ngFor="let famille of payload.plat.familles |filterbycategory:plat.categorie.key" [value]="famille">
-            {{famille.payload.val().nomfamille}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>sous famille</mat-label>
-        <mat-select [(ngModel)]="plat.sfamille">
-          <mat-option *ngFor="let sfamille of payload.plat.sfamilles | filterbyfamille:plat.famille.key" [value]="sfamille">
-            {{sfamille.payload.val().nomsfamille}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
         <mat-label>Nbr Parts</mat-label>
-        <input matInput type="number" maxlength="2" [(ngModel)]="plat.nbPart">
+        <input matInput type="number" maxlength="2" [(ngModel)]="srecette.nbPart">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>durée Preparation</mat-label>
-        <input matInput [(ngModel)]="plat.duree">
+        <input matInput [(ngModel)]="srecette.duree">
       </mat-form-field>
     </div>
     <h5>Ingredients</h5>
@@ -80,9 +64,9 @@
     <div style="width:100%" *ngFor="let item of srecettes; let i= index">
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>sous recette</mat-label>
-        <mat-select [(ngModel)]="srecettes[i].nom">
-          <mat-option *ngFor="let row of payload.plat.srecette" [value]="row">{{row.payload.val().name}}</mat-option>
-        </mat-select>
+        <mat-select [(ngModel)]="srecettes[i].libelle">
+            <mat-option  *ngFor="let row of srec" [value]="row">{{row.libelle}}</mat-option>
+          </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
 
@@ -108,28 +92,12 @@
       </button>
 
     </div>
-    <h5>etapes</h5>
-    <div style="width:100%" fxLayout="row" [fxLayout.xs]="column" *ngFor="let item of etapes; let i= index">
-      <mat-form-field style="width:100%;" appearance="outline">
-        <mat-label>etape</mat-label>
-        <input [(ngModel)]="etapes[i].etape" matInput>
-      </mat-form-field>
-      <mat-form-field style="width:100%;" appearance="outline">
-          <mat-label>etape</mat-label>
-          <input [(ngModel)]="etapes[i].desc" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <button mat-mini-fab (click)="addNewEtape()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
+    
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <button mat-stroked-button color="primary"       [disabled]="valider"
+    <button mat-stroked-button color="primary" [disabled]="valider"
 
-      (click)="EditPlat()">Enregistrer</button>
+      (click)="Editsrecette()">Enregistrer</button>
 
     <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>

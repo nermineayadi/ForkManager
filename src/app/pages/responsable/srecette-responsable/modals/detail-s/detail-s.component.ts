@@ -15,12 +15,12 @@ export class DetailSComponent implements OnInit {
   //colonnes
   ingredientColumns: string[] = ['libelle', 'quantité', 'unité'];
   sousRecetteColumns: string[] = ['libelle', 'quantité', 'unité'];
-  etapeColumns: string[] = ['nom', 'description'];
 
   srecette: any;
   constructor(public dialogRef: MatDialogRef<DetailSComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any) {
             this.srecette= payload;
+            console.log(this.srecette.ingredient)
     }
 
   onNoClick(): void {
