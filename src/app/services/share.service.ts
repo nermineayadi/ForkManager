@@ -33,6 +33,7 @@ export class ShareService {
                         const achats = this.getAchats().subscribe((achats) => {
                           const unites = this.getUnites().subscribe((unites) => {
                             const srecettes = this.getSrecettes().subscribe((srecettes) => {
+                              const inventaires = this.getInventaires().subscribe((inventaires) => {
 
                             const obj = {
                               users: users,
@@ -46,10 +47,12 @@ export class ShareService {
                               stockages:stockages,
                               achats:achats,
                               unites:unites,
-                              srecettes:srecettes
+                              srecettes:srecettes,
+                              inventaires:inventaires
                             };
                             resolve(obj)
                           })
+                        })
                         })
                         })
                       })
@@ -110,6 +113,10 @@ export class ShareService {
   }
   getUnites() {
     const ref = this.db.list('unites').snapshotChanges();
+    return ref;
+  }
+  getInventaires() {
+    const ref = this.db.list('inventaires').snapshotChanges();
     return ref;
   }
 

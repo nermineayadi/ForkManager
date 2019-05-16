@@ -1,57 +1,67 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatTableDataSource,MatPaginator, MatDialog,  MatSort
+import {MatPaginator, MatDialog,  MatSort, MatTableDataSource
 } from '@angular/material';
 import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
-export interface Ingrédient {
-    ingredient: string;
-    categorie: string;
-    nbportion: number;
-    quantite: number ;
-  }
-  const ELEMENT_DATA: Ingrédient  [] = [
-    {ingredient: 'patate' ,  categorie: 'viande',nbportion: 25,quantite:2},
-    {ingredient: 'poulet', categorie: 'végétale', nbportion:54 ,quantite:4},
-    {ingredient: 'steack',  categorie: 'poisson' ,nbportion:41 ,quantite:7},
-    {ingredient:'patte',  categorie:'laitier' , nbportion:41 ,quantite:47},
-    {ingredient:'pain' ,  categorie: 'semoule', nbportion:47 ,quantite:5}, ];
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { Inventaire } from 'src/app/models/inventaire.model';
+
 @Component({
     selector: 'app-inventaire-cuisine',
     templateUrl: './inventaire-cuisine.component.html',
     styleUrls: ['./inventaire-cuisine.component.scss']
 })
 export class InventaireCuisineComponent implements OnInit {
-    displayedColumns: string[] = ['ingredient',  'categorie', 'nbportion','quantite'];
-
-    dataSource = new MatTableDataSource<Ingrédient >(ELEMENT_DATA);
-  
-
+    displayedColumns: string[] = ['code','ingredient','quantite','unite'];  
+    date = new Date().toLocaleDateString();
+    inventaire : any[]=[];
+    ingredients: any[] = [
+      {libelle: '', quantite: '' , unite: '' }
+    ];
+    inv:any;
+    invToday:any;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+  dataSource: any;
 
 
-    constructor(public dialog: MatDialog) {}
+    constructor(public dialog: MatDialog,
+      private route: ActivatedRoute,
+      private shareservice : ShareService,) {}
+
+      ngOnInit() {
+
+        this.route.data.subscribe((data) => {
+           data.inventaire.inventaires.forEach(element => {
+             if (element.payload.val().date == this.date){
+               console.log('item' + element.payload.val().date)
+               console.log('date'+ this.date)
+               console.log(element.payload.val().ingredient)
+               this.invToday= element.key;
+             this.inventaire.push(...element.payload.val().ingredient)}
+           });
+           this.dataSource = new MatTableDataSource<any>(this.inventaire);
+          this.dataSource.paginator = this.paginator;
+          this.inv= data.inventaire
+
+         })
+console.log(this.inventaire)      }
+
+
     openDialog(): void {
       const dialogRef = this.dialog.open(InventaireCComponent , {
         //taille du modal 
-        width: '900px',
-        data:{ }
+        maxWidth: '600px',
+        data:{ inventaire :this.inv , today : this.inventaire ,invToday:this.invToday}
       });
   
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        // this.animal = result;
+        // this.animal = result;c
       });
     }
-    //pagination
-    ngOnInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-    }
-
-      //filtrer
 
     applyFilter(filterValue: string) {
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+      this.dataSource.filter = filterValue.trim().toLowerCase() 
     }
 }

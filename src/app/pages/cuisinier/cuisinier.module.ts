@@ -32,6 +32,8 @@ import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { DetailSComponent } from '../responsable/srecette-responsable/modals/detail-s/detail-s.component';
+import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.service';
 
 @NgModule({
   declarations: [ 
@@ -47,6 +49,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     AcceuilCuisineComponent,
     NavigationCuisineComponent,
     SupprimerComponent , CplatComponent , DetailPComponent,
+    DetailSComponent
   
     
   ],
@@ -74,10 +77,10 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 
   ],
   entryComponents: [
-    SupprimerComponent , CplatComponent , DetailPComponent
+    SupprimerComponent , CplatComponent , DetailPComponent,DetailSComponent
   ],
   
   exports: [],
-  providers: [CPlatService , PlatService , DetailPService]
+  providers: [CPlatService , PlatService , DetailPService,InventaireCService]
 })
 export class CuisineModule {}

@@ -1,19 +1,64 @@
+@import '../../../../assets/shared';
 
-mat-grid-tile {
- 
+:host {
+  .header {
+    min-height: 105px;
+    border-bottom: 1px solid $border-color;
 
+    .details {
 
-    .example-card {
-        max-width: 400px !important;
-      
-      
-      .example-header-image {
-        background-image: url('../../../../assets/plat/1074x1074_8119-cover.jpg');
-        background-image: url('../../../../assets/plat/s.jpg');
-        background-image: url('../../../../assets/plat/menu-plat-du-moment.jpg');
-        background-image: url('../../../../assets/plat/ch.jpg');
-        background-image: url('../../../../assets/plat/soupe.jpg');
-        background-image: url('../../../../assets/plat/pizza.jpg');
+      .breadcrumb {
+        font-size: 14px;
+
+        span:nth-child(1) {
+          color: $icons-color;
+        }
+
+        span:nth-child(2) {
+          color: $primary-color;
+        }
+      }
+
+      .back {
+        color: $text-color;
       }
     }
+
+    .actions {
+      color: $text-color;
+
+      mat-form-field {
+        font-size: 14px;
+        width: 100%;
+        padding: 0 !important;
+      }
     }
+  }
+
+
+
+  button {
+    width: 15%;
+    padding: 7px;
+    margin-top: 5px;
+
+  }
+
+  table {
+    width: 100%;
+    border-radius: 4%;
+
+    th {
+      text-decoration: bold;
+      vertical-align: middle;
+    }
+    td{
+      vertical-align: middle;
+
+      button{
+        width : 50%;
+      .mat-icon{
+      vertical-align: top;}
+    }}
+  }
+}

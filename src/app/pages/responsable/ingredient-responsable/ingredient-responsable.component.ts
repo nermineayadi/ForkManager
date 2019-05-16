@@ -6,6 +6,7 @@ import { Ingredient } from 'src/app/models/ingredient.model';
 import { SupprimerBComponent } from '../boisson-responsable/modals/supprimer/supprimerB.component';
 import { UIngredientComponent } from './modals/UIngredient/uIngredient.component';
 import { CIngredientComponent } from './modals/CIngredient/cIngredient.component';
+import { SupprimerIComponent } from './modals/supprimer/supprimerI.component';
 
 @Component({
     selector: 'app-ingredient-responsable',
@@ -59,7 +60,7 @@ export class IngredientResponsableComponent implements OnInit {
    
    //modal supprime plat
    openSupprime(element : any): void {
-     const dialogRef = this.dialog.open(SupprimerBComponent, {
+     const dialogRef = this.dialog.open(SupprimerIComponent, {
        data: element
      });
      dialogRef.afterClosed().subscribe(result => {

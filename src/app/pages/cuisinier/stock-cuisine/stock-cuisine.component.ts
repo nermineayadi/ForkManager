@@ -1,37 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource,MatPaginator, MatSort} from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatTableDataSource,MatPaginator, MatSort, MatDialog} from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { Ingredient } from 'src/app/models/ingredient.model';
 
-export interface Ingrédient {
-    id: number;
-    ingredient: string;
-    categorie: string;
-    poids: number;
-    quantite: number ;
-    unite : string;
-  }
 
-// /** Constants used to fill up our data base. */
-const ELEMENT_DATA: Ingrédient  [] = [
-    {id : 1,ingredient: 'patate' ,  categorie: 'viande',poids: 25,quantite:2, unite:'kg'},
-    {id:2,ingredient: 'poulet', categorie: 'végétale', poids:54 ,quantite:4, unite:'kg'},
-    {id:3,ingredient: 'steack',  categorie: 'poisson' ,poids:41 ,quantite:7, unite:'kg'},
-    {id:4,ingredient:'patte',  categorie:'laitier' , poids:41 ,quantite:47, unite:'kg'},
-    {id:5,ingredient:'pain' ,  categorie: 'semoule', poids:47 ,quantite:5, unite:'kg'},]
 @Component({
     selector: 'app-stock-cuisine',
     templateUrl: './stock-cuisine.component.html',
     styleUrls: ['./stock-cuisine.component.scss']
 })
 export class StockCuisineComponent implements OnInit {
+   //var
+   ingredients: any[] = [];
+   ingredient: any;
+   dataSource: MatTableDataSource<any>;
+   displayedColumns: string[] = [ 'code', 'ingredient', 'classe', 'famille', 'sfamille' , 'prix'];
+ 
+   //pagination
+   @ViewChild(MatPaginator) paginator: MatPaginator;
+ 
+ 
+   // constructor
+   constructor(
+     public dialog: MatDialog,
+     private route: ActivatedRoute,
+     private shareservice: ShareService,
+   ) { }
+ 
+   //onInit
+   ngOnInit() {
+     this.route.data.subscribe((data) => {
+       console.log(data)
+       data.stock.ingredients.forEach(element => {
+         this.ingredients.push({ key: element.key, ...element.payload.val() })
+       });
+       console.log(this.ingredients)
+       this.dataSource = new MatTableDataSource<Ingredient>(this.ingredients);
+       this.dataSource.paginator = this.paginator;
+       this.ingredient = data.stock;
 
-    displayedColumns: string[] = ['id', 'ingredient', 'categorie', 'quantite','unité'];
-    dataSource = new MatTableDataSource<Ingrédient>(ELEMENT_DATA);
-    constructor() { }
+     })
+ 
+   }
 
-    ngOnInit(): void { }
       //filtrer
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+    applyFilter(filterValue: string) {
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+
 }

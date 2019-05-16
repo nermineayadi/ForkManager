@@ -1,82 +1,45 @@
-<mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-    <form [formGroup]="firstFormGroup" class="example-form" >
-      <ng-template matStepLabel>Ingrédient</ng-template>
-      <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Ingrédient" aria-label="Number" matInput formControlName="firstCtrl" required [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option1 of filteredOptions1 | async" [value]="option1">
-              {{option1}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      <div>
-        <button  mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>categorie</ng-template>
-      <mat-form-field>
-          <input type="text" placeholder="categorie" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="secondCtrl" required>
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option2 of options2" [value]="option2">
-              {{option2}}
-            </mat-option>
-          </mat-autocomplete>
-       
-      </mat-form-field>
-      <div>
-        <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
-        <button mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" errorMessage="Address is required.">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>NBportions</ng-template>
-      <mat-form-field>
-          <input matInput type="number" placeholder="NBportions" formControlName="thirdCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-stroked-button color="primary" mat-button matStepperPrevious>Précédent</button>
-        <button mat-stroked-button color="primary" mat-button matStepperNext>Suivant</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="fourthFormGroup" errorMessage="Address is required.">
-      <form [formGroup]="fourthFormGroup">
-        <ng-template matStepLabel>quantité</ng-template>
-        <mat-form-field>
-            <input matInput type="number" placeholder="quantité" formControlName="fourthCtrl" required>
-        </mat-form-field>
-        <div>
-            <mat-radio-group aria-label="Select an option">
-                <mat-radio-button value="1">unité Litre</mat-radio-button>
-                <mat-radio-button value="2">unité Kilo</mat-radio-button>
-              </mat-radio-group>
+<div class="dialog" fxLayout="column">
+  <mat-toolbar fxLayoutAlign="space-between center">
+    <h5>INVENTAIRE  : </h5> 
+    <span>
+      {{date}}
+    </span>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    
+      <div style="width:100%" *ngFor="let item of ingredients; let i= index">
+          <mat-form-field style="width:100%;" appearance="outline">
+            <mat-label>ingredient</mat-label>
+            <mat-select [(ngModel)]="ingredients[i].libelle">
+              <mat-option *ngFor="let row of ing" [value]="row">{{row.libelle}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
+    
+            <mat-form-field appearance="outline">
+              <mat-label>quantité</mat-label>
+              <input [(ngModel)]="ingredients[i].quantite" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>unité</mat-label>
+              <mat-select [(ngModel)]="ingredients[i].unite">
+                <mat-option *ngFor="let unite of unites" [value]="unite">
+                  {{unite}}
+                </mat-option>
+              </mat-select>
+    
+            </mat-form-field>
+          </div>
         </div>
-        <div>
-          <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
-          <button mat-stroked-button class="btn-primary" mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
-    </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>validation</ng-template>
-    Enregistrer votre Remplissage.
-    <div>
-      
-      
-      <button mat-stroked-button class="btn-primary" mat-button matStepperPrevious>Précédent</button>
-      <button mat-stroked-button class="btn-primary" mat-button (click)="stepper.reset()">Supprimer</button>
+            <div fxLayout="row" fxLayoutAlign="end center">
+              <button mat-mini-fab (click)="addNewIngredient()">
+                <mat-icon>add</mat-icon>
+            </button>
+          </div>
+    
+  </div>
+    <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-stroked-button  (click)="addInventaire()" color="primary">Valider</button>
+      <button mat-button (click)="onNoClick()"> Annuler</button>
     </div>
-  </mat-step>
-</mat-horizontal-stepper>
-<div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-  <button mat-stroked-button color="primary" disabled>Enregistrer</button>
-  <button mat-button (click)="onNoClick()"> Annuler</button>
-</div>
-
-
+  </div>

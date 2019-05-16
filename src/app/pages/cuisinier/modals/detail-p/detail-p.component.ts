@@ -13,19 +13,16 @@ export class DetailPComponent implements OnInit {
 
   }
   photo: string;
-  //colonnes
-  ingredientColumns: string[] = ['nom', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['nom', 'quantité', 'unité', 'voir'];
-  etapeColumns: string[] = ['nom', 'description'];
 
+  //colonnes
+  ingredientColumns: string[] = ['libelle', 'quantité', 'unité'];
+  sousRecetteColumns: string[] = ['libelle', 'quantité', 'unité'];
 
   plat: any;
   constructor(public dialogRef: MatDialogRef<DetailPComponent>,
-    @Inject(MAT_DIALOG_DATA) public payload: any, private detailpService: DetailPService) {
+    @Inject(MAT_DIALOG_DATA) public payload: any) {
             this.plat= payload;
-            console.log(this.plat)
-            }
-   
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
