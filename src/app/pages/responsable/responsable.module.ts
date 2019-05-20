@@ -42,7 +42,6 @@ import { DPersonnelService } from 'src/app/modals/CrudPersonnel/DPersonnel/dpers
 import { CSrecetteComponent } from './srecette-responsable/modals/C-srecette/csrecette.component';
 import { CSrecetteService } from './srecette-responsable/modals/C-srecette/csrecette.service';
 import { DetailSService } from './srecette-responsable/modals/detail-s/detail-s.service';
-import { DetailSComponent } from './srecette-responsable/modals/detail-s/detail-s.component';
 import { IngredientResponsableComponent } from './ingredient-responsable/ingredient-responsable.component';
 import { CIngredientComponent } from './ingredient-responsable/modals/CIngredient/cIngredient.component';
 import { CIngredientService } from './ingredient-responsable/modals/CIngredient/cIngredient.service';
@@ -76,7 +75,7 @@ NavigationResponsableComponent;
      SupprimerBComponent, 
      UBoissonComponent
     , CSrecetteComponent
-    , DetailSComponent,
+    , 
     IngredientResponsableComponent,
     UIngredientComponent,    
     SupprimerSComponent,
@@ -109,7 +108,6 @@ NavigationResponsableComponent;
     USrecetteComponent,
     SupprimerSComponent,
     CIngredientComponent,
-    DetailSComponent,
     CSrecetteComponent,
     DPersonnelComponent,
     CplatComponent,

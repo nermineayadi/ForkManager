@@ -5,6 +5,7 @@ import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/I
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { Inventaire } from 'src/app/models/inventaire.model';
+import { Ingredients } from 'src/app/models/ingredients.model';
 
 @Component({
     selector: 'app-inventaire-cuisine',
@@ -30,7 +31,6 @@ export class InventaireCuisineComponent implements OnInit {
       private shareservice : ShareService,) {}
 
       ngOnInit() {
-
         this.route.data.subscribe((data) => {
            data.inventaire.inventaires.forEach(element => {
              if (element.payload.val().date == this.date){
@@ -43,21 +43,31 @@ export class InventaireCuisineComponent implements OnInit {
            this.dataSource = new MatTableDataSource<any>(this.inventaire);
           this.dataSource.paginator = this.paginator;
           this.inv= data.inventaire
-
          })
-console.log(this.inventaire)      }
-
-
+          console.log(this.inventaire)     
+ }
     openDialog(): void {
       const dialogRef = this.dialog.open(InventaireCComponent , {
         //taille du modal 
         maxWidth: '600px',
-        data:{ inventaire :this.inv , today : this.inventaire ,invToday:this.invToday}
+        data:{ inventaire :this.inv , today : this.inventaire , invToday:this.invToday}
       });
-  
+      
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        // this.animal = result;c
+       
+        this.shareservice.getInventaires().subscribe((data) => {
+          this.inventaire=[]
+          data.forEach((element : any) => {
+            if (element.payload.val().date == this.date){
+              console.log('item' + element.payload.val().date)
+              console.log('date'+ this.date)
+              console.log(element.payload.val().ingredient)
+              this.invToday= element.key;
+            this.inventaire.push(...element.payload.val().ingredient)}
+          });
+          this.dataSource = new MatTableDataSource<any>(this.inventaire);
+         this.dataSource.paginator = this.paginator;
+        })
       });
     }
 

@@ -23,7 +23,7 @@ const routes: Routes = [
       },
      
       {
-        path: "bar",
+        path: "Barman",
         loadChildren: "./barman/barman.module#BarmanModule"
       }
     ]

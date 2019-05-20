@@ -13,7 +13,7 @@ import { ShareService } from 'src/app/services/share.service';
 export class CuisinierComponent implements OnInit {
 
   constructor(private afMessaging: AngularFireMessaging , private shareService : ShareService) {
-    this.requestPermission();
+  //  this.requestPermission();
   }
 
   ngOnInit() {
@@ -29,7 +29,6 @@ export class CuisinierComponent implements OnInit {
           this.shareService.updateToken(token).then(()=>{
             this.receiveMessage()
           })
-           
         },
         (error) => { console.error(error); },  
       );

@@ -6,7 +6,12 @@ export class InventaireCService {
     constructor(private db: AngularFireDatabase ,
         
         ) {}
-        ajoutInventaire(key : any ,Inventaire : any) {
+        ajoutInventaire(Inventaire : any) {
+            
+            const itemsRef = this.db.list(`inventaires`);
+            return itemsRef.push(Inventaire);
+          }
+          ModifInventaire(key : any ,Inventaire : any) {
             console.log(key)
             const itemsRef = this.db.list(`inventaires`);
             return itemsRef.update(key,Inventaire);

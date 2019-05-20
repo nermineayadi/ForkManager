@@ -32,7 +32,6 @@ import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
-import { DetailSComponent } from '../responsable/srecette-responsable/modals/detail-s/detail-s.component';
 import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.service';
 
 @NgModule({
@@ -49,7 +48,7 @@ import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/Inve
     AcceuilCuisineComponent,
     NavigationCuisineComponent,
     SupprimerComponent , CplatComponent , DetailPComponent,
-    DetailSComponent
+   
   
     
   ],
@@ -77,7 +76,7 @@ import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/Inve
 
   ],
   entryComponents: [
-    SupprimerComponent , CplatComponent , DetailPComponent,DetailSComponent
+    SupprimerComponent , CplatComponent , DetailPComponent
   ],
   
   exports: [],
