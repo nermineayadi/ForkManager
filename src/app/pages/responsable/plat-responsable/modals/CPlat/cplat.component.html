@@ -36,36 +36,53 @@
     </div>
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
       <mat-form-field appearance="outline">
-        <mat-label>Nbr Parts</mat-label>
-        <input matInput type="number" maxlength="2" [formControl]="nbparts">
+        <mat-label>Prix</mat-label>
+        <input matInput type="number" [formControl]="prix">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>durée Preparation</mat-label>
-        <input matInput [formControl]="duree">
+        <input matInput type="number" [formControl]="duree">
       </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column" fxLayoutAlign="space-around center">
+
+      <div fxLayout="column">
+        <h5>% Cout Plat</h5>
+      
+      
+      <div class="c100 p{{PourcentCout}} small">
+        <span>{{PourcentCout}}% </span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+</div>
+<div fxLayout="column">
+  <h5> Marge Plat *10</h5>
+      <div class="c100 p{{Marge}} small">
+        <span>{{Marge}}% </span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
     </div>
     <h5>Ingredients</h5>
     <div style="width:100%" *ngFor="let item of ingredients; let i= index">
-      <mat-form-field style="width:100%;" appearance="outline">
-        <mat-label>ingredient</mat-label>
-        <mat-select [(ngModel)]="ingredients[i].nom">
-          <mat-option *ngFor="let row of payload.ingredients" [value]="row">{{row.payload.val().libelle}}</mat-option>
-        </mat-select>
-      </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
 
+        <mat-form-field style="width:100%;" appearance="outline">
+          <mat-label>ingredient</mat-label>
+          <mat-select [(ngModel)]="ingredients[i].libelle" #I (selectionChange)="onSelection($event) ">
+            <mat-option *ngFor="let row of ing" [value]="row">{{row.libelle}}</mat-option>
+          </mat-select>
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>quantité</mat-label>
           <input [(ngModel)]="ingredients[i].quantite" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>unité</mat-label>
-          <mat-select [(ngModel)]="ingredients[i].unite">
-            <mat-option *ngFor="let unite of unites" [value]="unite">
-              {{unite}}
-            </mat-option>
-          </mat-select>
-
+          <span matSuffix>{{selectedIngredient}}</span>
         </mat-form-field>
       </div>
     </div>
@@ -80,8 +97,8 @@
     <div style="width:100%" *ngFor="let item of srecettes; let i= index">
       <mat-form-field style="width:100%;" appearance="outline">
         <mat-label>sous recette</mat-label>
-        <mat-select [(ngModel)]="srecettes[i].nom">
-          <mat-option *ngFor="let row of payload.srecettes" [value]="row.key">{{row.payload.val().nomsrecette}}</mat-option>
+        <mat-select [(ngModel)]="srecettes[i].libelle">
+          <mat-option *ngFor="let row of srec" [value]="row">{{row.libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
@@ -108,7 +125,7 @@
       </button>
 
     </div>
-    
+
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
     <button mat-stroked-button color="primary" [disabled]="isValid || valider"

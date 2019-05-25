@@ -55,7 +55,7 @@ get isValid():boolean{
       })
       .catch(error => {
         console.error(error.message);
-        this.LoginService.showMsg(error.message);
+        this.LoginService.showMsg('Email ET/OU Mot de passe incorrect ');
         this.loading= false;
 
       });

@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
     page: number = 3;
     opened = false;
     onSerch = false;
+    date = new Date().toLocaleString();
+
     selectedItem: string ='' ;
     profile = JSON.parse(localStorage.getItem('profile'));
     constructor(private router : Router,

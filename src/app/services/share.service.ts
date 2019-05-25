@@ -119,6 +119,17 @@ export class ShareService {
     const ref = this.db.list('inventaires').snapshotChanges();
     return ref;
   }
+  getIngredient(key : string){
+    return this.db.object(`ingredients/${key}`)
+ 
+  }
+  updateIngredient(key:string,used : number) {
+    const ref = this.db.object(`ingredients/${key}`);
+    console.log(used)
+    return ref.update({
+      used: used
+    })
+  }
 
   //authentification
   authentification(email: string, password: string) {
@@ -138,7 +149,8 @@ export class ShareService {
     const body = {
       notification: {
         title: msg.title,
-        body: msg.body
+        body: msg.body,
+        icon: msg.icon
       },
       to: msg.to
     }

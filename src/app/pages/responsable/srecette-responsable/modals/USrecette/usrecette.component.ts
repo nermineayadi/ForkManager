@@ -40,7 +40,7 @@ export class USrecetteComponent implements OnInit {
 
 
     payload.srecette.ingredients.forEach((item) => {
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
+      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage.nom ,prix : item.payload.val().prix})
     })
     console.log(this.ing);
 

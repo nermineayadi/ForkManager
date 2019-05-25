@@ -25,7 +25,7 @@ export class InventaireCComponent {
     private shareService: ShareService,
     private inventaireCService: InventaireCService) {
     payload.inventaire.ingredients.forEach((item) => {
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
+      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage.nom ,prix : item.payload.val().prix})
     })
     this.getTokenResponsable().subscribe((data: any) => {
       this.resp = data.payload.val().token
@@ -44,7 +44,7 @@ export class InventaireCComponent {
     this.ingredients.push({ libelle: '', quantite: 0, unite: '' })
   }
   addInventaire() {
-    var ingredient=this.inventaire
+    var ingredient=this.inventaire 
     console.log(ingredient.length)
     console.log(this.ingredients)
     this.ingredients.forEach((item) => {

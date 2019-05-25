@@ -12,7 +12,7 @@ export class PlatResponsableService {
 
 supprimePlat(key : string) {
     const itemsRef = this.db.object(`plats/${key}`);
-    return itemsRef.remove();
+    return itemsRef.update({archive :true});
   }
   supprimeSrecette(key : string) {
     const itemsRef = this.db.object(`srecettes/${key}`);

@@ -8,4 +8,5 @@ export class Ingredient {
     achat : any ; 
     stockage : any ; 
     classe : any  ;
+    used : number = 0 ;
 }

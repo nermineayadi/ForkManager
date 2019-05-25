@@ -39,7 +39,7 @@ export class ResponsableComponent implements OnInit {
     this.afMessaging.messages.subscribe(
       (payload) => {
         console.log("new message received. ", payload);
-        
+        this.shareService.notifications.push(payload)
       })
   }
 }

@@ -37,10 +37,11 @@ export class UplatComponent implements OnInit {
     this.plat.nomPlat = payload.value.nomPlat;
     this.plat.nbPart = payload.value.nbPart;
     this.plat.duree = payload.value.duree;
+    this.plat.prix = payload.value.prix;
    
 
     payload.plat.ingredients.forEach((item) => {
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle })
+      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage,prix : item.payload.val().prix})
     })
     console.log(this.ing);
     payload.plat.srecettes.forEach((item) => {
@@ -67,7 +68,24 @@ export class UplatComponent implements OnInit {
 
     //  this.plat.categorie = payload.value.categorie.key;
   }
-
+  get coutIngredient(){
+    var cout: number =0
+    this.ingredients.forEach(element => {
+      cout+=element.libelle.prix*element.quantite
+    });
+ 
+    return cout>0 ? cout.toFixed(3) : 0;
+  }
+  get PourcentCout(){
+    var prc : number = Number( this.coutIngredient)*100/this.plat.prix
+    return prc>0 ? Math.round(prc) : 0
+  }
+  get Marge(){
+    var marge : number=0;
+    marge = ((this.plat.prix-Number(this.coutIngredient))/Number(this.coutIngredient))*10
+    console.log(marge)
+    return marge>0 ? Math.round(marge): 0;
+  }
   ngOnInit() {
     console.log(this.payload.value)
   }
@@ -153,6 +171,7 @@ export class UplatComponent implements OnInit {
       nomPlat: this.plat.nomPlat,
       nbPart: this.plat.nbPart,
       duree: this.plat.duree,
+      //prix: this.plat.prix,
       valide: true,
       categorie: {
         key: this.plat.categorie.key,
@@ -177,11 +196,14 @@ export class UplatComponent implements OnInit {
     this.UPlatService
       .updatePlat(obj, this.payload.key)
       .then(() => {
+        const profile = JSON.parse(localStorage.getItem('profile'))
         this.shareService.showMsg("plat modifié");
         this.valider = false;
         this.shareService.sendNotification({
-          title: 'validation',
-          body: 'Plat validé',
+          title: 'validation Plat',
+          // body: {img:profile.avatar,nom :this.plat.nomPlat},
+          body : this.plat.nomPlat,
+          icon : profile.avatar,
           to: this.payload.value.token
         }).subscribe(() => {
           console.log('notification envoyée avec succes')

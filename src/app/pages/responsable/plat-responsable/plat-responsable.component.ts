@@ -21,10 +21,21 @@ import { Plat } from 'src/app/models/plat.model';
 export class PlatResponsableComponent implements OnInit {
   //var
   plats: any[] = [];
-  plat: any;
-  dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = [ 'plat', 'categorie', 'famille', 'sfamille', 'detail', 'actions'];
+  valides: any[] = [];
+  invalides: any[] = [];
+  archives: any[] = [];
 
+  plat: any;
+  dataSourceV: MatTableDataSource<any>;
+  dataSourceI: MatTableDataSource<any>;
+  dataSourceA: MatTableDataSource<any>;
+
+  displayedColumnsA: string[] = ['plat', 'categorie', 'famille', 'sfamille', 'detail'];
+  displayedColumnsI: string[] = ['plat', 'categorie', 'famille', 'sfamille','actions'];
+  displayedColumnsV: string[] = ['plat', 'categorie', 'famille', 'sfamille', 'detail', 'actions'];
+
+
+  panelOpenState = false;
   //pagination
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -41,14 +52,10 @@ export class PlatResponsableComponent implements OnInit {
     this.route.data.subscribe((data) => {
       console.log(data)
       data.plat.plats.forEach(element => {
-        this.plats.push({ key: element.key, ...element.payload.val() })
+        this.RemplirTables(element)
       });
-      //console.log(this.plats)
-
-      this.dataSource = new MatTableDataSource<Plat>(this.plats);
-      this.dataSource.paginator = this.paginator;
+      this.DataTables();
       this.plat = data.plat;
-
     })
 
   }
@@ -57,26 +64,28 @@ export class PlatResponsableComponent implements OnInit {
     const dialogRef = this.dialog.open(CplatComponent, {
       data: this.plat
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.plats.push(result);
-        this.dataSource = new MatTableDataSource<Plat>(this.plats);
-      }
-      //console.log(this.dataSource)
-     // console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.shareservice.getPlats().subscribe(data => {
+        //console.log(data)
+        this.initialiserTables();
+        data.forEach(element => {
+          this.RemplirTables(element)
+        });
+        this.DataTables();
+    })
+  })
   }
   //modal detail plat
   openDetail(element: any): void {
     console.log(element);
-    if (element.hasOwnProperty("ingredient")) {
+    if (element.hasOwnProperty("ingredient")||element.hasOwnProperty("srecette")) {
       const dialogRef = this.dialog.open(DetailPComponent, {
         height: '400px',
         data: element
       });
 
       dialogRef.afterClosed().subscribe(result => {
-       // console.log('The dialog was closed');
+        // console.log('The dialog was closed');
       });
     }
     else {
@@ -84,24 +93,22 @@ export class PlatResponsableComponent implements OnInit {
     }
   }
   //modal supprime plat
-  openSupprime(element : any): void {
+  openSupprime(element: any): void {
     const dialogRef = this.dialog.open(SupprimerComponent, {
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
       this.shareservice.getPlats().subscribe(data => {
         //console.log(data)
-        this.plats = [];
-        data.forEach(element => {
-          this.plats.push({ key: element.key, ...element.payload.val() })
-        })
-      //  console.log(this.plats)
-        this.dataSource = new MatTableDataSource<Plat>(this.plats);
-      //  console.log('The dialog was closed');
-      })
+        this.initialiserTables();    
+            data.forEach(element => {
+          this.RemplirTables(element)
+        });
+        this.DataTables();
 
     })
-  }
+  })
+}
   //modal modifier plat
   openEdit(row: any): void {
     const dialogRef = this.dialog.open(UplatComponent, {
@@ -110,47 +117,60 @@ export class PlatResponsableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.shareservice.getPlats().subscribe(data => {
-        console.log(data)
-        this.plats = [];
+        //console.log(data)
+        this.initialiserTables();
         data.forEach(element => {
-          this.plats.push({ key: element.key, ...element.payload.val() })
-        })
-        console.log(this.plats)
-        this.dataSource = new MatTableDataSource<Plat>(this.plats);
-        console.log('The dialog was closed');
-      })
+          this.RemplirTables(element)
+        });
+        this.DataTables();
 
     })
+  })
   }
+  initialiserTables(){
+    this.plats = [];
+    this.valides = [];
+    this.invalides = [];
+    this.archives = [];
+  }
+  RemplirTables(element: any) {
 
+    this.plats.push({ key: element.key, ...element.payload.val() })
+
+    if (element.payload.val().valide && !element.payload.val().archive) {
+      this.valides.push({ key: element.key, ...element.payload.val() })
+    }
+    else {
+      if (!element.payload.val().valide && !element.payload.val().archive) {
+        this.invalides.push({ key: element.key, ...element.payload.val() })
+      }
+      else
+        if (element.payload.val().archive) {
+          this.archives.push({ key: element.key, ...element.payload.val() })
+
+        }
+    }
+   
+  }
+  DataTables(){
+    this.dataSourceV = new MatTableDataSource<Plat>(this.valides);
+    this.dataSourceV.paginator = this.paginator;
+    this.dataSourceI = new MatTableDataSource<Plat>(this.invalides);
+    this.dataSourceI.paginator = this.paginator;
+    this.dataSourceA = new MatTableDataSource<Plat>(this.archives);
+    this.dataSourceA.paginator = this.paginator;
+  }
 
   //filtrer
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilterV(filterValue: string) {
+    this.dataSourceV.filter = filterValue.trim().toLowerCase();
   }
-
-  selection = new SelectionModel<any>(true, []);
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+  applyFilterI(filterValue: string) {
+    this.dataSourceI.filter = filterValue.trim().toLowerCase();
   }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  applyFilterA(filterValue: string) {
+    this.dataSourceA.filter = filterValue.trim().toLowerCase();
   }
 
 
@@ -181,7 +201,7 @@ export class PlatResponsableComponent implements OnInit {
   };
   downloadCSV() {
     //this.dtHolidays: JSONDATA, HolidayList: nom du fichier CSV, this.csvOptions: options de fichier
-    new AngularCsv(this.dataSource, "HolidayList", this.csvOptions);
+    new AngularCsv(this.dataSourceV, "HolidayList", this.csvOptions);
   }
 
 
