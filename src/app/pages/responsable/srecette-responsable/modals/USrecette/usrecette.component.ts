@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChildren } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { USrecetteService } from "./usrecette.service";
 import { ShareService } from 'src/app/services/share.service';
@@ -25,6 +25,7 @@ export class USrecetteComponent implements OnInit {
   ing: Ingredients[] = []
   srec: SRecettes[] = []
   srecette: any;
+  event: any;
   constructor(
     public dialogRef: MatDialogRef<USrecetteComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any, 
@@ -40,7 +41,7 @@ export class USrecetteComponent implements OnInit {
 
 
     payload.srecette.ingredients.forEach((item) => {
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage.nom ,prix : item.payload.val().prix})
+      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage ,prix : item.payload.val().prix})
     })
     console.log(this.ing);
 
@@ -72,6 +73,14 @@ export class USrecetteComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  @ViewChildren('I') I;
+  onSelection(e) {
+    this.event = e
+    console.log(e.value);
+  }
+  get selectedIngredient() {
+    return this.event ? this.event.value.unite.nom : '';
   }
 
   Editsrecette() {
@@ -163,13 +172,13 @@ console.log(item)
       .then(() => {
         this.shareService.showMsg("srecette modifiée");
         this.valider = false;
-        this.shareService.sendNotification({
-          title: 'validation',
-          body: 'srecette validée',
-          to: this.payload.value.token
-        }).subscribe(() => {
-          console.log('notification envoyée avec succes')
-        })
+        // this.shareService.sendNotification({
+        //   title: 'validation',
+        //   body: 'srecette validée',
+        //   to: this.payload.value.token
+        // }).subscribe(() => {
+        //   console.log('notification envoyée avec succes')
+        // })
       })
       .catch(error => {
         console.error(error.message);

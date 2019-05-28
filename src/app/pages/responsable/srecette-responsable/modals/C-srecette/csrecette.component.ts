@@ -44,7 +44,7 @@ export class CSrecetteComponent implements OnInit {
      ) {
        console.log(payload.ingredients)
       payload.ingredients.forEach((item) => {
-        this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage.nom ,prix : item.payload.val().prix})
+        this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage ,prix : item.payload.val().prix})
       })
       console.log(this.srec);
 
