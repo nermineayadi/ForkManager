@@ -108,8 +108,8 @@ export class CplatComponent implements OnInit {
         this.shareService.showMsg("plat Proposé");
         this.valider = false;
         this.shareService.sendNotification({
-          title: 'Proposition',
-          body: 'Plat Proposé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
+          title: 'Proposition Plat ',
+          body: this.nomPlat.value +' Proposé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
           icon : profile.avatar,
           to: this.resp
         }).subscribe(() => {
