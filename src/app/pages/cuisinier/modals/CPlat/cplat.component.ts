@@ -104,11 +104,13 @@ export class CplatComponent implements OnInit {
     this.CPlatservice
       .ajoutPlat(obj)
       .then((data: any) => {
+        const profile = JSON.parse(localStorage.getItem('profile'))
         this.shareService.showMsg("plat Proposé");
         this.valider = false;
         this.shareService.sendNotification({
           title: 'Proposition',
           body: 'Plat Proposé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
+          icon : profile.avatar,
           to: this.resp
         }).subscribe(() => {
           console.log('notification envoyée avec succes')

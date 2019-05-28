@@ -10,7 +10,8 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class ResponsableComponent implements OnInit {
    // constructor
-  constructor(
+  constructor
+    (
     private afMessaging: AngularFireMessaging ,
     private shareService : ShareService
     ) 
@@ -18,28 +19,28 @@ export class ResponsableComponent implements OnInit {
     
   //onInit
   ngOnInit() {
-    this.requestPermission();
+    // this.requestPermission();
   }
 
-  requestPermission() {
-    this.afMessaging.requestPermission
-      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-      .subscribe(
-        (token) => { 
-          console.log('Permission granted! Save to the server!', token);
-          this.shareService.updateToken(token).then(()=>{
-            this.receiveMessage()
-          })
+  // requestPermission() {
+  //   this.afMessaging.requestPermission
+  //     .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+  //     .subscribe(
+  //       (token) => { 
+  //         console.log('Permission granted! Save to the server!', token);
+  //         this.shareService.updateToken(token).then(()=>{
+  //           this.receiveMessage()
+  //         })
            
-        },
-        (error) => { console.error(error); },  
-      );
-  }
-  receiveMessage() {
-    this.afMessaging.messages.subscribe(
-      (payload) => {
-        console.log("new message received. ", payload);
-        this.shareService.notifications.push(payload)
-      })
-  }
+  //       },
+  //       (error) => { console.error(error); },  
+  //     );
+  // }
+  // receiveMessage() {
+  //   this.afMessaging.messages.subscribe(
+  //     (payload) => {
+  //       console.log("new message received. ", payload);
+  //       this.shareService.notifications.push(payload)
+  //     })
+  // }
 }

@@ -17,27 +17,27 @@ export class CuisinierComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.requestPermission();
+    // this.requestPermission();
   }
 
-  requestPermission() {
-    this.afMessaging.requestPermission
-      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-      .subscribe(
-        (token) => { 
-          console.log('Permission granted! Save to the server!', token);
-          this.shareService.updateToken(token).then(()=>{
-            this.receiveMessage()
-          })
-        },
-        (error) => { console.error(error); },  
-      );
-  }
-  receiveMessage() {
-    this.afMessaging.messages.subscribe(
-      (payload) => {
-        console.log("new message received. ", payload);
-        this.shareService.notifications.push({title:payload['notification'].title, body:payload['notification'].body});
-      })
-  }
+  // requestPermission() {
+  //   this.afMessaging.requestPermission
+  //     .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+  //     .subscribe(
+  //       (token) => { 
+  //         console.log('Permission granted! Save to the server!', token);
+  //         this.shareService.updateToken(token).then(()=>{
+  //           this.receiveMessage()
+  //         })
+  //       },
+  //       (error) => { console.error(error); },  
+  //     );
+  // }
+  // receiveMessage() {
+  //   this.afMessaging.messages.subscribe(
+  //     (payload) => {
+  //       console.log("new message received. ", payload);
+  //       this.shareService.notifications.push({title:payload['notification'].title, body:payload['notification'].body});
+  //     })
+  // }
 }

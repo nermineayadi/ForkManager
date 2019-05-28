@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { mergeMapTo } from 'rxjs/operators';
+import { ShareService } from '../services/share.service';
 
 @Component({
     selector: 'app-pages',
@@ -11,24 +12,41 @@ import { mergeMapTo } from 'rxjs/operators';
 export class PagesComponent implements OnInit {
 
    
-    constructor(
-        private router: Router,private afMessaging: AngularFireMessaging
-    ) { 
+    constructor
+    (
+        private router: Router,private afMessaging: AngularFireMessaging,
+        private shareService : ShareService
+    ) 
+    { 
         this.router.navigate([`/${localStorage.getItem('fonction')}`]);
     }
 
  
   
-    ngOnInit() {
-      //this.requestPermission();
-    }
-  
-    // requestPermission() {
-    //   this.afMessaging.requestPermission
-    //     .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-    //     .subscribe(
-    //       (token) => { console.log('Permission granted! Save to the server!', token); },
-    //       (error) => { console.error(error); },  
-    //     );
-    // }
+    //onInit
+  ngOnInit() {
+    this.requestPermission();
+  }
+
+  requestPermission() {
+    this.afMessaging.requestPermission
+      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+      .subscribe(
+        (token) => { 
+          console.log('Permission granted! Save to the server!', token);
+          this.shareService.updateToken(token).then(()=>{
+            this.receiveMessage()
+          })
+           
+        },
+        (error) => { console.error(error); },  
+      );
+  }
+  receiveMessage() {
+    this.afMessaging.messages.subscribe(
+      (payload) => {
+        console.log("new message received. ", payload);
+        this.shareService.notifications.push(payload)
+      })
+  }
 }
