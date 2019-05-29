@@ -52,6 +52,8 @@ import { SupprimerSComponent } from './srecette-responsable/modals/supprimer/sup
 import { USrecetteComponent } from './srecette-responsable/modals/USrecette/usrecette.component';
 import { USrecetteService } from './srecette-responsable/modals/USrecette/usrecette.service';
 import { SupprimerIComponent } from './ingredient-responsable/modals/supprimer/supprimerI.component';
+import { VerifIComponent } from './inventaire-responsable/verifI/verifI.component';
+import { VerifIService } from './inventaire-responsable/verifI/verifI.service';
 NavigationResponsableComponent;
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ NavigationResponsableComponent;
     UIngredientComponent,    
     SupprimerSComponent,
     USrecetteComponent,
-    SupprimerIComponent
+    SupprimerIComponent,
+    VerifIComponent
 
     //pipes
 
@@ -118,7 +121,8 @@ NavigationResponsableComponent;
     SupprimerBComponent,
     SupprimerIComponent,
     UBoissonComponent,
-    UIngredientComponent],
+    UIngredientComponent,
+    VerifIComponent],
   exports: [],
   providers: [
     CIngredientService,
@@ -135,6 +139,6 @@ NavigationResponsableComponent;
     CBoissonService,
     UBoissonService,
     IngredientResponsableService,
-    USrecetteService]
+    USrecetteService,VerifIService]
 })
 export class ResponsableModule { }

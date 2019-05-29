@@ -1,0 +1,36 @@
+:host{
+    .dialog{
+        mat-toolbar{
+            background: #676a6c;
+            color: #fff;
+        }
+        .body{
+            padding: 10px 10px 0 10px;
+            max-width: 800px;
+            max-height: 350px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .dialog-footer{
+            padding: 10px 0;
+        }
+    }
+    table {
+        width: 100%;
+        border-radius: 4%;
+      
+        th {
+          text-decoration: bold;
+          vertical-align: middle;
+        }
+        td{
+          vertical-align: middle;
+      
+          button{
+            width : 50%;
+          .mat-icon{
+          vertical-align: top;}
+        }}
+      }
+    
+}

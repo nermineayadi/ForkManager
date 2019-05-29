@@ -5,6 +5,7 @@ import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/I
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { Location } from '@angular/common';
+import { VerifIComponent } from './verifI/verifI.component';
 
 
 @Component({
@@ -88,6 +89,23 @@ data:any;
       this.dtinventaireBarV.paginator = this.paginator;
       this.dtinventaireBarN = new MatTableDataSource<any>(this.inventaireBarN);
       this.dtinventaireBarN.paginator = this.paginator;
+    }
+    openVerif(element):void{
+      const dialogRef = this.dialog.open(VerifIComponent, {
+        width: '700px',
+        data: {inventaire:element ,data : this.data}
+        
+      });
+      dialogRef.afterClosed().subscribe(result => {
+      //   this.shareservice.getPlats().subscribe(data => {
+      //     //console.log(data)
+      //     this.initialiserTables();
+      //     data.forEach(element => {
+      //       this.RemplirTables(element)
+      //     });
+      //     this.DataTables();
+      // })
+    })
     }
 
       //filtrer
