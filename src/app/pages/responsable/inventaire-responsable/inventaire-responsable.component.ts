@@ -2,18 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog,  MatSort
 } from '@angular/material';
 import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
-export interface Ingrédient {
-    id: string;
-    poste: string;
-    date: Date;
-    
-  }
-  const ELEMENT_DATA: Ingrédient  [] = [
-    {id: '11' ,  poste: 'cuisine',date: new Date("2018-03-16")},
-    {id: '21', poste: 'bar', date:new Date("2018-03-16") },
-    {id: '12',  poste: 'cuisine' ,date:new Date("2019-03-17") },
-    {id:'22',  poste:'bar' , date:new Date("2018-09-17") },
-    ];
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { Location } from '@angular/common';
+
+
 @Component({
     selector: 'app-inventaire-responsable',
     templateUrl: './inventaire-responsable.component.html',
@@ -21,16 +14,34 @@ export interface Ingrédient {
 })
 export class InventaireResponsableComponent implements OnInit {
     displayedColumns: string[] = ['id', 'poste', 'date','actions'];
+data:any;
+    dataSource = new MatTableDataSource<any>();
+    // data
+    inventaireCuisineV : any[]=[];
+    inventaireCuisineN : any[]=[];
+    inventaireBarV : any[]=[];
+    inventaireBarN : any[]=[];
+    // data source
+    dtinventaireCuisineV = new MatTableDataSource<any>();
+    dtinventaireCuisineN = new MatTableDataSource<any>();
+    dtinventaireBarV = new MatTableDataSource<any>();
+    dtinventaireBarN = new MatTableDataSource<any>();
 
-    dataSource = new MatTableDataSource<Ingrédient >(ELEMENT_DATA);
-  
+    // columns
+    displayedColumnsV: string[] = ['date', 'Emetteur','detail'];
+    displayedColumnsN: string[] = ['date', 'Emetteur','actions'];
+
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
 
-    constructor(public dialog: MatDialog) {}
-    openDialog(): void {
+    constructor(public dialog: MatDialog,private route: ActivatedRoute,
+      private shareservice : ShareService,
+     private location: Location) {}
+    
+    
+     openDialog(): void {
       const dialogRef = this.dialog.open(InventaireCComponent , {
         //taille du modal 
         width: '900px',
@@ -44,9 +55,39 @@ export class InventaireResponsableComponent implements OnInit {
     }
     //pagination
     ngOnInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.route.data.subscribe((data) => {
+        data.inventaire.inventairesCuisine.forEach((element :any)=> {
+          if(element.payload.val().valid ==true)
+          this.inventaireCuisineV.push(element.payload.val())
+    
+        else{
+          this.inventaireCuisineN.push(element.payload.val())
+          
 
+        }   
+       })
+       data.inventaire.inventairesBar.forEach((element:any )=> {
+        if(element.valid ==true)
+        this.inventaireBarV.push(element)
+  
+      else{
+        this.inventaireBarN.push(element)
+       }});
+       this.data=data.inventaire;
+
+      })
+     this.DataTables()
+
+    }
+    DataTables(){
+      this.dtinventaireCuisineV = new MatTableDataSource<any>(this.inventaireCuisineV);
+      this.dtinventaireCuisineV.paginator = this.paginator;
+      this.dtinventaireCuisineN = new MatTableDataSource<any>(this.inventaireCuisineN);
+      this.dtinventaireCuisineN.paginator = this.paginator;
+      this.dtinventaireBarV = new MatTableDataSource<any>(this.inventaireBarV);
+      this.dtinventaireBarV.paginator = this.paginator;
+      this.dtinventaireBarN = new MatTableDataSource<any>(this.inventaireBarN);
+      this.dtinventaireBarN.paginator = this.paginator;
     }
 
       //filtrer
@@ -54,4 +95,16 @@ export class InventaireResponsableComponent implements OnInit {
     applyFilter(filterValue: string) {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+    cancel() {
+      this.location.back(); // <-- go back to previous location on cancel
+    }
+    profileToken(token : any):string{
+      var profile: any ;
+  this.data.users.forEach((element:any) => {
+     if(element.payload.val().token ==token )
+     profile=element.payload.val()
+   });
+ return profile? profile.nom + ' '+profile.prenom:'changed' 
+    }
+  
 }

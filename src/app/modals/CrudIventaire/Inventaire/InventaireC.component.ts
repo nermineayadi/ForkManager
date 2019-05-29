@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChildren } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material';
 import { ShareService } from 'src/app/services/share.service';
 import { InventaireCService } from './InventaireC.service';
@@ -13,7 +13,7 @@ export class InventaireCComponent {
   date = new Date().toLocaleDateString();
   unites: string[] = ['g', 'ml', 'portion']
   ingredients: any[] = [
-    { libelle: '', quantite: '', unite: '' }
+    { libelle: '', quantite: '' }
   ];
   valider = false;
   ing: Ingredients[] = []
@@ -25,7 +25,7 @@ export class InventaireCComponent {
     private shareService: ShareService,
     private inventaireCService: InventaireCService) {
     payload.inventaire.ingredients.forEach((item) => {
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage.nom ,prix : item.payload.val().prix})
+      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle, unite: item.payload.val().stockage, prix: item.payload.val().prix })
     })
     this.getTokenResponsable().subscribe((data: any) => {
       this.resp = data.payload.val().token
@@ -41,98 +41,89 @@ export class InventaireCComponent {
   }
 
   addNewIngredient() {
-    this.ingredients.push({ libelle: '', quantite: 0, unite: '' })
+    this.ingredients.push({ libelle: '', quantite: 0 })
+  }
+  event: any;
+
+  @ViewChildren('I') I;
+  onSelection(e) {
+    this.event = e
+    console.log(e.value);
+  }
+  get selectedIngredient() {
+    return this.event ? this.event.value.unite.nom : '';
   }
   addInventaire() {
-    var ingredient=this.inventaire 
-    console.log(ingredient.length)
-    console.log(this.ingredients)
+    var ingredient = this.inventaire
+    // console.log(ingredient.length)
+    // console.log(this.ingredients)
     this.ingredients.forEach((item) => {
-      console.log(item)
+      // console.log(item)
       if (item.libelle.hasOwnProperty("key")) {
-        var test=false
-        console.log(test)
-        console.log(ingredient.length)
 
-        if (ingredient.length >= 1) {
+        // console.log(test)
+        // console.log(ingredient.length)
+        if (ingredient.length == 0) {
+          ingredient.push({ ...item.libelle, quantite: Number(item.quantite) })
           console.log(ingredient.length)
+        }
+        else {
+          var test = false
+          // console.log(ingredient.length)
           ingredient.forEach(element => {
             if (element.key == item.libelle.key) {
-              element.quantite = item.quantite
-              element.unite = item.unite
-              test=true
+              this.shareService.showMsg('ingredient déjà déclaré')
+              test = true
+              console.log(test)
             }
           });
-          if(test=false){
-            ingredient.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
-            console.log(ingredient)
+          if (test == false) {
+            ingredient.push({ ...item.libelle, quantite: item.quantite })
+            console.log(ingredient.length)
+            console.log(test)
           }
         }
-        else
-          ingredient.push({ ...item.libelle, quantite: item.quantite, unite: item.unite })
-
       }
     })
     console.log(ingredient)
 
     const obj = {
 
-      date: this.date,
+      // date: this.date,
       ingredient: ingredient,
-      token: JSON.parse(localStorage.getItem('profile')).token,
+      // token: JSON.parse(localStorage.getItem('profile')).token,
     };
-    console.log(obj)
-    if (this.payload.invToday) {
-      console.log('modifier')
-        this.inventaireCService
-        .ModifInventaire(this.payload.invToday, obj)
-        .then((data: any) => {
-          this.shareService.showMsg("inventaire envoyé");
-          this.valider = false;
-          this.shareService.sendNotification({
-            title: 'Proposition',
-            body: 'inventaire envoyé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
-            to: this.resp
-          }).subscribe(() => {
-            console.log('notification envoyée avec succes')
-          })
-          this.dialogRef.close({
-            obj
+    // console.log(obj)
 
-          });
+    console.log('modifier')
+    this.inventaireCService
+      .ModifInventaire(this.payload.invToday, obj)
+      .then((data: any) => {
+        const profile = JSON.parse(localStorage.getItem('profile'))
+
+        this.shareService.showMsg("inventaire envoyé");
+        this.valider = false;
+        this.shareService.sendNotification({
+          title: 'Inventaire',
+          body: 'inventaire envoyé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
+          icon: profile.avatar,
+          to: this.resp
+        }).subscribe(() => {
+          console.log('notification envoyée avec succes')
         })
-        .catch(error => {
-          console.error(error.message);
-          this.shareService.showMsg(error.message);
-          this.valider = false;
+        this.dialogRef.close({
+          obj
 
         });
-    }
-    else {
-      console.log('ajouter')
+      })
+      .catch(error => {
+        console.error(error.message);
+        this.shareService.showMsg(error.message);
+        this.valider = false;
 
-      this.inventaireCService
-        .ajoutInventaire(obj)
-        .then((data: any) => {
-          this.shareService.showMsg("inventaire envoyé");
-          this.valider = false;
-          this.shareService.sendNotification({
-            title: 'Proposition',
-            body: 'inventaire envoyé par Mr :' + JSON.parse(localStorage.getItem('profile')).nom + ' ' + JSON.parse(localStorage.getItem('profile')).prenom,
-            to: this.resp
-          }).subscribe(() => {
-            console.log('notification envoyée avec succes')
-          })
-          this.dialogRef.close({
-obj          });
-        })
-        .catch(error => {
-          console.error(error.message);
-          this.shareService.showMsg(error.message);
-          this.valider = false;
+      });
 
-        });
-    }
+
   }
 
 

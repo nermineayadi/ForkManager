@@ -8,12 +8,12 @@ export class InventaireCService {
         ) {}
         ajoutInventaire(Inventaire : any) {
             
-          return  this.db.list(`inventaires`).push(Inventaire);;
+          return  this.db.list(`inventairesCuisine`).push(Inventaire);;
            
           }
 
           ModifInventaire(key : any ,Inventaire : any) {
-            const itemsRef = this.db.list(`inventaires`);
+            const itemsRef = this.db.list(`inventairesCuisine`);
             return itemsRef.update(key,Inventaire);
           }
     

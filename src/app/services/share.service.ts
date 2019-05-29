@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import * as firebase from 'firebase';
 import { User } from '../models/user.model';
+import { take } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ShareService {
   notifications: any[] = [];
@@ -33,7 +34,9 @@ export class ShareService {
                         const achats = this.getAchats().subscribe((achats) => {
                           const unites = this.getUnites().subscribe((unites) => {
                             const srecettes = this.getSrecettes().subscribe((srecettes) => {
-                              const inventaires = this.getInventaires().subscribe((inventaires) => {
+                              const inventairesCuisine = this.getInventairesCuisine().subscribe((inventairesCuisine) => {
+const inventairesBar = this.getInventairesBar().subscribe((inventairesBar)=>{
+
 
                             const obj = {
                               users: users,
@@ -48,10 +51,12 @@ export class ShareService {
                               achats:achats,
                               unites:unites,
                               srecettes:srecettes,
-                              inventaires:inventaires
+                              inventairesCuisine:inventairesCuisine,
+                              inventairesBar:inventairesBar
                             };
                             resolve(obj)
                           })
+                        })
                         })
                         })
                         })
@@ -115,13 +120,19 @@ export class ShareService {
     const ref = this.db.list('unites').snapshotChanges();
     return ref;
   }
-  getInventaires() {
-    const ref = this.db.list('inventaires').snapshotChanges();
+  getInventairesCuisine() {
+    const ref = this.db.list('inventairesCuisine').snapshotChanges();
+    return ref;
+  }
+  getInventairesBar() {
+    const ref = this.db.list('inventairesBar').snapshotChanges();
     return ref;
   }
   getIngredient(key : string){
     return this.db.object(`ingredients/${key}`)
  
+  }
+  getProfileToken(token : string){
   }
   updateIngredient(key:string,used : number) {
     const ref = this.db.object(`ingredients/${key}`);

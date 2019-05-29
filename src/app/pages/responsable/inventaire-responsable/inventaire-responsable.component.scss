@@ -33,7 +33,6 @@
 
   mat-form-field {
     font-size: 14px;
-    width: 400px !important;
     padding: 0 !important;
   }
 
@@ -44,21 +43,27 @@
 
   }
 
-  table {
-    width: 100%;
-    border-radius: 4%;
-    
-      text-align: center !important;
-      width: 100%;
-    }
-    
-    tr {
-      text-decoration: bold;
-      text-align: center !important;
-  }
+ 
 ::ng-deep .mat-sort-header-container {
   display: flex;
   justify-content: center;
+}
+table {
+  width: 100%;
+  border-radius: 4%;
+
+  th {
+    text-decoration: bold;
+    vertical-align: middle;
+  }
+  td{
+    vertical-align: middle;
+
+    button{
+      width : 50%;
+    .mat-icon{
+    vertical-align: top;}
+  }}
 }
 }
  

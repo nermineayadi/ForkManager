@@ -4,8 +4,9 @@ import {MatPaginator, MatDialog,  MatSort, MatTableDataSource
 import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
-import { Inventaire } from 'src/app/models/inventaire.model';
-import { Ingredients } from 'src/app/models/ingredients.model';
+
+import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-inventaire-cuisine',
@@ -28,18 +29,32 @@ export class InventaireCuisineComponent implements OnInit {
 
     constructor(public dialog: MatDialog,
       private route: ActivatedRoute,
-      private shareservice : ShareService,) {}
+      private shareservice : ShareService,
+      private inventaireCService : InventaireCService,
+      private location: Location) {}
 
       ngOnInit() {
         this.route.data.subscribe((data) => {
-           data.inventaire.inventaires.forEach(element => {
+           data.inventaire.inventairesCuisine.forEach(element => {
              if (element.payload.val().date == this.date){
-               console.log('item' + element.payload.val().date)
-               console.log('date'+ this.date)
-               console.log(element.payload.val().ingredient)
+              //  console.log('item' + element.payload.val().date)
+              //  console.log('date'+ this.date)
+              //  console.log(element.payload.val().ingredient)
                this.invToday= element.key;
              this.inventaire.push(...element.payload.val().ingredient)}
            });
+           if(!this.invToday){
+            const obj = {
+              valid :false ,
+              date: this.date,
+              token: JSON.parse(localStorage.getItem('profile')).token,
+            };
+            this.inventaireCService
+            .ajoutInventaire(obj)
+            .then((element: any) => { 
+              this.invToday= element.key;
+            })
+           }
            this.dataSource = new MatTableDataSource<any>(this.inventaire);
           this.dataSource.paginator = this.paginator;
           this.inv= data.inventaire
@@ -55,7 +70,7 @@ export class InventaireCuisineComponent implements OnInit {
       
       dialogRef.afterClosed().subscribe(result => {
        
-        this.shareservice.getInventaires().subscribe((data) => {
+        this.shareservice.getInventairesCuisine().subscribe((data) => {
           this.inventaire=[]
           data.forEach((element : any) => {
             if (element.payload.val().date == this.date){
@@ -73,5 +88,8 @@ export class InventaireCuisineComponent implements OnInit {
 
     applyFilter(filterValue: string) {
       this.dataSource.filter = filterValue.trim().toLowerCase() 
+    }
+    cancel() {
+      this.location.back(); // <-- go back to previous location on cancel
     }
 }
