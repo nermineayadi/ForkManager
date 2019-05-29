@@ -35,30 +35,34 @@ export class ShareService {
                           const unites = this.getUnites().subscribe((unites) => {
                             const srecettes = this.getSrecettes().subscribe((srecettes) => {
                               const inventairesCuisine = this.getInventairesCuisine().subscribe((inventairesCuisine) => {
-const inventairesBar = this.getInventairesBar().subscribe((inventairesBar)=>{
+                                const inventairesBar = this.getInventairesBar().subscribe((inventairesBar) => {
+                                  const commandesBarEconomat = this.getcommandesBarEconomat().subscribe((commandesBarEconomat) => {
 
 
-                            const obj = {
-                              users: users,
-                              plats: plats,
-                              categories: categories,
-                              classes:classes,
-                              ingredients: ingredients,
-                              boissons:boissons,
-                              familles: familles,
-                              sfamilles: sfamilles,
-                              stockages:stockages,
-                              achats:achats,
-                              unites:unites,
-                              srecettes:srecettes,
-                              inventairesCuisine:inventairesCuisine,
-                              inventairesBar:inventairesBar
-                            };
-                            resolve(obj)
+                                  const obj = {
+                                    users: users,
+                                    plats: plats,
+                                    categories: categories,
+                                    classes: classes,
+                                    ingredients: ingredients,
+                                    boissons: boissons,
+                                    familles: familles,
+                                    sfamilles: sfamilles,
+                                    stockages: stockages,
+                                    achats: achats,
+                                    unites: unites,
+                                    srecettes: srecettes,
+                                    inventairesCuisine: inventairesCuisine,
+                                    inventairesBar: inventairesBar,
+                                    commandesBarEconomat: commandesBarEconomat
+
+                                  };
+                                  resolve(obj)
+                                })
+                              })
+                              })
+                            })
                           })
-                        })
-                        })
-                        })
                         })
                       })
                     })
@@ -128,13 +132,17 @@ const inventairesBar = this.getInventairesBar().subscribe((inventairesBar)=>{
     const ref = this.db.list('inventairesBar').snapshotChanges();
     return ref;
   }
-  getIngredient(key : string){
+  getIngredient(key: string) {
     return this.db.object(`ingredients/${key}`)
- 
+
   }
-  getProfileToken(token : string){
+  getcommandesBarEconomat(){
+    const ref = this.db.list('CommandeBarEconomat').snapshotChanges();
+    return ref;
   }
-  updateIngredient(key:string,used : number) {
+  getProfileToken(token: string) {
+  }
+  updateIngredient(key: string, used: number) {
     const ref = this.db.object(`ingredients/${key}`);
     console.log(used)
     return ref.update({

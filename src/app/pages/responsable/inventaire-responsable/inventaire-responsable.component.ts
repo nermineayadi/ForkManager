@@ -39,7 +39,8 @@ data:any;
 
     constructor(public dialog: MatDialog,private route: ActivatedRoute,
       private shareservice : ShareService,
-     private location: Location) {}
+     private location: Location) 
+     {}
     
     
      openDialog(): void {
@@ -60,11 +61,8 @@ data:any;
         data.inventaire.inventairesCuisine.forEach((element :any)=> {
           if(element.payload.val().valid ==true)
           this.inventaireCuisineV.push(element.payload.val())
-    
         else{
           this.inventaireCuisineN.push(element.payload.val())
-          
-
         }   
        })
        data.inventaire.inventairesBar.forEach((element:any )=> {

@@ -19,21 +19,6 @@ export class NavigationBarComponent implements OnInit {
       link: "./boisson",
     },
     {
-      title: "Menus",
-      icon: "book-open",
-      link: "./menu"
-    },
-    {
-      title: "Réservation",
-      icon: "calendar",
-      link: "./reservation"
-    },
-    {
-      title: "Stock",
-      icon: "box-open",
-      link: "./stock"
-    },
-    {
       title: "Commande",
       icon: "shopping-basket",
       link: "./commande"

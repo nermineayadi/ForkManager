@@ -7,7 +7,7 @@ import { BoissonBarComponent } from './boisson-bar/boisson-bar.component';
 import { StockBarComponent } from './stock-bar/stock-bar.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { ReservationBarComponent } from './reservation-bar/reservation-bar.component';
-import { CommandeBarComponent } from './commande-bar/commande-bar.component';
+import { CommandeBarComponent } from './commande-bar.service.ts/commande-bar.component';
 import { InventraireBarComponent } from './inventraire-bar/inventraire-bar.component';
 import { AcceuilBarComponent } from './acceuil-bar/acceuil-bar.component';
 //assets
@@ -20,7 +20,8 @@ import { FlatpickrModule } from "angularx-flatpickr";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { NavigationBarComponent } from 'src/app/navigation/navigation-bar/navigation-bar.component';
-
+import{MDBBootstrapModule }from 'angular-bootstrap-md'
+import { CmdBarService } from './commande-bar.service.ts/commande-bar.service';
 @NgModule({
     declarations: [
         BarmanComponent,
@@ -32,7 +33,7 @@ import { NavigationBarComponent } from 'src/app/navigation/navigation-bar/naviga
         InventraireBarComponent,
         NavigationBarComponent,
         AcceuilBarComponent],
-    imports: [
+    imports: [MDBBootstrapModule,
         CommonModule,
         BarmanRoutingModule,
         MatangModule,
@@ -51,6 +52,6 @@ import { NavigationBarComponent } from 'src/app/navigation/navigation-bar/naviga
     ],
 
     exports: [],
-    providers: [],
+    providers: [CmdBarService],
 })
 export class BarmanModule { }
