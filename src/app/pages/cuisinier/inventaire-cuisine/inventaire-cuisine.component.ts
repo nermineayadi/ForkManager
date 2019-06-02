@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatDialog,  MatSort, MatTableDataSource
 } from '@angular/material';
-import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
+import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/InventaireC/InventaireC.component';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 
-import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.service';
+import { InventaireCService } from 'src/app/modals/CrudIventaire/InventaireC/InventaireC.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -47,7 +47,7 @@ export class InventaireCuisineComponent implements OnInit {
             const obj = {
               valid :false ,
               date: this.date,
-              token: JSON.parse(localStorage.getItem('profile')).token,
+              token: localStorage.getItem('token'),
             };
             this.inventaireCService
             .ajoutInventaire(obj)

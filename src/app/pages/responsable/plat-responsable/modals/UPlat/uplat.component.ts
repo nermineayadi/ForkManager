@@ -4,6 +4,7 @@ import { UPlatService } from "./uplat.service";
 import { ShareService } from 'src/app/services/share.service';
 import { SRecettes } from 'src/app/models/srecettes.model';
 import { Ingredients } from 'src/app/models/ingredients.model';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cplat',
@@ -35,10 +36,9 @@ export class UplatComponent implements OnInit {
     console.log(payload.value)
     this.plat = payload.value;
     this.plat.nomPlat = payload.value.nomPlat;
-    this.plat.nbPart = payload.value.nbPart;
-    this.plat.duree = payload.value.duree;
-    this.plat.prix = payload.value.prix;
-   
+    this.plat.duree = Number(payload.value.duree);
+    this.plat.prix = Number(payload.value.prix);
+   this.plat.cout=this.coutPlat;
 
     payload.plat.ingredients.forEach((item) => {
       this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle ,unite: item.payload.val().stockage,prix : item.payload.val().prix})
@@ -64,20 +64,34 @@ export class UplatComponent implements OnInit {
         this.plat.sfamille = item;
       }
     })
+    // payload.value.ingredient.forEach((element)=>{
+    //   this.plat.cout+=element.libelle.prix*element.quantite
+
+    // })
 
 
     //  this.plat.categorie = payload.value.categorie.key;
   }
+  get coutPlat(){
+    var cout = 0 ;
+     this.payload.value.ingredient.forEach((element)=>{
+     cout+=element.libelle.prix*element.quantite
+    })
+      return cout;
+  }
   get coutIngredient(){
-    var cout: number =0
+    var cout=this.plat.cout
+    console.log(cout)
     this.ingredients.forEach(element => {
-      cout+=element.libelle.prix*element.quantite
+if(element.libelle.hasOwnProperty("key")){
+      cout+=element.libelle.prix*element.quantite}
     });
  
     return cout>0 ? cout.toFixed(3) : 0;
   }
   get PourcentCout(){
     var prc : number = Number( this.coutIngredient)*100/this.plat.prix
+    console.log(prc)
     return prc>0 ? Math.round(prc) : 0
   }
   get Marge(){
@@ -101,6 +115,7 @@ export class UplatComponent implements OnInit {
   }
 
   EditPlat() {
+    var test ;
     const ingredient: any[] = []
     if (this.plat.hasOwnProperty("ingredient")) {
       this.plat.ingredient.forEach((item) => {
@@ -118,8 +133,10 @@ export class UplatComponent implements OnInit {
           console.log(element.key)
           console.log(item.libelle.key)
           if (element.key == item.libelle.key) {
-            element.quantite=item.quantite
-            element.unite=item.unite
+            // element.quantite=item.quantite
+            // element.unite=item.unite
+            this.shareService.showMsg('ingrédient déjà existant')
+            test=false
           } 
           else
           {
@@ -169,7 +186,7 @@ export class UplatComponent implements OnInit {
     this.valider = true;
     const obj = {
       nomPlat: this.plat.nomPlat,
-      nbPart: this.plat.nbPart,
+      prix:this.plat.prix,
       duree: this.plat.duree,
       //prix: this.plat.prix,
       valide: true,
@@ -193,6 +210,7 @@ export class UplatComponent implements OnInit {
       // etape:this.etapes,
     };
     console.log(obj)
+    if(test==true){
     this.UPlatService
       .updatePlat(obj, this.payload.key)
       .then(() => {
@@ -217,6 +235,7 @@ export class UplatComponent implements OnInit {
       });
     this.dialogRef.close();
   }
+}
 
 }
 

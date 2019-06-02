@@ -25,7 +25,6 @@ export class CIngredientComponent implements OnInit {
   quantite = new FormControl('', Validators.required);
   stockage = new FormControl('', Validators.required);
   achat = new FormControl('', Validators.required);
-
  
   constructor(
      public dialogRef: MatDialogRef<CIngredientComponent>,
@@ -43,7 +42,11 @@ export class CIngredientComponent implements OnInit {
 
   ngOnInit() {
   }
- 
+  get isValid(): boolean {
+    return this.libelle.invalid || this.prix.invalid || this.famille.invalid
+      || this.sfamille.invalid || this.classe.invalid || this.stockage.invalid
+      || this.code.invalid || this.quantite.invalid;
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -57,9 +60,9 @@ export class CIngredientComponent implements OnInit {
       valide: true,
 
       libelle: this.libelle.value,
-      prix: this.prix.value,
+      prix:Number(this.prix.value),
       code: this.code.value,
-      quantite: this.quantite.value,
+      quantite: Number( this.quantite.value),
 
       classe: {
         key: this.classe.value.key,

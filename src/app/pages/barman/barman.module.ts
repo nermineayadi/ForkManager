@@ -22,6 +22,7 @@ import { NavBarModule } from 'src/app/navbar/navbar.module';
 import { NavigationBarComponent } from 'src/app/navigation/navigation-bar/navigation-bar.component';
 import{MDBBootstrapModule }from 'angular-bootstrap-md'
 import { CmdBarService } from './commande-bar.service.ts/commande-bar.service';
+import { InventaireBService } from 'src/app/modals/CrudIventaire/InventaireB/InventaireB.service';
 @NgModule({
     declarations: [
         BarmanComponent,
@@ -52,6 +53,6 @@ import { CmdBarService } from './commande-bar.service.ts/commande-bar.service';
     ],
 
     exports: [],
-    providers: [CmdBarService],
+    providers: [CmdBarService,InventaireBService],
 })
 export class BarmanModule { }

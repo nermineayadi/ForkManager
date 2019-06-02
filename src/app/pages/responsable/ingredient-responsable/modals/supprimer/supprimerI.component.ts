@@ -22,13 +22,17 @@ export class SupprimerIComponent implements OnInit {
   }
   onDelete(){
     console.log(this.element.key);
+    if(this.element.used>=1){
+      this.shareService.showMsg("Ingredient déjà utilisé");
+    }
+    else{
     this.ingredientService.supprimeIngredient(this.element.key).then(()=>{
       this.shareService.showMsg("Ingredient supprimé");
     })
     .catch(error => {
       console.error(error.message);
       this.shareService.showMsg(error.message)
-    })
+    })}
     this.dialogRef.close();
   }
 

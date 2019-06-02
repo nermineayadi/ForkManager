@@ -33,11 +33,11 @@ export class PagesComponent implements OnInit {
       .pipe(mergeMapTo(this.afMessaging.tokenChanges))
       .subscribe(
         (token) => { 
-          console.log('Permission granted! Save to the server!', token);
+          // console.log('Permission granted! Save to the server!', token);
           this.shareService.updateToken(token).then(()=>{
             this.receiveMessage()
           })
-           
+          localStorage.setItem('token',token);  
         },
         (error) => { console.error(error); },  
       );

@@ -68,9 +68,9 @@ export class UIngredientComponent implements OnInit {
     this.valider = true;
     const obj = {
       libelle: this.ingredient.libelle,
-      prix: this.ingredient.prix,
+      prix: Number(this.ingredient.prix),
       code: this.ingredient.code,
-      quantite:this.ingredient.quantite,
+      quantite:Number(this.ingredient.quantite),
       
       classe: {
         key: this.ingredient.classe.key,

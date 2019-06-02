@@ -27,7 +27,7 @@ lat: number = 51.678418;
     this.route.data.subscribe((data)=>{
       this.plats = data.serveur.plats; 
       this.boissons = data.serveur.boissons ; 
-      this.action = "ENTREE" ;
+      this.action = "Entree" ;
       console.log(data)
     })
    }
@@ -59,7 +59,13 @@ addPlat(plat : any){
   this.transactions = [...this.transactions]
 
 }
-addBoisson(boisson : any){
+annuler(){
+  this.transactions = [];
+}
+passer(){
+  
+}
+  addBoisson(boisson : any){
   const index= this.transactions.findIndex((item:any)=>{
     return item.key == boisson.key ; 
   })

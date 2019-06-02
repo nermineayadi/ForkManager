@@ -1,0 +1,37 @@
+<div class="dialog" fxLayout="column">
+  <mat-toolbar fxLayoutAlign="space-between center">
+    <h5>INVENTAIRE  : </h5> 
+    <span>
+      {{date}}
+    </span>
+  </mat-toolbar>
+  <div class="body" fxLayout="column">
+    
+    <div style="width:100%" *ngFor="let item of boissons; let i= index">
+      <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
+
+        <mat-form-field style="width:100%;" appearance="outline">
+          <mat-label>boisson</mat-label>
+          <mat-select [(ngModel)]="boissons[i].libelle" #I (selectionChange)="onSelection($event) ">
+            <mat-option *ngFor="let row of ing" [value]="row">{{row.libelle}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>quantité</mat-label>
+          <input [(ngModel)]="boissons[i].quantite" matInput>
+          <span matSuffix>{{selectedboisson}}</span>
+        </mat-form-field>
+      </div>
+    </div>
+            <div fxLayout="row" fxLayoutAlign="end center">
+              <button mat-mini-fab (click)="addNewboisson()">
+                <mat-icon>add</mat-icon>
+            </button>
+          </div>
+    
+  </div>
+    <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-stroked-button  (click)="addInventaire()" color="primary">Valider</button>
+      <button mat-button (click)="onNoClick()"> Annuler</button>
+    </div>
+  </div>

@@ -48,26 +48,26 @@
 
       <div fxLayout="column">
         <h5>% Cout Plat</h5>
-      
-      
-      <div class="c100 p{{PourcentCout}} small">
-        <span>{{PourcentCout}}% </span>
-        <div class="slice">
-          <div class="bar"></div>
-          <div class="fill"></div>
+
+
+        <div class="c100 p{{PourcentCout}} small">
+          <span>{{PourcentCout}}% </span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
         </div>
       </div>
-</div>
-<div fxLayout="column">
-  <h5> Marge Plat *10</h5>
-      <div class="c100 p{{Marge}} small">
-        <span>{{Marge}}% </span>
-        <div class="slice">
-          <div class="bar"></div>
-          <div class="fill"></div>
+      <div fxLayout="column">
+        <h5> Marge Plat *10</h5>
+        <div class="c100 p{{Marge}} small">
+          <span>{{Marge}}% </span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
     <h5>Ingredients</h5>
     <div style="width:100%" *ngFor="let item of ingredients; let i= index">

@@ -7,8 +7,18 @@ import { AngularFireDatabase } from "@angular/fire/database";
 
 ShareService
 @Injectable()
-export class CommandeService  {
-    constructor(private db: AngularFireDatabase ) {
+export class CommandeCuisineService  {
+    constructor(private db: AngularFireDatabase,
+      
+        ) { }
+    ajoutCmd(commande : any){
+        return  this.db.list(`CommandeCuisineEconomat`).push(commande);
+        
+    }
+    SendCmd(commande : any,key : string){
+        const ref = this.db.object(`CommandeCuisineEconomat/${key}`);
+        return ref.update(commande
+        )
     }
 
 

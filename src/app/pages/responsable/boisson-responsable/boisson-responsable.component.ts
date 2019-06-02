@@ -20,7 +20,7 @@ export class BoissonResponsableComponent implements OnInit {
   boissons: any[] = [];
   boisson: any;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['select', 'code', 'boisson', 'classe', 'famille', 'sfamille' , 'prix', 'actions'];
+  displayedColumns: string[] = ['code', 'boisson', 'classe', 'famille', 'sfamille' , 'prix', 'actions'];
 
   //pagination
   @ViewChild(MatPaginator) paginator: MatPaginator;

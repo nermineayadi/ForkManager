@@ -23,7 +23,7 @@ export class CommandeBarComponent implements OnInit {
   key:string
   quantite:number;
   commandes:any[]=[]
-  displayedColumns: string[] = [ 'code', 'boisson', 'classe', 'famille', 'sfamille' , 'actions'];
+  displayedColumns: string[] = [ 'code', 'boisson', 'classe', 'famille', 'sfamille','quantite' , 'actions'];
   cmdToday: any;
   constructor(public dialog: MatDialog,
     private route: ActivatedRoute,

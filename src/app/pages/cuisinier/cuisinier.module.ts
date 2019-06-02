@@ -32,7 +32,8 @@ import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
-import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.service';
+import { InventaireCService } from 'src/app/modals/CrudIventaire/InventaireC/InventaireC.service';
+import { CommandeCuisineService } from './commande-cuisine/commande.service';
 
 @NgModule({
   declarations: [ 
@@ -80,6 +81,6 @@ import { InventaireCService } from 'src/app/modals/CrudIventaire/Inventaire/Inve
   ],
   
   exports: [],
-  providers: [CPlatService , PlatService , DetailPService,InventaireCService]
+  providers: [CommandeCuisineService,CPlatService , PlatService , DetailPService,InventaireCService]
 })
 export class CuisineModule {}

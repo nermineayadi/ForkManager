@@ -14,13 +14,14 @@
         <mat-label>libelle</mat-label>
         <input [formControl]="libelle" matInput required>
       </mat-form-field>
+  
       <mat-form-field appearance="outline">
         <mat-label>quantite</mat-label>
-        <input [formControl]="quantite" matInput required>
+        <input type="number" [formControl]="quantite" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>prix</mat-label>
-        <input [formControl]="prix" matInput required>
+        <input type="number" [formControl]="prix" matInput required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>classe</mat-label>
@@ -70,7 +71,7 @@
     
   </div>
   <div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <button mat-stroked-button color="primary" [disabled]="valider"
+    <button mat-stroked-button color="primary"  [disabled]="isValid"
       (click)="ajoutingredient()">Enregistrer</button>
     <button mat-button (click)="onNoClick()"> Annuler</button>
   </div>

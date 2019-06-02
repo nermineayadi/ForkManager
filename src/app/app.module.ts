@@ -11,11 +11,10 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
 //modals
-import { InventaireCComponent } from './modals/CrudIventaire/Inventaire/InventaireC.component';
+import { InventaireCComponent } from './modals/CrudIventaire/InventaireC/InventaireC.component';
 import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
 import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
-import { InventaireBComponent } from './modals/CrudInventaireB/inventaire-b/inventaire-b.component';
 //assets
 import { MatangModule } from "../assets/matang.module";
 //environment
@@ -62,6 +61,7 @@ import { ClientComponent } from './client/client.component';
 import { ClientService } from './client/client.service';
 
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/InventaireB.component';
 
 
 
@@ -84,7 +84,6 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
     CPersonnelComponent,
     CPortionComponent,
     CropperComponent,
-    InventaireBComponent,
     InventaireBComponent,
 
 

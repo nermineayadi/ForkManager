@@ -9,6 +9,7 @@ import { UplatComponent } from './modals/UPlat/uplat.component';
 import { CplatComponent } from './modals/CPlat/cplat.component';
 import { ShareService } from 'src/app/services/share.service';
 import { Plat } from 'src/app/models/plat.model';
+import { Location } from '@angular/common';
 
 //initialisations plats 
 
@@ -45,6 +46,7 @@ export class PlatResponsableComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private shareservice: ShareService,
+    private location: Location
   ) { }
 
   //onInit
@@ -171,6 +173,9 @@ export class PlatResponsableComponent implements OnInit {
   }
   applyFilterA(filterValue: string) {
     this.dataSourceA.filter = filterValue.trim().toLowerCase();
+  }
+  cancel() {
+    this.location.back(); // <-- go back to previous location on cancel
   }
 
 

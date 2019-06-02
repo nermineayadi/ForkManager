@@ -23,6 +23,12 @@ updatePlat(plat : any , key : string){
   return itemRef.update(plat);
 
 }
+updateIngPlat(ing : any , key : string){
+  const itemRef = this.db.object(`plats/${key}`);
+  console.log(itemRef);
+
+  return itemRef.update({ingredient : ing});
+}
 ajoutPlat(plat : any) {
   const itemsRef = this.db.list(`plats`);
   return itemsRef.push(plat);

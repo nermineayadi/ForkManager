@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
+import {MatPaginator, MatDialog} from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { Ingredient } from 'src/app/models/ingredient.model';
@@ -7,6 +7,8 @@ import { SupprimerBComponent } from '../boisson-responsable/modals/supprimer/sup
 import { UIngredientComponent } from './modals/UIngredient/uIngredient.component';
 import { CIngredientComponent } from './modals/CIngredient/cIngredient.component';
 import { SupprimerIComponent } from './modals/supprimer/supprimerI.component';
+import { Location } from '@angular/common';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
     selector: 'app-ingredient-responsable',
@@ -22,13 +24,15 @@ export class IngredientResponsableComponent implements OnInit {
  
    //pagination
    @ViewChild(MatPaginator) paginator: MatPaginator;
- 
+   @ViewChild(MatSort) sort: MatSort;
+
  
    // constructor
    constructor(
      public dialog: MatDialog,
      private route: ActivatedRoute,
      private shareservice: ShareService,
+     private location: Location
    ) { }
  
    //onInit
@@ -41,6 +45,7 @@ export class IngredientResponsableComponent implements OnInit {
        console.log(this.ingredients)
        this.dataSource = new MatTableDataSource<Ingredient>(this.ingredients);
        this.dataSource.paginator = this.paginator;
+       this.dataSource.sort = this.sort;
        this.ingredient = data.ingredient;
 
      })
@@ -92,6 +97,10 @@ export class IngredientResponsableComponent implements OnInit {
     applyFilter(filterValue: string) {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+    cancel() {
+      this.location.back(); // <-- go back to previous location on cancel
+    }
+  
     getingredients(){
       this.shareservice.getIngredients().subscribe(data => {
         console.log(data)

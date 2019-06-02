@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatDialog,  MatSort
 } from '@angular/material';
-import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/Inventaire/InventaireC.component';
+import { InventaireCComponent  } from 'src/app/modals/CrudIventaire/InventaireC/InventaireC.component';
 import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { Location } from '@angular/common';

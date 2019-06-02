@@ -1,24 +1,14 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewChildren } from "@angular/core";
 import {
   MatDialog,
   MatTableDataSource,
   MatPaginator,
   MatSort
 } from "@angular/material";
-import { CCmdComponent } from "src/app/modals/CrudCCmd/CCmd/ccmd.component";
-export interface Commande {
-  ingredient: string;
-  categorie: string;
-  nbportion: number;
-  quantite: number;
-}
-const ELEMENT_DATA: Commande[] = [
-  { ingredient: "patate", categorie: "végétale", nbportion: 25, quantite: 2 },
-  { ingredient: "poulet", categorie: "viande", nbportion: 54, quantite: 4 },
-  { ingredient: "steack", categorie: "viande", nbportion: 41, quantite: 7 },
-  { ingredient: "spaguetti", categorie: "pâte", nbportion: 41, quantite: 47 },
-  { ingredient: "pain", categorie: "semoule", nbportion: 47, quantite: 5 }
-];
+import { ActivatedRoute } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
+import { CommandeCuisineService } from './commande.service';
+
 
 @Component({
   selector: "app-commande-cuisine",
@@ -26,44 +16,157 @@ const ELEMENT_DATA: Commande[] = [
   styleUrls: ["./commande-cuisine.component.scss"]
 })
 export class CommandeCuisineComponent implements OnInit {
-  displayedColumns: string[] = [
-    "ingredient",
-    "categorie",
-    "nbportion",
-    "quantite"
-  ];
-  dataSource = new MatTableDataSource<Commande>(ELEMENT_DATA);
-  commande: any;
-  route: any;
-
-  constructor(public dialog: MatDialog) {}
+  ingredients: any[] = [];
+  ingredient: any;
+  dataSource: MatTableDataSource<any>;
+  date = new Date().toLocaleDateString();
+  
+  libelle: any;
+  key:string
+  quantite:any;
+  commandes:any[]=[]
+  displayedColumns: string[] = [ 'code', 'ingredient', 'classe', 'famille', 'sfamille' , 'actions'];
+  cmdToday: any;
+  constructor(public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private CmdBarService : CommandeCuisineService,
+    private shareService : ShareService,
+    ) {
+      }
+  
   //pagination
   //tri
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-      this.route.data.subscribe((data)=>{
-        this.commande = data.plat;
-      })
+    
+
+    this.route.data.subscribe((data) => {
+      console.log(data)
+      data.commande.ingredients.forEach(element => {
+        
+        this.ingredients.push({ key: element.key, ...element.payload.val() })
+      });
+      var test : any = false
+      data.commande.commandesCuisineEconomat.forEach(element => {
+
+
+        if (element.payload.val().date == this.date){
+          test=true;
+          this.key=element.key
+          console.log(element.payload.val())
+          if(element.payload.val().hasOwnProperty("ingredient")){
+          element.payload.val().ingredient.forEach((ing)=>{
+            console.log(ing)
+            this.commandes.push(ing)
+          })}
+          
+          console.log(test)
+        }})
+      console.log(this.commandes)
+          if(test==false){
+            console.log(test)
+
+          const obj = {
+            valid :false ,
+            date: this.date,
+            token:localStorage.getItem('token'),
+          };
+          this.CmdBarService
+          .ajoutCmd(obj)
+          .then((element: any) => { 
+            console.log(element)
+            console.log(this.commandes)    
+            console.log(this.ingredients)    
+
+      })}
+         
+         this.dataSource = new MatTableDataSource<any>(this.commandes);
+        this.dataSource.paginator = this.paginator;
+      });
+      console.log(this.ingredients)
+    
+      
+
   }
 
+  @ViewChildren('I') I;
+  event:any
+  onSelection(e) {
+    this.event = e
+    console.log(e.value);
+  }
+  get selectedIngredient() {
+    return this.event ? this.event.value.stockage.nom : '';
+  }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CCmdComponent, {
-      //taille du modal
-      width: "800px",
-      data: {}
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("The dialog was closed");
-    });
+  add(){
+    var cmd = this.commandes
+
+        if (cmd.length == 0) {
+          this.commandes.push({ libelle:this.libelle, quantite: Number(this.quantite) })
+          console.log(cmd.length)
+        }
+        else {
+          var test = false
+          // console.log(ingredient.length)
+          this.commandes.forEach(element => {
+            console.log(element.libelle.key);
+            console.log(this.libelle.key);
+            if (element.libelle.key == this.libelle.key) {
+              console.log(element.libelle.key);
+              console.log(this.libelle.key);
+              this.shareService.showMsg('ingredient déjà déclaré')
+              test = true
+              console.log(test)
+            }
+          });
+          if (test == false) {
+            this.commandes.push({libelle:this.libelle, quantite: Number(this.quantite)})
+            console.log(this.commandes.length)
+            console.log(test)
+          }
+        
+      }  
+   
+    
+    console.log(this.commandes)
+
+     this.dataSource = new MatTableDataSource<any>(this.commandes);
+      this.libelle='';
+      this.quantite=0;
+
+  
+
   }
+  EnvoyerCmd(){
+    console.log(this.commandes)
+    const obj = {
+      ingredient:this.commandes
+    };
+    console.log('modifier')
+    this.CmdBarService
+      .SendCmd(obj,this.key)
+      .then((data: any) => {
+        const profile = JSON.parse(localStorage.getItem('profile'))
+        this.shareService.showMsg("Commande envoyée");
+        // this.valider = false;
+    
+      })
+      .catch(error => {
+        console.error(error.message);
+        this.shareService.showMsg(error.message);
+        // this.valider = false;
 
+      });
+
+
+
+  }
   //filtrer
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 }

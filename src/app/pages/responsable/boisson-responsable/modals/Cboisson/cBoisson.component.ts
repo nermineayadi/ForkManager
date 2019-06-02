@@ -57,9 +57,9 @@ export class CBoissonComponent implements OnInit {
       valide: true,
 
       libelle: this.libelle.value,
-      prix: this.prix.value,
+      prix: Number(this.prix.value),
       code: this.code.value,
-      quantite: this.quantite.value,
+      quantite: Number(this.quantite.value),
 
       classe: {
         key: this.classe.value.key,

@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BarmanComponent } from './barman.component';
 import { BoissonBarComponent} from "./boisson-bar/boisson-bar.component";
 import { StockBarComponent } from "./stock-bar/stock-bar.component";
-import { MenuBarComponent} from "./menu-bar/menu-bar.component";
-import { ReservationBarComponent } from "./reservation-bar/reservation-bar.component";
 import { CommandeBarComponent } from "./commande-bar.service.ts/commande-bar.component";
 import {  InventraireBarComponent } from "./inventraire-bar/inventraire-bar.component";
 import { AcceuilBarComponent} from "./acceuil-bar/acceuil-bar.component";
@@ -18,10 +16,8 @@ const routes: Routes = [
       children: [
         { path: "boisson", component: BoissonBarComponent,resolve:{boisson : ShareService} },
         { path: "stock", component: StockBarComponent },
-        { path: "menu", component: MenuBarComponent },
-        { path: "reservation", component: ReservationBarComponent },
         { path: "commande", component: CommandeBarComponent,resolve:{commande : ShareService} },
-        { path: "inventaire", component: InventraireBarComponent },
+        { path: "inventaire", component: InventraireBarComponent,resolve:{inventaire : ShareService}  },
         { path: "", component: AcceuilBarComponent }
       ]
     }

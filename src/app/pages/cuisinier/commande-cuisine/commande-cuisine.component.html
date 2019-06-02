@@ -1,46 +1,79 @@
-<div fxLayout="row" fxLayoutAlign="space-between start">
-  <mat-form-field appearance="outline">
+<div fxLayout="row" fxLayoutAlign=" space-between start">
+  <mat-form-field appearance="outline" style="width:100%;">
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
   </mat-form-field>
-  <div fxLayout="row" (click)="openDialog()" fxLayoutAlign="center center" style="cursor:pointer;"
-  fxLayoutGap="5px">
-  <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
-  <span [fxHide.xs]="true">Ajouter</span>
+  <div fxLayout="row" (click)="EnvoyerCmd()" fxLayoutAlign="center center" style="cursor:pointer;" fxLayoutGap="5px">
+    <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
+    <span [fxHide.xs]="true">Passer Commande</span>
+  </div>
 </div>
+
+
+
+<div fxLayout="row" [fxLayout.xs]="column" fxLayoutGap="5px" fxLayoutAlign="space-between">
+  <mat-form-field style="width:100%;" appearance="outline">
+    <mat-label>Ingredient</mat-label>
+    <mat-select [(ngModel)]="libelle" #I (selectionChange)="onSelection($event) ">
+      <mat-option *ngFor="let row of ingredients" [value]="row">{{row.libelle}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>quantité</mat-label>
+    <input [(ngModel)]="quantite" matInput>
+    <span matSuffix>{{selectedIngredient}}</span>
+  </mat-form-field>
+  <span class="table-add float-right mb-3 mr-2">
+    <button mat-button  (click)="add()">
+      <mat-icon>add</mat-icon>
+    </button>
+  
+  </span>
 </div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-responsive-md table-striped ">
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef> Code </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle.code}} </td>
+  </ng-container>
+  <ng-container matColumnDef="ingredient">
+    <th mat-header-cell *matHeaderCellDef> ingredient </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle.libelle}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="classe">
+    <th mat-header-cell *matHeaderCellDef> Classe </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle.classe.nom}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="famille">
+    <th mat-header-cell *matHeaderCellDef> Famille </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle.famille.nom}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sfamille">
+    <th mat-header-cell *matHeaderCellDef> Sous Famille </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle.sfamille.nom}} </td>
+  </ng-container>
+  <ng-container matColumnDef="quantite">
+    <th mat-header-cell *matHeaderCellDef> Quantite</th>
+    <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element" fxLayout="column" fxLayoutAlign="center end">
+      <button mat-icon-button [matMenuTriggerFor]="menu" style="color: #506169;">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openEdit(element)">Modifier</button>
+        <button mat-menu-item (click)="openSupprime(element)">Supprimer</button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort class="table table-responsive-md table-striped" >
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="ingredient">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ingredient </th>
-      <td mat-cell *matCellDef="let row"> {{row.ingredient}} </td>
-    </ng-container>
-
-    <!-- Progress Column -->
-    <ng-container matColumnDef="categorie">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> categorie</th>
-      <td mat-cell *matCellDef="let row"> {{row.categorie}} </td>
-    </ng-container>
-    <!-- Color Column -->
-    <ng-container matColumnDef="nbportion">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> nbportion </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.nbportion}}KG </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="quantite">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> quantite </th>
-      <td mat-cell *matCellDef="let row"> {{row.quantite}} </td>
-    </ng-container>
-
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+<mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>

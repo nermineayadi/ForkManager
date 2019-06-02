@@ -37,6 +37,7 @@ export class ShareService {
                               const inventairesCuisine = this.getInventairesCuisine().subscribe((inventairesCuisine) => {
                                 const inventairesBar = this.getInventairesBar().subscribe((inventairesBar) => {
                                   const commandesBarEconomat = this.getcommandesBarEconomat().subscribe((commandesBarEconomat) => {
+                                    const commandesCuisineEconomat = this.getcommandesCuisineEconomat().subscribe((commandesCuisineEconomat) => {
 
 
                                   const obj = {
@@ -54,10 +55,12 @@ export class ShareService {
                                     srecettes: srecettes,
                                     inventairesCuisine: inventairesCuisine,
                                     inventairesBar: inventairesBar,
-                                    commandesBarEconomat: commandesBarEconomat
+                                    commandesBarEconomat: commandesBarEconomat,
+                                    commandesCuisineEconomat: commandesCuisineEconomat
 
                                   };
                                   resolve(obj)
+                                })
                                 })
                               })
                               })
@@ -140,14 +143,16 @@ export class ShareService {
     const ref = this.db.list('CommandeBarEconomat').snapshotChanges();
     return ref;
   }
+  getcommandesCuisineEconomat(){
+    const ref = this.db.list('CommandeCuisineEconomat').snapshotChanges();
+    return ref;
+  }
   getProfileToken(token: string) {
   }
   updateIngredient(key: string, used: number) {
     const ref = this.db.object(`ingredients/${key}`);
     console.log(used)
-    return ref.update({
-      used: used
-    })
+    return ref.update({used: used} )
   }
 
   //authentification
@@ -208,7 +213,9 @@ export class ShareService {
   }
   getUser(uid: string) {
     const itemRef = this.db.object(`users/${uid}`);
-    console.log(itemRef.snapshotChanges())
+    itemRef.snapshotChanges().subscribe((data)=>{
+      console.log(data.payload.val())
+    })
     return itemRef.snapshotChanges();
   }
   //snackbar

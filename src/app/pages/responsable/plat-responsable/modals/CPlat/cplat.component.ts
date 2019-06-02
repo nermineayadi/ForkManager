@@ -88,7 +88,7 @@ export class CplatComponent implements OnInit {
     return marge > 0 ? Math.round(marge) : 0;
   }
   addNewIngredient() {
-    this.ingredients.push({ libelle: '', quantite: 0, unite: '' })
+    this.ingredients.push({ libelle: '', quantite: 0})
   }
   addNewSrecette() {
     this.srecettes.push({ libelle: '', quantite: 0, unite: '' })
@@ -104,18 +104,20 @@ export class CplatComponent implements OnInit {
   }
    usedIng (key: string ): number {
      var i : number
-    this.shareService.getIngredient(key).snapshotChanges().subscribe((data : any) => {
+    this.payload.ingredients.forEach((data)=>{
+      if(data.key==key){
+
+      
        i = data.payload.val().used
       console.log(i) 
       if (i) {
-      i = i+1
-      console.log(i)
+      i++
+      console.log(true)
     }
     else {
       i = 1
       console.log(false)
-    }
-    }).unsubscribe()
+    }}})
     return i ;
   }
 
@@ -127,7 +129,7 @@ export class CplatComponent implements OnInit {
       if (item.libelle.hasOwnProperty("key")) {
         var used: number = 0
         var i: number
-        ingredient.push({ ...item.libelle, quantite: item.quantite })
+        ingredient.push({ ...item.libelle, quantite: Number(item.quantite) })
         i= this.usedIng(item.libelle.key)
         this.shareService.updateIngredient(item.libelle.key,i)
       }
@@ -161,7 +163,7 @@ export class CplatComponent implements OnInit {
       },
       ingredient: ingredient,
       srecette: srecette,
-      duree: this.duree.value,
+      duree: Number(this.duree.value),
       prix: Number(this.prix.value),
       cout: this.coutIngredient,
       nbVentes: 0,
