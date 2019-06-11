@@ -94,7 +94,7 @@ export class CplatComponent implements OnInit {
         key: this.sfamille.value.key,
         nomsfamille: this.sfamille.value.payload.val().nomsfamille
       },
-      token: JSON.parse(localStorage.getItem('token')),
+      token: localStorage.getItem('token'),
 
       nbPart: this.nbparts.value,
       duree: this.duree.value,

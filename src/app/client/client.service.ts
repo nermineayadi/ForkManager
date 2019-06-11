@@ -12,7 +12,6 @@ export class ClientService implements Resolve<any> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return new Promise((resolve, reject) => {
             this.getPlats().subscribe((plats)=>{
-    
                 this.getBoisson().subscribe((boissons)=>{
                     resolve({
                         plats : plats, 

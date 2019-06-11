@@ -76,6 +76,9 @@ data:any;
 
       })
      this.DataTables()
+     console.log(this.dtinventaireBarV.data);
+     console.log(this.dtinventaireBarN.data[0].payload.val());
+
 
     }
     DataTables(){
@@ -108,18 +111,34 @@ data:any;
 
       //filtrer
 
-    applyFilter(filterValue: string) {
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+    applyFilterBV(filterValue: string) {
+      this.dtinventaireBarV.filter = filterValue.trim().toLowerCase();
+    }
+    applyFilterCV(filterValue: string) {
+      this.dtinventaireCuisineV.filter = filterValue.trim().toLowerCase();
+    }
+    applyFilterCN(filterValue: string) {
+      this.dtinventaireCuisineN.filter = filterValue.trim().toLowerCase();
+    }
+    applyFilterBN(filterValue: string) {
+      this.dtinventaireBarN.filter = filterValue.trim().toLowerCase();
     }
     cancel() {
       this.location.back(); // <-- go back to previous location on cancel
     }
-    profileToken(token : any):string{
+    profileUID(uid : any):string{
       var profile: any ;
   this.data.users.forEach((element:any) => {
-     if(element.payload.val().token ==token )
+    console.log(element.key)
+    console.log(uid)
+     if(element.key==uid )
+     console.log(element.key)
      profile=element.payload.val()
    });
+  // this.shareservice.getUser(uid).subscribe((data)=>{
+  //   profile=data.payload.val()
+  // })
+  console.log(profile)
  return profile? profile.nom + ' '+profile.prenom:'changed' 
     }
   

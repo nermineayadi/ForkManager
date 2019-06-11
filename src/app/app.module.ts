@@ -12,9 +12,7 @@ import { LoginComponent } from "./auth/login/login.component";
 import { InscriptionComponent } from "./auth/inscription/inscription.component";
 //modals
 import { InventaireCComponent } from './modals/CrudIventaire/InventaireC/InventaireC.component';
-import { CCmdComponent } from './modals/CrudCCmd/CCmd/ccmd.component';
 import { CPersonnelComponent } from './modals/CrudPersonnel/cpersonnel/cpersonnel.component';
-import { CPortionComponent } from './modals/CrudPortion/cportion/cportion.component';
 //assets
 import { MatangModule } from "../assets/matang.module";
 //environment
@@ -53,9 +51,7 @@ import { MatDialogModule } from '@angular/material';
 import { InterfaceTestComponent } from './pages/InterfaceTest/InterfaceTest.component';
 import { TestService } from './pages/InterfaceTest/InterfaceTest.service';
 import { InterfaceTestModule } from './pages/InterfaceTest/InterfaceTest.module';
-import { SfamillePipe } from './pipes/sfamille.pipe';
-import { FamillePipe } from './pipes/famille.pipe';
-import { Famille_Pipe } from './pipes/famille1.pipe';
+
 import { PipesModule } from './pipes/pipes.module';
 import { ClientComponent } from './client/client.component';
 import { ClientService } from './client/client.service';
@@ -80,9 +76,7 @@ import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/Inventa
     
     //modals
     InventaireCComponent ,
-    CCmdComponent,
     CPersonnelComponent,
-    CPortionComponent,
     CropperComponent,
     InventaireBComponent,
 
@@ -137,11 +131,8 @@ import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/Inventa
   entryComponents: [
 
     //entry components (modals)
-    
-    CCmdComponent,
     InventaireCComponent,
     CPersonnelComponent,
-    CPortionComponent,
     InventaireBComponent,
     CropperComponent,
 

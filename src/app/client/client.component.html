@@ -1,95 +1,121 @@
+<div class="container">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-<div id="wrapper">
-        <nav class="navbar-default  navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <form style="background-color : white" fxLayout="column">
-                            <mat-form-field appearance="outline">
-                                    <mat-label>Identifiant</mat-label>
-                                    <input matInput type="number" placeholder="Identifiant">
-                                  </mat-form-field>
-                            <label id="example-radio-group-label">Parcours</label>
-                            <mat-radio-group
-                              aria-labelledby="example-radio-group-label"
-                              class="example-radio-group"
-                              >
-                              <mat-radio-button class="example-radio-button"  [value]="season">
-                                Panorama Course
-                              </mat-radio-button>
-                              <mat-radio-button class="example-radio-button"  [value]="season">
-                                Sea Course
-                            </mat-radio-button>
-                            </mat-radio-group>  
-                          </form>  
-                </div>
-              </nav>
-      
-        <div id="page-wrapper" class="gray-bg">
-      
-          <!-- <app-navbar style="width: 50px"></app-navbar> -->
-      
-          <div >
-
-                <mat-tab-group>
-                    <mat-tab label="Fast Food" style="color : white"  >
-                        <mat-card class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
-                                <div class="panel panel-default panel-card">
-                                        <div class="panel-heading">
-                                          <img src="../../../assets/plat/soupe.jpg" />
-                                          <!-- (click)="addPlat(plat) -->
-                                          <button class="btn btn-primary btn-sm" role="button" >{{plat.payload.val().prix}}dt</button>
-                                        </div>
-                      
-                                        <div class="panel-body text-center">
-                                          <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
-                                          <small>A short description goes here.</small>
-                                        </div>
-                                        <div class="panel-thumbnails">
-                                          <div class="row">
-                                            <div class="col-xs-4">
-                                            </div>
-                                            <div class="col-xs-4">
-                      
-                                            </div>
-                      
-                                          </div>
-                                        </div>
-                                      </div>
-                        </mat-card>
-                    </mat-tab>
-                    <mat-tab label="Boissons" style="color : white"  >
-                            <mat-card class="col-sm-4 col-md-2" *ngFor="let boisson of boissons | filterbyclient : 'BOIS. NON ALCOOLISEES'">
-                                    <div class="panel panel-default panel-card">
-                                            <div class="panel-heading">
-                                              <img src="../../../assets/plat/soupe.jpg" />
-                                              <!-- (click)="addPlat(plat) -->
-                                              <button class="btn btn-primary btn-sm" role="button" >{{boisson.payload.val().prix}}dt</button>
-                                            </div>
-                          
-                                            <div class="panel-body text-center">
-                                              <h4 class="panel-header">{{boisson.payload.val().libelle}}</h4>
-                                              <small>A short description goes here.</small>
-                                            </div>
-                                            <div class="panel-thumbnails">
-                                              <div class="row">
-                                                <div class="col-xs-4">
-                                                </div>
-                                                <div class="col-xs-4">
-                          
-                                                </div>
-                          
-                                              </div>
-                                            </div>
-                                          </div>
-                            </mat-card>
-                        </mat-tab>
-                </mat-tab-group>
-            </div>
-      
-         
-        </div>
+    <div class="item">
+      <img src="../../assets/img/clubcar.jpg" class="w-100 img-fluid">
+      <div class="carousel-caption">
+        <h3>Gagner du temps </h3>
+        <p>Commander vos déjeuners!</p>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="10px" class="gray-bg">
+
+    <form style="background-color:transparent" fxLayoutAlign="center start" fxLayout="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Identifiant</mat-label>
+        <input matInput type="number" placeholder="Identifiant">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+          <mat-label>Trou</mat-label>
+          <input matInput type="number" placeholder="Trou">
+        </mat-form-field>
+      <label id="example-radio-group-label">Parcours</label>
+      <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between start">
+        <mat-radio-button value="sea">Sea Course</mat-radio-button>
+        <mat-radio-button value="panorama">Panorama Course</mat-radio-button>
+      </mat-radio-group>
+      <label id="example-radio-group-label">Emplacement</label>
+      <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between start">
+        <mat-radio-button value="depart">Départ</mat-radio-button>
+        <mat-radio-button value="fairway">Fairway</mat-radio-button>
+        <mat-radio-button value="green">Green</mat-radio-button>
+      </mat-radio-group>
+      <label id="example-radio-group-label">Couleur</label>
+
+            <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between">
+                <mat-radio-button value="blanc"><i class="fas fa-golf-ball" style="color: white "></i></mat-radio-button>
+                <mat-radio-button value="bleu"><i class="fas fa-golf-ball" style="color: blue "></i></mat-radio-button>
+                <mat-radio-button value="jaune"><i class="fas fa-golf-ball" style="color: yellow "></i></mat-radio-button>
+                <mat-radio-button value="rouge"><i class="fas fa-golf-ball" style="color: red "></i></mat-radio-button>
+              </mat-radio-group>
+
+
+    </form>
 
 
 
+    <div class="h-100 w-100">
 
-      
+      <mat-tab-group>
+        <mat-tab label="Fast Food" style="color : white">
+          <mat-card class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
+            <div class="panel panel-default panel-card">
+              <div class="panel-heading">
+                <img src="../../../assets/plat/soupe.jpg" />
+                <!-- (click)="addPlat(plat) -->
+                <button class="btn btn-primary btn-sm" role="button">{{plat.payload.val().prix}}</button>
+              </div>
+
+              <div class="panel-body text-center">
+                <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+                <small>A short description goes here.</small>
+              </div>
+
+            </div>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Boissons" style="color : white">
+          <mat-card class="col-sm-4 col-md-3" style="margin : 5px" *ngFor="let boisson of boissons ">
+            <div class="panel panel-default panel-card">
+              <div class="panel-heading">
+                  <img  alt="avatar"   [src]="boisson.payload.val().image==''?'./assets/img/avatar/avatar.png':boisson.payload.val().image">
+                  <!-- (click)="addPlat(plat) -->
+                <button (click)="addBoisson(boisson)" class="btn btn-primary btn-sm" role="button">{{boisson.payload.val().prix}}</button>
+              </div>
+
+              <div class="panel-body text-center">
+                <h4 class="panel-header">{{boisson.payload.val().libelle}}</h4>
+                <small>A short description goes here.</small>
+              </div>
+            </div>
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="h-100 w-100">
+        <div class="sidebar" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center ">
+            <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+              <!-- Item Column -->
+              <ng-container matColumnDef="nom">
+                <th mat-header-cell *matHeaderCellDef> nom </th>
+                <td mat-cell *matCellDef="let transaction"> {{transaction.nom}} </td>
+                <td mat-footer-cell *matFooterCellDef> Total </td>
+              </ng-container>
+              <!-- Cost qte-->
+              <ng-container matColumnDef="qte">
+                <th mat-header-cell *matHeaderCellDef> qte </th>
+                <td mat-cell *matCellDef="let transaction"> {{transaction.qte}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+              </ng-container>
+              <!-- Cost Column -->
+              <ng-container matColumnDef="prix">
+                <th mat-header-cell *matHeaderCellDef> prix </th>
+                <td mat-cell *matCellDef="let transaction"> {{transaction.prix }} </td>
+                <td mat-footer-cell *matFooterCellDef> {{getTotalprix()}} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+            </table>
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-around start">
+              <button mat-button (click)="passer()" class="operation" >Passer</button>
+              <button mat-button (click)="annuler()" class="operation">Annuler</button>
+            </div>
+            
+          </div>
+      </div>
+  </div>
+</div>

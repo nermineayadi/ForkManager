@@ -63,11 +63,12 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Titre</th>
+          <th>Client</th>
           <th>Nb Personnes</th>
           <th>Couleur</th>
           <th>Date Début</th>
           <th>Date Fin </th>
+          <th>Plat</th>
           <th>Supprimer</th>
         </tr>
       </thead>
@@ -75,7 +76,7 @@
       <tbody>
         <tr *ngFor="let event of events">
           <td>
-            <input type="text" class="form-control" [(ngModel)]="event.title" (keyup)="refresh.next()" />
+            <input type="text" class="form-control" [(ngModel)]="event.client" (keyup)="refresh.next()" />
           </td>
           <td>
             <input type="number" class="form-control" [(ngModel)]="event.nbr" (keyup)="refresh.next()" />
@@ -95,7 +96,12 @@
               altFormat="F j, Y H:i" placeholder="Not set" />
           </td>
           <td>
-            <button class="btn btn-danger" (click)="deleteEvent(event)">
+            <button class="btn btn-danger w-100" (click)="addReservation(event)">
+              Plats
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger w-100" (click)="deleteEvent(event)">
               Supprimer
             </button>
           </td>

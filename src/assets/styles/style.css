@@ -8376,6 +8376,7 @@ body.md-skin {
   }
   body {
     overflow: visible !important;
+    background-color:  #283e4a;
   }
   #page-wrapper {
     margin: 0;

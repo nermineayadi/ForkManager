@@ -10,7 +10,9 @@
 
 
 
-<div fxLayout="row" [fxLayout.xs]="column" fxLayoutGap="5px" fxLayoutAlign="space-between">
+<!-- <div fxLayout="row" [fxLayout.xs]="column" fxLayoutGap="5px" fxLayoutAlign="space-between"> -->
+    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between">
+
   <mat-form-field style="width:100%;" appearance="outline">
     <mat-label>Ingredient</mat-label>
     <mat-select [(ngModel)]="libelle" #I (selectionChange)="onSelection($event) ">

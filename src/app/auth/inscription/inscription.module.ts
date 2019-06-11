@@ -8,10 +8,10 @@ import { ProfileService } from './inscription.service';
 @NgModule({
     declarations: [
         
-        CropperComponent],
+        ],
     imports: [ CommonModule ,ImageCropperModule],
     exports: [],
     providers: [ProfileService],
-    entryComponents:[CropperComponent],
+    entryComponents:[],
 })
 export class InscriptionModule {}

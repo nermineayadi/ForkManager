@@ -20,7 +20,7 @@
       </mat-expansion-panel-header>
   
       <mat-form-field appearance="outline" style="width: 100%">
-        <input matInput (keyup)="applyFilterV($event.target.value)" autocomplete="off" placeholder="Filtrer">
+        <input matInput (keyup)="applyFilterBN($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
   
       <table mat-table [dataSource]="dtinventaireBarN" class="mat-elevation-z8 table table-responsive-md table-striped ">
@@ -34,7 +34,7 @@
   
         <ng-container matColumnDef="Emetteur">
           <th mat-header-cell *matHeaderCellDef> Emetteur </th>
-          <td mat-cell *matCellDef="let element"> {{profileToken(element.token)}} </td>
+          <td mat-cell *matCellDef="let element"> {{profileUID(element.uid)}} </td>
         </ng-container>
   
         <ng-container matColumnDef="actions">
@@ -63,7 +63,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-form-field appearance="outline" style="width: 100%">
-        <input matInput (keyup)="applyFilterI($event.target.value)" autocomplete="off" placeholder="Filtrer">
+        <input matInput (keyup)="applyFilterCN($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
   
       <table mat-table [dataSource]="dtinventaireCuisineN" class="mat-elevation-z8 table table-responsive-md table-striped ">
@@ -102,7 +102,7 @@
           Inventaires Bar Validés </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-form-field appearance="outline" style="width: 100%">
-          <input matInput (keyup)="applyFilterA($event.target.value)" autocomplete="off" placeholder="Filtrer">
+          <input matInput (keyup)="applyFilterBV($event.target.value)" autocomplete="off" placeholder="Filtrer">
         </mat-form-field>
     
         <table mat-table [dataSource]="dtinventaireBarV" class="mat-elevation-z8 table table-responsive-md table-striped ">
@@ -137,7 +137,7 @@
         Inventaires Cuisine Validés </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-form-field appearance="outline" style="width: 100%">
-        <input matInput (keyup)="applyFilterA($event.target.value)" autocomplete="off" placeholder="Filtrer">
+        <input matInput (keyup)="applyFilterCV($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
   
       <table mat-table  [dataSource]="dtinventaireCuisineV" class="mat-elevation-z8 table table-responsive-md table-striped ">

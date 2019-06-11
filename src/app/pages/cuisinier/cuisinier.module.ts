@@ -28,7 +28,6 @@ import { CPlatService } from './modals/CPlat/cplat.service';
 import { MatDialogModule } from '@angular/material';
 import { DetailPService } from './modals/detail-p/detail-p.service';
 import { CplatComponent } from './modals/CPlat/cplat.component';
-import { SupprimerComponent } from './modals/supprimer/supprimer.component';
 import { DetailPComponent } from './modals/detail-p/detail-p.component';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
@@ -48,7 +47,7 @@ import { CommandeCuisineService } from './commande-cuisine/commande.service';
     InventaireCuisineComponent,
     AcceuilCuisineComponent,
     NavigationCuisineComponent,
-    SupprimerComponent , CplatComponent , DetailPComponent,
+   CplatComponent , DetailPComponent,
    
   
     
@@ -77,7 +76,7 @@ import { CommandeCuisineService } from './commande-cuisine/commande.service';
 
   ],
   entryComponents: [
-    SupprimerComponent , CplatComponent , DetailPComponent
+   CplatComponent , DetailPComponent
   ],
   
   exports: [],

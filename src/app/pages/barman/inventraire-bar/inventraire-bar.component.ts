@@ -45,7 +45,7 @@ dataSource: any;
           const obj = {
             valid :false ,
             date: this.date,
-            token: localStorage.getItem('token'),
+            uid: localStorage.getItem('uid'),
           };
           this.inventaireBService
           .ajoutInventaire(obj)
