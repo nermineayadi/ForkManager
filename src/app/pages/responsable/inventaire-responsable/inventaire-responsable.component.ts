@@ -22,6 +22,7 @@ data:any;
     inventaireCuisineN : any[]=[];
     inventaireBarV : any[]=[];
     inventaireBarN : any[]=[];
+   emetter: any[]=[];
     // data source
     dtinventaireCuisineV = new MatTableDataSource<any>();
     dtinventaireCuisineN = new MatTableDataSource<any>();
@@ -58,7 +59,9 @@ data:any;
     //pagination
     ngOnInit() {
       this.route.data.subscribe((data) => {
+
         data.inventaire.inventairesCuisine.forEach((element :any)=> {
+          this.emetter.push(this.profileUID(element.payload.val().uid))
           if(element.payload.val().valid ==true)
           this.inventaireCuisineV.push(element.payload.val())
         else{

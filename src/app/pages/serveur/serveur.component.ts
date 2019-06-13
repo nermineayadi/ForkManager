@@ -16,8 +16,7 @@ export interface Transaction {
 })
 export class ServeurComponent implements OnInit {
 //localisation 
-lat: number = 51.678418;
-  lng: number = 7.809007;
+
   plats : any[];
   displayedColumns: string[] = ['nom', 'qte', 'prix'];
   transactions: Transaction[]= [];

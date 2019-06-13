@@ -143,9 +143,7 @@
 </div>
 <!-- SEARCH -->
 <div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
-  <!-- <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map> -->
-  
+
+  <app-google-map></app-google-map>
   <button class="btn btn-primary btn-sm" (click)="toggleSearch()">close</button>
 </div>

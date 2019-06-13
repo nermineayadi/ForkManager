@@ -58,6 +58,7 @@ import { ClientService } from './client/client.service';
 
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/InventaireB.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -79,7 +80,6 @@ import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/Inventa
     CPersonnelComponent,
     CropperComponent,
     InventaireBComponent,
-
 
  
 
@@ -122,8 +122,10 @@ import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/Inventa
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireMessagingModule,
-    PipesModule.forRoot()
-   
+    PipesModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDcB2n8SVTSqkO-Be6XXXNSvvqB8UVfPH4'
+    })
   ],
 
   
