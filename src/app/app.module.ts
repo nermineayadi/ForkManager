@@ -124,7 +124,7 @@ import { AgmCoreModule } from '@agm/core';
     AngularFireMessagingModule,
     PipesModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDcB2n8SVTSqkO-Be6XXXNSvvqB8UVfPH4'
+      apiKey: ''
     })
   ],
 
