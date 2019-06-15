@@ -118,7 +118,7 @@ export class ReservationResponsableComponent implements OnInit {
       this.events = [
         ...this.events,
         {
-          title: 'New event',
+          title: 'Eden Tours 70 Personnes ',
           start: startOfDay(new Date()),
           end: endOfDay(new Date()),
           color: colors.red,
