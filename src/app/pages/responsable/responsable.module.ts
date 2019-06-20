@@ -54,7 +54,8 @@ import { USrecetteService } from './srecette-responsable/modals/USrecette/usrece
 import { SupprimerIComponent } from './ingredient-responsable/modals/supprimer/supprimerI.component';
 import { VerifIComponent } from './inventaire-responsable/verifI/verifI.component';
 import { VerifIService } from './inventaire-responsable/verifI/verifI.service';
-NavigationResponsableComponent;
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 @NgModule({
   declarations: [
     ResponsableComponent,
@@ -90,6 +91,7 @@ NavigationResponsableComponent;
 
   ],
   imports: [
+    NgxMatSelectSearchModule,
     CommonModule,
      ResponsableRoutingModule,
     NavBarModule, 

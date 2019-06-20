@@ -75,8 +75,15 @@
 
         <mat-form-field style="width:100%;" appearance="outline">
           <mat-label>ingredient</mat-label>
-          <mat-select [(ngModel)]="ingredients[i].libelle" #I (selectionChange)="onSelection($event) ">
-            <mat-option *ngFor="let row of ing" [value]="row">{{row.libelle}}</mat-option>
+          <mat-select  [(ngModel)]="ingredients[i].libelle" #I (selectionChange)="onSelection($event) ">
+              <mat-option>
+                  <ngx-mat-select-search [formControl]="ingFilterCtrl"
+                  [placeholderLabel]="'Ingredient'" 
+                  [noEntriesFoundLabel]="'Ingredient inexistant'">
+                </ngx-mat-select-search>
+                </mat-option>
+             
+            <mat-option *ngFor="let row of filteredIngs | async " [value]="row">{{row.libelle}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -95,27 +102,19 @@
     </div>
     <h5>Sous recette</h5>
     <div style="width:100%" *ngFor="let item of srecettes; let i= index">
-      <mat-form-field style="width:100%;" appearance="outline">
-        <mat-label>sous recette</mat-label>
-        <mat-select [(ngModel)]="srecettes[i].libelle">
-          <mat-option *ngFor="let row of srec" [value]="row">{{row.libelle}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+  
       <div fxLayout="row" [fxLayout.xs]="column" fxLayoutAlign="space-between">
-
+          <mat-form-field style="width:100%;" appearance="outline">
+              <mat-label>sous recette</mat-label>
+              <mat-select [(ngModel)]="srecettes[i].libelle">
+                <mat-option *ngFor="let row of srec" [value]="row">{{row.libelle}}</mat-option>
+              </mat-select>
+            </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>quantité</mat-label>
           <input [(ngModel)]="srecettes[i].quantite" matInput>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>unité</mat-label>
-          <mat-select [(ngModel)]="srecettes[i].unite">
-            <mat-option *ngFor="let unite of unites" [value]="unite">
-              {{unite}}
-            </mat-option>
-          </mat-select>
-
-        </mat-form-field>
+       
       </div>
     </div>
 

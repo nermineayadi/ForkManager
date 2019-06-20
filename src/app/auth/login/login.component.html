@@ -1,4 +1,4 @@
-<div class="center">
+<div class="h-100" fxLayoutAlign="center center">
   <mat-card>
     <mat-card-title>
       <mat-icon matSuffix>lock</mat-icon>
@@ -19,15 +19,10 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 
         </mat-form-field>
-        <br>
-        <br>
-        <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <button class="center" mat-raised-button color="primary" [disabled]="isValid || loading" (click)="login()">
-            {{loading?'Loading..':'se connecter'}}</button></div>
-          <div class="col-md-4"></div>
-        </div>
+        
+        <button fxLayoutAlign="center" mat-raised-button color="primary" [disabled]="isValid || loading" (click)="login()">
+          {{loading?'Loading..':'se connecter'}}</button>
+        
         
       </form>
     </mat-card-content>

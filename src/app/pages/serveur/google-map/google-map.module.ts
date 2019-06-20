@@ -7,7 +7,7 @@ import { GoogleMapComponent } from './google-map.component';
     declarations: [GoogleMapComponent],
     imports: [ CommonModule ,
       AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyDcB2n8SVTSqkO-Be6XXXNSvvqB8UVfPH4'
     }), 
        ],
     exports: [GoogleMapComponent],

@@ -70,17 +70,17 @@ data:any;
        })
        data.inventaire.inventairesBar.forEach((element:any )=> {
         if(element.valid ==true)
-        this.inventaireBarV.push(element)
+        this.inventaireBarV.push(element.payload.val())
   
       else{
-        this.inventaireBarN.push(element)
+        this.inventaireBarN.push(element.payload.val())
        }});
        this.data=data.inventaire;
 
       })
      this.DataTables()
-     console.log(this.dtinventaireBarV.data);
-     console.log(this.dtinventaireBarN.data[0].payload.val());
+     console.log(this.dtinventaireBarN.data);
+     console.log(this.dtinventaireBarN.data[0]);
 
 
     }
@@ -132,16 +132,14 @@ data:any;
     profileUID(uid : any):string{
       var profile: any ;
   this.data.users.forEach((element:any) => {
-    console.log(element.key)
-    console.log(uid)
+
      if(element.key==uid )
-     console.log(element.key)
      profile=element.payload.val()
    });
   // this.shareservice.getUser(uid).subscribe((data)=>{
   //   profile=data.payload.val()
   // })
-  console.log(profile)
+  // console.log(profile)
  return profile? profile.nom + ' '+profile.prenom:'changed' 
     }
   

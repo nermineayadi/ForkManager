@@ -22,12 +22,15 @@ export class VerifIComponent implements OnInit {
   inventaire: any[]=[];
   constructor(public dialogRef: MatDialogRef<VerifIComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any) {
-            this.inventaire= payload.inventaire.ingredient;
+      
+            this.inventaire= payload.inventaire.boisson;
             console.log(this.inventaire);
+            // if(this.inventaire.hasOwnProperty('ingredient'))
             this.dataSource = new MatTableDataSource<any>(this.inventaire);
             console.log(this.dataSource.data)
 
     }
+    onVerif(){}
 
   onNoClick(): void {
     this.dialogRef.close();

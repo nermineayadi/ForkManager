@@ -29,13 +29,11 @@
 
       mat-form-field {
         font-size: 14px;
-        width: 400px;
+        width: 100%;
+
         padding: 0 !important;
       }
     }
-
-    
-  
   }
 
 
@@ -46,8 +44,11 @@
     margin-top: 5px;
 
   }
-
+.example-container{
+  overflow: auto;
+}
   table {
+   
     width: 100%;
     border-radius: 4%;
 

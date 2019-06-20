@@ -60,7 +60,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { InventaireBComponent } from './modals/CrudIventaire/InventaireB/InventaireB.component';
 import { AgmCoreModule } from '@agm/core';
 
-
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -91,6 +91,7 @@ import { AgmCoreModule } from '@agm/core';
 
   ],
   imports: [
+    NgxMatSelectSearchModule,
     MatDialogModule,
     InterfaceTestModule,
     ImageCropperModule,

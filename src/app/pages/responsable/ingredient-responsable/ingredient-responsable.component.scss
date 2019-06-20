@@ -44,8 +44,11 @@
     margin-top: 5px;
 
   }
-
+.example-container{
+  overflow: auto;
+}
   table {
+   
     width: 100%;
     border-radius: 4%;
 

@@ -12,38 +12,23 @@
       </button>
     </div>
   </div>
-  <div class="actions w-100" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+  <div class="actions w-100" fxLayout="row"  fxLayoutAlign="space-between center">
     <div>
       <mat-form-field appearance="outline"class="w-100">
         <input matInput (keyup)="applyFilter($event.target.value)" autocomplete="off" placeholder="Filtrer">
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" [ngStyle.xs]="{'padding.px': 10}">
-     <!-- supprimer tous -->
-      <!-- <div fxLayout="row" (click)="openDialog2()" fxLayoutAlign="center center" style="color: red; cursor:pointer;"
-        fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">delete_forever</mat-icon>
-        <span [fxHide.xs]="true">Supprimer</span>
-      </div> -->
-      <div fxLayout="row" (click)="openCingredient()" fxLayoutAlign="center center" style="cursor:pointer;"
-        fxLayoutGap="5px">
+    <div (click)="openCingredient()" style="cursor:pointer;">
         <mat-icon style="font-size: 21px;">add_to_photos</mat-icon>
         <span [fxHide.xs]="true">Ajouter</span>
       </div>
-      <!-- importer excel -->
-      <!-- <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer;" fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">note_add</mat-icon>
-        <span [fxHide.xs]="true">Importer Excel</span>
-      </div> -->
-      <!-- exporter excel -->
-      <!-- <div fxLayout="row" fxLayoutAlign="center center" style="cursor:pointer" fxLayoutGap="5px">
-        <mat-icon style="font-size: 21px;">file_copy</mat-icon>
-        <span (click)="downloadCSV()" >Exporter</span>
-      </div> -->
-    </div>
+    <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" [ngStyle.xs]="{'padding.px': 10}">
+ 
+     
+    </div> -->
   </div>
 </div>
-
+<div class="example-container">
   <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8 table table-responsive-md table-striped ">
 
 
@@ -91,6 +76,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
+</div>
 
     <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>

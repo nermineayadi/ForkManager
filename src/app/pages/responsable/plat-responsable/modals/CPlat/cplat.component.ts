@@ -7,6 +7,8 @@ import { Plat } from 'src/app/models/plat.model';
 import { Ingredients } from 'src/app/models/ingredients.model';
 import { SRecettes } from 'src/app/models/srecettes.model';
 import { Ingredient } from 'src/app/models/ingredient.model';
+import { ReplaySubject, Subject } from 'rxjs';
+import { takeUntil, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cplat',
@@ -40,6 +42,15 @@ export class CplatComponent implements OnInit {
   ing: Ingredients[] = []
   srec: SRecettes[] = []
   event: any;
+  /** control for the MatSelect filter keyword */
+  public ingFilterCtrl: FormControl = new FormControl();
+
+  /** list of banks filtered by search keyword */
+  public filteredIngs: ReplaySubject<Ingredients[]> = new ReplaySubject<Ingredients[]>(1);
+
+
+  /** Subject that emits when the component has been destroyed. */
+  protected _onDestroy = new Subject<void>();
   constructor(
     public dialogRef: MatDialogRef<CplatComponent>,
     @Inject(MAT_DIALOG_DATA) public payload: any,
@@ -49,7 +60,7 @@ export class CplatComponent implements OnInit {
   ) {
     payload.ingredients.forEach((item) => {
       //   console.log(item.payload.val().stockage.nom)
-      this.ing.push({ key: item.key, code: item.payload.val().code, libelle: item.payload.val().libelle, unite: item.payload.val().stockage, prix: item.payload.val().prix })
+      this.ing.push({ libelle: item.payload.val().libelle, key: item.key, code: item.payload.val().code,  unite: item.payload.val().stockage, prix: item.payload.val().prix })
     })
     console.log(this.ing);
     payload.srecettes.forEach((item) => {
@@ -59,8 +70,57 @@ export class CplatComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.payload);
+    console.log(this.ing)
 
+    this.filteredIngs.next(this.ing)
+    console.log(this.filteredIngs)
+    this.ingFilterCtrl.valueChanges
+    .pipe(takeUntil(this._onDestroy))
+    .subscribe(() => {
+      this.filterIng();
+    });
+  }
+
+
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  /**
+   * Sets the initial value after the filteredBanks are loaded initially
+   */
+  // protected setInitialValue() {
+  //   this.filteredIngs
+  //     .pipe(take(1), takeUntil(this._onDestroy))
+  //     .subscribe(() => {
+  //       // setting the compareWith property to a comparison function
+  //       // triggers initializing the selection according to the initial value of
+  //       // the form control (i.e. _initializeSelection())
+  //       // this needs to be done after the filteredBanks are loaded initially
+  //       // and after the mat-option elements are available
+  //       this.I.compareWith = (a: Ingredients, b: Ingredients) => a && b && a.libelle === b.libelle;
+  //     });
+  // }
+  protected filterIng() {
+    if (!this.ing) {
+      return;
+    }
+    // get the search keyword
+    let search = this.ingFilterCtrl.value;
+    console.log(search)
+    if (!search) {
+      this.filteredIngs.next(this.ing);
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // filter the banks
+    this.filteredIngs.next(
+      this.ing.filter(element => 
+        element.libelle.toLowerCase().indexOf(search) > -1)
+    );
+    console.log(this.filteredIngs)
   }
   @ViewChildren('I') I;
   onSelection(e) {
