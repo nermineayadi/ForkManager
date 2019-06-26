@@ -16,7 +16,7 @@
 
       <ng-container matColumnDef="unité">
         <th mat-header-cell *matHeaderCellDef> unité </th>
-        <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.unite.nom}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="ingredientColumns"></tr>
@@ -37,11 +37,6 @@
       <ng-container matColumnDef="quantité">
         <th mat-header-cell *matHeaderCellDef> quantité </th>
         <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="unité">
-        <th mat-header-cell *matHeaderCellDef> unité </th>
-        <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="sousRecetteColumns"></tr>

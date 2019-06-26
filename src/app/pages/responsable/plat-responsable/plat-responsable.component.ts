@@ -82,7 +82,6 @@ export class PlatResponsableComponent implements OnInit {
     console.log(element);
     if (element.hasOwnProperty("ingredient")||element.hasOwnProperty("srecette")) {
       const dialogRef = this.dialog.open(DetailPComponent, {
-        height: '400px',
         data: element
       });
 
@@ -192,7 +191,7 @@ export class PlatResponsableComponent implements OnInit {
     { "id": 109, "Holiday_Date": "02/03/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "NotActive" },
     { "id": 110, "Holiday_Date": "03/04/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" },
     { "id": 111, "Holiday_Date": "21/05/2019", "Holiday_Comment": "calendrier de vacances d'entreprise de 2019.", "Holiday_Status": "Actif" }
-  ];;
+  ];
 
   csvOptions = {
     quoteStrings: '"',

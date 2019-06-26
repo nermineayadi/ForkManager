@@ -4,7 +4,7 @@
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="fas fa-cocktail w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>57</h3>
+                    <h3>{{lengthBoissons}}</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Boissons</h4>
@@ -14,7 +14,7 @@
             <div class="w3-container w3-blue w3-padding-16">
                 <div class="w3-left"><i class="fas fa-balance-scale w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>234</h3>
+                    <h3>{{lengthIngredients}}</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Ingredients</h4>
@@ -24,7 +24,7 @@
             <div class="w3-container w3-teal w3-padding-16">
                 <div class="w3-left"><i class="fas fa-book-open w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>12</h3>
+                    <h3>{{lengthSrecettes}}</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Sous Recettes</h4>
@@ -34,7 +34,7 @@
             <div class="w3-container w3-orange w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fas fa-utensils w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>34</h3>
+                    <h3>{{lengthPlats}}</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Plats</h4>
@@ -51,7 +51,7 @@
     <div>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around start">
             <div>
-                    <h3>Plat : Spaghetti Fruit de Mer </h3>
+                    <h3>Plat :{{sortedPlatMarge[0].nomPlat}} </h3>
                 <div class="progress blue">
                     <span class="progress-left">
                         <span class="progress-bar"></span>
@@ -59,7 +59,7 @@
                     <span class="progress-right">
                         <span class="progress-bar"></span>
                     </span>
-                    <div class="progress-value">900%</div>
+                    <div class="progress-value">{{margePlat(sortedPlatMarge[0])}}%</div>
                 </div>
             </div>
             <div>

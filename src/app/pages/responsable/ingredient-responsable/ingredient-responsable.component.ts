@@ -110,6 +110,8 @@ export class IngredientResponsableComponent implements OnInit {
         })
         console.log(this.ingredients)
         this.dataSource = new MatTableDataSource<Ingredient>(this.ingredients);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         console.log('The dialog was closed');
       })
      }

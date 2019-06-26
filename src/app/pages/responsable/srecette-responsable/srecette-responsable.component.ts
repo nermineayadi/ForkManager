@@ -72,9 +72,9 @@ export class SrecettesResponsableComponent implements OnInit {
       //modal detail plat
       openDetail(element: any): void {
         console.log(element);
-        if (element.hasOwnProperty("ingredient")) {
+        if (element.hasOwnProperty("ingredient")||element.hasOwnProperty("srecette")) {
           const dialogRef = this.dialog.open(DetailSComponent, {
-            height: '400px',
+           
             data: element
           });
     

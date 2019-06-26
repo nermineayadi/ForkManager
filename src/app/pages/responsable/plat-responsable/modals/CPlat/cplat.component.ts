@@ -19,7 +19,7 @@ export class CplatComponent implements OnInit {
   //photo : string;
 
   ingredients: any[] = [
-    { libelle: '', quantite: '', unite: '' }
+    { libelle: '', quantite: '' }
   ];
   srecettes: any[] = [
     { libelle: '', quantite: '', unite: '' }

@@ -1,88 +1,76 @@
 <div class="dialog" fxLayout="column">
-    <mat-toolbar>
-      <h5>Détails</h5>
-    </mat-toolbar>
-    <div class="body" fxLayout="column">
+  <mat-toolbar fxLayoutAlign="space-between center">
+    <h5>Détails</h5>
+    <i (click)="onNoClick()" style="cursor: pointer" class="fas fa-times"></i>
+
+  </mat-toolbar>
   
-<mat-tab-group>
-  <mat-tab label="Ingredients">
+  <div class="body" fxLayout="column">
 
-    <table mat-table [dataSource]="plat.ingredient" class="mat-elevation-z8" style="width : 100% ;">
-      
+    <mat-tab-group>
+      <mat-tab label="Ingredients">
 
-      <ng-container matColumnDef="libelle">
-        <th mat-header-cell *matHeaderCellDef> ingredient </th>
-        <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
-      </ng-container>
+        <table mat-table [dataSource]="ingredients" class="mat-elevation-z8" style="width : 100% ;">
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          </ng-container>
+          <ng-container matColumnDef="ingredient">
+            <th mat-header-cell *matHeaderCellDef> ingredient </th>
+            <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+          </ng-container>
+          <ng-container matColumnDef="quantite">
+            <th mat-header-cell *matHeaderCellDef> Quantite</th>
+            <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
 
-      <ng-container matColumnDef="prix">
-        <th mat-header-cell *matHeaderCellDef> P.R.U </th>
-        <td mat-cell *matCellDef="let element"> {{element.prix}} </td>
-      </ng-container>
-      <ng-container matColumnDef="quantite">
-          <th mat-header-cell *matHeaderCellDef> quantité </th>
-          <td mat-cell *matCellDef="let element"> 
-              <input type="number" [value]="element.quantite"
-              (keyup.enter)="update(element.key,$event.target.value)">
-             </td>
-        </ng-container>
-      <ng-container matColumnDef="unité">
-        <th mat-header-cell *matHeaderCellDef> unité </th>
-        <td mat-cell *matCellDef="let element"> {{element.unite.nom}} </td>
-      </ng-container>
-      <ng-container matColumnDef="supprimer">
-          <th mat-header-cell *matHeaderCellDef> supprimer </th>
-          <td mat-cell *matCellDef="let element"> 
-            <button mat-icon-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
-          </td>
-        </ng-container>
+          </ng-container>
+          <ng-container matColumnDef="unite">
+            <th mat-header-cell *matHeaderCellDef> Quantite</th>
+            <td mat-cell *matCellDef="let element"> {{element.unite.nom}} </td>
 
+          </ng-container>
+          <ng-container matColumnDef="pru">
+            <th mat-header-cell *matHeaderCellDef> P.R.U</th>
+            <td mat-cell *matCellDef="let element"> {{PrixUIng(element)}} </td>
+          </ng-container>
+          <ng-container matColumnDef="prt">
+            <th mat-header-cell *matHeaderCellDef> P.R.T</th>
+            <td mat-cell *matCellDef="let element"> {{PrixTIng(element,element.quantite)}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="ingredientColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: ingredientColumns;"></tr>
+        </table>
 
-      <tr mat-header-row *matHeaderRowDef="ingredientColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: ingredientColumns;"></tr>
-    </table>
+      </mat-tab>
+      <mat-tab label="Sous Recette">
 
-  </mat-tab>
-  <mat-tab label="Sous Recette">
+        <table mat-table [dataSource]="srecettes" class="mat-elevation-z8 table table-responsive-md table-striped ">
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef> Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+          </ng-container>
+          <ng-container matColumnDef="srecette">
+            <th mat-header-cell *matHeaderCellDef> sous recette </th>
+            <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+          </ng-container>
+          <ng-container matColumnDef="quantite">
+            <th mat-header-cell *matHeaderCellDef> Quantite</th>
+            <td mat-cell *matCellDef="let element"> {{element.quntite}} </td>
 
-    <table mat-table [dataSource]="plat.srecette" class="mat-elevation-z8" style="width : 100% ;">
-
-      <ng-container matColumnDef="libelle">
-        <th mat-header-cell *matHeaderCellDef> sous recette </th>
-        <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="quantité">
-        <th mat-header-cell *matHeaderCellDef> quantité </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantite}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="unité">
-        <th mat-header-cell *matHeaderCellDef> unité </th>
-        <td mat-cell *matCellDef="let element"> {{element.unite}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="sousRecetteColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: sousRecetteColumns;"></tr>
-    </table>
-  </mat-tab>
-  <mat-tab label="Image"> 
-      <div>
-          <img (click)="file.click()" [src]="photo" alt="plat" >
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="sousRecetteColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: sousRecetteColumns;"></tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Image">
+        <div>
+          <img (click)="file.click()" [src]="photo" alt="plat">
           <input hidden #file type="file" accept="image/*">
           <!-- <span class="hiddenFileInput">
            
           </span> -->
-        </div>   </mat-tab>
-</mat-tab-group>
-</div>
-<div class="dialog-footer" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <button mat-stroked-button color="primary"  
-
-      (click)="EditPlat()">Enregistrer</button>
-
-    <button mat-button (click)="onNoClick()"> Annuler</button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
-
-          

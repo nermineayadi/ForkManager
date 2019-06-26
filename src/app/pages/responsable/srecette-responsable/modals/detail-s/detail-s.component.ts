@@ -14,7 +14,7 @@ export class DetailSComponent implements OnInit {
 
   //colonnes
   ingredientColumns: string[] = ['libelle', 'quantité', 'unité'];
-  sousRecetteColumns: string[] = ['libelle', 'quantité', 'unité'];
+  sousRecetteColumns: string[] = ['libelle', 'quantité'];
 
   srecette: any;
   constructor(public dialogRef: MatDialogRef<DetailSComponent>,

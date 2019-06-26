@@ -154,7 +154,11 @@ export class ShareService {
     console.log(used)
     return ref.update({used: used} )
   }
-
+  updateSrecette(key: string, used: number) {
+    const ref = this.db.object(`srecettes/${key}`);
+    console.log(used)
+    return ref.update({used: used} )
+  }
   //authentification
   authentification(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
