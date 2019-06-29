@@ -3374,7 +3374,7 @@ body {
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
-  overflow: auto;
+  overflow: hidden;
 }
 html,
 body {

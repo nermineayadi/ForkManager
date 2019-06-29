@@ -44,6 +44,7 @@ get isValid():boolean{
       .logIn(obj.email, obj.password)
       .then((data: any) => {
         this.shareService.getProfile(data.user.uid).subscribe((profile : any)=>{
+          
           this.LoginService.showMsg("Bonjour");
           console.log(data);
          localStorage.setItem("uid", data.user.uid);

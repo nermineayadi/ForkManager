@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShareService } from 'src/app/services/share.service';
   // just an interface for type safety.
   interface marker {
     lat: number;
@@ -16,6 +17,7 @@ export class GoogleMapComponent implements OnInit {
   
     lat: number = 35.896999;
     lng:number=10.587838;
+    markeurs:any[]=[]
     markers: marker[] = [
         {
             lat: 35.894051,
@@ -317,7 +319,14 @@ export class GoogleMapComponent implements OnInit {
   
   
 
-    constructor() { }
+    constructor( private shareService : ShareService) {
+        this.shareService.getTrous().subscribe((trous)=>{
+            trous.forEach(element => {
+                this.markeurs.push(element.payload.val())
+                
+            });
+        })
+     }
 
     ngOnInit(): void {
      }

@@ -1,5 +1,98 @@
 <div style="background-color : white ; width:100% ;height: 100%;">
   <mat-tab-group>
+    <mat-tab label="Trou">
+      <mat-form-field appearance="outline">
+        <mat-label>Numero</mat-label>
+        <input type="number" [(ngModel)]="trou.numero" matInput required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Parcours</mat-label>
+        <mat-select [(ngModel)]="trou.parcours" name="parcours" required>
+          <mat-option [value]="'Sea'">
+            Sea
+          </mat-option>
+          <mat-option [value]="'Panorama'">
+            Panorama
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Latitude</mat-label>
+            <input type="number" [(ngModel)]="trou.lat" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Longitude</mat-label>
+              <input type="number" [(ngModel)]="trou.lng" matInput required>
+            </mat-form-field>
+          <input (change)="onchange($event)" [(ngModel)]="image"  #file type="file" accept="image/*">
+          <div fxLayout="row" fxLayoutGap="10px">
+              <button type="submit" mat-mini-fab (click)="addNewTrou()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+    </mat-tab>
+
+    <!-- Clients -->
+    <mat-tab label="Clients">
+      <div>
+        <div style="width:100%">
+          <mat-form-field appearance="outline">
+            <mat-label>Identifiant</mat-label>
+            <input type="number" minlength="6" maxlength="6" [(ngModel)]="client.identifiant" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input [(ngModel)]="client.nom" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Prenom</mat-label>
+            <input [(ngModel)]="client.prenom" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Profession</mat-label>
+            <input [(ngModel)]="client.profession" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Hotel</mat-label>
+            <input [(ngModel)]="client.hotel" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" [(ngModel)]="client.email" matInput required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Sexe</mat-label>
+            <mat-select [(ngModel)]="client.sexe" name="sexe" required>
+              <mat-option [value]="'male'">
+                male
+              </mat-option>
+              <mat-option [value]="'femelle'">
+                femelle
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Date d'arrivée</mat-label>
+            <input [(ngModel)]="client.dateA" matInput [matDatepicker]="picker1" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Date de depart</mat-label>
+            <input [(ngModel)]="client.dateD" matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button type="submit" mat-mini-fab (click)="addNewClient()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-tab>
     <!-- categories -->
     <mat-tab label="categories">
       <div>

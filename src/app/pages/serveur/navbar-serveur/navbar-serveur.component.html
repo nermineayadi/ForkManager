@@ -1,0 +1,72 @@
+<mat-toolbar class="toolbar w-100" style="padding:0px;">
+        <div class="w-100" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+            
+            <div style="padding-left: 15px;" [fxHide.xs]="true">
+              <h1>Club <span class="primary-text"> House</span></h1>
+            </div>
+          </div>
+          <div class="toolbar-items" fxLayout="row" fxLayoutAlign="center center">
+                <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+  
+            <button mat-icon-button (click)="openMap()" matTooltip="Map"><mat-icon>place</mat-icon></button>
+                </div>
+            <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+              <button [matMenuTriggerFor]="menunotif" class="notification" mat-icon-button matTooltip="Notifications"
+                (click)="toggleNotification()">
+                <mat-icon matBadge="{{nbnotifications}}" [matBadgeHidden]="ishidden" matBadgePosition="after"
+                  matBadgeColor="accent">notifications</mat-icon>
+                <mat-menu #menunotif="matMenu" class="notification-container" >
+                  <div *ngIf="ishidden" class="empty" fxLayout="column" fxLayoutGap="25px" fxLayoutAlign="center center">
+                    <mat-icon style="font-size: 36px;">notifications</mat-icon>
+                    <span>No notification yet!</span>
+                  </div>
+      
+                  <div class="fill" *ngIf="!ishidden" fxLayout="column" fxLayoutGap="8px">
+      
+                    <div class="notification-item" fxLayout="row" fxLayoutGap="1px"
+                      *ngFor="let notif of shareService.notifications" fxLayoutAlign="space-around center">
+                      <div class="user-avatar"  fxLayoutAlign="center center">
+                        <img [src]="notif.notification.icon==''?'./assets/img/avatar/avatar.png':notif.notification.icon"
+                          width="40" height="40" alt="avatar" style="border-radius: 50% ">
+                      </div>
+                      <div fxLayout="column" fxLayoutGap="5px">
+                        <h3 style="margin:0">{{notif.notification.title}}</h3>
+                        <span>{{notif.notification.body}}</span>
+                  
+                          <span>
+                            {{date}}
+                          </span>
+                     
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <button *ngFor="let notification of shareService.notifications" mat-menu-item>notification</button> -->
+                </mat-menu>
+      
+              </button>
+            </div>
+            <div class="user-avatar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px"
+              [matMenuTriggerFor]="menu">
+              <img [src]="profile.avatar==''?'./assets/img/avatar/avatar.png':profile.avatar" width="40" height="40"
+                alt="avatar" style="border-radius: 50% ;cursor: pointer" [matMenuTriggerFor]="menu"><span
+                style="font-size: 17px;">{{profile.nom+' '+profile.prenom}}</span>
+              <mat-icon style="font-size: 18px;" fxFlexAlign="end">keyboard_arrow_down</mat-icon>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item [routerLink]="[ '/profile' ]">
+                <mat-icon>account_circle</mat-icon>Profile
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Déconnecter</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </mat-toolbar>
+      
+      <!-- SEARCH -->
+      <div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}">
+        <p (click)="toggleSearch()">close</p>
+      </div>

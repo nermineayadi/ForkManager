@@ -27,6 +27,7 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     this.requestPermission();
   }
+  uid = localStorage.getItem('uid');
 
   requestPermission() {
     this.afMessaging.requestPermission
@@ -34,7 +35,7 @@ export class PagesComponent implements OnInit {
       .subscribe(
         (token) => { 
           // console.log('Permission granted! Save to the server!', token);
-          this.shareService.updateToken(token).then(()=>{
+          this.shareService.updateToken(token,this.uid).then(()=>{
             this.receiveMessage()
           })
           localStorage.setItem('token',token);  

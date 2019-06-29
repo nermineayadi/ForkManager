@@ -38,31 +38,37 @@ export class ShareService {
                                 const inventairesBar = this.getInventairesBar().subscribe((inventairesBar) => {
                                   const commandesBarEconomat = this.getcommandesBarEconomat().subscribe((commandesBarEconomat) => {
                                     const commandesCuisineEconomat = this.getcommandesCuisineEconomat().subscribe((commandesCuisineEconomat) => {
+                                      const clients = this.getClients().subscribe((clients) => {
+                                        const trous = this.getTrous().subscribe((trous) => {
 
 
-                                  const obj = {
-                                    users: users,
-                                    plats: plats,
-                                    categories: categories,
-                                    classes: classes,
-                                    ingredients: ingredients,
-                                    boissons: boissons,
-                                    familles: familles,
-                                    sfamilles: sfamilles,
-                                    stockages: stockages,
-                                    achats: achats,
-                                    unites: unites,
-                                    srecettes: srecettes,
-                                    inventairesCuisine: inventairesCuisine,
-                                    inventairesBar: inventairesBar,
-                                    commandesBarEconomat: commandesBarEconomat,
-                                    commandesCuisineEconomat: commandesCuisineEconomat
+                                        const obj = {
+                                          users: users,
+                                          plats: plats,
+                                          categories: categories,
+                                          classes: classes,
+                                          ingredients: ingredients,
+                                          boissons: boissons,
+                                          familles: familles,
+                                          sfamilles: sfamilles,
+                                          stockages: stockages,
+                                          achats: achats,
+                                          unites: unites,
+                                          srecettes: srecettes,
+                                          inventairesCuisine: inventairesCuisine,
+                                          inventairesBar: inventairesBar,
+                                          commandesBarEconomat: commandesBarEconomat,
+                                          commandesCuisineEconomat: commandesCuisineEconomat,
+                                          clients: clients,
+                                          trous:trous
 
-                                  };
-                                  resolve(obj)
+                                        };
+                                        resolve(obj)
+                                      })
+                                      })
+                                    })
+                                  })
                                 })
-                                })
-                              })
                               })
                             })
                           })
@@ -78,6 +84,10 @@ export class ShareService {
       })
     }
     )
+  }
+  getTrous() {
+    const ref = this.db.list('trous').snapshotChanges();
+    return ref;
   }
   getPlats() {
     const ref = this.db.list('plats').snapshotChanges();
@@ -127,6 +137,10 @@ export class ShareService {
     const ref = this.db.list('unites').snapshotChanges();
     return ref;
   }
+  getClients() {
+    const ref = this.db.list('clients').snapshotChanges();
+    return ref;
+  }
   getInventairesCuisine() {
     const ref = this.db.list('inventairesCuisine').snapshotChanges();
     return ref;
@@ -139,11 +153,11 @@ export class ShareService {
     return this.db.object(`ingredients/${key}`)
 
   }
-  getcommandesBarEconomat(){
+  getcommandesBarEconomat() {
     const ref = this.db.list('CommandeBarEconomat').snapshotChanges();
     return ref;
   }
-  getcommandesCuisineEconomat(){
+  getcommandesCuisineEconomat() {
     const ref = this.db.list('CommandeCuisineEconomat').snapshotChanges();
     return ref;
   }
@@ -152,20 +166,20 @@ export class ShareService {
   updateIngredient(key: string, used: number) {
     const ref = this.db.object(`ingredients/${key}`);
     console.log(used)
-    return ref.update({used: used} )
+    return ref.update({ used: used })
   }
   updateSrecette(key: string, used: number) {
     const ref = this.db.object(`srecettes/${key}`);
     console.log(used)
-    return ref.update({used: used} )
+    return ref.update({ used: used })
   }
   //authentification
   authentification(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
   //notifications
-  updateToken(token: string) {
-    const ref = this.db.object(`users/${this.uid}`);
+  updateToken(token: string,uid : string) {
+    const ref = this.db.object(`users/${uid}`);
     return ref.update({
       token: token
     })
@@ -217,7 +231,7 @@ export class ShareService {
   }
   getUser(uid: string) {
     const itemRef = this.db.object(`users/${uid}`);
-    itemRef.snapshotChanges().subscribe((data)=>{
+    itemRef.snapshotChanges().subscribe((data) => {
       console.log(data.payload.val())
     })
     return itemRef.snapshotChanges();
@@ -243,10 +257,21 @@ export class ShareService {
     this.storage.upload(filePath, file).then(() => {
       fileref.getDownloadURL().subscribe((url: string) => {
         this.updateAvatar(uid, url).then(() => {
-          this.showMsg('image sauvgarder')
+          this.showMsg('image sauvgardée')
           const profile = JSON.parse(localStorage.getItem('profile'))
           profile.avatar = url;
           localStorage.setItem('profile', JSON.stringify(profile));
+        })
+      })
+    });
+  }
+  uploadIcon(file: File, uid: string) {
+    const filePath = 'trou/' + uid + '.png';
+    const fileref = this.storage.ref(filePath);
+    this.storage.upload(filePath, file).then(() => {
+      fileref.getDownloadURL().subscribe((url: string) => {
+        this.updateIcon(uid, url).then(() => {
+          this.showMsg('image sauvgardée')
         })
       })
     });
@@ -255,6 +280,12 @@ export class ShareService {
     const itemref = this.db.object('users/' + uid);
     return itemref.update({
       avatar: url
+    });
+  }
+  updateIcon(uid: string, url: string) {
+    const itemref = this.db.object('trous/' + uid);
+    return itemref.update({
+      icon: url
     });
   }
 

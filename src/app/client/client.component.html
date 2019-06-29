@@ -16,26 +16,26 @@
     <form style="background-color:transparent" fxLayoutAlign="start center" fxLayout="column">
       <mat-form-field appearance="outline">
         <mat-label>Identifiant</mat-label>
-        <input matInput type="number" placeholder="Identifiant">
+        <input [formControl]="id" matInput type="number" placeholder="Identifiant">
       </mat-form-field>
       <mat-form-field appearance="outline">
           <mat-label>Trou</mat-label>
-          <input matInput type="number" placeholder="Trou">
+          <input [formControl]="trou" matInput type="number" placeholder="Trou">
         </mat-form-field>
       <label id="example-radio-group-label">Parcours</label>
-      <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between start">
-        <mat-radio-button value="sea">Sea Course</mat-radio-button>
-        <mat-radio-button value="panorama">Panorama Course</mat-radio-button>
+      <mat-radio-group [formControl]="parcours" aria-label="Select an option" fxLayoutAlign="space-between start">
+        <mat-radio-button value="Sea">Sea Course</mat-radio-button>
+        <mat-radio-button value="Panorama">Panorama Course</mat-radio-button>
       </mat-radio-group>
       <label id="example-radio-group-label">Emplacement</label>
-      <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between start">
+      <mat-radio-group [formControl]="emplacement" aria-label="Select an option" fxLayoutAlign="space-between start">
         <mat-radio-button value="depart">Départ</mat-radio-button>
         <mat-radio-button value="fairway">Fairway</mat-radio-button>
         <mat-radio-button value="green">Green</mat-radio-button>
       </mat-radio-group>
       <label id="example-radio-group-label">Couleur</label>
 
-            <mat-radio-group aria-label="Select an option" fxLayoutAlign="space-between">
+            <mat-radio-group [formControl]="couleur" aria-label="Select an option" fxLayoutAlign="space-between">
                 <mat-radio-button value="blanc"><i class="fas fa-golf-ball" style="color: white "></i></mat-radio-button>
                 <mat-radio-button value="bleu"><i class="fas fa-golf-ball" style="color: blue "></i></mat-radio-button>
                 <mat-radio-button value="jaune"><i class="fas fa-golf-ball" style="color: yellow "></i></mat-radio-button>
@@ -51,24 +51,23 @@
 
       <mat-tab-group>
         <mat-tab label="Fast Food" style="color : white">
-          <mat-card class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
+          <mat-card class="col-sm-4 col-md-4" style="margin : 5px " *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
-                <img src="../../../assets/plat/soupe.jpg" />
+                <img alt="image" [src]="plat.payload.val().image==''?'./assets/img/avatar/avatar.png':plat.payload.val().image" />
                 <!-- (click)="addPlat(plat) -->
-                <button class="btn btn-primary btn-sm" role="button">{{plat.payload.val().prix}}</button>
+                <button class="btn btn-primary btn-sm" (click)="addPlat(plat)" role="button">{{plat.payload.val().prix}}</button>
               </div>
 
               <div class="panel-body text-center">
                 <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
-                <small>A short description goes here.</small>
               </div>
 
             </div>
           </mat-card>
         </mat-tab>
         <mat-tab label="Boissons" style="color : white">
-          <mat-card class="col-sm-4 col-md-3" style="margin : 5px" *ngFor="let boisson of boissons ">
+          <mat-card class="col-sm-4 col-md-4" style="margin : 5px" *ngFor="let boisson of boissons ">
             <div class="panel panel-default panel-card">
               <div class="panel-heading">
                   <img  alt="avatar"   [src]="boisson.payload.val().image==''?'./assets/img/avatar/avatar.png':boisson.payload.val().image">
@@ -111,7 +110,7 @@
               <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
             </table>
             <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-around start">
-              <button mat-button (click)="passer()" class="operation" >Passer</button>
+              <button mat-button (click)="passer()" [disabled]="isValid" class="operation" >Passer</button>
               <button mat-button (click)="annuler()" class="operation">Annuler</button>
             </div>
             

@@ -5,31 +5,13 @@ import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ClientService implements Resolve<any> {
+export class ClientService  {
     constructor(private db: AngularFireDatabase ,private snackBar : MatSnackBar,) {
 
     }
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return new Promise((resolve, reject) => {
-            this.getPlats().subscribe((plats)=>{
-                this.getBoisson().subscribe((boissons)=>{
-                    resolve({
-                        plats : plats, 
-                        boissons: boissons
-                    })
-                })
-            })
-
-        });
-    }
-
-    getPlats(){
-        const ref = this.db.list('plats').snapshotChanges();
-        return ref;
-    }
-    getBoisson(){
-        const ref = this.db.list('boissons').snapshotChanges();
-        return ref;
+    addCmdGolf(cmd:any){
+        const itemsRef = this.db.list('commandeGolf');
+        return itemsRef.push(cmd);
     }
    
 }

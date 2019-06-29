@@ -170,7 +170,7 @@ srecettes: any[] =[]
       return;
     }
     // get the search keyword
-    let search = this.ingFilterCtrl.value;
+    let search = this.srecFilterCtrl.value;
     console.log(search)
     if (!search) {
       this.filteredSrec.next(this.srec);

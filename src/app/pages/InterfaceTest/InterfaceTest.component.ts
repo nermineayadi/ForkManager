@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ShareService } from 'src/app/services/share.service';
 import { Ingredient } from 'src/app/models/ingredient.model';
 import { Boisson } from 'src/app/models/boisson.model';
+import { DatePipe } from '@angular/common';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-InterfaceTest',
@@ -15,7 +17,8 @@ test: any ;
   constructor(
     private route: ActivatedRoute,
     private testService: TestService
-    ,private shareService : ShareService
+    ,private shareService : ShareService,
+    private storage: AngularFireStorage
 ) { }
 
      ngOnInit() {
@@ -24,7 +27,53 @@ test: any ;
        this.test = data.test;
       })
   }
+  pipe = new DatePipe('en-US'); // Use your own locale
+  trou: any =
+  { numero: '', parcours: '' , lng: '', lat: '',icon:''}
+  ;
+  image: any = '';
+ 
+onchange(event) { 
+  const file = event.target.files[0];
+  const filePath = 'trou/' + event.target.files[0].name + '.png';
+    const fileref = this.storage.ref(filePath);
+    this.storage.upload(filePath, file).then(() => {
+      fileref.getDownloadURL().subscribe((url: string) => {
+        this.trou.icon=url
+      })
+    });
 
+
+}
+addNewTrou() {
+ 
+
+  this.testService.addTrou(this.trou).then(() => {
+    this.shareService.showMsg('Trou ajouté')
+  }).catch(error => {
+    this.shareService.showMsg(error.message)
+  })
+  this.trou =    { numero: '', parcours: '' , lng: '', lat: '',icon:''}
+
+}
+  client: any =
+  { nom: '', prenom: '' , profession: '', hotel: '', email: '', sexe: '', dateA: '', dateD: '',identifiant: ''}
+  ;
+addNewClient() {
+   this.client.dateA = this.pipe.transform(this.client.dateA, 'shortDate');
+   this.client.dateD = this.pipe.transform(this.client.dateD, 'shortDate');
+
+  console.log(this.client.dateA)
+  console.log(this.client.dateD)
+
+  this.testService.addClient(this.client).then(() => {
+    this.shareService.showMsg('client ajouté')
+  }).catch(error => {
+    this.shareService.showMsg(error.message)
+  })
+  this.client =  { nom: '', prenom: '' , profession: '', hotel: '', email: '', sexe: '', dateA: '', dateD: '',identifiant: ''}
+
+}
   categorie: any =
     { nomcategorie: '', numcategorie: '' }
     ;

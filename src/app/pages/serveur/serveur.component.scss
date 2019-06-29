@@ -114,7 +114,8 @@ $icons-color: rgba(0,0,0,.54);;
         .content{
             padding: 10px;
             height: 100%;
-            width: calc(100% - 55px);
+            width: calc(100% - 5%);
+            overflow: auto;
         }
         .notification{
             background: $secondary-color;

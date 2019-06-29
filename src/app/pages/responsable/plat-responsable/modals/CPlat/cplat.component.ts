@@ -118,7 +118,8 @@ export class CplatComponent implements OnInit {
     // filter the banks
     this.filteredIngs.next(
       this.ing.filter(element => 
-        element.libelle.toLowerCase().indexOf(search) > -1)
+        {
+        element.libelle.toLowerCase().indexOf(search) > -1})
     );
     console.log(this.filteredIngs)
   }

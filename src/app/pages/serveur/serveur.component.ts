@@ -53,7 +53,7 @@ addPlat(plat : any){
   } 
   else {
     this.transactions[index].qte +=1;
-    this.transactions[index].prix = this.transactions[index].prix+ plat.payload.val().prix;
+    this.transactions[index].prix = this.transactions[index].prix+Number( plat.payload.val().prix);
   }
   this.transactions = [...this.transactions]
 
@@ -72,14 +72,14 @@ passer(){
     const obj = {
       key : boisson.key ,
       nom : boisson.payload.val().libelle, 
-      prix : boisson.payload.val().prix , 
+      prix :Number( boisson.payload.val().prix) , 
       qte : 1 ,
     }
     this.transactions.push(obj)
   } 
   else {
     this.transactions[index].qte +=1;
-    this.transactions[index].prix = this.transactions[index].prix+ boisson.payload.val().prix;
+    this.transactions[index].prix = this.transactions[index].prix+ Number(boisson.payload.val().prix);
   }
   this.transactions = [...this.transactions]
 

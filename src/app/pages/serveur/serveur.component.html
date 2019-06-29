@@ -1,6 +1,6 @@
-<!-- <app-navbar></app-navbar>
-<div class="main" fxLayout="row">
-  <div class="sidebar" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center ">
+<app-navbar-serveur></app-navbar-serveur>
+<div class="main" fxLayout="row" fxLayout.xs="column">
+  <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center ">
     <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
       
       <ng-container matColumnDef="nom">
@@ -37,10 +37,10 @@
         <section id="t-cards"  class="w-100 h-100">
           <div class="container w-100 h-100">
             <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats | filterbyserveur : 'Entree'">
+              <div class="col-sm-4 col-md-3" *ngFor="let plat of plats | filterbyserveur : 'Entree'">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
-                    <img src="../../../assets/plat/soupe.jpg" />
+                    <img  [src]="plat.payload.val().image==''?'./assets/img/avatar/avatar.png':plat.payload.val().image" />
                     <button class="btn btn-primary btn-sm" role="button"
                       (click)="addPlat(plat)">{{plat.payload.val().prix}}</button>
                   </div>
@@ -58,10 +58,10 @@
         <section id="t-cards" class="w-100 h-100">
           <div class="container w-100 h-100">
             <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let plat of plats  | filterbyserveur : 'Suite'">
+              <div class="col-sm-4 col-md-3" *ngFor="let plat of plats  | filterbyserveur : 'Suite'">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
-                    <img src="../../../assets/plat/Lasagne.jpg" />
+                    <img   [src]="plat.payload.val().image==''?'./assets/img/avatar/avatar.png':plat.payload.val().image"  />
                     <button class="btn btn-primary btn-sm" role="button"
                       (click)="addPlat(plat)">{{plat.payload.val().prix}}dt</button>
                   </div>
@@ -79,10 +79,10 @@
         <section id="t-cards"  class="w-100 h-100">
           <div class="container w-100 h-100">
             <div class="row">
-              <div class="col-sm-4 col-md-2 " *ngFor="let plat of plats  | filterbyserveur : 'Dessert'">
+              <div class="col-sm-4 col-md-3 " *ngFor="let plat of plats  | filterbyserveur : 'Dessert'">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
-                    <img src="../../../assets/dessert/20170526-no-bake-cheesecake-vicky-wasik-18-625x469.jpg" />
+                    <img  [src]="plat.payload.val().image==''?'./assets/img/avatar/avatar.png':plat.payload.val().image" />
                     <button class="btn btn-primary btn-sm" role="button">8</button>
                   </div>
                   <div class="panel-body text-center">
@@ -99,7 +99,7 @@
         <section id="t-cards" class="w-100 h-100">
           <div class="container w-100 h-100">
             <div class="row">
-              <div class="col-sm-4 col-md-2" *ngFor="let boisson of boissons  ">
+              <div class="col-sm-4 col-md-3" *ngFor="let boisson of boissons  ">
                 <div class="panel panel-default panel-card">
                   <div class="panel-heading">
                     <img  alt="avatar"   [src]="boisson.payload.val().image==''?'./assets/img/avatar/avatar.png':boisson.payload.val().image">
@@ -118,12 +118,4 @@
       </mat-tab>
     </mat-tab-group></div>
   </div>
-  <div [fxHide.xs]="true" class="notification" [ngClass]="{'close': !opened, 'open': opened}">
-    Notification
-  </div>
-</div>
-<div class="search" [ngClass]="{'search-close': !onSerch, 'search-open': onSerch}"> -->
-
-  <app-google-map></app-google-map>
-  <!-- <button class="btn btn-primary btn-sm" (click)="toggleSearch()">close</button>
-</div> -->
+  

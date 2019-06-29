@@ -5,10 +5,18 @@ import { AngularFireDatabase } from '@angular/fire/database';
 @Injectable()
 export class TestService {
     constructor(private db: AngularFireDatabase) { }
-    
 
+   
     
     //add
+    addTrou(trou:any){
+        const itemsRef = this.db.list('trous');
+        return itemsRef.push(trou);
+    }
+    addClient(clients: any) {
+        const itemsRef = this.db.list(`clients`);
+        return itemsRef.push(clients);
+    }
     addCategorie(categories: any) {
         const itemsRef = this.db.list(`categories`);
         return itemsRef.push(categories);
