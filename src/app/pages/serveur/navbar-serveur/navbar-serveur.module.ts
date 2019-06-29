@@ -4,7 +4,7 @@ import { NavbarServeurService } from './navbar-serveur.service';
 import { NavBarServeurComponent } from './navbar-serveur.component';
 import { NavBarRoutingModule } from 'src/app/navbar/navbar-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatangModule } from 'dist/ForkManager/assets/matang.module';
+import { MatangModule } from 'src/assets/matang.module';
 
 @NgModule({
     declarations: [NavBarServeurComponent],

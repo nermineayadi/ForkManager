@@ -12,9 +12,9 @@ const routes: Routes = [
     resolve:{serveur : ShareService},
     children: [
         {
-            path: "golf-map",
-            loadChildren: "./google-map/google-map.module#GoogleMapModule"
-        }
+            path: "golf",
+             component:GoogleMapComponent    
+                }
         ,
         {
             path: "golf-cmd",

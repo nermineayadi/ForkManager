@@ -49,6 +49,9 @@ export class NavBarServeurComponent implements OnInit {
     get notifications() : any[] {
         return this.shareService.notifications ; 
     }
+    openMap(){
+        // this.router.navigate([./map])
+    }
 }
 
 
