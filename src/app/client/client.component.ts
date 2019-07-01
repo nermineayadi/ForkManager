@@ -152,6 +152,7 @@ export class ClientComponent implements OnInit {
           this.shareService.sendNotification({
             title: 'Commande Golf',
             body : this.InformationClient,
+            icon:'',
             to: element
           }).subscribe(() => {
             console.log('notification envoyée avec succes')

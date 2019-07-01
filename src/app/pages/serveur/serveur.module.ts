@@ -10,18 +10,22 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
 import { GoogleMapModule } from './google-map/google-map.module';
 import { AgmCoreModule } from '@agm/core';
 import { NavbarServeurModule } from './navbar-serveur/navbar-serveur.module';
+import { AcceuilServeurModule } from './acceuil-serveur/acceuil-serveur.module';
+import { CmdServeurModule } from './commande-serveur/commande-serveur.module';
 
 @NgModule({
     declarations: [ServeurComponent     
    
     ],
-    imports: [ CommonModule ,ServeurRoutingModule,  CommonModule,PipesModule,
+    imports: [ CommonModule ,ServeurRoutingModule,PipesModule,
         //flex
         FlexLayoutModule,
         MatangModule,
         NavBarModule,
         GoogleMapModule,
+        AcceuilServeurModule,
         NavbarServeurModule,
+        CmdServeurModule,
         AgmCoreModule.forRoot({
           apiKey: 'AIzaSyDcB2n8SVTSqkO-Be6XXXNSvvqB8UVfPH4'
         }), 

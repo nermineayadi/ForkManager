@@ -12,7 +12,7 @@
 </div>
 <div class="container">
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="10px" class="gray-bg">
-
+<div fxLayout="column">
     <form style="background-color:transparent" fxLayoutAlign="start center" fxLayout="column">
       <mat-form-field appearance="outline">
         <mat-label>Identifiant</mat-label>
@@ -44,48 +44,8 @@
 
 
     </form>
-
-
-
     <div class="h-100 w-100">
-
-      <mat-tab-group>
-        <mat-tab label="Fast Food" style="color : white">
-          <mat-card class="col-sm-4 col-md-4" style="margin : 5px " *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
-            <div class="panel panel-default panel-card">
-              <div class="panel-heading">
-                <img alt="image" [src]="plat.payload.val().image==''?'./assets/img/avatar/avatar.png':plat.payload.val().image" />
-                <!-- (click)="addPlat(plat) -->
-                <button class="btn btn-primary btn-sm" (click)="addPlat(plat)" role="button">{{plat.payload.val().prix}}</button>
-              </div>
-
-              <div class="panel-body text-center">
-                <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
-              </div>
-
-            </div>
-          </mat-card>
-        </mat-tab>
-        <mat-tab label="Boissons" style="color : white">
-          <mat-card class="col-sm-4 col-md-4" style="margin : 5px" *ngFor="let boisson of boissons ">
-            <div class="panel panel-default panel-card">
-              <div class="panel-heading">
-                  <img  alt="avatar"   [src]="boisson.payload.val().image==''?'./assets/img/avatar/avatar.png':boisson.payload.val().image">
-                  <!-- (click)="addPlat(plat) -->
-                <button (click)="addBoisson(boisson)" class="btn btn-primary btn-sm" role="button">{{boisson.payload.val().prix}}</button>
-              </div>
-
-              <div class="panel-body text-center">
-                <h4 class="panel-header">{{boisson.payload.val().libelle}}</h4>
-                <small>A short description goes here.</small>
-              </div>
-            </div>
-          </mat-card>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-    <div class="h-100 w-100">
-        <div class="sidebar" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="start center ">
+        <div class="sidebar" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center ">
             <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
               <!-- Item Column -->
               <ng-container matColumnDef="nom">
@@ -116,5 +76,46 @@
             
           </div>
       </div>
+</div>
+
+
+    <div class="h-100 w-100">
+
+      <mat-tab-group>
+        <mat-tab label="Fast Food" style="color : white">
+          <mat-card class="col-sm-4 col-md-3" style="margin : 10px " *ngFor="let plat of plats | filterbyclient : 'FASTFOOD'">
+            <div class="panel panel-default panel-card">
+              <div class="panel-heading">
+                <img alt="image" [src]="plat.payload.val().image==''?'src/assets/img/avatar/avatar.png':plat.payload.val().image" />
+                <!-- (click)="addPlat(plat) -->
+                <button class="btn btn-primary btn-sm" (click)="addPlat(plat)" role="button">{{plat.payload.val().prix}}</button>
+              </div>
+
+              <div class="panel-body text-center">
+                <h4 class="panel-header">{{plat.payload.val().nomPlat}}</h4>
+              </div>
+
+            </div>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Boissons" style="color : white">
+          <mat-card class="col-sm-4 col-md-3" style="margin : 10px "  *ngFor="let boisson of boissons ">
+            <div class="panel panel-default panel-card">
+              <div class="panel-heading">
+                  <img  alt="avatar"   [src]="boisson.payload.val().image==''?'src/assets/img/avatar/avatar.png':boisson.payload.val().image">
+                  <!-- (click)="addPlat(plat) -->
+                <button (click)="addBoisson(boisson)" class="btn btn-primary btn-sm" role="button">{{boisson.payload.val().prix}}</button>
+              </div>
+
+              <div class="panel-body text-center">
+                <h4 class="panel-header">{{boisson.payload.val().libelle}}</h4>
+                <small>A short description goes here.</small>
+              </div>
+            </div>
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+ 
   </div>
 </div>

@@ -7,9 +7,15 @@
             </div>
           </div>
           <div class="toolbar-items" fxLayout="row" fxLayoutAlign="center center">
+              <div class="divider" fxLayout="row" fxLayoutAlign="center center">
+                  <!-- routerLink="./map" -->
+            <button mat-icon-button (click)="openCmd()"  matTooltip="Commandes Golf"><mat-icon>
+              library_books
+            </mat-icon></button>
+                </div>
                 <div class="divider" fxLayout="row" fxLayoutAlign="center center">
-                  <!-- (click)="openMap()" -->
-            <button mat-icon-button routerLink="./golf"  matTooltip="Map"><mat-icon>place</mat-icon></button>
+                  <!-- routerLink="./map" -->
+            <button mat-icon-button (click)="openMap()"  matTooltip="Map"><mat-icon>place</mat-icon></button>
                 </div>
             <div class="divider" fxLayout="row" fxLayoutAlign="center center">
               <button [matMenuTriggerFor]="menunotif" class="notification" mat-icon-button matTooltip="Notifications"
@@ -27,7 +33,7 @@
                     <div class="notification-item" fxLayout="row" fxLayoutGap="1px"
                       *ngFor="let notif of shareService.notifications" fxLayoutAlign="space-around center">
                       <div class="user-avatar"  fxLayoutAlign="center center">
-                        <img [src]="notif.notification.icon==''?'./assets/img/avatar/avatar.png':notif.notification.icon"
+                        <img [src]="notif.notification.icon==''?'src/assets/img/avatar/avatar.png':notif.notification.icon"
                           width="40" height="40" alt="avatar" style="border-radius: 50% ">
                       </div>
                       <div fxLayout="column" fxLayoutGap="5px">

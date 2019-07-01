@@ -50,7 +50,10 @@ export class NavBarServeurComponent implements OnInit {
         return this.shareService.notifications ; 
     }
     openMap(){
-        // this.router.navigate([./map])
+        this.router.navigate(['/serveur/map']);
+    }
+    openCmd(){
+        this.router.navigate(['/serveur/cmd']);
     }
 }
 

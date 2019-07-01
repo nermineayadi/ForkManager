@@ -40,6 +40,7 @@ export class ShareService {
                                     const commandesCuisineEconomat = this.getcommandesCuisineEconomat().subscribe((commandesCuisineEconomat) => {
                                       const clients = this.getClients().subscribe((clients) => {
                                         const trous = this.getTrous().subscribe((trous) => {
+                                          const commandeGolf = this.getCommandeGolf().subscribe((cmdGolf) => {
 
 
                                         const obj = {
@@ -60,11 +61,13 @@ export class ShareService {
                                           commandesBarEconomat: commandesBarEconomat,
                                           commandesCuisineEconomat: commandesCuisineEconomat,
                                           clients: clients,
-                                          trous:trous
+                                          trous:trous,
+                                          cmdGolf:cmdGolf
 
                                         };
                                         resolve(obj)
                                       })
+                                    })
                                       })
                                     })
                                   })
@@ -125,6 +128,10 @@ export class ShareService {
     const ref = this.db.list('stockages').snapshotChanges();
     return ref;
   }
+  getCommandeGolf() {
+    const ref = this.db.list('commandeGolf').snapshotChanges();
+    return ref;
+  }
   getAchats() {
     const ref = this.db.list('achats').snapshotChanges();
     return ref;
@@ -153,6 +160,14 @@ export class ShareService {
     return this.db.object(`ingredients/${key}`)
 
   }
+  getPlat(key: string) {
+    return this.db.object(`plats/${key}`)
+
+  }
+  getBoisson(key: string) {
+    return this.db.object(`boissons/${key}`)
+
+  }
   getcommandesBarEconomat() {
     const ref = this.db.list('CommandeBarEconomat').snapshotChanges();
     return ref;
@@ -168,6 +183,13 @@ export class ShareService {
     console.log(used)
     return ref.update({ used: used })
   }
+  SetLivraison(key:string)
+{
+  const ref = this.db.object(`commandeGolf/${key}`);
+  return ref.update({ livraison: true })
+
+
+}
   updateSrecette(key: string, used: number) {
     const ref = this.db.object(`srecettes/${key}`);
     console.log(used)

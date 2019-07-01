@@ -1,0 +1,164 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+    <mat-accordion style="width: 100%">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Commandes Non Livrées
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <table mat-table [dataSource]="dataSourceN"
+                class="mat-elevation-z8 table table-responsive-md table-striped ">
+
+
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Identifiant </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef> Details </th>
+                    <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="openDetail(element)">
+                            <mat-icon>zoom_in</mat-icon>
+                        </button></td>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> Position </th>
+                    <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="openPosition(element)">
+                            <mat-icon>location_on</mat-icon>
+                        </button></td>
+                </ng-container>
+                <ng-container matColumnDef="livrer">
+                    <th mat-header-cell *matHeaderCellDef> Livrer </th>
+                    <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="Livrer(element)">
+                            <mat-icon>shopping_cart
+                            </mat-icon>
+                        </button></td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsN"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsN;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[20, 30, 50]" showFirstLastButtons></mat-paginator>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Commandes Livrées
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <table mat-table [dataSource]="dataSourceL"
+                class="mat-elevation-z8 table table-responsive-md table-striped ">
+
+
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Identifiant </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef> Details </th>
+                    <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="openDetail(element)">
+                            <mat-icon>zoom_in</mat-icon>
+                        </button></td>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> Position </th>
+                    <td mat-cell *matCellDef="let element"><button mat-icon-button (click)="openPosition(element)">
+                            <mat-icon>location_on</mat-icon>
+                        </button></td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsL"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsL;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[20, 30, 50]" showFirstLastButtons></mat-paginator>
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+    <div *ngIf="longitude && latitude && position==true">
+        <agm-map [zoom]="15" [latitude]="latitude" [longitude]="longitude">
+            <agm-marker [latitude]="latitude" [longitude]="longitude">
+                <agm-info-window>
+                    <h3>Client :</h3>
+                    <small>{{identifiant}}</small>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
+    </div>
+    <div *ngIf="detail==true">
+            <mat-accordion style="width: 100%">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Plats
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+            
+            
+                        <table mat-table [dataSource]="plats" *ngIf="plats.length > 0" class="mat-elevation-z8 table table-responsive-md table-striped ">
+            
+                            <ng-container matColumnDef="plat">
+                                <th mat-header-cell *matHeaderCellDef> Plat </th>
+                                <td mat-cell *matCellDef="let element"> {{element.plat}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="qte">
+                                    <th mat-header-cell *matHeaderCellDef> Quantite </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.qte}} </td>
+                                </ng-container>
+                    
+                          
+            
+            
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsP"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsP;"></tr>
+                        </table>
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Boissons
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                
+                
+                            <table mat-table [dataSource]="boissons" *ngIf="boissons.length > 0" class="mat-elevation-z8 table table-responsive-md table-striped ">
+                
+                                <ng-container matColumnDef="boisson">
+                                    <th mat-header-cell *matHeaderCellDef> Boisson </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.boisson}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="qte">
+                                        <th mat-header-cell *matHeaderCellDef> Quantite </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.qte}} </td>
+                                    </ng-container>
+                        
+                              
+                
+                
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsB"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsB;"></tr>
+                            </table>
+
+                        </mat-expansion-panel>
+                        </mat-accordion>
+    </div>
+</div>
