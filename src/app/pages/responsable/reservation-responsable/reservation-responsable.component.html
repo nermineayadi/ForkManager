@@ -52,10 +52,18 @@
   
   <br>
   <h3>
-    Modifier Réservation
+      <mat-form-field style="margin: 5px" appearance="outline">
+          <mat-label>Client</mat-label>
+          <input [(ngModel)]="client" matInput >
+        </mat-form-field>
+        <mat-form-field style="margin: 5px" appearance="outline">
+            <mat-label>Nb personnes</mat-label>
+            <input [(ngModel)]="nbpersonnes" type="number" matInput >
+          </mat-form-field>
     <button class="btn btn-primary pull-right" (click)="addEvent()">
-      Ajouter une nouvelle Réservation
+      Ajouter Réservation
     </button>
+    
     <div class="clearfix"></div>
   </h3>
   
@@ -65,10 +73,8 @@
         <tr>
           <th>Client</th>
           <th>Nb Personnes</th>
-          <th>Couleur</th>
           <th>Date Début</th>
           <th>Date Fin </th>
-          <th>Plat</th>
           <th>Supprimer</th>
         </tr>
       </thead>
@@ -79,12 +85,9 @@
             <input type="text" class="form-control" [(ngModel)]="event.client" (keyup)="refresh.next()" />
           </td>
           <td>
-            <input type="number" class="form-control" [(ngModel)]="event.nbr" (keyup)="refresh.next()" />
+            <input type="number" class="form-control" [(ngModel)]="event.nbpersonnes" (keyup)="refresh.next()" />
           </td>
-          <td>
-            <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
-          </td>
-  
+      
           <td>
             <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
               (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true"
@@ -95,11 +98,7 @@
               [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i"
               altFormat="F j, Y H:i" placeholder="Not set" />
           </td>
-          <td>
-            <button class="btn btn-danger w-100" (click)="addReservation(event)">
-              Plats
-            </button>
-          </td>
+         
           <td>
             <button class="btn btn-danger w-100" (click)="deleteEvent(event)">
               Supprimer

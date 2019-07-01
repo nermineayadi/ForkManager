@@ -41,6 +41,7 @@ export class ShareService {
                                       const clients = this.getClients().subscribe((clients) => {
                                         const trous = this.getTrous().subscribe((trous) => {
                                           const commandeGolf = this.getCommandeGolf().subscribe((cmdGolf) => {
+                                            const reservations = this.getReservations().subscribe((reservations) => {
 
 
                                         const obj = {
@@ -53,6 +54,7 @@ export class ShareService {
                                           familles: familles,
                                           sfamilles: sfamilles,
                                           stockages: stockages,
+                                          reservations:reservations,
                                           achats: achats,
                                           unites: unites,
                                           srecettes: srecettes,
@@ -85,6 +87,7 @@ export class ShareService {
           })
         })
       })
+    })
     }
     )
   }
@@ -148,6 +151,10 @@ export class ShareService {
     const ref = this.db.list('clients').snapshotChanges();
     return ref;
   }
+  getReservations() {
+    const ref = this.db.list('reservation').snapshotChanges();
+    return ref;
+  }
   getInventairesCuisine() {
     const ref = this.db.list('inventairesCuisine').snapshotChanges();
     return ref;
@@ -168,6 +175,11 @@ export class ShareService {
     return this.db.object(`boissons/${key}`)
 
   }
+  addReservation(reservation: any) {
+    const itemsRef = this.db.list(`reservation`);
+    return itemsRef.push(reservation);
+  }
+
   getcommandesBarEconomat() {
     const ref = this.db.list('CommandeBarEconomat').snapshotChanges();
     return ref;

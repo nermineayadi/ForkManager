@@ -18,6 +18,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import { ShareService } from 'src/app/services/share.service';
+import { ActivatedRoute } from '@angular/router';
 
 const colors: any = {
   red: {
@@ -75,7 +77,18 @@ export class ReservationResponsableComponent implements OnInit {
   
     activeDayIsOpen: boolean = false;
   
-    constructor(private modal: NgbModal) {}
+    constructor(private route: ActivatedRoute,private modal: NgbModal , private shareService:ShareService) {
+      this.route.data.subscribe((data)=>{
+        console.log(data)
+
+        data.reservation.reservations.forEach(element => {
+          console.log(element.payload.val())
+this.events=[
+  ...this.events,...element.payload.val()
+]          
+        });
+      })
+    }
   
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
       if (isSameMonth(date, this.viewDate)) {
@@ -113,22 +126,27 @@ export class ReservationResponsableComponent implements OnInit {
       this.modalData = { event, action };
       this.modal.open(this.modalContent, { size: 'lg' });
     }
-  
+  client : any
+  nbpersonnes : number
     addEvent(): void {
+      const obj={
+        client:this.client,
+        nbpersonnes:this.nbpersonnes,
+        title: this.client + ' '+this.nbpersonnes+' personnnes',
+        start: startOfDay(new Date()),
+        end: endOfDay(new Date()),
+        color: colors.red,
+        draggable: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        }
+      }
       this.events = [
         ...this.events,
-        {
-          title: 'Eden Tours 70 Personnes ',
-          start: startOfDay(new Date()),
-          end: endOfDay(new Date()),
-          color: colors.red,
-          draggable: true,
-          resizable: {
-            beforeStart: true,
-            afterEnd: true
-          }
-        }
+        obj
       ];
+      this.shareService.addReservation(obj)
     }
   
     deleteEvent(eventToDelete: CalendarEvent) {
